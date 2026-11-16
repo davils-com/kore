@@ -1,0 +1,32 @@
+/*
+ * Copyright 2026 Davils
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.davils.kore.core.arguments.report.fixture
+
+import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.fixture.Stage
+import java.nio.file.Path
+
+internal class Deployment : KoreParameters(environmentPrefix = "APP") {
+    val mode: Stage by defaulted("--mode", type = KoreConverters.enum<Stage>(), default = Stage.Production)
+    val port: Int by required("--port", "-p", type = KoreConverters.int) { describedAs("The port to listen on.") }
+    val dataDir: Path by required("--data-dir", type = KoreConverters.path(KorePathRequirement.Exists))
+    val dbPassword: String by required("--db-password") { sensitive() }
+    val tags: List<String> by multiple("--tag")
+    val isDryRun: Boolean by flag("--dry-run")
+}

@@ -1,0 +1,97 @@
+/*
+ * Copyright 2026 Davils
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.davils.kore.core.version.grammar
+
+import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.version.interval.KoreVersionInterval
+import com.davils.kore.core.version.interval.normalized
+
+internal const val MATCHES_NOTHING_REASON: String = "has an alternative that matches no version"
+internal const val INTERVAL_OPENINGS: String = "[("
+
+private const val RANGE_TOO_LONG_REASON: String = "is longer than ${KoreLimits.MAX_RANGE_LENGTH} characters"
+private const val CANONICAL_TOO_LARGE_REASON: String =
+    "renders to more than ${KoreLimits.MAX_RANGE_COMPARATORS} intervals or ${KoreLimits.MAX_RANGE_LENGTH} characters"
+private const val EMPTY_ALTERNATIVE_REASON: String = "has an empty alternative beside ||"
+private const val ALTERNATIVE_SEPARATOR: String = "||"
+private const val NOTHING: String = "[]"
+
+internal fun readRange(text: String): RangeReading {
+    val problem = rangeTextProblem(text)
+    if (problem != null) return RangeReading.Refused(problem)
+    return readTrimmedRange(trimmedRangeSpace(text))
+}
+
+internal fun combined(
+    readings: List<RangeReading>,
+    initial: List<KoreVersionInterval>,
+    merge: (List<KoreVersionInterval>, List<KoreVersionInterval>) -> List<KoreVersionInterval>,
+): RangeReading {
+    val start: RangeReading = RangeReading.Read(initial)
+    return readings.fold(start) { sofar, next -> joined(sofar, next, merge) }
+}
+
+internal fun readingOf(interval: KoreVersionInterval?, emptyReason: String): RangeReading {
+    if (interval == null) return RangeReading.Refused(emptyReason)
+    return RangeReading.Read(listOf(interval))
+}
+
+private fun joined(
+    sofar: RangeReading,
+    next: RangeReading,
+    merge: (List<KoreVersionInterval>, List<KoreVersionInterval>) -> List<KoreVersionInterval>,
+): RangeReading {
+    if (sofar !is RangeReading.Read) return sofar
+    return when (next) {
+        is RangeReading.Read -> RangeReading.Read(merge(sofar.intervals, next.intervals))
+        is RangeReading.Refused -> next
+    }
+}
+
+private fun rangeTextProblem(text: String): String? {
+    if (text.length > KoreLimits.MAX_RANGE_LENGTH) return RANGE_TOO_LONG_REASON
+    return EMPTY_REASON.takeIf { text.all(::isRangeSpace) }
+}
+
+private fun readTrimmedRange(text: String): RangeReading {
+    if (text == NOTHING) return RangeReading.Read(emptyList())
+    val collector = RangeCollector()
+    for (alternative in text.split(ALTERNATIVE_SEPARATOR)) {
+        if (collector.isRefused) break
+        readAlternative(alternative, collector)
+    }
+    return renderable(collector.reading())
+}
+
+private fun readAlternative(alternative: String, collector: RangeCollector) {
+    val text = trimmedRangeSpace(alternative)
+    if (text.isEmpty()) return collector.refuse(EMPTY_ALTERNATIVE_REASON)
+    if (text.first() in INTERVAL_OPENINGS) return readIntervals(text, collector)
+    readComparatorSet(text, collector)
+}
+
+private fun renderable(reading: RangeReading): RangeReading = when (reading) {
+    is RangeReading.Read -> renderableIntervals(normalized(reading.intervals))
+    is RangeReading.Refused -> reading
+}
+
+private fun renderableIntervals(intervals: List<KoreVersionInterval>): RangeReading {
+    val rendered = intervals.sumOf { interval -> interval.toString().length } + intervals.size - 1
+    val isFitting = intervals.size <= KoreLimits.MAX_RANGE_COMPARATORS && rendered <= KoreLimits.MAX_RANGE_LENGTH
+    if (!isFitting) return RangeReading.Refused(CANONICAL_TOO_LARGE_REASON)
+    return RangeReading.Read(intervals)
+}
