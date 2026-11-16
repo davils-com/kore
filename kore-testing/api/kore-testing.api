@@ -1,0 +1,30 @@
+public final class com/davils/kore/testing/KoreMarkedText {
+	public static final field CARET Ljava/lang/String;
+	public static final field Companion Lcom/davils/kore/testing/KoreMarkedText$Companion;
+	public static final field RANGE_END Ljava/lang/String;
+	public static final field RANGE_START Ljava/lang/String;
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCaret ()I
+	public final fun getCarets ()Ljava/util/List;
+	public final fun getRange ()Lcom/davils/kore/core/text/KoreTextRange;
+	public final fun getRanges ()Ljava/util/List;
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/testing/KoreMarkedText$Companion {
+	public final fun of (Ljava/lang/String;)Lcom/davils/kore/testing/KoreMarkedText;
+}
+
+public final class com/davils/kore/testing/KoreSequentialUuidV7Generator : com/davils/kore/core/identity/generator/KoreUuidGenerator {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/time/Instant;)V
+	public synthetic fun <init> (Lkotlin/time/Instant;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getIssued ()J
+	public final fun getStart ()Lkotlin/time/Instant;
+	public synthetic fun next ()Lcom/davils/kore/core/identity/KoreUuid;
+	public fun next ()Lcom/davils/kore/core/identity/KoreUuidV7;
+}
+
