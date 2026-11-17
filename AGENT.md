@@ -150,11 +150,9 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   ./gradlew --write-verification-metadata pgp,sha256 --export-keys --no-configuration-cache check
   ```
 
-- While Kreate is a snapshot, `gradle/verification-metadata.xml` trusts `com.davils` artifacts whose version ends in
-  `-SNAPSHOT`, because they change with every push and are not signed, and the pipeline runs Gradle with
-  `--refresh-dependencies` so it never builds with a snapshot the cache kept. Once the release is out, raise the
-  version in the catalog, remove that trust rule and the flag in `.github/kotlin-workflow.yml`, and record its
-  signature.
+- Kore builds only with released versions of Kreate. `gradle/verification-metadata.xml` trusts `com.davils` artifacts
+  only by the signature of the Davils release key `36F578E8AD2D4391E0FA6C18154C625FAD370063`; a Kreate snapshot is
+  never put into the catalog, and no trust rule for unsigned snapshots is ever added.
 - A finding of the assurance gate that is a known, harmless property of a dependency gets an `ignore` rule in
   `build-logic/src/main/kotlin/kore.assurance.gradle.kts`, with a reason, the exact module and an expiry date no more
   than six months ahead. CRITICAL and HIGH findings can never be ignored.
