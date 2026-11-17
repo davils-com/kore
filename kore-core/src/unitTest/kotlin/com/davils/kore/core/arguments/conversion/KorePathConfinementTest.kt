@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
+import com.davils.kore.core.arguments.conversion.fixture.ComponentInspector
 import com.davils.kore.core.arguments.conversion.fixture.Confined
 import com.davils.kore.core.arguments.fixture.NO_ENVIRONMENT
 import com.davils.kore.core.arguments.report.KoreParameterException
@@ -45,9 +46,14 @@ private fun refusal(converter: KoreConverter<Path>, path: Path): String? =
     shouldThrow<KoreConversionException> { converter.convert(path.toString()) }.message
 
 class KorePathConfinementTest : FunSpec({
+    fun realDirectory(): Path {
+        val directory = tempdir().toPath()
+        return directory.toRealPath()
+    }
+
     context("a path confined to a base directory") {
         test("inside the base is accepted, whether it exists yet or not") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             val existing = base.resolve("existing.txt").createFile()
             val converter = withinConverter(base)
@@ -57,7 +63,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("in a sibling whose name merely starts like the base is refused") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             val evil = root.resolve("app-evil").createDirectories()
 
@@ -66,7 +72,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("that climbs out of the base with dot-dot is refused") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             root.resolve("outside.txt").createFile()
 
@@ -74,7 +80,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("that leaves the base through a symbolic link is refused") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             val outside = root.resolve("outside").createDirectories()
             outside.resolve(SECRET_FILE).createFile()
@@ -85,7 +91,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("that is a dangling link pointing outside the base is refused") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             val dangling = Files.createSymbolicLink(base.resolve("dangling"), root.resolve("created-later.txt"))
 
@@ -93,7 +99,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("is refused when the base itself does not exist") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val missing = root.resolve("missing")
 
             refusal(withinConverter(missing), missing.resolve(FILE)) shouldBe OUTSIDE
@@ -102,7 +108,7 @@ class KorePathConfinementTest : FunSpec({
 
     context("a path that must not pass through a symbolic link") {
         test("without any link is accepted, whether it exists yet or not") {
-            val directory = tempdir().toPath()
+            val directory = realDirectory()
             val file = directory.resolve("plain.txt").createFile()
             val converter = KoreConverters.path(KorePathRequirement.NoSymlinks)
 
@@ -111,7 +117,7 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("that is a link or passes through one is refused") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val deep = root.resolve("deep").createDirectories()
             val target = deep.resolve("target").createDirectories()
             val file = target.resolve(FILE).createFile()
@@ -127,6 +133,29 @@ class KorePathConfinementTest : FunSpec({
         }
     }
 
+    context("a path checked for links component by component") {
+        test("counts no short name or other spelling of its real path as a link") {
+            val inspector = ComponentInspector(present = setOf("data", "data/PROGRA~1", "data/PROGRA~1/app.txt"))
+
+            hasNoSymlinks(inspector.pathOf("data/PROGRA~1/app.txt"), inspector) shouldBe true
+            hasNoSymlinks(inspector.pathOf("data/PROGRA~1/new.txt"), inspector) shouldBe true
+        }
+
+        test("refuses a junction or any other reparse point on the way") {
+            val present = setOf("data", "data/junction", "data/junction/app.txt")
+            val inspector = ComponentInspector(present = present, links = setOf("data/junction"))
+
+            hasNoSymlinks(inspector.pathOf("data/junction/app.txt"), inspector) shouldBe false
+            hasNoSymlinks(inspector.pathOf("data/junction/new.txt"), inspector) shouldBe false
+        }
+
+        test("refuses a path whose parent does not exist") {
+            val inspector = ComponentInspector(present = setOf("data"))
+
+            hasNoSymlinks(inspector.pathOf("data/missing/new.txt"), inspector) shouldBe false
+        }
+    }
+
     context("a set of requirements") {
         test("that contradicts itself is refused when declared") {
             shouldThrow<IllegalArgumentException> {
@@ -138,20 +167,20 @@ class KorePathConfinementTest : FunSpec({
         }
 
         test("that only confines a path does not demand that it exists") {
-            val directory = tempdir().toPath()
+            val directory = realDirectory()
 
             withinConverter(directory).convert(directory.resolve("new.txt").toString()) shouldNotBe null
         }
 
         test("names a confinement by its base when printed") {
-            KorePathRequirement.Within(Path.of(SERVED)).toString() shouldContain SERVED
+            KorePathRequirement.Within(Path.of(SERVED)).toString() shouldContain Path.of(SERVED).toString()
             KorePathRequirement.Within(Path.of(SERVED)) shouldBe KorePathRequirement.Within(Path.of(SERVED))
         }
     }
 
     context("a schema with a confined path") {
         test("reports a path outside its base as a conversion failure") {
-            val root = tempdir().toPath()
+            val root = realDirectory()
             val base = root.resolve("app").createDirectories()
             val evil = root.resolve("app-evil").createDirectories()
 

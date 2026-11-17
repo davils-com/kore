@@ -17,8 +17,11 @@
 package com.davils.kore.core.arguments.conversion
 
 import java.io.IOException
+import java.nio.file.Files
 import java.nio.file.LinkOption
+import java.nio.file.NoSuchFileException
 import java.nio.file.Path
+import java.nio.file.attribute.BasicFileAttributes
 import kotlin.io.path.exists
 import kotlin.io.path.isDirectory
 import kotlin.io.path.isReadable
@@ -39,5 +42,14 @@ internal object FileSystemInspector : PathInspector {
         path.toRealPath()
     } catch (expected: IOException) {
         null
+    }
+
+    override fun isLink(path: Path): Boolean = try {
+        val attributes = Files.readAttributes(path, BasicFileAttributes::class.java, LinkOption.NOFOLLOW_LINKS)
+        attributes.isSymbolicLink || attributes.isOther
+    } catch (expected: NoSuchFileException) {
+        false
+    } catch (expectedDenial: IOException) {
+        true
     }
 }

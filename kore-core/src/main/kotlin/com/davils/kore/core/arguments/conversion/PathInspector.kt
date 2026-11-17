@@ -30,4 +30,6 @@ internal interface PathInspector {
     fun isRegularFile(path: Path): Boolean
 
     fun realPath(path: Path): Path?
+
+    fun isLink(path: Path): Boolean
 }

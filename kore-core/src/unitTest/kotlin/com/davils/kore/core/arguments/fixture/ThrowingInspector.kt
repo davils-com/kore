@@ -33,4 +33,6 @@ internal object ThrowingInspector : PathInspector {
     override fun isRegularFile(path: Path): Boolean = throw SecurityException(DENIED)
 
     override fun realPath(path: Path): Path = throw SecurityException(DENIED)
+
+    override fun isLink(path: Path): Boolean = throw SecurityException(DENIED)
 }

@@ -92,11 +92,13 @@ public sealed class KorePathRequirement {
     /**
      * No component of the path is a symbolic link.
      *
-     * The real path of the path is compared with its absolute, normalized form, and any difference refuses it, such as
-     * a symbolic link in any component or a `..` that a link resolves elsewhere. A path that does not exist is accepted
-     * when it can still be created, which means that its name is not `.` or `..` and its parent passes the same
-     * comparison; a dangling link is refused. The check is advisory and made once at load time, so a link created
-     * afterwards is not seen.
+     * Every component of the absolute path, as written and before `..` is resolved, is checked without following
+     * links, so a link anywhere on the way is refused, also one that a later `..` leaves again. A Windows junction or
+     * another reparse point counts as a link, and a component whose kind cannot be read is refused. Other differences
+     * between the path and its real path, such as a short Windows name or the case of a name on a case-insensitive
+     * file system, are not links. A path that does not exist is accepted when it can still be created, which means
+     * that its name is not `.` or `..` and its parent exists and passes the same check; a dangling link is refused.
+     * The check is advisory and made once at load time, so a link created afterwards is not seen.
      *
      * @since 1.0.0
      */

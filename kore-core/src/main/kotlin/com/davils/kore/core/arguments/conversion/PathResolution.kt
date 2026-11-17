@@ -28,13 +28,17 @@ internal fun isWithin(path: Path, base: Path, inspector: PathInspector): Boolean
 
 internal fun hasNoSymlinks(path: Path, inspector: PathInspector): Boolean {
     val absolute = path.toAbsolutePath()
-    val real = inspector.realPath(absolute) ?: return isCreatableWithoutSymlinks(absolute, inspector)
-    return real == absolute.normalize()
+    val ancestors = ancestorsOf(absolute)
+    val missing = ancestors.firstOrNull { ancestor -> !inspector.isPresent(ancestor) }
+    val isOnlyNameMissing = missing == absolute && creatableParent(absolute, inspector) != null
+    val isCreatable = missing == null || isOnlyNameMissing
+    return isCreatable && ancestors.none { ancestor -> inspector.isPresent(ancestor) && inspector.isLink(ancestor) }
 }
 
-private fun isCreatableWithoutSymlinks(absolute: Path, inspector: PathInspector): Boolean {
-    val parent = creatableParent(absolute, inspector) ?: return false
-    return inspector.realPath(parent) == parent.normalize()
+private fun ancestorsOf(absolute: Path): List<Path> {
+    val root = absolute.root ?: return listOf(absolute)
+    val names = absolute.map { name -> name.toString() }
+    return names.runningFold(root) { ancestor, name -> ancestor.resolve(name) }
 }
 
 private fun resolvedTarget(absolute: Path, inspector: PathInspector): Path? =
