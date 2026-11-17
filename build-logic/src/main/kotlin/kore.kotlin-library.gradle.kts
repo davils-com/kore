@@ -210,8 +210,8 @@ kreate {
                     name = "Davils"
                     releases = "https://repo.davils.com/releases"
                     snapshots = "https://repo.davils.com/snapshots"
-                    usernameEnv = "MAVEN_USERNAME"
-                    passwordEnv = "MAVEN_PASSWORD"
+                    usernameEnv = "DAVILS_MAVEN_NAME"
+                    passwordEnv = "DAVILS_MAVEN_SECRET"
                     signPublications = true
                     allowInsecureProtocol = false
                 }

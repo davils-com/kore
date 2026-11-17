@@ -143,8 +143,8 @@ refuses a build whose resolved version differs from it, so no environment variab
 and is built without any snapshot tooling; the guard refuses every other combination before anything is published.
 Snapshots go to `https://repo.davils.com/snapshots`, releases to `https://repo.davils.com/releases`, and never to
 Maven Central. The pipeline publishes with
-`publishAllPublicationsToDavilsRepository` and `--no-configuration-cache`, with the credentials in `MAVEN_USERNAME`
-and `MAVEN_PASSWORD` and the signing key in `ORG_GRADLE_PROJECT_signingInMemoryKey`, `…KeyId` and `…KeyPassword`;
+`publishAllPublicationsToDavilsRepository` and `--no-configuration-cache`, with the credentials in `DAVILS_MAVEN_NAME`
+and `DAVILS_MAVEN_SECRET`, as kotlin-workflow hands them to Gradle, and the signing key in `ORG_GRADLE_PROJECT_signingInMemoryKey`, `…KeyId` and `…KeyPassword`;
 a release without a signing key fails.
 
 ## Git
