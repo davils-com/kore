@@ -6,6 +6,7 @@
       <trusted-artifacts>
          <trust file=".*-javadoc[.]jar" regex="true" reason="Documentation jars are fetched by the IDE only and never enter a build."/>
          <trust file=".*-sources[.]jar" regex="true" reason="Source jars are fetched by the IDE only and never enter a build."/>
+         <trust group="gradle" name="gradle" file="gradle-.*-src[.]zip" regex="true" reason="The sources of the Gradle distribution are fetched by the IDE only, to navigate the Gradle API, and never enter a build."/>
          <trust group="^com[.]davils($|([.].*))" version=".*-SNAPSHOT" regex="true" reason="Snapshots of Davils builds change with every push and are not signed. Kreate 5.0.0 is verified by its signature once it is released."/>
       </trusted-artifacts>
       <trusted-keys>
