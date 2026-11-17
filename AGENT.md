@@ -48,7 +48,8 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 - **One top-level type per file**, named after it; a file of functions is named after its role.
 - **No package for a single file.** A subpackage holds at least two files. A file that would stand alone in a
   package lives in the parent package instead, and when a subpackage shrinks to one file, that file moves up and the
-  subpackage goes away. The root package of a module is the only exception.
+  subpackage goes away. Exceptions are the root package of a module and an `internal` package, which may hold a
+  single file.
 - **No `!!`, no `lateinit`.** Model absence as a type or return early.
 - **Explicit API.** Everything is `internal` unless a consumer needs it.
 - **Names.** No type, file, function or property carries the name of the library as a prefix: `SemanticVersion`,
@@ -89,6 +90,11 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   callback that may carry input is replaced by a redacted placeholder.
 - **Fail closed.** An empty set of roles never passes, a missing principal is an error, an unknown argument is an
   error, a path check that cannot decide refuses.
+- **Hide what Java must not reach.** Kotlin's `internal` is `public` in the bytecode, so a Java caller on the module
+  path reaches every internal class of an exported package. A class whose misuse weakens a guarantee, such as the
+  sanitizer, the context element of principals or the monotonic UUID state, lives in the `internal` subpackage of
+  its package, for example `com.davils.kore.core.text.internal`, and `module-info.java` never exports an `internal`
+  package.
 - **Secure randomness only.** No `java.util.Random`, `kotlin.random.Random` or `ThreadLocalRandom`.
 - **Every sink has an injection test.** A renderer is tested with the `hostileText` fixture and
   `shouldBeSafeToShow`; a sensitive value has a property test that it appears nowhere.
