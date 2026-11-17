@@ -12,7 +12,8 @@ published: the Windows check of its release failed while Kreate 5.0.0 installed 
 
 ### Changed
 
-- **Built with Kreate 5.0.1**, which installs Trivy once when parallel tasks find its cache empty.
+- **Built with Kreate 5.0.2**, which installs Trivy once when parallel tasks find its cache empty and runs one
+  Trivy scan at a time.
 
 ## 1.0.0 - 2026-11-17
 
