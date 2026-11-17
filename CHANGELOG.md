@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 The first version of Kore: the core building blocks of Davils as an open source library under the Apache License
-2.0, built with Kreate 4.2.0 (a snapshot until its release) and published to `https://repo.davils.com`. The code
+2.0, built with Kreate 5.0.0 and published to `https://repo.davils.com`. The code
 comes from the core of an internal Davils project and was hardened for use with untrusted input on the way.
 
 ### Added
