@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 import java.net.URI
 
 private const val SCHEME_SEPARATOR: String = "://"

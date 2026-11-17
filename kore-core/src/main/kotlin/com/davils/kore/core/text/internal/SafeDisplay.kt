@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.text
+package com.davils.kore.core.text.internal
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.text.TextRange
 import java.util.Locale
 
 private const val TAB: Int = '\t'.code

@@ -19,7 +19,7 @@ package com.davils.kore.core.arguments.report
 import com.davils.kore.core.Limits
 import com.davils.kore.core.arguments.ParameterInfo
 import com.davils.kore.core.arguments.declaration.ParameterSpec
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 private const val COLUMN_LIMIT: Int = 34
 private const val COLUMN_GAP: Int = 2

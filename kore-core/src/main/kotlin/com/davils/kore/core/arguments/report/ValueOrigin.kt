@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.report
 
 import com.davils.kore.core.arguments.ParameterInfo
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 /**
  * Where the value of a parameter came from: the command line, an environment variable, a value source or the default.

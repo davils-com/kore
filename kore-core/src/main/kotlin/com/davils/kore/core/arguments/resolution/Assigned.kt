@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.resolution
 
 import com.davils.kore.core.arguments.report.ValueOrigin
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 import java.util.Objects
 
 internal data class Assigned<V>(val value: V, val origin: ValueOrigin?) {

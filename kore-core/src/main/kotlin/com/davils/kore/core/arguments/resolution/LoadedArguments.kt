@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.resolution
 
 import com.davils.kore.core.arguments.report.ParameterViolation
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 internal data class LoadedArguments(
     val rest: List<String>,

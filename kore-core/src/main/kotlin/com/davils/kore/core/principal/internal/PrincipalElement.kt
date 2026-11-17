@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.principal
+package com.davils.kore.core.principal.internal
 
+import com.davils.kore.core.principal.Principal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.currentCoroutineContext

@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.identity
+package com.davils.kore.core.identity.internal
 
+import com.davils.kore.core.identity.UuidV7
 import com.davils.kore.core.identity.generator.UuidGenerator
 import java.security.SecureRandom
 import java.util.concurrent.atomic.AtomicLong

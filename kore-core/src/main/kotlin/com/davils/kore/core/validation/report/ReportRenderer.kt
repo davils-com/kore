@@ -17,7 +17,7 @@
 package com.davils.kore.core.validation.report
 
 import com.davils.kore.core.Limits
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 import com.davils.kore.core.validation.violation.Violation
 
 private const val PATH_COLUMN_LIMIT: Int = 28

@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.principal
 
+import com.davils.kore.core.principal.internal.PrincipalElement
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.nulls.shouldBeNull

@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.declaration
 
 import com.davils.kore.core.arguments.conversion.isAsciiLetterOrDigit
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 internal const val LONG_PREFIX: String = "--"
 internal const val SHORT_PREFIX: String = "-"

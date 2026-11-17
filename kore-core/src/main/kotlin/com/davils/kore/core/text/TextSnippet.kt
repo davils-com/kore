@@ -17,6 +17,7 @@
 package com.davils.kore.core.text
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.text.internal.SafeDisplay
 
 /**
  * The part of one line of a text around a highlighted range, ready to be shown with [render], such as the place of a

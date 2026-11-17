@@ -17,7 +17,7 @@
 package com.davils.kore.core.principal
 
 import com.davils.kore.core.Limits
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 import com.davils.kore.core.validation.Validatable
 import com.davils.kore.core.validation.ValidationScope
 import com.davils.kore.core.validation.report.ValidationException

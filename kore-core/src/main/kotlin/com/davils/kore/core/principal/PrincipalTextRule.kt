@@ -17,7 +17,7 @@
 package com.davils.kore.core.principal
 
 import com.davils.kore.core.Limits
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 private const val COMBINING_GRAPHEME_JOINER: Int = 0x034F
 private const val HANGUL_CHOSEONG_FILLER: Int = 0x115F

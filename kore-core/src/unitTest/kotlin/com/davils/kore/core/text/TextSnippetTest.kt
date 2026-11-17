@@ -26,6 +26,7 @@ import com.davils.kore.core.text.fixture.SAMPLE_VALUE_END
 import com.davils.kore.core.text.fixture.SAMPLE_VALUE_START
 import com.davils.kore.core.text.fixture.dataClassMembers
 import com.davils.kore.core.text.fixture.snippetOf
+import com.davils.kore.core.text.internal.SafeDisplay
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeEmpty

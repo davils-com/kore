@@ -17,7 +17,7 @@
 package com.davils.kore.core.principal
 
 import com.davils.kore.core.Limits
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 private const val ATTRIBUTES_HASH_FACTOR: Int = 31
 private const val NAME_PREFIX: String = "An attribute name "

@@ -17,6 +17,7 @@
 package com.davils.kore.core.principal
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.principal.internal.PrincipalElement
 import com.davils.kore.core.validation.report.ValidationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.currentCoroutineContext

@@ -19,7 +19,7 @@ package com.davils.kore.core.arguments
 import com.davils.kore.core.arguments.declaration.ParameterKind
 import com.davils.kore.core.arguments.declaration.checkedNames
 import com.davils.kore.core.arguments.report.ParameterPresentation
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 /**
  * What a schema declares about one parameter: its names, its environment variable, its type and how it is presented.

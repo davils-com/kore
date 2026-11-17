@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.identity.generator
 
-import com.davils.kore.core.identity.MonotonicUuidV7Generator
 import com.davils.kore.core.identity.UuidV7
+import com.davils.kore.core.identity.internal.MonotonicUuidV7Generator
 
 /**
  * The generator of version 7 identifiers for production: it reads the system clock and keeps every identifier it

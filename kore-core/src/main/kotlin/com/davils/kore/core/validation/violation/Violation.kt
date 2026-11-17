@@ -17,7 +17,7 @@
 package com.davils.kore.core.validation.violation
 
 import com.davils.kore.core.Limits
-import com.davils.kore.core.text.SafeDisplay
+import com.davils.kore.core.text.internal.SafeDisplay
 
 /**
  * One problem a validation found: where it is, what kind of problem it is, how severe it is and what is wrong.
