@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.architecture.domain.fixture
 
-import com.davils.kore.core.architecture.domain.KoreUseCase
+import com.davils.kore.core.architecture.domain.UseCase
 import com.davils.kore.core.architecture.fixture.Server
 import com.davils.kore.core.architecture.fixture.ServerId
 import com.davils.kore.core.architecture.fixture.ServerRepository
 
 internal class RenameServerUseCase(
     private val servers: ServerRepository,
-) : KoreUseCase<RenameServerUseCase.Input, Server> {
+) : UseCase<RenameServerUseCase.Input, Server> {
     data class Input(val id: ServerId, val name: String)
 
     override suspend fun invoke(input: Input): Server {

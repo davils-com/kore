@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class LongNames : KoreParameters() {
-    val long: Int by required("--a-parameter-with-a-really-long-name", type = KoreConverters.int)
-    val short: Int by required("--b", type = KoreConverters.int)
+internal class LongNames : Parameters() {
+    val long: Int by required("--a-parameter-with-a-really-long-name", type = Converters.int)
+    val short: Int by required("--b", type = Converters.int)
 }

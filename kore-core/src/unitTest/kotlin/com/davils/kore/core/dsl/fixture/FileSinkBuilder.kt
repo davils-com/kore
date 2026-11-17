@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class FileSinkBuilder : KoreValidatingBuilder<FileSinkData>() {
+internal class FileSinkBuilder : ValidatingBuilder<FileSinkData>() {
     var name: String = "file"
     var maxBytes: Long = DEFAULT_MAX_BYTES
     private var queue: QueueData? = null

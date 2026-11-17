@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal
 
-import com.davils.kore.core.validation.violation.KoreViolationCode
+import com.davils.kore.core.validation.violation.ViolationCode
 
 internal enum class TextProblem {
     Blank,
@@ -32,10 +32,10 @@ internal enum class TextProblem {
         SurroundingWhitespace -> "must not start or end with whitespace"
     }
 
-    fun code(blankCode: KoreViolationCode): KoreViolationCode = when (this) {
+    fun code(blankCode: ViolationCode): ViolationCode = when (this) {
         Blank -> blankCode
-        TooLong -> KorePrincipalViolationCodes.TOO_LONG
-        UnsafeCharacter -> KorePrincipalViolationCodes.INVALID_CHARACTER
-        SurroundingWhitespace -> KorePrincipalViolationCodes.SURROUNDING_WHITESPACE
+        TooLong -> PrincipalViolationCodes.TOO_LONG
+        UnsafeCharacter -> PrincipalViolationCodes.INVALID_CHARACTER
+        SurroundingWhitespace -> PrincipalViolationCodes.SURROUNDING_WHITESPACE
     }
 }

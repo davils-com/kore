@@ -17,33 +17,33 @@
 package com.davils.kore.core.validation
 
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.validation.violation.KoreSeverity
-import com.davils.kore.core.validation.violation.KoreViolation
-import com.davils.kore.core.validation.violation.KoreViolationCode
-import com.davils.kore.core.validation.violation.KoreViolationPath
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.validation.violation.Severity
+import com.davils.kore.core.validation.violation.Violation
+import com.davils.kore.core.validation.violation.ViolationCode
+import com.davils.kore.core.validation.violation.ViolationPath
 
 internal class ViolationCollector {
-    private val collected = ArrayList<KoreViolation>()
+    private val collected = ArrayList<Violation>()
     private var omitted: Long = 0
 
-    fun add(violation: KoreViolation) {
-        if (collected.size < KoreLimits.MAX_VIOLATIONS) {
+    fun add(violation: Violation) {
+        if (collected.size < Limits.MAX_VIOLATIONS) {
             collected += violation
             return
         }
         omitted++
     }
 
-    fun violations(): List<KoreViolation> {
+    fun violations(): List<Violation> {
         if (omitted == 0L) return collected.immutableList()
         return (collected + omission()).immutableList()
     }
 
-    private fun omission(): KoreViolation = KoreViolation(
-        path = KoreViolationPath.ROOT,
-        code = KoreViolationCode.TOO_MANY,
-        severity = KoreSeverity.Error,
+    private fun omission(): Violation = Violation(
+        path = ViolationPath.ROOT,
+        code = ViolationCode.TOO_MANY,
+        severity = Severity.Error,
         message = "$omitted further problems were found but not collected",
     )
 }

@@ -47,7 +47,7 @@ internal class UriRules(
 
     fun read(raw: String): URI {
         val uri = parsed(raw)
-        problemWith(uri)?.let { problem -> throw KoreConversionException(problem) }
+        problemWith(uri)?.let { problem -> throw ConversionException(problem) }
         return uri
     }
 
@@ -79,5 +79,5 @@ private fun schemeReasonFor(accepted: Set<String>): String {
 private fun parsed(raw: String): URI = try {
     URI(raw)
 } catch (expected: URISyntaxException) {
-    throw KoreConversionException("is not a valid URI: ${expected.reason}")
+    throw ConversionException("is not a valid URI: ${expected.reason}")
 }

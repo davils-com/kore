@@ -1,0 +1,39 @@
+/*
+ * Copyright 2026 Davils
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.davils.kore.core.identity.generator
+
+import com.davils.kore.core.identity.UuidV4
+import kotlin.uuid.Uuid as KotlinUuid
+
+/**
+ * The generator of version 4 identifiers for production, drawing every identifier from a cryptographically secure
+ * random generator.
+ *
+ * It keeps no state of its own and is safe for any number of threads. [UuidV4.random] mints through it.
+ *
+ * @since 1.0.0
+ */
+public object UuidV4Generator : UuidGenerator<UuidV4> {
+    /**
+     * Mints a new version 4 identifier from 122 bits of the cryptographically secure random generator of the Kotlin
+     * standard library, [kotlin.uuid.Uuid.random].
+     *
+     * @return a new version 4 identifier.
+     * @since 1.0.0
+     */
+    override fun next(): UuidV4 = UuidV4(KotlinUuid.random())
+}

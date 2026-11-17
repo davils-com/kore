@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreParameterLimits
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.declaration.ParameterDraft
 import com.davils.kore.core.arguments.declaration.ParameterSpec
 import com.davils.kore.core.text.escape.SafeDisplay
@@ -27,7 +27,7 @@ private val variableName: Regex = Regex("[A-Za-z_][A-Za-z0-9_]*")
 internal class ParameterRegistry(
     private val schemaName: String,
     private val environmentPrefix: String?,
-    private val limits: KoreParameterLimits,
+    private val limits: ParameterLimits,
 ) {
     private val declared: MutableList<ParameterSpec<*, *>> = mutableListOf()
     private val claimedNames: MutableSet<String> = mutableSetOf()
@@ -36,7 +36,7 @@ internal class ParameterRegistry(
 
     val specs: List<ParameterSpec<*, *>> get() = declared.toList()
 
-    val infos: List<KoreParameterInfo> get() = declared.map { spec -> spec.info }
+    val infos: List<ParameterInfo> get() = declared.map { spec -> spec.info }
 
     fun <V> register(draft: ParameterDraft<*, V>, propertyName: String): ParameterSpec<*, V> {
         val variable = draft.traits.environment.variableFor(draft.names, environmentPrefix)

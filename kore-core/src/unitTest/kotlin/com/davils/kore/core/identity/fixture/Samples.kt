@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.identity.fixture
 
-import com.davils.kore.core.identity.KoreUuid
-import kotlin.uuid.Uuid
+import com.davils.kore.core.identity.Uuid
+import kotlin.uuid.Uuid as KotlinUuid
 
 internal const val V4_TEXT: String = "f81d4fae-7dec-41d0-a765-00a0c91e6bf6"
 internal const val V7_TEXT: String = "017f22e2-79b0-7cc3-98c4-dc0c0c07398f"
@@ -32,14 +32,14 @@ private const val VERSION_7: Long = 0x7000
 private const val VARIANT_CLEAR: Long = 0x3FFF_FFFF_FFFF_FFFF
 private const val RFC_VARIANT: Long = Long.MIN_VALUE
 
-internal fun v4Of(high: Long, low: Long): KoreUuid = versionedOf(high, low, VERSION_4)
+internal fun v4Of(high: Long, low: Long): Uuid = versionedOf(high, low, VERSION_4)
 
-internal fun v7Of(high: Long, low: Long): KoreUuid = versionedOf(high, low, VERSION_7)
+internal fun v7Of(high: Long, low: Long): Uuid = versionedOf(high, low, VERSION_7)
 
-private fun versionedOf(high: Long, low: Long, version: Long): KoreUuid {
+private fun versionedOf(high: Long, low: Long, version: Long): Uuid {
     val versionedHigh = high and VERSION_CLEAR or version
     val variantLow = low and VARIANT_CLEAR or RFC_VARIANT
-    return KoreUuid.fromKotlinUuid(
-        Uuid.fromLongs(mostSignificantBits = versionedHigh, leastSignificantBits = variantLow),
+    return Uuid.fromKotlinUuid(
+        KotlinUuid.fromLongs(mostSignificantBits = versionedHigh, leastSignificantBits = variantLow),
     )
 }

@@ -16,8 +16,8 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.identity.KoreUuidV7
-import com.davils.kore.core.identity.generator.KoreUuidGenerator
+import com.davils.kore.core.identity.UuidV7
+import com.davils.kore.core.identity.generator.UuidGenerator
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Instant
 
@@ -40,7 +40,7 @@ import kotlin.time.Instant
  */
 public class KoreSequentialUuidV7Generator(
     public val start: Instant = Instant.fromEpochMilliseconds(0),
-) : KoreUuidGenerator<KoreUuidV7> {
+) : UuidGenerator<UuidV7> {
     private val startMilliseconds: Long = start.toEpochMilliseconds()
     private val sequence: AtomicLong = AtomicLong(0L)
 
@@ -67,7 +67,7 @@ public class KoreSequentialUuidV7Generator(
      * end of the 48-bit range. It stays used up and never wraps around.
      * @since 1.0.0
      */
-    override fun next(): KoreUuidV7 {
+    override fun next(): UuidV7 {
         val capacity = MAX_TIMESTAMP - startMilliseconds + 1
         val position = sequence.getAndAccumulate(1L) { current, step -> minOf(a = current + step, b = capacity) }
         check(position < capacity) {

@@ -16,8 +16,8 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.identity.KoreUuidV7
-import com.davils.kore.core.identity.KoreUuidVersion
+import com.davils.kore.core.identity.UuidV7
+import com.davils.kore.core.identity.UuidVersion
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeStrictlyIncreasing
@@ -61,8 +61,8 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
         test("produces valid version 7 identifiers that survive a round trip through text") {
             val uuid = KoreSequentialUuidV7Generator().next()
 
-            uuid.version shouldBe KoreUuidVersion.TimeOrdered
-            KoreUuidV7.parse(uuid.toString()) shouldBe uuid
+            uuid.version shouldBe UuidVersion.TimeOrdered
+            UuidV7.parse(uuid.toString()) shouldBe uuid
         }
 
         test("starts every identifier at its start, whatever millisecond of the 48-bit range that is") {
@@ -70,7 +70,7 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
                 val uuid = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(milliseconds)).next()
 
                 uuid.epochMilliseconds shouldBe milliseconds
-                KoreUuidV7.parse(uuid.toString()) shouldBe uuid
+                UuidV7.parse(uuid.toString()) shouldBe uuid
             }
         }
 
@@ -124,7 +124,7 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
         test("hands out every millisecond exactly once and keeps each thread in order") {
             val generator = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(START))
             val begin = CountDownLatch(1)
-            val batches = ConcurrentLinkedQueue<List<KoreUuidV7>>()
+            val batches = ConcurrentLinkedQueue<List<UuidV7>>()
 
             val workers = List(THREADS) {
                 thread {

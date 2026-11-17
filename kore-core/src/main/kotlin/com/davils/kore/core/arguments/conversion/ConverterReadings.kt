@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.version.KoreSemanticVersion
-import com.davils.kore.core.version.KoreSemanticVersionRange
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.version.SemanticVersion
+import com.davils.kore.core.version.SemanticVersionRange
 import kotlin.time.Duration
 
 private const val BOOLEAN_REASON: String = "is not a boolean, expected one of true, false, yes, no, on, off, 1, 0"
@@ -31,25 +31,25 @@ private const val RANGE_REASON: String = "is not a version range, expected somet
 private val truthy: Set<String> = setOf("true", "yes", "on", "1")
 private val falsy: Set<String> = setOf("false", "no", "off", "0")
 
-internal val stringConverter: KoreConverter<String> = NamedConverter(typeName = "string") { raw -> raw }
+internal val stringConverter: Converter<String> = NamedConverter(typeName = "string") { raw -> raw }
 
-internal val flagConverter: KoreConverter<Boolean> = NamedConverter(typeName = "flag", reading = ::readBoolean)
+internal val flagConverter: Converter<Boolean> = NamedConverter(typeName = "flag", reading = ::readBoolean)
 
 internal fun readBoolean(raw: String): Boolean {
     val normalised = asciiLowercase(raw)
-    if (normalised !in truthy && normalised !in falsy) throw KoreConversionException(BOOLEAN_REASON)
+    if (normalised !in truthy && normalised !in falsy) throw ConversionException(BOOLEAN_REASON)
     return normalised in truthy
 }
 
 internal fun readDuration(raw: String, shortest: Duration, longest: Duration): Duration {
-    val duration = parsedDuration(raw) ?: throw KoreConversionException(DURATION_REASON)
+    val duration = parsedDuration(raw) ?: throw ConversionException(DURATION_REASON)
     val problem = durationProblem(duration, shortest, longest)
-    if (problem != null) throw KoreConversionException(problem)
+    if (problem != null) throw ConversionException(problem)
     return duration
 }
 
 private fun parsedDuration(raw: String): Duration? {
-    val isReadable = raw.length <= KoreLimits.MAX_NUMERIC_TEXT_LENGTH && raw.all(::isPrintableAscii)
+    val isReadable = raw.length <= Limits.MAX_NUMERIC_TEXT_LENGTH && raw.all(::isPrintableAscii)
     if (!isReadable) return null
     return Duration.parseOrNull(raw)
 }
@@ -69,12 +69,12 @@ private fun boundsProblem(duration: Duration, shortest: Duration, longest: Durat
     return "is longer than $longest".takeIf { duration > longest }
 }
 
-internal fun readSemanticVersion(raw: String): KoreSemanticVersion {
-    val version = KoreSemanticVersion.parseOrNull(raw)
-    return version ?: throw KoreConversionException(VERSION_REASON)
+internal fun readSemanticVersion(raw: String): SemanticVersion {
+    val version = SemanticVersion.parseOrNull(raw)
+    return version ?: throw ConversionException(VERSION_REASON)
 }
 
-internal fun readSemanticVersionRange(raw: String): KoreSemanticVersionRange {
-    val range = KoreSemanticVersionRange.parseOrNull(raw)
-    return range ?: throw KoreConversionException(RANGE_REASON)
+internal fun readSemanticVersionRange(raw: String): SemanticVersionRange {
+    val range = SemanticVersionRange.parseOrNull(raw)
+    return range ?: throw ConversionException(RANGE_REASON)
 }

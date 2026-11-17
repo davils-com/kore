@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Secretive : KoreParameters() {
-    val databasePort: Int? by optional("--db-port", type = KoreConverters.int) { sensitive() }
+internal class Secretive : Parameters() {
+    val databasePort: Int? by optional("--db-port", type = Converters.int) { sensitive() }
 }

@@ -16,28 +16,28 @@
 
 package com.davils.kore.core.validation.violation.fixture
 
-import com.davils.kore.core.validation.violation.KoreViolationPath
+import com.davils.kore.core.validation.violation.ViolationPath
 
 internal sealed interface PathStep {
     val rendered: String
 
-    fun appendTo(path: KoreViolationPath): KoreViolationPath
+    fun appendTo(path: ViolationPath): ViolationPath
 
     data class Named(val value: String) : PathStep {
         override val rendered: String get() = value
 
-        override fun appendTo(path: KoreViolationPath): KoreViolationPath = path.name(value)
+        override fun appendTo(path: ViolationPath): ViolationPath = path.name(value)
     }
 
     data class At(val value: Int) : PathStep {
         override val rendered: String get() = "[$value]"
 
-        override fun appendTo(path: KoreViolationPath): KoreViolationPath = path.index(value)
+        override fun appendTo(path: ViolationPath): ViolationPath = path.index(value)
     }
 
     data class Keyed(val value: String) : PathStep {
         override val rendered: String get() = "[\"$value\"]"
 
-        override fun appendTo(path: KoreViolationPath): KoreViolationPath = path.key(value)
+        override fun appendTo(path: ViolationPath): ViolationPath = path.key(value)
     }
 }

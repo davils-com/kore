@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.domain.KoreDomainModel
+import com.davils.kore.core.architecture.domain.DomainModel
 
-internal open class Device(val name: String) : KoreDomainModel
+internal open class Device(val name: String) : DomainModel

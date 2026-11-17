@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class SecretChoice : KoreParameters() {
+internal class SecretChoice : Parameters() {
     val tier: String by defaulted(
         "--tier",
-        type = KoreConverters.choice("gold", "silver"),
+        type = Converters.choice("gold", "silver"),
         default = "platinum-placeholder",
     ) { sensitive() }
 }

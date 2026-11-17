@@ -16,34 +16,34 @@
 
 package com.davils.kore.core.version.interval
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.grammar.CORE_SEGMENTS
 
 private const val ZERO_IDENTIFIER: String = "0"
 private const val NINE: Char = '9'
 private const val CARRY: Char = '1'
 
-internal val MINIMUM: KoreSemanticVersion = KoreSemanticVersion(major = 0, preRelease = listOf(ZERO_IDENTIFIER))
+internal val MINIMUM: SemanticVersion = SemanticVersion(major = 0, preRelease = listOf(ZERO_IDENTIFIER))
 
 @JvmSynthetic
-internal fun successor(version: KoreSemanticVersion): KoreSemanticVersion? {
+internal fun successor(version: SemanticVersion): SemanticVersion? {
     if (!version.isPreRelease) return floorAbove(listOf(version.major, version.minor, version.patch))
     return preReleaseSuccessor(version)
 }
 
 @JvmSynthetic
-internal fun preReleaseSuccessor(version: KoreSemanticVersion): KoreSemanticVersion =
-    KoreSemanticVersion.preReleaseSuccessorOf(version)
+internal fun preReleaseSuccessor(version: SemanticVersion): SemanticVersion =
+    SemanticVersion.preReleaseSuccessorOf(version)
 
-internal fun predecessor(version: KoreSemanticVersion): KoreSemanticVersion? {
+internal fun predecessor(version: SemanticVersion): SemanticVersion? {
     if (version.preRelease.lastOrNull() != ZERO_IDENTIFIER) return null
     return preReleasePredecessor(version) ?: releasePredecessor(version)
 }
 
-internal fun preReleasePredecessor(version: KoreSemanticVersion): KoreSemanticVersion? {
+internal fun preReleasePredecessor(version: SemanticVersion): SemanticVersion? {
     val identifiers = version.preRelease
     if (identifiers.size < 2 || identifiers.last() != ZERO_IDENTIFIER) return null
-    return KoreSemanticVersion(
+    return SemanticVersion(
         major = version.major,
         minor = version.minor,
         patch = version.patch,
@@ -51,7 +51,7 @@ internal fun preReleasePredecessor(version: KoreSemanticVersion): KoreSemanticVe
     )
 }
 
-internal fun releaseBelow(floor: KoreSemanticVersion): KoreSemanticVersion? {
+internal fun releaseBelow(floor: SemanticVersion): SemanticVersion? {
     val numbers = listOf(floor.major, floor.minor, floor.patch)
     val position = numbers.indexOfLast { number -> number > 0 }
     val isFloor = floor.preRelease.singleOrNull() == ZERO_IDENTIFIER && floor.build.isEmpty()
@@ -60,16 +60,15 @@ internal fun releaseBelow(floor: KoreSemanticVersion): KoreSemanticVersion? {
     return releaseCeiling(lowered)
 }
 
-internal fun floorAbove(prefix: List<Int>): KoreSemanticVersion? {
+internal fun floorAbove(prefix: List<Int>): SemanticVersion? {
     val position = prefix.indexOfLast { number -> number < Int.MAX_VALUE }
     if (position < 0) return null
     return preReleaseFloor(prefix.take(position) + (prefix[position] + 1))
 }
 
-internal fun releaseFloor(prefix: List<Int>): KoreSemanticVersion = versionOf(padded(prefix, 0), emptyList())
+internal fun releaseFloor(prefix: List<Int>): SemanticVersion = versionOf(padded(prefix, 0), emptyList())
 
-internal fun preReleaseFloor(prefix: List<Int>): KoreSemanticVersion =
-    versionOf(padded(prefix, 0), listOf(ZERO_IDENTIFIER))
+internal fun preReleaseFloor(prefix: List<Int>): SemanticVersion = versionOf(padded(prefix, 0), listOf(ZERO_IDENTIFIER))
 
 internal fun incremented(numeral: String): String {
     val kept = numeral.trimEnd(NINE)
@@ -78,15 +77,14 @@ internal fun incremented(numeral: String): String {
     return kept.dropLast(1) + (kept.last() + 1) + zeros
 }
 
-private fun releasePredecessor(version: KoreSemanticVersion): KoreSemanticVersion? {
+private fun releasePredecessor(version: SemanticVersion): SemanticVersion? {
     if (version.patch == 0) return null
-    return KoreSemanticVersion(major = version.major, minor = version.minor, patch = version.patch - 1)
+    return SemanticVersion(major = version.major, minor = version.minor, patch = version.patch - 1)
 }
 
-private fun releaseCeiling(prefix: List<Int>): KoreSemanticVersion =
-    versionOf(padded(prefix, Int.MAX_VALUE), emptyList())
+private fun releaseCeiling(prefix: List<Int>): SemanticVersion = versionOf(padded(prefix, Int.MAX_VALUE), emptyList())
 
-private fun versionOf(numbers: List<Int>, preRelease: List<String>): KoreSemanticVersion =
-    KoreSemanticVersion(major = numbers[0], minor = numbers[1], patch = numbers[2], preRelease = preRelease)
+private fun versionOf(numbers: List<Int>, preRelease: List<String>): SemanticVersion =
+    SemanticVersion(major = numbers[0], minor = numbers[1], patch = numbers[2], preRelease = preRelease)
 
 private fun padded(prefix: List<Int>, filler: Int): List<Int> = prefix + List(CORE_SEGMENTS - prefix.size) { filler }

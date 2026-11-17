@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Nameless : KoreParameters() {
+internal class Nameless : Parameters() {
     val name: String? by optional()
 }

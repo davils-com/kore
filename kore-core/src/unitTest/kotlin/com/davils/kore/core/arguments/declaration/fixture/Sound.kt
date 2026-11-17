@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Sound : KoreParameters() {
+internal class Sound : Parameters() {
     val isQuiet: Boolean by flag("--quiet")
     val isLoud: Boolean by flag("--loud")
 

@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.text.escape
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.text.KoreTextRange
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.text.TextRange
 import java.util.Locale
 
 private const val TAB: Int = '\t'.code
@@ -74,17 +74,17 @@ internal object SafeDisplay {
         FIRST_SUPPLEMENTARY_VARIATION_SELECTOR..LAST_SUPPLEMENTARY_VARIATION_SELECTOR,
     )
 
-    fun text(value: CharSequence, maxLength: Int = KoreLimits.MAX_DISPLAY_LENGTH): String {
+    fun text(value: CharSequence, maxLength: Int = Limits.MAX_DISPLAY_LENGTH): String {
         val rendering = render(value = value, maxLength = maxLength, style = Style.Plain, followsShown = false)
         return rendering.shown + rendering.note
     }
 
-    fun quoted(value: CharSequence, maxLength: Int = KoreLimits.MAX_DISPLAY_LENGTH): String {
+    fun quoted(value: CharSequence, maxLength: Int = Limits.MAX_DISPLAY_LENGTH): String {
         val rendering = render(value = value, maxLength = maxLength, style = Style.Quoted, followsShown = false)
         return "\"${rendering.shown}\"${rendering.note}"
     }
 
-    fun lineParts(line: String, highlight: KoreTextRange): List<String> {
+    fun lineParts(line: String, highlight: TextRange): List<String> {
         val start = line.substring(startIndex = 0, endIndex = highlight.start)
         val before = render(value = start, maxLength = Int.MAX_VALUE, style = Style.Line, followsShown = false)
         val marked = partAfter(before, line.substring(startIndex = highlight.start, endIndex = highlight.end))

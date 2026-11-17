@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.identity.monotonic
 
-import com.davils.kore.core.identity.KoreUuid
-import com.davils.kore.core.identity.KoreUuidV7
+import com.davils.kore.core.identity.Uuid
+import com.davils.kore.core.identity.UuidV7
 import com.davils.kore.core.identity.generator.fixture.FallingClock
 import com.davils.kore.core.identity.generator.fixture.ScriptedClock
 import io.kotest.assertions.throwables.shouldThrow
@@ -147,10 +147,10 @@ class MonotonicUuidV7GeneratorTest : FunSpec({
             checkAll(timestamps) { milliseconds ->
                 val uuid = MonotonicUuidV7Generator(ScriptedClock(listOf(milliseconds))).next()
 
-                KoreUuidV7.parse(uuid.toString()) shouldBe uuid
-                KoreUuid.parse(uuid.toString()).shouldBeInstanceOf<KoreUuidV7>()
-                KoreUuid.fromByteArray(uuid.toByteArray()) shouldBe uuid
-                KoreUuid.fromJavaUuid(uuid.toJavaUuid()) shouldBe uuid
+                UuidV7.parse(uuid.toString()) shouldBe uuid
+                Uuid.parse(uuid.toString()).shouldBeInstanceOf<UuidV7>()
+                Uuid.fromByteArray(uuid.toByteArray()) shouldBe uuid
+                Uuid.fromJavaUuid(uuid.toJavaUuid()) shouldBe uuid
             }
         }
     }
@@ -159,7 +159,7 @@ class MonotonicUuidV7GeneratorTest : FunSpec({
         test("hands out distinct identifiers, in order per thread, even while the clock goes backwards") {
             val generator = MonotonicUuidV7Generator(FallingClock(NOW))
             val start = CountDownLatch(1)
-            val batches = ConcurrentLinkedQueue<List<KoreUuidV7>>()
+            val batches = ConcurrentLinkedQueue<List<UuidV7>>()
 
             val workers = List(THREADS) {
                 thread {

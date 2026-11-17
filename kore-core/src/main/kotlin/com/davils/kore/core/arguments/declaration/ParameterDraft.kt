@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.declaration
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreParameterLimits
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.report.ParameterPresentation
 import com.davils.kore.core.arguments.resolution.ParameterSlot
 import com.davils.kore.core.arguments.resolution.ValueReading
@@ -28,7 +28,7 @@ internal class ParameterDraft<T : Any, V>(
     private val rules: ValueRules<T>,
     private val arity: Arity<T, V>,
 ) {
-    fun infoFor(environmentVariable: String?): KoreParameterInfo = KoreParameterInfo(
+    fun infoFor(environmentVariable: String?): ParameterInfo = ParameterInfo(
         names = names,
         environmentVariable = environmentVariable,
         typeName = rules.converter.typeName,
@@ -41,13 +41,12 @@ internal class ParameterDraft<T : Any, V>(
         ),
     )
 
-    fun toSpec(info: KoreParameterInfo, propertyName: String, limits: KoreParameterLimits): ParameterSpec<T, V> =
-        ParameterSpec(
-            info = info,
-            propertyName = propertyName,
-            negatedNames = negatedNamesOf(names, traits.isNegatable),
-            reading = ValueReading(info, rules, limits),
-            arity = arity,
-            slot = ParameterSlot(),
-        )
+    fun toSpec(info: ParameterInfo, propertyName: String, limits: ParameterLimits): ParameterSpec<T, V> = ParameterSpec(
+        info = info,
+        propertyName = propertyName,
+        negatedNames = negatedNamesOf(names, traits.isNegatable),
+        reading = ValueReading(info, rules, limits),
+        arity = arity,
+        slot = ParameterSlot(),
+    )
 }

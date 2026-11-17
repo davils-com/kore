@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal
 
-import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.text.escape.SafeDisplay
 
 private const val COMBINING_GRAPHEME_JOINER: Int = 0x034F
@@ -58,12 +58,12 @@ internal enum class PrincipalTextRule(
     private val isBlankAllowed: Boolean,
     private val isTrimRequired: Boolean,
 ) {
-    Id(maxLength = KoreLimits.MAX_PRINCIPAL_ID_LENGTH, isBlankAllowed = false, isTrimRequired = true),
-    Role(maxLength = KoreLimits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = true),
-    Tenant(maxLength = KoreLimits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = true),
-    DisplayName(maxLength = KoreLimits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = false),
-    AttributeName(maxLength = KoreLimits.MAX_ATTRIBUTE_NAME_LENGTH, isBlankAllowed = false, isTrimRequired = false),
-    AttributeValue(maxLength = KoreLimits.MAX_ATTRIBUTE_VALUE_LENGTH, isBlankAllowed = true, isTrimRequired = false),
+    Id(maxLength = Limits.MAX_PRINCIPAL_ID_LENGTH, isBlankAllowed = false, isTrimRequired = true),
+    Role(maxLength = Limits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = true),
+    Tenant(maxLength = Limits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = true),
+    DisplayName(maxLength = Limits.MAX_PRINCIPAL_TEXT_LENGTH, isBlankAllowed = false, isTrimRequired = false),
+    AttributeName(maxLength = Limits.MAX_ATTRIBUTE_NAME_LENGTH, isBlankAllowed = false, isTrimRequired = false),
+    AttributeValue(maxLength = Limits.MAX_ATTRIBUTE_VALUE_LENGTH, isBlankAllowed = true, isTrimRequired = false),
     ;
 
     fun problemOf(value: String): TextProblem? =

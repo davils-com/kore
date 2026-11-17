@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.architecture.domain.fixture
 
-import com.davils.kore.core.architecture.domain.KoreUseCase
+import com.davils.kore.core.architecture.domain.UseCase
 import com.davils.kore.core.architecture.fixture.ServerRepository
 
-internal class CountServersUseCase(private val servers: ServerRepository) : KoreUseCase<Unit, Int> {
+internal class CountServersUseCase(private val servers: ServerRepository) : UseCase<Unit, Int> {
     override suspend fun invoke(input: Unit): Int = servers.servers().size
 }

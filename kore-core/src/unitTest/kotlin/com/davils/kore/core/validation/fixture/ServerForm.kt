@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.validation.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
-import com.davils.kore.core.validation.violation.KoreViolationCode
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
+import com.davils.kore.core.validation.violation.ViolationCode
 
 private const val NOT_BLANK: String = "must not be blank"
 
@@ -27,8 +27,8 @@ internal data class ServerForm(
     val owner: String = "alice",
     val slots: List<Slot> = listOf(Slot(name = "first", size = 1)),
     val labels: Map<String, String> = emptyMap(),
-) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+) : Validatable {
+    override fun ValidationScope.validate() {
         if (name.isBlank()) fail(::name, NOT_BLANK)
         if (owner.isBlank()) fail(::owner, NOT_BLANK)
         each(::slots, slots) { slot ->
@@ -41,6 +41,6 @@ internal data class ServerForm(
     }
 
     companion object {
-        val TOO_MANY_SLOTS: KoreViolationCode = KoreViolationCode("test.server.too-many-slots")
+        val TOO_MANY_SLOTS: ViolationCode = ViolationCode("test.server.too-many-slots")
     }
 }

@@ -20,19 +20,19 @@ import java.io.File
 import java.nio.file.Path
 
 internal fun pathConverter(
-    requirements: Set<KorePathRequirement>,
+    requirements: Set<PathRequirement>,
     inspector: PathInspector,
     flavour: PathFlavour = PathFlavour.current,
-): KoreConverter<Path> {
+): Converter<Path> {
     val rules = PathRules(requirements, inspector, flavour)
     return NamedConverter(typeName = "path", isCheckingDefaults = true, reading = rules::read)
 }
 
 internal fun fileConverter(
-    requirements: Set<KorePathRequirement>,
+    requirements: Set<PathRequirement>,
     inspector: PathInspector,
     flavour: PathFlavour = PathFlavour.current,
-): KoreConverter<File> {
+): Converter<File> {
     val rules = PathRules(requirements, inspector, flavour)
     return NamedConverter(typeName = "file", isCheckingDefaults = true) { raw -> rules.read(raw).toFile() }
 }

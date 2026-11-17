@@ -16,33 +16,33 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.EVERYTHING
-import com.davils.kore.core.version.interval.KoreVersionInterval
+import com.davils.kore.core.version.interval.VersionInterval
 import com.davils.kore.core.version.interval.floorAbove
 import com.davils.kore.core.version.interval.interval
 
 private const val TILDE_PREFIX: Int = 2
 
-internal fun tildeInterval(partial: Partial): KoreVersionInterval? {
+internal fun tildeInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return EVERYTHING
     return interval(start = partial.lowest(), end = floorAbove(partial.numbers.take(TILDE_PREFIX)))
 }
 
-internal fun caretInterval(partial: Partial): KoreVersionInterval? {
+internal fun caretInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return EVERYTHING
     return interval(start = partial.lowest(), end = floorAbove(caretPrefix(partial.numbers)))
 }
 
-internal fun hyphenInterval(from: Partial, to: Partial): KoreVersionInterval? =
+internal fun hyphenInterval(from: Partial, to: Partial): VersionInterval? =
     interval(start = lowestOf(from), end = firstAboveOf(to))
 
-private fun lowestOf(partial: Partial): KoreSemanticVersion? {
+private fun lowestOf(partial: Partial): SemanticVersion? {
     if (partial.isAny) return null
     return partial.lowest()
 }
 
-private fun firstAboveOf(partial: Partial): KoreSemanticVersion? {
+private fun firstAboveOf(partial: Partial): SemanticVersion? {
     if (partial.isAny) return null
     return partial.firstAbove()
 }

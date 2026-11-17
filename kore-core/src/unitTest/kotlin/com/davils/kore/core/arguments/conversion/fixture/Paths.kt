@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import java.nio.file.Path
 
-internal class Paths : KoreParameters() {
+internal class Paths : Parameters() {
     val directory: Path? by optional(
         "--dir",
-        type = KoreConverters.path(KorePathRequirement.Exists, KorePathRequirement.Directory),
+        type = Converters.path(PathRequirement.Exists, PathRequirement.Directory),
     )
 }

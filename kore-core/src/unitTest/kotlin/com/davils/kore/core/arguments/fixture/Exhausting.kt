@@ -15,12 +15,12 @@
  */
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Exhausting : KoreParameters() {
+internal class Exhausting : Parameters() {
     val value: String? by optional(
         "--value",
-        type = KoreConverters.custom("deep") { throw StackOverflowError("deep") },
+        type = Converters.custom("deep") { throw StackOverflowError("deep") },
     )
 }

@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 
 internal sealed interface VersionReading {
-    data class Read(val version: KoreSemanticVersion) : VersionReading
+    data class Read(val version: SemanticVersion) : VersionReading
 
     data class Refused(val reason: String) : VersionReading
 }

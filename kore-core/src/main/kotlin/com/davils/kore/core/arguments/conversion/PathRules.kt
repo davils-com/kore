@@ -22,46 +22,46 @@ import java.nio.file.Path
 private const val CONTRADICTION_MESSAGE: String = "A path cannot be required to be both a directory and a regular file"
 private const val SEVERAL_BASES_MESSAGE: String = "A path can be confined to one base directory only"
 
-private val checkedInOrder: List<KorePathRequirement> = listOf(
-    KorePathRequirement.Readable,
-    KorePathRequirement.Directory,
-    KorePathRequirement.RegularFile,
-    KorePathRequirement.NoSymlinks,
+private val checkedInOrder: List<PathRequirement> = listOf(
+    PathRequirement.Readable,
+    PathRequirement.Directory,
+    PathRequirement.RegularFile,
+    PathRequirement.NoSymlinks,
 )
 
 internal class PathRules(
-    requirements: Set<KorePathRequirement>,
+    requirements: Set<PathRequirement>,
     private val inspector: PathInspector,
     private val flavour: PathFlavour,
 ) {
-    private val demanded: List<KorePathRequirement> = demandedIn(requirements)
+    private val demanded: List<PathRequirement> = demandedIn(requirements)
 
     init {
-        val isContradictory = KorePathRequirement.Directory in requirements &&
-            KorePathRequirement.RegularFile in requirements
+        val isContradictory = PathRequirement.Directory in requirements &&
+            PathRequirement.RegularFile in requirements
         require(!isContradictory) { CONTRADICTION_MESSAGE }
-        require(requirements.count { requirement -> requirement is KorePathRequirement.Within } <= 1) {
+        require(requirements.count { requirement -> requirement is PathRequirement.Within } <= 1) {
             SEVERAL_BASES_MESSAGE
         }
     }
 
     fun read(raw: String): Path {
-        pathProblem(raw, flavour)?.let { problem -> throw KoreConversionException(problem) }
+        pathProblem(raw, flavour)?.let { problem -> throw ConversionException(problem) }
         val path = parsed(raw)
         val unmet = demanded.firstOrNull { requirement -> !requirement.isMetBy(path, inspector) }
-        if (unmet != null) throw KoreConversionException(unmet.problem)
+        if (unmet != null) throw ConversionException(unmet.problem)
         return path
     }
 }
 
-private fun demandedIn(requirements: Set<KorePathRequirement>): List<KorePathRequirement> = buildList {
-    if (requirements.any { requirement -> requirement.isExistenceImplied }) add(KorePathRequirement.Exists)
+private fun demandedIn(requirements: Set<PathRequirement>): List<PathRequirement> = buildList {
+    if (requirements.any { requirement -> requirement.isExistenceImplied }) add(PathRequirement.Exists)
     addAll(checkedInOrder.filter { requirement -> requirement in requirements })
-    addAll(requirements.filterIsInstance<KorePathRequirement.Within>())
+    addAll(requirements.filterIsInstance<PathRequirement.Within>())
 }
 
 private fun parsed(raw: String): Path = try {
     Path.of(raw)
 } catch (expected: InvalidPathException) {
-    throw KoreConversionException(INVALID_PATH_REASON)
+    throw ConversionException(INVALID_PATH_REASON)
 }

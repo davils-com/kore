@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.displayedValue
 import com.davils.kore.core.arguments.report.originSuffix
 
@@ -25,7 +25,7 @@ private const val UNASSIGNED_MESSAGE: String = "A parameter was read before its 
 internal class ParameterSlot<V> {
     private var assigned: Assigned<V>? = null
 
-    fun assign(value: V, origin: KoreValueOrigin?) {
+    fun assign(value: V, origin: ValueOrigin?) {
         assigned = Assigned(value, origin)
     }
 

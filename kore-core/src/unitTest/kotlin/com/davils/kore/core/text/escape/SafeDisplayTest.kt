@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.text.escape
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.text.KoreTextRange
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.text.TextRange
 import com.davils.kore.core.text.fixture.CLEAR_SCREEN
 import com.davils.kore.core.text.fixture.COMBINING_GRAPHEME_JOINER
 import com.davils.kore.core.text.fixture.COMBINING_LONG_SOLIDUS
@@ -170,7 +170,7 @@ class SafeDisplayTest : FunSpec({
         }
 
         test("shortens to the display limit by default") {
-            val shown = SafeDisplay.text("x".repeat(KoreLimits.MAX_DISPLAY_LENGTH + 1))
+            val shown = SafeDisplay.text("x".repeat(Limits.MAX_DISPLAY_LENGTH + 1))
 
             shown shouldEndWith "…(+1 chars)"
         }
@@ -182,26 +182,26 @@ class SafeDisplayTest : FunSpec({
 
     context("the parts of a line") {
         test("keeps tabs before the highlight, so a caret below the line still lines up") {
-            val parts = SafeDisplay.lineParts("\tvalue =\t1", KoreTextRange.at(1))
+            val parts = SafeDisplay.lineParts("\tvalue =\t1", TextRange.at(1))
 
             parts shouldBe listOf("\t", "", "value =\\t1")
         }
 
         test("writes tabs inside and after the highlight as escapes, so every one of them can be underlined") {
-            val parts = SafeDisplay.lineParts("a\tb\tc", KoreTextRange(start = 0, end = 2))
+            val parts = SafeDisplay.lineParts("a\tb\tc", TextRange(start = 0, end = 2))
 
             parts shouldBe listOf("", "a\\t", "b\\tc")
         }
 
         test("keeps a combining mark that starts a part when it belongs to the character before the part") {
-            val parts = SafeDisplay.lineParts("x$DECOMPOSED_E_ACUTE", KoreTextRange(start = 2, end = 3))
+            val parts = SafeDisplay.lineParts("x$DECOMPOSED_E_ACUTE", TextRange(start = 2, end = 3))
 
             parts shouldBe listOf("xe", "\u0301", "")
         }
 
         test("writes a combining mark that starts the line, or follows an escape, as an escape") {
-            val atStart = SafeDisplay.lineParts("${COMBINING_LONG_SOLIDUS}x", KoreTextRange.at(0))
-            val afterEscape = SafeDisplay.lineParts("\t$COMBINING_LONG_SOLIDUS", KoreTextRange.at(1))
+            val atStart = SafeDisplay.lineParts("${COMBINING_LONG_SOLIDUS}x", TextRange.at(0))
+            val afterEscape = SafeDisplay.lineParts("\t$COMBINING_LONG_SOLIDUS", TextRange.at(1))
 
             atStart shouldBe listOf("", "", "\\u{0338}x")
             afterEscape shouldBe listOf("\t", "", "\\u{0338}")
@@ -212,7 +212,7 @@ class SafeDisplayTest : FunSpec({
             checkAll(iterations = CASES, genA = hostileText, genB = offsets, genC = offsets) { text, first, second ->
                 val start = minOf(a = first, b = second).coerceAtMost(text.length)
                 val end = maxOf(a = first, b = second).coerceAtMost(text.length)
-                val parts = SafeDisplay.lineParts(text, KoreTextRange(start = start, end = end))
+                val parts = SafeDisplay.lineParts(text, TextRange(start = start, end = end))
 
                 parts[0].shouldBeSafeToShow(allowTabs = true)
                 parts[1].shouldBeSafeToShow()

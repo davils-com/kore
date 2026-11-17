@@ -36,7 +36,7 @@ internal class AsciiChoices<out T : Any>(choices: List<Pair<String, T>>) {
         }
     }
 
-    fun read(raw: String): T = byFolded[asciiLowercase(raw)] ?: throw KoreConversionException(reason)
+    fun read(raw: String): T = byFolded[asciiLowercase(raw)] ?: throw ConversionException(reason)
 }
 
 private fun isAmbiguous(name: String, choices: List<Pair<String, *>>): Boolean {

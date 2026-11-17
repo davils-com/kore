@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
 private const val DELIMITER: String = ","
 
-internal class SplitTags : KoreParameters() {
+internal class SplitTags : Parameters() {
     val tags: List<String> by multiple("--tag") { split(DELIMITER) }
-    val ports: List<Int> by multiple("--port", type = KoreConverters.int) { split(DELIMITER) }
+    val ports: List<Int> by multiple("--port", type = Converters.int) { split(DELIMITER) }
 }

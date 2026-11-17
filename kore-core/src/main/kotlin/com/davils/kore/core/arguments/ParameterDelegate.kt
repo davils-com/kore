@@ -20,8 +20,8 @@ import com.davils.kore.core.arguments.resolution.ParameterSlot
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-internal class ParameterDelegate<V>(private val slot: ParameterSlot<V>) : ReadOnlyProperty<KoreParameters, V> {
-    override fun getValue(thisRef: KoreParameters, property: KProperty<*>): V {
+internal class ParameterDelegate<V>(private val slot: ParameterSlot<V>) : ReadOnlyProperty<Parameters, V> {
+    override fun getValue(thisRef: Parameters, property: KProperty<*>): V {
         thisRef.requireLoaded("Parameter '${property.name}'")
         return slot.value()
     }

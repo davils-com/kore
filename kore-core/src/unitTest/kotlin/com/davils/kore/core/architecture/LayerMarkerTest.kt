@@ -16,19 +16,19 @@
 
 package com.davils.kore.core.architecture
 
-import com.davils.kore.core.architecture.data.KoreDataSource
-import com.davils.kore.core.architecture.data.KoreDataTransferObject
-import com.davils.kore.core.architecture.data.KoreRepository
-import com.davils.kore.core.architecture.domain.KoreDomainModel
+import com.davils.kore.core.architecture.data.DataSource
+import com.davils.kore.core.architecture.data.DataTransferObject
+import com.davils.kore.core.architecture.data.Repository
+import com.davils.kore.core.architecture.domain.DomainModel
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
 
 private val markers = listOf(
-    KoreDomainModel::class.java,
-    KoreDataTransferObject::class.java,
-    KoreDataSource::class.java,
-    KoreRepository::class.java,
+    DomainModel::class.java,
+    DataTransferObject::class.java,
+    DataSource::class.java,
+    Repository::class.java,
 )
 
 class LayerMarkerTest : FunSpec({
@@ -50,13 +50,13 @@ class LayerMarkerTest : FunSpec({
 
     context("repository") {
         test("names exactly one subject") {
-            KoreRepository::class.java.typeParameters.size shouldBe 1
+            Repository::class.java.typeParameters.size shouldBe 1
         }
 
         test("accepts only a domain model as its subject") {
-            val subject = KoreRepository::class.java.typeParameters.single()
+            val subject = Repository::class.java.typeParameters.single()
 
-            subject.bounds.single() shouldBe KoreDomainModel::class.java
+            subject.bounds.single() shouldBe DomainModel::class.java
         }
     }
 })

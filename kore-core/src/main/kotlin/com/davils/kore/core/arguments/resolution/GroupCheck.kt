@@ -17,25 +17,25 @@
 package com.davils.kore.core.arguments.resolution
 
 import com.davils.kore.core.arguments.declaration.ParameterSpec
-import com.davils.kore.core.arguments.report.KoreParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolation
 
 internal class GroupCheck(
     private val exclusive: List<List<ParameterSpec<*, *>>>,
     private val dependencies: List<Pair<ParameterSpec<*, *>, List<ParameterSpec<*, *>>>>,
 ) {
-    fun violations(provided: Set<ParameterSpec<*, *>>): List<KoreParameterViolation> =
+    fun violations(provided: Set<ParameterSpec<*, *>>): List<ParameterViolation> =
         exclusiveViolations(provided) + dependencyViolations(provided)
 
-    private fun exclusiveViolations(provided: Set<ParameterSpec<*, *>>): List<KoreParameterViolation> =
+    private fun exclusiveViolations(provided: Set<ParameterSpec<*, *>>): List<ParameterViolation> =
         exclusive.mapNotNull { group ->
             val given = group.filter { spec -> spec in provided }
-            KoreParameterViolation.MutuallyExclusive(given.map { spec -> spec.info }).takeIf { given.size > 1 }
+            ParameterViolation.MutuallyExclusive(given.map { spec -> spec.info }).takeIf { given.size > 1 }
         }
 
-    private fun dependencyViolations(provided: Set<ParameterSpec<*, *>>): List<KoreParameterViolation> =
+    private fun dependencyViolations(provided: Set<ParameterSpec<*, *>>): List<ParameterViolation> =
         dependencies.mapNotNull { (subject, required) ->
             val missing = required.filterNot { spec -> spec in provided }
-            val violation = KoreParameterViolation.MissingDependency(subject.info, missing.map { spec -> spec.info })
+            val violation = ParameterViolation.MissingDependency(subject.info, missing.map { spec -> spec.info })
             violation.takeIf { subject in provided && missing.isNotEmpty() }
         }
 }

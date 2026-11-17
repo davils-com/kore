@@ -16,18 +16,18 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import com.davils.kore.core.arguments.fixture.BAD_DEFAULT_PORT
 import com.davils.kore.core.arguments.fixture.GOOD_DEFAULT_PORT
 import com.davils.kore.core.arguments.fixture.HIGHEST_PORT
 import com.davils.kore.core.arguments.fixture.LOWEST_PORT
 import com.davils.kore.core.arguments.fixture.PORT_MESSAGE
 
-internal class BadDefaultList : KoreParameters() {
+internal class BadDefaultList : Parameters() {
     val ports: List<Int> by multiple(
         "--port",
-        type = KoreConverters.int,
+        type = Converters.int,
         default = listOf(GOOD_DEFAULT_PORT, BAD_DEFAULT_PORT),
     ) {
         validate { value -> if (value !in LOWEST_PORT..HIGHEST_PORT) fail(PORT_MESSAGE) }

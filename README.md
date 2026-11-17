@@ -45,8 +45,8 @@ and not meant for production.
 ### Parameters from the command line and the environment
 
 ```kotlin
-class ServerParameters : KoreParameters(environmentPrefix = "APP") {
-    val port: Int by required("--port", "-p", type = KoreConverters.int) {
+class ServerParameters : Parameters(environmentPrefix = "APP") {
+    val port: Int by required("--port", "-p", type = Converters.int) {
         describedAs("Port the server listens on")
     }
     val host: String by defaulted("--host", default = "0.0.0.0")
@@ -60,30 +60,30 @@ fun main(argv: Array<String>) {
 }
 ```
 
-`load` reports every problem at once in a `KoreParameterException`; unknown arguments are an error. A sensitive
+`load` reports every problem at once in a `ParameterException`; unknown arguments are an error. A sensitive
 value never appears in a message, a report or `describe()`, and reading one from the command line, where other
-users of the machine can see it, raises a warning. Every input is bounded by `KoreParameterLimits`.
+users of the machine can see it, raises a warning. Every input is bounded by `ParameterLimits`.
 
 ### Versions and ranges
 
 ```kotlin
-val range = KoreSemanticVersionRange.parse("^1.2.0 || >=2.0.0-rc.1 <2.1.0")
-val version = KoreSemanticVersion.parse("1.4.2")
+val range = SemanticVersionRange.parse("^1.2.0 || >=2.0.0-rc.1 <2.1.0")
+val version = SemanticVersion.parse("1.4.2")
 
 range.contains(version)                                       // true
-range.contains(KoreSemanticVersion.parse("1.5.0-beta.1"))   // false: pre-releases only on the same core
-val newest = range.maxSatisfying(listOf("1.2.0", "1.9.3", "2.0.0").map(KoreSemanticVersion::parse))   // 2.0.0
+range.contains(SemanticVersion.parse("1.5.0-beta.1"))   // false: pre-releases only on the same core
+val newest = range.maxSatisfying(listOf("1.2.0", "1.9.3", "2.0.0").map(SemanticVersion::parse))   // 2.0.0
 ```
 
 Membership always states its pre-release policy, `SameCoreOnly` by default. Parsing is linear, ASCII-only and bounded
-by `KoreLimits`.
+by `Limits`.
 
 ### Validation
 
 ```kotlin
-class Sink(val name: String, val queueSize: Int) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
-        if (name.isBlank()) fail(Sink::name, "must not be blank", KoreViolationCode.REQUIRED)
+class Sink(val name: String, val queueSize: Int) : Validatable {
+    override fun ValidationScope.validate() {
+        if (name.isBlank()) fail(Sink::name, "must not be blank", ViolationCode.REQUIRED)
         if (queueSize <= 0) fail(Sink::queueSize, "must be positive")
     }
 }
@@ -91,7 +91,7 @@ class Sink(val name: String, val queueSize: Int) : KoreValidatable {
 Sink(name = "", queueSize = 0).validateOrThrow("sink")
 ```
 
-A `KoreValidationException` lists every violation with its path and stable code. Reports escape everything that came
+A `ValidationException` lists every violation with its path and stable code. Reports escape everything that came
 from the input, so they are safe to log.
 
 ### Principals
@@ -114,13 +114,13 @@ sensitive by default and `withPrincipal` never replaces a different principal si
 ### Identities and sizes
 
 ```kotlin
-val id = KoreUuidV7.random()          // monotonic, SecureRandom, never a capability token
+val id = UuidV7.random()          // monotonic, SecureRandom, never a capability token
 val limit = 64.mebibytes
 ```
 
 ## Security
 
-Every input of Kore may come from an attacker. Each entry point checks its input against `KoreLimits` before it does
+Every input of Kore may come from an attacker. Each entry point checks its input against `Limits` before it does
 any work, escapes untrusted text wherever it is shown and fails closed. See [SECURITY.md](SECURITY.md) for the scope,
 known limitations and how to report a vulnerability privately.
 

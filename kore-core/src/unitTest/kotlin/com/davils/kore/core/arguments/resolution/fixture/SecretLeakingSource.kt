@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class SecretLeakingSource(private val secret: String) : KoreValueSource {
+internal class SecretLeakingSource(private val secret: String) : ValueSource {
     override val name: String = "leaky"
 
-    override suspend fun read(parameter: KoreParameterInfo): String = error("the stored value $secret is unreadable")
+    override suspend fun read(parameter: ParameterInfo): String = error("the stored value $secret is unreadable")
 }

@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import java.io.File
 
-internal class MissingFile(missing: File) : KoreParameters() {
-    val config: File by defaulted("--config", type = KoreConverters.file(KorePathRequirement.Exists), default = missing)
+internal class MissingFile(missing: File) : Parameters() {
+    val config: File by defaulted("--config", type = Converters.file(PathRequirement.Exists), default = missing)
 }

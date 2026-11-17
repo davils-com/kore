@@ -24,8 +24,8 @@ package com.davils.kore.core.annotation
  * carries it as well are only reachable through an explicit `this@label`. A function of an outer builder that the
  * inner builder lacks is therefore a compile error inside the nested block instead of a call that silently changes
  * the outer builder. Kore puts it on its own builders and scopes, such as
- * [KoreValidationScope][com.davils.kore.core.validation.KoreValidationScope] and
- * [KoreValidatingBuilder][com.davils.kore.core.dsl.KoreValidatingBuilder]; a builder that is meant to nest with them
+ * [ValidationScope][com.davils.kore.core.validation.ValidationScope] and
+ * [ValidatingBuilder][com.davils.kore.core.dsl.ValidatingBuilder]; a builder that is meant to nest with them
  * carries it on its class or on the receiver type of its builder lambda.
  *
  * The marker only guides the Kotlin compiler. It is written to the class files but is not visible through reflection

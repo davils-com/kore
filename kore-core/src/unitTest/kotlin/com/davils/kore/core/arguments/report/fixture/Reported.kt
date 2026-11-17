@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import com.davils.kore.core.arguments.fixture.Stage
 
-internal class Reported : KoreParameters(environmentPrefix = "APP") {
-    val mode: Stage by defaulted("--mode", type = KoreConverters.enum<Stage>(), default = Stage.Production)
-    val port: Int by required("--port", "-p", type = KoreConverters.int) { describedAs("The port to listen on.") }
+internal class Reported : Parameters(environmentPrefix = "APP") {
+    val mode: Stage by defaulted("--mode", type = Converters.enum<Stage>(), default = Stage.Production)
+    val port: Int by required("--port", "-p", type = Converters.int) { describedAs("The port to listen on.") }
     val dataDir: String by required("--data-dir")
     val dbPassword: String? by optional("--db-password") { sensitive() }
     val tags: List<String> by multiple("--tag")

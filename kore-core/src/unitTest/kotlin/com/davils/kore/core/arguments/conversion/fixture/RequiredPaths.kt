@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import java.io.File
 import java.nio.file.Path
 
-internal class RequiredPaths : KoreParameters() {
-    val readable: Path? by optional("--readable", type = KoreConverters.path(KorePathRequirement.Readable))
-    val regular: Path? by optional("--regular", type = KoreConverters.path(KorePathRequirement.RegularFile))
-    val file: File? by optional("--file", type = KoreConverters.file(KorePathRequirement.RegularFile))
+internal class RequiredPaths : Parameters() {
+    val readable: Path? by optional("--readable", type = Converters.path(PathRequirement.Readable))
+    val regular: Path? by optional("--regular", type = Converters.path(PathRequirement.RegularFile))
+    val file: File? by optional("--file", type = Converters.file(PathRequirement.RegularFile))
 }

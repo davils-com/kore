@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.validation.report
 
-import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.text.escape.SafeDisplay
-import com.davils.kore.core.validation.violation.KoreViolation
+import com.davils.kore.core.validation.violation.Violation
 
 private const val PATH_COLUMN_LIMIT: Int = 28
 private const val PATH_GAP: Int = 2
@@ -28,8 +28,8 @@ private const val PARAGRAPH_BREAK: String = "\n\n"
 
 internal fun renderReport(
     subject: String,
-    errors: List<KoreViolation>,
-    warnings: List<KoreViolation>,
+    errors: List<Violation>,
+    warnings: List<Violation>,
     footer: String?,
 ): String {
     val shownSubject = SafeDisplay.text(subject)
@@ -52,8 +52,8 @@ private fun warningHeadline(count: Int): String {
     return "$count warnings:"
 }
 
-private fun renderLines(violations: List<KoreViolation>): String {
-    val shown = violations.take(KoreLimits.MAX_RENDERED_VIOLATIONS)
+private fun renderLines(violations: List<Violation>): String {
+    val shown = violations.take(Limits.MAX_RENDERED_VIOLATIONS)
     val width = columnWidth(shown)
     val lines = shown.map { violation -> renderLine(violation, width) }
     val omitted = violations.size - shown.size
@@ -61,12 +61,12 @@ private fun renderLines(violations: List<KoreViolation>): String {
     return (lines + "$INDENT… and $omitted more").joinToString(separator = LINE_BREAK)
 }
 
-private fun renderLine(violation: KoreViolation, width: Int): String {
-    val message = SafeDisplay.text(violation.message, KoreLimits.MAX_MESSAGE_LENGTH)
+private fun renderLine(violation: Violation, width: Int): String {
+    val message = SafeDisplay.text(violation.message, Limits.MAX_MESSAGE_LENGTH)
     return "$INDENT${column(violation.path.toString(), width)}$message"
 }
 
-private fun columnWidth(violations: List<KoreViolation>): Int {
+private fun columnWidth(violations: List<Violation>): Int {
     val longest = violations.maxOf { it.path.toString().length }
     return minOf(a = longest, b = PATH_COLUMN_LIMIT) + PATH_GAP
 }

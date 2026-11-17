@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class DerivedCollision : KoreParameters(environmentPrefix = "APP") {
-    val dashed: Int? by optional("--data-dir", type = KoreConverters.int)
-    val underscored: Int? by optional("--data_dir", type = KoreConverters.int)
+internal class DerivedCollision : Parameters(environmentPrefix = "APP") {
+    val dashed: Int? by optional("--data-dir", type = Converters.int)
+    val underscored: Int? by optional("--data_dir", type = Converters.int)
 }

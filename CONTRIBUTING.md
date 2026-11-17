@@ -28,7 +28,7 @@ the changelog check, Trivy and the Kreate assurance gate. A pull request is only
 
 ### Security first
 
-Every input of Kore may come from an attacker. A change that reads input checks it against `KoreLimits` first,
+Every input of Kore may come from an attacker. A change that reads input checks it against `Limits` first,
 escapes every untrusted value it shows through `SafeDisplay`, never puts a sensitive value into a message and
 fails closed. It ships with tests that feed hostile input through every new sink.
 

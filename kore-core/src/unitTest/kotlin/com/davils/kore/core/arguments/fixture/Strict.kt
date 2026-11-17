@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Strict : KoreParameters() {
+internal class Strict : Parameters() {
     val name: String? by optional("--name")
 }

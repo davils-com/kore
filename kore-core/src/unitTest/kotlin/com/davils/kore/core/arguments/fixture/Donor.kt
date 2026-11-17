@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameter
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameter
+import com.davils.kore.core.arguments.Parameters
 
-internal class Donor : KoreParameters() {
-    fun donated(): KoreParameter<String?> = optional("--donated")
+internal class Donor : Parameters() {
+    fun donated(): Parameter<String?> = optional("--donated")
 }

@@ -16,17 +16,17 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.floorAbove
 import com.davils.kore.core.version.interval.releaseFloor
 import com.davils.kore.core.version.interval.successor
 
-internal class Partial(internal val numbers: List<Int>, internal val version: KoreSemanticVersion?) {
+internal class Partial(internal val numbers: List<Int>, internal val version: SemanticVersion?) {
     internal val isAny: Boolean get() = numbers.isEmpty()
 
-    internal fun lowest(): KoreSemanticVersion = version ?: releaseFloor(numbers)
+    internal fun lowest(): SemanticVersion = version ?: releaseFloor(numbers)
 
-    internal fun firstAbove(): KoreSemanticVersion? {
+    internal fun firstAbove(): SemanticVersion? {
         val complete = version ?: return floorAbove(numbers)
         return successor(complete)
     }

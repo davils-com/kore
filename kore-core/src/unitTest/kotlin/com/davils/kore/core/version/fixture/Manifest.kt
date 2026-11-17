@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.version.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 import com.davils.kore.core.version.semanticVersion
 import com.davils.kore.core.version.semanticVersionRange
 
-internal data class Manifest(val version: String, val requiresShell: String, val name: String) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+internal data class Manifest(val version: String, val requiresShell: String, val name: String) : Validatable {
+    override fun ValidationScope.validate() {
         semanticVersion(::version, version)
         semanticVersionRange(::requiresShell, requiresShell)
         if (name.isBlank()) fail(::name, "is required but was not set")

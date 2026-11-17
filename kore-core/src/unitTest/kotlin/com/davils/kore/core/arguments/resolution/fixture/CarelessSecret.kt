@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class CarelessSecret : KoreParameters() {
-    val pin: Int? by optional("--pin", type = KoreConverters.custom("pin") { raw -> raw.toInt() }) { sensitive() }
+internal class CarelessSecret : Parameters() {
+    val pin: Int? by optional("--pin", type = Converters.custom("pin") { raw -> raw.toInt() }) { sensitive() }
 }

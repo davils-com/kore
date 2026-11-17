@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.lexer
 
 import com.davils.kore.core.arguments.declaration.ParameterSpec
-import com.davils.kore.core.arguments.report.KoreParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.text.escape.SafeDisplay
 
 internal data class LexResult(
@@ -25,7 +25,7 @@ internal data class LexResult(
     val unknown: List<String>,
     val unknownNames: List<String>,
     val rest: List<String>,
-    val violations: List<KoreParameterViolation>,
+    val violations: List<ParameterViolation>,
 ) {
     override fun toString(): String = "LexResult(${SafeDisplay.REDACTED})"
 }

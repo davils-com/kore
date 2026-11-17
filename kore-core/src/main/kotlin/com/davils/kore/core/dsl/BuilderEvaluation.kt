@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.dsl
 
-import com.davils.kore.core.validation.report.KoreValidationException
-import com.davils.kore.core.validation.report.KoreValidationReport
+import com.davils.kore.core.validation.report.ValidationException
+import com.davils.kore.core.validation.report.ValidationReport
 
-internal class BuilderEvaluation<out T : Any>(value: T?, val report: KoreValidationReport) {
+internal class BuilderEvaluation<out T : Any>(value: T?, val report: ValidationReport) {
     val value: T? = value.takeIf { report.isValid }
 
-    fun valueOrThrow(): T = value ?: throw KoreValidationException(report)
+    fun valueOrThrow(): T = value ?: throw ValidationException(report)
 }

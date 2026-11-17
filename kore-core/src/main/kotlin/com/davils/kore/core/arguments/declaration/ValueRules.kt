@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.declaration
 
-import com.davils.kore.core.arguments.conversion.KoreConverter
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.arguments.conversion.Converter
+import com.davils.kore.core.validation.ValidationScope
 
 internal data class ValueRules<T : Any>(
-    val converter: KoreConverter<T>,
-    val validators: List<KoreValidationScope.(T) -> Unit>,
+    val converter: Converter<T>,
+    val validators: List<ValidationScope.(T) -> Unit>,
     val splitDelimiter: String?,
 ) {
     init {

@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.KoreUnknownArgumentPolicy
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.UnknownArgumentPolicy
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class BundleCollecting : KoreParameters(unknownArguments = KoreUnknownArgumentPolicy.Collect) {
+internal class BundleCollecting : Parameters(unknownArguments = UnknownArgumentPolicy.Collect) {
     val isAll: Boolean by flag("-a")
     val isColoured: Boolean by flag("-c")
-    val port: Int? by optional("-p", type = KoreConverters.int)
+    val port: Int? by optional("-p", type = Converters.int)
 }

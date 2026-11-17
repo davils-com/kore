@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class FakeVault(private val entries: Map<String, String>) : KoreValueSource {
+internal class FakeVault(private val entries: Map<String, String>) : ValueSource {
     override val name: String = "vault"
 
-    override suspend fun read(parameter: KoreParameterInfo): String? = entries[parameter.primaryName]
+    override suspend fun read(parameter: ParameterInfo): String? = entries[parameter.primaryName]
 }

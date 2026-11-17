@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class NegatableColour : KoreParameters() {
+internal class NegatableColour : Parameters() {
     val isColoured: Boolean by flag("--colour", default = true) { negatable() }
 }

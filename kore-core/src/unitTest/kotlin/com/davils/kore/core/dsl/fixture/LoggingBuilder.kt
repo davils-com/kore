@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class LoggingBuilder : KoreValidatingBuilder<LoggingData>() {
+internal class LoggingBuilder : ValidatingBuilder<LoggingData>() {
     var level: String = "INFO"
     private val sinks = mutableListOf<SinkData>()
     private val loggers = mutableMapOf<String, LoggerData>()

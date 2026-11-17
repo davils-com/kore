@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.data.KoreRepository
+import com.davils.kore.core.architecture.data.Repository
 import com.davils.kore.core.architecture.mapper.toDomain
 
-internal class ServerRepository(private val source: ServerSource) : KoreRepository<Server> {
+internal class ServerRepository(private val source: ServerSource) : Repository<Server> {
     suspend fun servers(): List<Server> = ServerMapper.toDomain(source.servers())
 
     suspend fun save(server: Server) {

@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Prefixed : KoreParameters(environmentPrefix = "APP") {
+internal class Prefixed : Parameters(environmentPrefix = "APP") {
     val dataDir: String? by optional("--data-dir")
-    val port: Int? by optional("--port", "-p", type = KoreConverters.int)
+    val port: Int? by optional("--port", "-p", type = Converters.int)
     val secretKey: String? by optional("--secret-key") { env("VAULT_KEY") }
     val local: String? by optional("--local") { noEnv() }
     val isEager: Boolean by flag("--eager")

@@ -16,16 +16,16 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import com.davils.kore.core.arguments.conversion.pathConverter
 import java.nio.file.Path
 
-internal class GuardedPaths(fallback: Path) : KoreParameters() {
-    val data: Path? by optional("--data", type = pathConverter(setOf(KorePathRequirement.Exists), ThrowingInspector))
+internal class GuardedPaths(fallback: Path) : Parameters() {
+    val data: Path? by optional("--data", type = pathConverter(setOf(PathRequirement.Exists), ThrowingInspector))
     val cache: Path by defaulted(
         "--cache",
-        type = pathConverter(setOf(KorePathRequirement.Exists), ThrowingInspector),
+        type = pathConverter(setOf(PathRequirement.Exists), ThrowingInspector),
         default = fallback,
     )
 }

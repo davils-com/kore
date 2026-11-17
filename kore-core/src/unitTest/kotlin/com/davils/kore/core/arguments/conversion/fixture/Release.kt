@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.version.KoreSemanticVersion
-import com.davils.kore.core.version.KoreSemanticVersionRange
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.version.SemanticVersion
+import com.davils.kore.core.version.SemanticVersionRange
 
-internal class Release : KoreParameters() {
-    val version: KoreSemanticVersion? by optional("--version", type = KoreConverters.semanticVersion)
-    val accepts: KoreSemanticVersionRange? by optional("--accepts", type = KoreConverters.semanticVersionRange)
+internal class Release : Parameters() {
+    val version: SemanticVersion? by optional("--version", type = Converters.semanticVersion)
+    val accepts: SemanticVersionRange? by optional("--accepts", type = Converters.semanticVersionRange)
 }

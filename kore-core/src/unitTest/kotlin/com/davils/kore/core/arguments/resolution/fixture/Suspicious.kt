@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
 private const val MANY_THREADS: Int = 256
 
-internal class Suspicious : KoreParameters() {
-    val threads: Int? by optional("--threads", type = KoreConverters.int) {
+internal class Suspicious : Parameters() {
+    val threads: Int? by optional("--threads", type = Converters.int) {
         validate { value -> if (value < 0) fail("must not be negative") }
         validate { value -> if (value !in 0..MANY_THREADS) warn("is unusually high") }
     }

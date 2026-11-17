@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Echoing : KoreParameters(environmentPrefix = "APP") {
+internal class Echoing : Parameters(environmentPrefix = "APP") {
     val name: String? by optional("--name")
     val aliases: List<String> by multiple("--alias")
     val region: String? by optional("--region")
-    val count: Int? by optional("--count", type = KoreConverters.int)
+    val count: Int? by optional("--count", type = Converters.int)
 }

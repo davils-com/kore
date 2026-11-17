@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Ageing : KoreParameters(environmentPrefix = "APP") {
+internal class Ageing : Parameters(environmentPrefix = "APP") {
     val dataDir: String? by optional("--data-dir")
     val oldDir: String? by optional("--old-dir") { deprecated("use --data-dir instead") }
     val isLegacy: Boolean by flag("--legacy") { deprecated() }
-    val port: Int by required("--port", type = KoreConverters.int)
+    val port: Int by required("--port", type = Converters.int)
 }

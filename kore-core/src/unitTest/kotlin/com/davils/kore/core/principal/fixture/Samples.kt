@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.principal.fixture
 
-import com.davils.kore.core.principal.KorePrincipal
+import com.davils.kore.core.principal.Principal
 import com.davils.kore.core.principal.principal
 
 internal const val PLACEHOLDER: String = "placeholder-value"
 
-internal fun chainOf(length: Int): KorePrincipal =
+internal fun chainOf(length: Int): Principal =
     (1 until length).fold(principal("user-0")) { chain, index -> principal("service-$index").onBehalfOf(chain) }

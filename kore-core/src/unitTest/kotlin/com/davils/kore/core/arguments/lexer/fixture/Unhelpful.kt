@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameterLimits
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.ParameterLimits
+import com.davils.kore.core.arguments.Parameters
 
-internal class Unhelpful : KoreParameters(limits = KoreParameterLimits(maxSuggestedArguments = 0)) {
+internal class Unhelpful : Parameters(limits = ParameterLimits(maxSuggestedArguments = 0)) {
     val isMode: Boolean by flag("--mode")
 }

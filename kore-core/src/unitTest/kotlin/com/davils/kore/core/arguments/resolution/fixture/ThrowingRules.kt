@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class ThrowingRules : KoreParameters() {
+internal class ThrowingRules : Parameters() {
     val name: String? by optional("--name") {
         validate { value -> require(value.isEmpty()) { "rule broke on '$value'" } }
     }

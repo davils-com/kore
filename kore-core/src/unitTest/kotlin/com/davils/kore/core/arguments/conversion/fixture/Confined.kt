@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import java.nio.file.Path
 
-internal class Confined(base: Path) : KoreParameters() {
+internal class Confined(base: Path) : Parameters() {
     val upload: Path? by optional(
         "--upload",
-        type = KoreConverters.path(KorePathRequirement.Within(base), KorePathRequirement.NoSymlinks),
+        type = Converters.path(PathRequirement.Within(base), PathRequirement.NoSymlinks),
     )
 }

@@ -16,18 +16,18 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import java.net.URI
 
-internal class Endpoints : KoreParameters() {
-    val endpoint: URI? by optional("--endpoint", type = KoreConverters.uri(allowUserInfo = true))
-    val mirrors: List<URI> by multiple("--mirror", type = KoreConverters.uri(allowUserInfo = true))
+internal class Endpoints : Parameters() {
+    val endpoint: URI? by optional("--endpoint", type = Converters.uri(allowUserInfo = true))
+    val mirrors: List<URI> by multiple("--mirror", type = Converters.uri(allowUserInfo = true))
     val database: URI by defaulted(
         "--database",
-        type = KoreConverters.uri(schemes = setOf("postgres"), allowUserInfo = true),
+        type = Converters.uri(schemes = setOf("postgres"), allowUserInfo = true),
         default = URI("postgres://app:default-password@db/app"),
     )
     val dsn: String? by optional("--dsn")
-    val strict: URI? by optional("--strict", type = KoreConverters.uri())
+    val strict: URI? by optional("--strict", type = Converters.uri())
 }

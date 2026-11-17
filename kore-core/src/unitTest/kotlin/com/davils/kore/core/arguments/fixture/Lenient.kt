@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.KoreUnknownArgumentPolicy
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.UnknownArgumentPolicy
 
-internal class Lenient : KoreParameters(unknownArguments = KoreUnknownArgumentPolicy.Collect) {
+internal class Lenient : Parameters(unknownArguments = UnknownArgumentPolicy.Collect) {
     val name: String? by optional("--name")
 }

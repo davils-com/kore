@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.report.KoreParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolation
 
 internal data class SpecResolution(
-    val violations: List<KoreParameterViolation>,
+    val violations: List<ParameterViolation>,
     val isProvided: Boolean,
     val assignment: Assignment?,
 )

@@ -16,35 +16,35 @@
 
 package com.davils.kore.core.arguments.declaration
 
-import com.davils.kore.core.arguments.KoreParameter
-import com.davils.kore.core.arguments.KoreParameterDeclarations
-import com.davils.kore.core.arguments.conversion.KoreConverter
+import com.davils.kore.core.arguments.Parameter
+import com.davils.kore.core.arguments.ParameterDeclarations
+import com.davils.kore.core.arguments.conversion.Converter
 import com.davils.kore.core.arguments.conversion.flagConverter
 
 internal fun <T : Any, V> valueParameter(
-    owner: KoreParameterDeclarations,
+    owner: ParameterDeclarations,
     names: Array<out String>,
-    type: KoreConverter<T>,
-    configure: KoreValueConfiguration<T>.() -> Unit,
+    type: Converter<T>,
+    configure: ValueConfiguration<T>.() -> Unit,
     arity: Arity<T, V>,
-): KoreParameter<V> {
+): Parameter<V> {
     val declared = checkedNames(names)
-    val configuration = KoreValueConfiguration<T>()
+    val configuration = ValueConfiguration<T>()
     configuration.configure()
     val rules = ValueRules(converter = type, validators = configuration.validators, splitDelimiter = null)
     val draft = ParameterDraft(names = declared, traits = configuration.valueTraits(), rules = rules, arity = arity)
-    return KoreParameter(draft, owner)
+    return Parameter(draft, owner)
 }
 
 internal fun <T : Any> multipleParameter(
-    owner: KoreParameterDeclarations,
+    owner: ParameterDeclarations,
     names: Array<out String>,
-    type: KoreConverter<T>,
-    configure: KoreMultipleConfiguration<T>.() -> Unit,
+    type: Converter<T>,
+    configure: MultipleConfiguration<T>.() -> Unit,
     defaults: List<T>,
-): KoreParameter<List<T>> {
+): Parameter<List<T>> {
     val declared = checkedNames(names)
-    val configuration = KoreMultipleConfiguration<T>()
+    val configuration = MultipleConfiguration<T>()
     configuration.configure()
     val rules = ValueRules(
         converter = type,
@@ -57,17 +57,17 @@ internal fun <T : Any> multipleParameter(
         rules = rules,
         arity = Arity.Multiple(readOnlyCopy(defaults)),
     )
-    return KoreParameter(draft, owner)
+    return Parameter(draft, owner)
 }
 
 internal fun flagParameter(
-    owner: KoreParameterDeclarations,
+    owner: ParameterDeclarations,
     names: Array<out String>,
     default: Boolean,
-    configure: KoreFlagConfiguration.() -> Unit,
-): KoreParameter<Boolean> {
+    configure: FlagConfiguration.() -> Unit,
+): Parameter<Boolean> {
     val declared = checkedNames(names)
-    val configuration = KoreFlagConfiguration()
+    val configuration = FlagConfiguration()
     configuration.configure()
     val rules = ValueRules(converter = flagConverter, validators = emptyList(), splitDelimiter = null)
     val draft = ParameterDraft(
@@ -76,5 +76,5 @@ internal fun flagParameter(
         rules = rules,
         arity = Arity.Flag(default),
     )
-    return KoreParameter(draft, owner)
+    return Parameter(draft, owner)
 }

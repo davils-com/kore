@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
+import com.davils.kore.core.validation.Validatable
 
-internal sealed interface SinkData : KoreValidatable {
+internal sealed interface SinkData : Validatable {
     val name: String
 }

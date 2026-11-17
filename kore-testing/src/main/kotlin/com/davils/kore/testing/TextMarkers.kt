@@ -16,7 +16,7 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.text.KoreTextRange
+import com.davils.kore.core.text.TextRange
 import com.davils.kore.testing.KoreMarkedText.Companion.CARET
 import com.davils.kore.testing.KoreMarkedText.Companion.RANGE_END
 import com.davils.kore.testing.KoreMarkedText.Companion.RANGE_START
@@ -26,7 +26,7 @@ private val markers: List<String> = listOf(CARET, RANGE_START, RANGE_END)
 internal class TextMarkers(private val marked: String) {
     private val text = StringBuilder()
     private val carets = ArrayList<Int>()
-    private val ranges = ArrayList<KoreTextRange>()
+    private val ranges = ArrayList<TextRange>()
     private val openRanges = ArrayDeque<Int>()
 
     fun read(): KoreMarkedText {
@@ -56,7 +56,7 @@ internal class TextMarkers(private val marked: String) {
         when (marker) {
             CARET -> carets.add(offset)
             RANGE_START -> openRanges.addLast(offset)
-            RANGE_END -> ranges.add(KoreTextRange(start = closeRange(), end = offset))
+            RANGE_END -> ranges.add(TextRange(start = closeRange(), end = offset))
         }
     }
 

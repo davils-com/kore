@@ -16,15 +16,15 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverter
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converter
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Defaults : KoreParameters() {
+internal class Defaults : Parameters() {
     val names: List<String> by multiple("--name", default = listOf("alpha", "beta"))
     val secrets: List<String> by multiple("--secret", default = listOf("hidden")) { sensitive() }
     val isLoud: Boolean by flag("--loud", default = true)
     val described: String by defaulted("--described", default = "plain") { describedAs("Says what it is") }
-    val raw: String? by optional("--raw", type = KoreConverter { raw -> raw.reversed() })
-    val numbers: List<Int> by multiple("--number", type = KoreConverters.int)
+    val raw: String? by optional("--raw", type = Converter { raw -> raw.reversed() })
+    val numbers: List<Int> by multiple("--number", type = Converters.int)
 }

@@ -16,15 +16,15 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 
 internal data class LoggingData(
     val level: String,
     val sinks: List<SinkData>,
     val loggers: Map<String, LoggerData>,
-) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+) : Validatable {
+    override fun ValidationScope.validate() {
         if (sinks.isEmpty()) fail(::sinks, "at least one sink must be configured")
         val names = sinks.map { it.name }
         if (names.size != names.toSet().size) fail(::sinks, "the sink names must be unique")

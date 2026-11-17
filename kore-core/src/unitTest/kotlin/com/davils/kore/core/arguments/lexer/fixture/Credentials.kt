@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Credentials : KoreParameters() {
+internal class Credentials : Parameters() {
     val apiKey: String by required("--api-key") { sensitive() }
 }

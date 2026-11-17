@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Duplicated : KoreParameters() {
+internal class Duplicated : Parameters() {
     val first: String? by optional("--name")
     val second: String? by optional("--name")
 }

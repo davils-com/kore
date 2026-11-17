@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.domain.KoreDomainModel
+import com.davils.kore.core.architecture.domain.DomainModel
 
-internal data class Server(val id: ServerId, val name: String, val rackUnits: Int) : KoreDomainModel
+internal data class Server(val id: ServerId, val name: String, val rackUnits: Int) : DomainModel

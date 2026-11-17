@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class ReversedGroup : KoreParameters() {
+internal class ReversedGroup : Parameters() {
     val token: String? by optional("--token")
     val keyFile: String? by optional("--key-file")
 

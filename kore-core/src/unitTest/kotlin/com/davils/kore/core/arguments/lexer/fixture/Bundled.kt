@@ -15,11 +15,11 @@
  */
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameterLimits
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.ParameterLimits
+import com.davils.kore.core.arguments.Parameters
 
 internal const val FEWEST_BUNDLED_VALUES: Int = 3
 
-internal class Bundled : KoreParameters(limits = KoreParameterLimits(maxValuesPerParameter = FEWEST_BUNDLED_VALUES)) {
+internal class Bundled : Parameters(limits = ParameterLimits(maxValuesPerParameter = FEWEST_BUNDLED_VALUES)) {
     val isVerbose: Boolean by flag("--verbose", "-v")
 }

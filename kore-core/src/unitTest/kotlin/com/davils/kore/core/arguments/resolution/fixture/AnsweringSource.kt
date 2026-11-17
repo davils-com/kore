@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class AnsweringSource : KoreValueSource {
+internal class AnsweringSource : ValueSource {
     override val name: String = "defaults"
 
-    override suspend fun read(parameter: KoreParameterInfo): String = "north"
+    override suspend fun read(parameter: ParameterInfo): String = "north"
 }

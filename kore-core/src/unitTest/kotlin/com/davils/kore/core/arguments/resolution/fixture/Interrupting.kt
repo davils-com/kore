@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Interrupting : KoreParameters() {
-    val value: String? by optional("--value", type = KoreConverters.custom("slow") { throw InterruptedException() })
+internal class Interrupting : Parameters() {
+    val value: String? by optional("--value", type = Converters.custom("slow") { throw InterruptedException() })
     val checked: String? by optional("--checked") { validate { throw InterruptedException() } }
 }

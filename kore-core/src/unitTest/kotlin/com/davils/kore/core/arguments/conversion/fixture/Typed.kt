@@ -16,19 +16,19 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import java.net.URI
 import kotlin.time.Duration
 
-internal class Typed : KoreParameters() {
-    val count: Int? by optional("--count", type = KoreConverters.int)
-    val size: Long? by optional("--size", type = KoreConverters.long)
-    val ratio: Double? by optional("--ratio", type = KoreConverters.double)
-    val isEnabled: Boolean? by optional("--enabled", type = KoreConverters.boolean)
-    val colour: Colour? by optional("--colour", type = KoreConverters.enum<Colour>())
-    val timeout: Duration? by optional("--timeout", type = KoreConverters.duration())
-    val endpoint: URI? by optional("--endpoint", type = KoreConverters.uri())
-    val level: String? by optional("--level", type = KoreConverters.choice("low", "high"))
+internal class Typed : Parameters() {
+    val count: Int? by optional("--count", type = Converters.int)
+    val size: Long? by optional("--size", type = Converters.long)
+    val ratio: Double? by optional("--ratio", type = Converters.double)
+    val isEnabled: Boolean? by optional("--enabled", type = Converters.boolean)
+    val colour: Colour? by optional("--colour", type = Converters.enum<Colour>())
+    val timeout: Duration? by optional("--timeout", type = Converters.duration())
+    val endpoint: URI? by optional("--endpoint", type = Converters.uri())
+    val level: String? by optional("--level", type = Converters.choice("low", "high"))
     val tags: List<String> by multiple("--tags") { split(",") }
 }

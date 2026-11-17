@@ -16,4 +16,4 @@
 
 package com.davils.kore.core.principal
 
-internal data class CallerIdentity(val id: String, val kind: KorePrincipalKind, val tenant: String?)
+internal data class CallerIdentity(val id: String, val kind: PrincipalKind, val tenant: String?)

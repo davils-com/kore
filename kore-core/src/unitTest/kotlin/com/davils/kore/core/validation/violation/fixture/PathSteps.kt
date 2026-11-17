@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.validation.violation.fixture
 
-import com.davils.kore.core.validation.violation.KoreViolationPath
+import com.davils.kore.core.validation.violation.ViolationPath
 
 private val token = Regex("""\["([^"]*)"]|\[(\d+)]|([^.\[]+)""")
 
-internal fun pathOf(steps: List<PathStep>): KoreViolationPath =
-    steps.fold(KoreViolationPath.ROOT) { path, step -> step.appendTo(path) }
+internal fun pathOf(steps: List<PathStep>): ViolationPath =
+    steps.fold(ViolationPath.ROOT) { path, step -> step.appendTo(path) }
 
 internal fun stepsOf(rendered: String): List<PathStep> {
     val matches = token.findAll(rendered)

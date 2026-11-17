@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.text.escape.SafeDisplay
 import java.util.Objects
 
-internal data class Assigned<V>(val value: V, val origin: KoreValueOrigin?) {
+internal data class Assigned<V>(val value: V, val origin: ValueOrigin?) {
     override fun toString(): String = "Assigned(value=${SafeDisplay.REDACTED}, origin=${Objects.toString(origin)})"
 }

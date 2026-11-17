@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameter
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameter
+import com.davils.kore.core.arguments.Parameters
 
-internal class Recipient(parameter: KoreParameter<String?>) : KoreParameters() {
+internal class Recipient(parameter: Parameter<String?>) : Parameters() {
     val taken: String? by parameter
 }

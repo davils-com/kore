@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class ConsoleSinkBuilder : KoreValidatingBuilder<ConsoleSinkData>() {
+internal class ConsoleSinkBuilder : ValidatingBuilder<ConsoleSinkData>() {
     var name: String = "console"
     var isColoured: Boolean = true
 

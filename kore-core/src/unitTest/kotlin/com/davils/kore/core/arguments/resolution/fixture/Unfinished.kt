@@ -15,16 +15,16 @@
  */
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Unfinished : KoreParameters() {
+internal class Unfinished : Parameters() {
     val token: String? by optional("--token") {
         sensitive()
         validate { value -> if (value.isNotEmpty()) TODO("cannot check $value yet") }
     }
     val pin: String? by optional(
         "--pin",
-        type = KoreConverters.custom("pin") { raw -> throw AssertionError("unexpected pin $raw") },
+        type = Converters.custom("pin") { raw -> throw AssertionError("unexpected pin $raw") },
     ) { sensitive() }
 }

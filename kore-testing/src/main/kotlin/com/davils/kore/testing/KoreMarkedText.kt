@@ -16,7 +16,7 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.text.KoreTextRange
+import com.davils.kore.core.text.TextRange
 import java.util.stream.Collectors
 
 /**
@@ -25,7 +25,7 @@ import java.util.stream.Collectors
  * [KoreMarkedText.of] reads a text in which places are marked inline, such as `port: <caret>80` or
  * `port: <range>80</range>`, removes the markers and keeps where they stood. This lets a test write the input it feeds
  * to code built on Kore and the offsets it expects back in one literal. Offsets count UTF-16 code units of [text], the
- * text without its markers, and fit [KoreTextRange] and the other types of `com.davils.kore.core.text`.
+ * text without its markers, and fit [TextRange] and the other types of `com.davils.kore.core.text`.
  *
  * The constructor builds a marked text directly and checks nothing: its carets and ranges may lie outside [text] and
  * come in any order. It keeps unmodifiable copies of the lists it is given, so later changes to those lists do not
@@ -43,7 +43,7 @@ import java.util.stream.Collectors
 public class KoreMarkedText(
     public val text: String,
     carets: List<Int>,
-    ranges: List<KoreTextRange>,
+    ranges: List<TextRange>,
 ) {
     /**
      * The offsets in [text] at which carets were marked; [KoreMarkedText.of] lists them in the order they appear in.
@@ -63,7 +63,7 @@ public class KoreMarkedText(
      *
      * @since 1.0.0
      */
-    public val ranges: List<KoreTextRange> = ranges.stream().collect(Collectors.toUnmodifiableList())
+    public val ranges: List<TextRange> = ranges.stream().collect(Collectors.toUnmodifiableList())
 
     /**
      * The offset of the only caret, for the common test with exactly one.
@@ -81,7 +81,7 @@ public class KoreMarkedText(
      * @throws IllegalArgumentException if more than one range was marked.
      * @since 1.0.0
      */
-    public val range: KoreTextRange get() = ranges.single()
+    public val range: TextRange get() = ranges.single()
 
     private val identity: List<Any> get() = listOf(text, carets, ranges)
 

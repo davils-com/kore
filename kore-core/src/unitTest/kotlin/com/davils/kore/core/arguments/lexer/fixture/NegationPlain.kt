@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class NegationPlain : KoreParameters() {
+internal class NegationPlain : Parameters() {
     val port: String by defaulted("--port", default = "8080")
     val isColoured: Boolean by flag("--colour", default = true) { negatable() }
 }

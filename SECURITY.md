@@ -38,7 +38,7 @@ The following are **in scope**:
 - untrusted text that reaches a message, a report, a `toString` or a usage text unescaped, so it can forge log
   lines or control a terminal,
 - a value declared as sensitive that appears anywhere outside the value itself,
-- a check that passes when it should refuse: an authorization helper of `KorePrincipal`, a path requirement, a
+- a check that passes when it should refuse: an authorization helper of `Principal`, a path requirement, a
   version range or a converter that accepts what it documents as refused,
 - a weakness in the generation of UUIDs.
 

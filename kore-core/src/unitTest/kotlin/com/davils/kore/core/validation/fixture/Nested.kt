@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.validation.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 
-internal class Nested(private val child: Nested?) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+internal class Nested(private val child: Nested?) : Validatable {
+    override fun ValidationScope.validate() {
         val next = child ?: return
         within(::child) { with(next) { validate() } }
     }

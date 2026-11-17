@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.declaration
 
-import com.davils.kore.core.arguments.report.KoreParameterViolation
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ParameterViolation
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.displayedValue
 import com.davils.kore.core.arguments.resolution.Assignment
 import com.davils.kore.core.arguments.resolution.ParameterSlot
@@ -28,12 +28,12 @@ internal sealed interface Arity<T : Any, V> {
 
     fun defaultDisplay(isSensitive: Boolean): String?
 
-    fun given(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<V>): Assignment?
+    fun given(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<V>): Assignment?
 
     fun absent(
         reading: ValueReading<T>,
         slot: ParameterSlot<V>,
-        violations: MutableList<KoreParameterViolation>,
+        violations: MutableList<ParameterViolation>,
     ): Assignment?
 
     class Optional<T : Any> : Arity<T, T?> {
@@ -41,13 +41,13 @@ internal sealed interface Arity<T : Any, V> {
 
         override fun defaultDisplay(isSensitive: Boolean): String? = null
 
-        override fun given(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<T?>): Assignment =
+        override fun given(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<T?>): Assignment =
             Assignment { slot.assign(values.firstOrNull(), origin) }
 
         override fun absent(
             reading: ValueReading<T>,
             slot: ParameterSlot<T?>,
-            violations: MutableList<KoreParameterViolation>,
+            violations: MutableList<ParameterViolation>,
         ): Assignment = Assignment { slot.assign(null, null) }
     }
 
@@ -56,15 +56,15 @@ internal sealed interface Arity<T : Any, V> {
 
         override fun defaultDisplay(isSensitive: Boolean): String? = null
 
-        override fun given(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<T>): Assignment? =
+        override fun given(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<T>): Assignment? =
             firstOf(values, origin, slot)
 
         override fun absent(
             reading: ValueReading<T>,
             slot: ParameterSlot<T>,
-            violations: MutableList<KoreParameterViolation>,
+            violations: MutableList<ParameterViolation>,
         ): Assignment? {
-            violations += KoreParameterViolation.MissingRequired(reading.info)
+            violations += ParameterViolation.MissingRequired(reading.info)
             return null
         }
     }
@@ -74,16 +74,16 @@ internal sealed interface Arity<T : Any, V> {
 
         override fun defaultDisplay(isSensitive: Boolean): String = displayedValue(default, isSensitive)
 
-        override fun given(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<T>): Assignment? =
+        override fun given(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<T>): Assignment? =
             firstOf(values, origin, slot)
 
         override fun absent(
             reading: ValueReading<T>,
             slot: ParameterSlot<T>,
-            violations: MutableList<KoreParameterViolation>,
+            violations: MutableList<ParameterViolation>,
         ): Assignment? {
             if (!reading.admitsDefault(default, violations)) return null
-            return Assignment { slot.assign(default, KoreValueOrigin.Default) }
+            return Assignment { slot.assign(default, ValueOrigin.Default) }
         }
     }
 
@@ -95,16 +95,16 @@ internal sealed interface Arity<T : Any, V> {
             return displayedValue(defaults, isSensitive)
         }
 
-        override fun given(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<List<T>>): Assignment =
+        override fun given(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<List<T>>): Assignment =
             Assignment { slot.assign(readOnlyCopy(values), origin) }
 
         override fun absent(
             reading: ValueReading<T>,
             slot: ParameterSlot<List<T>>,
-            violations: MutableList<KoreParameterViolation>,
+            violations: MutableList<ParameterViolation>,
         ): Assignment {
             val usable = defaults.filter { value -> reading.admitsDefault(value, violations) }
-            return Assignment { slot.assign(readOnlyCopy(usable), KoreValueOrigin.Default) }
+            return Assignment { slot.assign(readOnlyCopy(usable), ValueOrigin.Default) }
         }
     }
 
@@ -113,16 +113,16 @@ internal sealed interface Arity<T : Any, V> {
 
         override fun defaultDisplay(isSensitive: Boolean): String? = isOnByDefault.toString().takeIf { isOnByDefault }
 
-        override fun given(values: List<Boolean>, origin: KoreValueOrigin, slot: ParameterSlot<Boolean>): Assignment? =
+        override fun given(values: List<Boolean>, origin: ValueOrigin, slot: ParameterSlot<Boolean>): Assignment? =
             firstOf(values, origin, slot)
 
         override fun absent(
             reading: ValueReading<Boolean>,
             slot: ParameterSlot<Boolean>,
-            violations: MutableList<KoreParameterViolation>,
-        ): Assignment = Assignment { slot.assign(isOnByDefault, KoreValueOrigin.Default) }
+            violations: MutableList<ParameterViolation>,
+        ): Assignment = Assignment { slot.assign(isOnByDefault, ValueOrigin.Default) }
     }
 }
 
-private fun <T : Any> firstOf(values: List<T>, origin: KoreValueOrigin, slot: ParameterSlot<T>): Assignment? =
+private fun <T : Any> firstOf(values: List<T>, origin: ValueOrigin, slot: ParameterSlot<T>): Assignment? =
     values.firstOrNull()?.let { value -> Assignment { slot.assign(value, origin) } }

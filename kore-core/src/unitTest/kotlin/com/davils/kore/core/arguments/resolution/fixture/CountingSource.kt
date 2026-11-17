@@ -15,11 +15,11 @@
  */
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 import java.util.concurrent.atomic.AtomicInteger
 
-internal class CountingSource : KoreValueSource {
+internal class CountingSource : ValueSource {
     private val reads: AtomicInteger = AtomicInteger()
 
     val nameReads: Int get() = reads.get()
@@ -30,5 +30,5 @@ internal class CountingSource : KoreValueSource {
             return "counted"
         }
 
-    override suspend fun read(parameter: KoreParameterInfo): String = "7"
+    override suspend fun read(parameter: ParameterInfo): String = "7"
 }

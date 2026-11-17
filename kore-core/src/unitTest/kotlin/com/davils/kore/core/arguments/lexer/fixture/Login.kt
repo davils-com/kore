@@ -15,9 +15,9 @@
  */
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Login : KoreParameters() {
+internal class Login : Parameters() {
     val password: String? by optional("--password", "-p") { sensitive() }
     val user: String? by optional("--user", "-u")
     val isVerbose: Boolean by flag("--verbose", "-v")

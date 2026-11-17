@@ -16,16 +16,16 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.version.interval.KoreVersionInterval
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.version.interval.VersionInterval
 import com.davils.kore.core.version.interval.normalized
 
 internal const val MATCHES_NOTHING_REASON: String = "has an alternative that matches no version"
 internal const val INTERVAL_OPENINGS: String = "[("
 
-private const val RANGE_TOO_LONG_REASON: String = "is longer than ${KoreLimits.MAX_RANGE_LENGTH} characters"
+private const val RANGE_TOO_LONG_REASON: String = "is longer than ${Limits.MAX_RANGE_LENGTH} characters"
 private const val CANONICAL_TOO_LARGE_REASON: String =
-    "renders to more than ${KoreLimits.MAX_RANGE_COMPARATORS} intervals or ${KoreLimits.MAX_RANGE_LENGTH} characters"
+    "renders to more than ${Limits.MAX_RANGE_COMPARATORS} intervals or ${Limits.MAX_RANGE_LENGTH} characters"
 private const val EMPTY_ALTERNATIVE_REASON: String = "has an empty alternative beside ||"
 private const val ALTERNATIVE_SEPARATOR: String = "||"
 private const val NOTHING: String = "[]"
@@ -38,14 +38,14 @@ internal fun readRange(text: String): RangeReading {
 
 internal fun combined(
     readings: List<RangeReading>,
-    initial: List<KoreVersionInterval>,
-    merge: (List<KoreVersionInterval>, List<KoreVersionInterval>) -> List<KoreVersionInterval>,
+    initial: List<VersionInterval>,
+    merge: (List<VersionInterval>, List<VersionInterval>) -> List<VersionInterval>,
 ): RangeReading {
     val start: RangeReading = RangeReading.Read(initial)
     return readings.fold(start) { sofar, next -> joined(sofar, next, merge) }
 }
 
-internal fun readingOf(interval: KoreVersionInterval?, emptyReason: String): RangeReading {
+internal fun readingOf(interval: VersionInterval?, emptyReason: String): RangeReading {
     if (interval == null) return RangeReading.Refused(emptyReason)
     return RangeReading.Read(listOf(interval))
 }
@@ -53,7 +53,7 @@ internal fun readingOf(interval: KoreVersionInterval?, emptyReason: String): Ran
 private fun joined(
     sofar: RangeReading,
     next: RangeReading,
-    merge: (List<KoreVersionInterval>, List<KoreVersionInterval>) -> List<KoreVersionInterval>,
+    merge: (List<VersionInterval>, List<VersionInterval>) -> List<VersionInterval>,
 ): RangeReading {
     if (sofar !is RangeReading.Read) return sofar
     return when (next) {
@@ -63,7 +63,7 @@ private fun joined(
 }
 
 private fun rangeTextProblem(text: String): String? {
-    if (text.length > KoreLimits.MAX_RANGE_LENGTH) return RANGE_TOO_LONG_REASON
+    if (text.length > Limits.MAX_RANGE_LENGTH) return RANGE_TOO_LONG_REASON
     return EMPTY_REASON.takeIf { text.all(::isRangeSpace) }
 }
 
@@ -89,9 +89,9 @@ private fun renderable(reading: RangeReading): RangeReading = when (reading) {
     is RangeReading.Refused -> reading
 }
 
-private fun renderableIntervals(intervals: List<KoreVersionInterval>): RangeReading {
+private fun renderableIntervals(intervals: List<VersionInterval>): RangeReading {
     val rendered = intervals.sumOf { interval -> interval.toString().length } + intervals.size - 1
-    val isFitting = intervals.size <= KoreLimits.MAX_RANGE_COMPARATORS && rendered <= KoreLimits.MAX_RANGE_LENGTH
+    val isFitting = intervals.size <= Limits.MAX_RANGE_COMPARATORS && rendered <= Limits.MAX_RANGE_LENGTH
     if (!isFitting) return RangeReading.Refused(CANONICAL_TOO_LARGE_REASON)
     return RangeReading.Read(intervals)
 }

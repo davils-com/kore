@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class FailingSource : KoreValueSource {
+internal class FailingSource : ValueSource {
     override val name: String = "vault"
 
-    override suspend fun read(parameter: KoreParameterInfo): String? = error("connection refused")
+    override suspend fun read(parameter: ParameterInfo): String? = error("connection refused")
 }

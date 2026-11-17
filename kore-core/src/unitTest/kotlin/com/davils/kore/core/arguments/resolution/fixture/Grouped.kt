@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Grouped : KoreParameters() {
+internal class Grouped : Parameters() {
     val token: String? by optional("--token")
     val keyFile: String? by optional("--key-file")
     val user: String? by optional("--user")

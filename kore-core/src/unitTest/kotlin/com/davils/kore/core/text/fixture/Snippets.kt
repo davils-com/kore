@@ -16,24 +16,24 @@
 
 package com.davils.kore.core.text.fixture
 
-import com.davils.kore.core.text.KoreTextPosition
-import com.davils.kore.core.text.KoreTextRange
-import com.davils.kore.core.text.KoreTextSnippet
+import com.davils.kore.core.text.TextPosition
+import com.davils.kore.core.text.TextRange
+import com.davils.kore.core.text.TextSnippet
 
 internal const val SAMPLE_LINE: String = "port: eighty"
 internal const val SAMPLE_VALUE_START: Int = 6
 internal const val SAMPLE_VALUE_END: Int = 12
 
-private val sampleHighlight: KoreTextRange = KoreTextRange(start = SAMPLE_VALUE_START, end = SAMPLE_VALUE_END)
-private val samplePosition: KoreTextPosition = KoreTextPosition(line = 0, column = SAMPLE_VALUE_START)
+private val sampleHighlight: TextRange = TextRange(start = SAMPLE_VALUE_START, end = SAMPLE_VALUE_END)
+private val samplePosition: TextPosition = TextPosition(line = 0, column = SAMPLE_VALUE_START)
 
 internal fun snippetOf(
     line: String = SAMPLE_LINE,
-    highlight: KoreTextRange = sampleHighlight,
-    position: KoreTextPosition = samplePosition,
+    highlight: TextRange = sampleHighlight,
+    position: TextPosition = samplePosition,
     isCutBefore: Boolean = false,
     isCutAfter: Boolean = false,
-): KoreTextSnippet = KoreTextSnippet(
+): TextSnippet = TextSnippet(
     position = position,
     line = line,
     highlight = highlight,

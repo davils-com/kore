@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Masked : KoreParameters(environmentPrefix = "APP") {
+internal class Masked : Parameters(environmentPrefix = "APP") {
     val token: String by required("--token") { sensitive() }
     val tags: List<String> by multiple("--tag") { sensitive() }
-    val port: Int? by optional("--port", type = KoreConverters.int) { sensitive() }
+    val port: Int? by optional("--port", type = Converters.int) { sensitive() }
 }

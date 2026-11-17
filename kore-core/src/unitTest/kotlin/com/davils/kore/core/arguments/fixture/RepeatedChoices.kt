@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class RepeatedChoices : KoreParameters() {
+internal class RepeatedChoices : Parameters() {
     val levels: List<String> by multiple(
         "--level",
-        type = KoreConverters.choice("low", "high"),
+        type = Converters.choice("low", "high"),
         default = listOf("low", "medium"),
     )
 }

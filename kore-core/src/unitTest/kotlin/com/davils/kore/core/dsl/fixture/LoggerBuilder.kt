@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class LoggerBuilder : KoreValidatingBuilder<LoggerData>() {
+internal class LoggerBuilder : ValidatingBuilder<LoggerData>() {
     var level: String = "INFO"
 
     override fun assemble(): LoggerData = LoggerData(level)

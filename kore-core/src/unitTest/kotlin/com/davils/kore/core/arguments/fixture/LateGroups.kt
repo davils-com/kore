@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class LateGroups : KoreParameters() {
+internal class LateGroups : Parameters() {
     val isQuiet: Boolean by flag("--quiet")
     val isLoud: Boolean by flag("--loud")
 

@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class FixedSource(override val name: String, private val value: String) : KoreValueSource {
-    override suspend fun read(parameter: KoreParameterInfo): String = value
+internal class FixedSource(override val name: String, private val value: String) : ValueSource {
+    override suspend fun read(parameter: ParameterInfo): String = value
 }

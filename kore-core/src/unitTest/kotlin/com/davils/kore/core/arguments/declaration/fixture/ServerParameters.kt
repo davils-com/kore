@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class ServerParameters : KoreParameters(environmentPrefix = "KORE") {
-    val port: Int by required("--port", "-p", type = KoreConverters.int) {
+internal class ServerParameters : Parameters(environmentPrefix = "KORE") {
+    val port: Int by required("--port", "-p", type = Converters.int) {
         describedAs("Port the control plane listens on")
     }
     val host: String by defaulted("--host", default = "0.0.0.0")

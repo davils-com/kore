@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.lexer
 
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.text.escape.SafeDisplay
 
 internal data class RawValues(
     val raws: List<String>,
-    val origin: KoreValueOrigin,
+    val origin: ValueOrigin,
     val occurrences: Int = raws.size,
 ) {
     init {

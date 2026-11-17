@@ -20,16 +20,16 @@ comes from the core of an internal Davils project and was hardened for use with 
   and `DavilsPlatformBinding`.
 - **`kore-testing`** with a deterministic UUID generator of version 7 and marked text for tests, kept out of
   `kore-core` so test helpers never reach a production class path.
-- **`KoreLimits`**, the documented upper bounds every entry point enforces before it does work that grows with its
+- **`Limits`**, the documented upper bounds every entry point enforces before it does work that grows with its
   input.
 - **A Java module** `com.davils.kore.core` that exports only packages with public API; `kore-testing` carries
   `Automatic-Module-Name: com.davils.kore.testing`.
 - **`withPrincipal(principal, replacing = false) { }`**, the supported way to put a principal into the coroutine
   context; it refuses to replace a different principal unless asked to.
-- **`KoreParameterLimits`**, `unknownNames`, the path requirements `Within(base)` and `NoSymlinks`, and the
+- **`ParameterLimits`**, `unknownNames`, the path requirements `Within(base)` and `NoSymlinks`, and the
   converters `uri(schemes, requireAbsolute, allowUserInfo)` and `duration(min, max)` with safe defaults.
-- **`KorePrincipal.sameTenantAs`**, `KoreSemanticVersion.isSamePrecedence` and `KoreDataSize.times`.
-- **`KoreValidatingBuilder.checkOpen()`**, which a builder calls first in every setter, so a change after its
+- **`Principal.sameTenantAs`**, `SemanticVersion.isSamePrecedence` and `DataSize.times`.
+- **`ValidatingBuilder.checkOpen()`**, which a builder calls first in every setter, so a change after its
   evaluation fails instead of being lost.
 
 ### Security
@@ -41,7 +41,7 @@ comes from the core of an internal Davils project and was hardened for use with 
   detail; masks are always `****` and reveal neither length, count nor absence; userinfo of a URI is masked; a
   sensitive value on the command line raises a warning.
 - **Input is bounded.** Arguments, values, versions, ranges, UUIDs, violations, nesting, principals, line maps and
-  snippets are checked against `KoreLimits` before any work; parsers are iterative and linear.
+  snippets are checked against `Limits` before any work; parsers are iterative and linear.
 - **Converters are strict.** Numbers are ASCII only, doubles finite, durations finite and non-negative, enums and
   choices match ASCII case only, URIs default to absolute `https` without userinfo, and paths are checked lexically
   before any file system access.

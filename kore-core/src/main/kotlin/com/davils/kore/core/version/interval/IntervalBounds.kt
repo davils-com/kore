@@ -16,47 +16,44 @@
 
 package com.davils.kore.core.version.interval
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 
-internal val EVERYTHING: KoreVersionInterval = KoreVersionInterval(start = null, isStartExclusive = false, end = null)
+internal val EVERYTHING: VersionInterval = VersionInterval(start = null, isStartExclusive = false, end = null)
 
 internal fun interval(
-    start: KoreSemanticVersion?,
-    end: KoreSemanticVersion?,
+    start: SemanticVersion?,
+    end: SemanticVersion?,
     isStartExclusive: Boolean = false,
-): KoreVersionInterval? {
+): VersionInterval? {
     val until = end?.withoutBuild()
     if (start == null) return intervalHoldingAny(start = null, isStartExclusive = false, end = until)
     return startingAt(start.withoutBuild(), isStartExclusive, until)
 }
 
 internal fun boundedInterval(
-    lower: KoreSemanticVersion?,
+    lower: SemanticVersion?,
     lowerInclusive: Boolean,
-    upper: KoreSemanticVersion?,
+    upper: SemanticVersion?,
     upperInclusive: Boolean,
-): KoreVersionInterval? = interval(
+): VersionInterval? = interval(
     start = lower,
     end = exclusiveEnd(upper, upperInclusive),
     isStartExclusive = !lowerInclusive,
 )
 
-private fun startingAt(
-    from: KoreSemanticVersion,
-    isStartExclusive: Boolean,
-    end: KoreSemanticVersion?,
-): KoreVersionInterval? = intervalHoldingAny(
-    start = storedStart(from, isStartExclusive),
-    isStartExclusive = isStartExclusive && !from.isPreRelease,
-    end = end,
-)
+private fun startingAt(from: SemanticVersion, isStartExclusive: Boolean, end: SemanticVersion?): VersionInterval? =
+    intervalHoldingAny(
+        start = storedStart(from, isStartExclusive),
+        isStartExclusive = isStartExclusive && !from.isPreRelease,
+        end = end,
+    )
 
-private fun storedStart(from: KoreSemanticVersion, isStartExclusive: Boolean): KoreSemanticVersion {
+private fun storedStart(from: SemanticVersion, isStartExclusive: Boolean): SemanticVersion {
     if (isStartExclusive && from.isPreRelease) return preReleaseSuccessor(from)
     return from
 }
 
-private fun exclusiveEnd(upper: KoreSemanticVersion?, upperInclusive: Boolean): KoreSemanticVersion? {
+private fun exclusiveEnd(upper: SemanticVersion?, upperInclusive: Boolean): SemanticVersion? {
     if (upper == null || !upperInclusive) return upper
     return successor(upper)
 }

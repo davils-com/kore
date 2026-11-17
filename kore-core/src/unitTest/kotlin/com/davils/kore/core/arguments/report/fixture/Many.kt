@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Many : KoreParameters() {
+internal class Many : Parameters() {
     val isFirst: Boolean by flag("--parameter-number-0")
     val isSecond: Boolean by flag("--parameter-number-1")
     val isThird: Boolean by flag("--parameter-number-2")

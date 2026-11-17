@@ -29,11 +29,11 @@ internal fun displayedValue(value: Any?, isSensitive: Boolean): String {
     return SafeDisplay.text(plainText(value))
 }
 
-internal fun originSuffix(origin: KoreValueOrigin): String = when (origin) {
-    is KoreValueOrigin.CommandLine -> "(from the command line)"
-    is KoreValueOrigin.Default -> "(default)"
-    is KoreValueOrigin.Environment -> "(from ${SafeDisplay.text(origin.variable)})"
-    is KoreValueOrigin.External -> "(from ${SafeDisplay.text(origin.sourceName)})"
+internal fun originSuffix(origin: ValueOrigin): String = when (origin) {
+    is ValueOrigin.CommandLine -> "(from the command line)"
+    is ValueOrigin.Default -> "(default)"
+    is ValueOrigin.Environment -> "(from ${SafeDisplay.text(origin.variable)})"
+    is ValueOrigin.External -> "(from ${SafeDisplay.text(origin.sourceName)})"
 }
 
 private fun plainText(value: Any?): String {

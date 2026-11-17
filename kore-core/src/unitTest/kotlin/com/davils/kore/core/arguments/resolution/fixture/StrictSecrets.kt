@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.validation.violation.KoreSeverity
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.validation.violation.Severity
 
-internal class StrictSecrets : KoreParameters(environmentPrefix = "APP", sensitiveOnCommandLine = KoreSeverity.Error) {
+internal class StrictSecrets : Parameters(environmentPrefix = "APP", sensitiveOnCommandLine = Severity.Error) {
     val token: String? by optional("--token") { sensitive() }
 }

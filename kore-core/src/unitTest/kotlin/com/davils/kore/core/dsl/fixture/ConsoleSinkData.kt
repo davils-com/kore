@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.ValidationScope
 
 internal data class ConsoleSinkData(override val name: String, val isColoured: Boolean) : SinkData {
-    override fun KoreValidationScope.validate() {
+    override fun ValidationScope.validate() {
         if (name.isBlank()) fail(::name, "is required but was not set")
     }
 }

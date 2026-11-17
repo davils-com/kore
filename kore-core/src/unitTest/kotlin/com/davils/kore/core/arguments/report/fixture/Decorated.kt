@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Decorated(text: String) : KoreParameters() {
+internal class Decorated(text: String) : Parameters() {
     val name: String by defaulted("--name", default = text) { describedAs(text) }
     val names: List<String> by multiple("--names", default = listOf(text, text))
-    val custom: String? by optional("--custom", type = KoreConverters.custom(text) { raw -> raw }) {
+    val custom: String? by optional("--custom", type = Converters.custom(text) { raw -> raw }) {
         deprecated(text)
     }
 }

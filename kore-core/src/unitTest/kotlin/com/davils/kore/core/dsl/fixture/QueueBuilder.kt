@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class QueueBuilder : KoreValidatingBuilder<QueueData>() {
+internal class QueueBuilder : ValidatingBuilder<QueueData>() {
     var size: Int = DEFAULT_QUEUE_SIZE
 
     override val subject: String get() = "queue"

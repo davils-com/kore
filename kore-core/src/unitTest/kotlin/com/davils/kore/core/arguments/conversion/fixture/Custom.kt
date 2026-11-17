@@ -16,17 +16,17 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConversionException
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.ConversionException
+import com.davils.kore.core.arguments.conversion.Converters
 
 private const val PREFIX: String = "id-"
 
-internal class Custom : KoreParameters() {
+internal class Custom : Parameters() {
     val identifier: String? by optional(
         "--id",
-        type = KoreConverters.custom("identifier") { raw ->
-            if (!raw.startsWith(PREFIX)) throw KoreConversionException("must start with '$PREFIX'")
+        type = Converters.custom("identifier") { raw ->
+            if (!raw.startsWith(PREFIX)) throw ConversionException("must start with '$PREFIX'")
             raw.removePrefix(PREFIX)
         },
     )

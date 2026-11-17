@@ -16,13 +16,13 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConversionException
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.ConversionException
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class ExpiringSecret : KoreParameters() {
+internal class ExpiringSecret : Parameters() {
     val token: String? by optional(
         "--token",
-        type = KoreConverters.custom("token") { raw -> throw KoreConversionException("'$raw' is expired") },
+        type = Converters.custom("token") { raw -> throw ConversionException("'$raw' is expired") },
     ) { sensitive() }
 }

@@ -16,7 +16,7 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.text.KoreTextRange
+import com.davils.kore.core.text.TextRange
 import com.davils.kore.testing.fixture.HOSTILE_MARKED_TEXT
 import com.davils.kore.testing.fixture.isPlainAscii
 import com.davils.kore.testing.fixture.markerSoup
@@ -49,13 +49,13 @@ class KoreMarkedTextTest : FunSpec({
             val marked = KoreMarkedText.of("port: <range>80</range>")
 
             marked.text shouldBe "port: 80"
-            marked.range shouldBe KoreTextRange(start = VALUE_START, end = VALUE_END)
+            marked.range shouldBe TextRange(start = VALUE_START, end = VALUE_END)
         }
 
         test("reads nested ranges in the order of their position") {
             val marked = KoreMarkedText.of("<range>a<range>b</range></range>")
 
-            marked.ranges shouldBe listOf(KoreTextRange(start = 0, end = 2), KoreTextRange(start = 1, end = 2))
+            marked.ranges shouldBe listOf(TextRange(start = 0, end = 2), TextRange(start = 1, end = 2))
         }
 
         test("leaves a text without markers alone") {
@@ -99,7 +99,7 @@ class KoreMarkedTextTest : FunSpec({
     context("value semantics") {
         test("equals a marked text with the same text, carets and ranges and shares its hash code") {
             val marked = KoreMarkedText.of("a<caret>b<range>c</range>")
-            val last = listOf(KoreTextRange(start = 2, end = 3))
+            val last = listOf(TextRange(start = 2, end = 3))
             val same = KoreMarkedText(text = "abc", carets = listOf(1), ranges = last)
 
             same shouldBe marked
@@ -115,21 +115,21 @@ class KoreMarkedTextTest : FunSpec({
 
         test("keeps its own copy of the carets and ranges it was given") {
             val carets = mutableListOf(0, 1)
-            val ranges = mutableListOf(KoreTextRange(start = 0, end = 1), KoreTextRange(start = 1, end = 2))
+            val ranges = mutableListOf(TextRange(start = 0, end = 1), TextRange(start = 1, end = 2))
             val marked = KoreMarkedText(text = "ab", carets = carets, ranges = ranges)
 
             carets.clear()
             ranges.clear()
 
             marked.carets shouldBe listOf(0, 1)
-            marked.ranges shouldBe listOf(KoreTextRange(start = 0, end = 1), KoreTextRange(start = 1, end = 2))
+            marked.ranges shouldBe listOf(TextRange(start = 0, end = 1), TextRange(start = 1, end = 2))
         }
 
         test("cannot be changed through its lists, not even after a cast") {
             val marked = KoreMarkedText.of("<caret>a<caret>b<range>c</range><range>d</range>")
 
             shouldThrow<UnsupportedOperationException> { (marked.carets as MutableList<Int>).add(0) }
-            shouldThrow<UnsupportedOperationException> { (marked.ranges as MutableList<KoreTextRange>).clear() }
+            shouldThrow<UnsupportedOperationException> { (marked.ranges as MutableList<TextRange>).clear() }
         }
 
         test("names the length of its text, its carets and its ranges, but never the text itself") {

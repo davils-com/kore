@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
 private const val VARIABLE: String = "APP_TOKEN"
 
-internal class ExplicitCollision : KoreParameters() {
+internal class ExplicitCollision : Parameters() {
     val first: String? by optional("--first") { env(VARIABLE) }
     val second: String? by optional("--second") { env(VARIABLE) }
 }

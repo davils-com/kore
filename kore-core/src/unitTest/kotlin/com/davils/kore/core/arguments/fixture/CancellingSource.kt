@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 import kotlin.coroutines.cancellation.CancellationException
 
-internal class CancellingSource : KoreValueSource {
+internal class CancellingSource : ValueSource {
     override val name: String = "cancelled"
 
-    override suspend fun read(parameter: KoreParameterInfo): String = throw CancellationException("stop")
+    override suspend fun read(parameter: ParameterInfo): String = throw CancellationException("stop")
 }

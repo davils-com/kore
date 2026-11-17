@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.limit.Limits
 
 private const val MINUS: Char = '-'
 private const val PLUS: Char = '+'
@@ -29,29 +29,29 @@ private const val DECIMAL_REASON: String = "is not a valid decimal number"
 private const val DECIMAL_RANGE_REASON: String = "is too large or too small for a decimal number"
 
 internal fun isAsciiInteger(text: String): Boolean {
-    if (text.length > KoreLimits.MAX_NUMERIC_TEXT_LENGTH) return false
+    if (text.length > Limits.MAX_NUMERIC_TEXT_LENGTH) return false
     return isDigits(withoutSign(text))
 }
 
 internal fun isAsciiDecimal(text: String): Boolean {
-    if (text.length > KoreLimits.MAX_NUMERIC_TEXT_LENGTH) return false
+    if (text.length > Limits.MAX_NUMERIC_TEXT_LENGTH) return false
     return isUnsignedDecimal(withoutSign(text))
 }
 
 internal fun readInt(raw: String): Int {
-    if (!isAsciiInteger(raw)) throw KoreConversionException(INTEGER_REASON)
-    return raw.toIntOrNull() ?: throw KoreConversionException(INTEGER_RANGE_REASON)
+    if (!isAsciiInteger(raw)) throw ConversionException(INTEGER_REASON)
+    return raw.toIntOrNull() ?: throw ConversionException(INTEGER_RANGE_REASON)
 }
 
 internal fun readLong(raw: String): Long {
-    if (!isAsciiInteger(raw)) throw KoreConversionException(LONG_REASON)
-    return raw.toLongOrNull() ?: throw KoreConversionException(LONG_RANGE_REASON)
+    if (!isAsciiInteger(raw)) throw ConversionException(LONG_REASON)
+    return raw.toLongOrNull() ?: throw ConversionException(LONG_RANGE_REASON)
 }
 
 internal fun readDouble(raw: String): Double {
-    if (!isAsciiDecimal(raw)) throw KoreConversionException(DECIMAL_REASON)
+    if (!isAsciiDecimal(raw)) throw ConversionException(DECIMAL_REASON)
     val value = raw.toDouble()
-    if (!value.isFinite()) throw KoreConversionException(DECIMAL_RANGE_REASON)
+    if (!value.isFinite()) throw ConversionException(DECIMAL_RANGE_REASON)
     return value
 }
 

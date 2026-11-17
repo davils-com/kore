@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.lexer
 
-import com.davils.kore.core.arguments.KoreUnknownArgumentPolicy
+import com.davils.kore.core.arguments.UnknownArgumentPolicy
 import com.davils.kore.core.arguments.declaration.ParameterSpec
 import com.davils.kore.core.arguments.declaration.readOnlyCopy
-import com.davils.kore.core.arguments.report.KoreParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.closestName
 import com.davils.kore.core.arguments.resolution.SchemaOptions
 
@@ -27,9 +27,9 @@ internal class LexState(private val knownNames: Set<String>, private val options
     private val occurrences: MutableMap<ParameterSpec<*, *>, Occurrences> = mutableMapOf()
     private val unknown: MutableList<String> = mutableListOf()
     private val unknownNames: MutableList<String> = mutableListOf()
-    private val violations: MutableList<KoreParameterViolation> = mutableListOf()
+    private val violations: MutableList<ParameterViolation> = mutableListOf()
     private var suggestionsLeft: Int = options.limits.maxSuggestedArguments
-    private val isCollecting: Boolean get() = options.unknownArguments == KoreUnknownArgumentPolicy.Collect
+    private val isCollecting: Boolean get() = options.unknownArguments == UnknownArgumentPolicy.Collect
 
     fun record(spec: ParameterSpec<*, *>, raw: String) {
         val given = occurrences.getOrPut(spec) { Occurrences(options.limits) }
@@ -41,7 +41,7 @@ internal class LexState(private val knownNames: Set<String>, private val options
             collect(token, name)
             return
         }
-        violations += KoreParameterViolation.UnknownArgument(
+        violations += ParameterViolation.UnknownArgument(
             token = name,
             suggestion = suggestionFor(name),
             bundlePosition = null,
@@ -54,7 +54,7 @@ internal class LexState(private val knownNames: Set<String>, private val options
             return
         }
         val bundlePosition = position.takeIf { letter.length != token.length }
-        violations += KoreParameterViolation.UnknownArgument(
+        violations += ParameterViolation.UnknownArgument(
             token = letter,
             suggestion = null,
             bundlePosition = bundlePosition,
@@ -66,15 +66,15 @@ internal class LexState(private val knownNames: Set<String>, private val options
             collect(token, name = null)
             return
         }
-        violations += KoreParameterViolation.StrayValue(position)
+        violations += ParameterViolation.StrayValue(position)
     }
 
     fun malformed(token: String, reason: String) {
-        violations += KoreParameterViolation.MalformedArgument(token, reason)
+        violations += ParameterViolation.MalformedArgument(token, reason)
     }
 
     fun missingValue(spec: ParameterSpec<*, *>, token: String) {
-        violations += KoreParameterViolation.MissingValue(spec.info, token)
+        violations += ParameterViolation.MissingValue(spec.info, token)
     }
 
     fun result(rest: List<String>): LexResult = LexResult(

@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class BundleRejecting : KoreParameters() {
+internal class BundleRejecting : Parameters() {
     val isAll: Boolean by flag("-a")
     val isColoured: Boolean by flag("-c")
-    val port: Int? by optional("-p", type = KoreConverters.int)
+    val port: Int? by optional("-p", type = Converters.int)
 }

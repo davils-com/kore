@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.KoreParameterLimits
-import com.davils.kore.core.arguments.KoreUnknownArgumentPolicy
-import com.davils.kore.core.validation.violation.KoreSeverity
+import com.davils.kore.core.arguments.ParameterLimits
+import com.davils.kore.core.arguments.UnknownArgumentPolicy
+import com.davils.kore.core.validation.violation.Severity
 
 internal data class SchemaOptions(
-    val unknownArguments: KoreUnknownArgumentPolicy,
-    val limits: KoreParameterLimits,
-    val sensitiveOnCommandLine: KoreSeverity,
+    val unknownArguments: UnknownArgumentPolicy,
+    val limits: ParameterLimits,
+    val sensitiveOnCommandLine: Severity,
 )

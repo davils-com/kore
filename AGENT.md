@@ -48,9 +48,12 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 - **One top-level type per file**, named after it; a file of functions is named after its role.
 - **No `!!`, no `lateinit`.** Model absence as a type or return early.
 - **Explicit API.** Everything is `internal` unless a consumer needs it.
-- **Names.** Public top-level types start with `Kore`, annotations shared by every Davils library with `Davils`
-  (`DavilsInternal`, `DavilsExperimental`, `DavilsDsl`, `DavilsGenerated`, `DavilsPlatformBinding`). Functions,
-  properties and non-public types carry no prefix.
+- **Names.** No type, file, function or property carries the name of the library as a prefix: `SemanticVersion`,
+  never `KoreSemanticVersion`. The package says where a declaration comes from. Where a name meets a type of the same
+  name, the foreign type is imported with an alias, such as `import kotlin.uuid.Uuid as KotlinUuid`, and a KDoc link
+  names it in full. The only prefix is `Davils` on the annotations shared by every Davils library
+  (`DavilsInternal`, `DavilsExperimental`, `DavilsDsl`, `DavilsGenerated`, `DavilsPlatformBinding`). The ids of the
+  Gradle plugins in `build-logic` keep their `kore.` prefix.
 - **`@DavilsInternal`** marks API shared between Davils libraries that consumers must not use; it fails the build of
   every caller that does not opt in. **`@DavilsExperimental`** marks API that may still change.
 - **Immutable values.** Public types are immutable; public collections are built with `immutableList()`,
@@ -62,7 +65,7 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 - **Kotlin first**, Java only where Kotlin offers no equivalent. Atomics come from `java.util.concurrent.atomic`.
   Experimental Kotlin API is allowed only through a local `@OptIn` and never appears in a public signature.
 - **Nothing global.** No mutable singletons, no static configuration, no threads or timers of the library's own. The
-  one sanctioned exception is the process-wide monotonic state of `KoreUuidV7Generator`, documented in its KDoc.
+  one sanctioned exception is the process-wide monotonic state of `UuidV7Generator`, documented in its KDoc.
   Detekt does not enforce this rule; reviews do.
 
 ## Security rules
@@ -70,9 +73,9 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 Every input of Kore may come from an attacker: arguments, the environment, version strings, UUIDs, text, paths and
 the attributes of principals. Kore is built so that a mistake of a caller fails closed.
 
-- **Limits before work.** Every entry point checks its input against `KoreLimits` before it does work that grows
+- **Limits before work.** Every entry point checks its input against `Limits` before it does work that grows
   with the input, and refuses what is too large with a violation or an exception. Nothing is truncated silently.
-  A new limit goes into `KoreLimits`, never into a private constant.
+  A new limit goes into `Limits`, never into a private constant.
 - **Escape untrusted text exactly once, at the sink.** Whatever shows text that may come from input, such as an
   exception message, a `toString`, a usage text or a report, writes it through the internal `SafeDisplay`, which
   escapes control, format and separator characters, bidirectional overrides and lone surrogates and bounds the

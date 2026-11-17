@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Spellings : KoreParameters(environmentPrefix = "APP") {
+internal class Spellings : Parameters(environmentPrefix = "APP") {
     val host: String by required("--host", "-h")
-    val port: Int by required("--port", "-p", type = KoreConverters.int)
+    val port: Int by required("--port", "-p", type = Converters.int)
     val isVerbose: Boolean by flag("--verbose", "-v")
     val isArchive: Boolean by flag("--archive", "-a")
     val isColoured: Boolean by flag("--colour") { negatable() }

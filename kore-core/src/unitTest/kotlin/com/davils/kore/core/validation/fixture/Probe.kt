@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.validation.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 
-internal class Probe(private val rules: KoreValidationScope.() -> Unit) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+internal class Probe(private val rules: ValidationScope.() -> Unit) : Validatable {
+    override fun ValidationScope.validate() {
         rules()
     }
 }

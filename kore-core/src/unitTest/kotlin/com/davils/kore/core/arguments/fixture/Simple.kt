@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Simple : KoreParameters() {
-    val port: Int by defaulted("--port", type = KoreConverters.int, default = GOOD_DEFAULT_PORT)
+internal class Simple : Parameters() {
+    val port: Int by defaulted("--port", type = Converters.int, default = GOOD_DEFAULT_PORT)
 }

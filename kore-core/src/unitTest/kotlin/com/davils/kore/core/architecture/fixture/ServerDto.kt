@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.data.KoreDataTransferObject
+import com.davils.kore.core.architecture.data.DataTransferObject
 
-internal data class ServerDto(val id: String, val name: String, val rackUnits: Int) : KoreDataTransferObject
+internal data class ServerDto(val id: String, val name: String, val rackUnits: Int) : DataTransferObject

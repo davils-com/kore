@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.report
 
-import com.davils.kore.core.arguments.KoreParameterInfo
+import com.davils.kore.core.arguments.ParameterInfo
 import com.davils.kore.core.arguments.declaration.ParameterSpec
-import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.text.escape.SafeDisplay
 
 private const val COLUMN_LIMIT: Int = 34
@@ -27,7 +27,7 @@ private const val INDENT: String = "  "
 private const val LINE_BREAK: String = "\n"
 private const val NO_PARAMETERS: String = "This program takes no parameters."
 
-internal fun renderUsage(infos: List<KoreParameterInfo>): String {
+internal fun renderUsage(infos: List<ParameterInfo>): String {
     if (infos.isEmpty()) return NO_PARAMETERS
     val entries = infos.map { info -> renderSignature(info) to renderAnnotations(info) }
     val width = columnWidth(entries.map { (signature, _) -> signature })
@@ -45,15 +45,15 @@ internal fun renderValues(specs: List<ParameterSpec<*, *>>): String {
     return "Parameters:$LINE_BREAK$lines"
 }
 
-private fun renderSignature(info: KoreParameterInfo): String {
+private fun renderSignature(info: ParameterInfo): String {
     val names = info.names.joinToString(", ")
     if (info.isFlag) return names
     return "$names <${SafeDisplay.text(info.typeName)}>"
 }
 
-private fun renderAnnotations(info: KoreParameterInfo): String {
+private fun renderAnnotations(info: ParameterInfo): String {
     val parts = listOfNotNull(
-        info.description?.let { description -> SafeDisplay.text(description, KoreLimits.MAX_MESSAGE_LENGTH) },
+        info.description?.let { description -> SafeDisplay.text(description, Limits.MAX_MESSAGE_LENGTH) },
         "required".takeIf { info.isRequired },
         "repeatable".takeIf { info.isRepeatable },
         info.defaultDisplay?.let { display -> "default: $display" },

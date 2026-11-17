@@ -15,11 +15,11 @@
  */
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ValueSource
 
-internal class NamelessSource(private val secret: String) : KoreValueSource {
+internal class NamelessSource(private val secret: String) : ValueSource {
     override val name: String get() = error("vault at https://admin:$secret@vault.internal is unreachable")
 
-    override suspend fun read(parameter: KoreParameterInfo): String = "7"
+    override suspend fun read(parameter: ParameterInfo): String = "7"
 }

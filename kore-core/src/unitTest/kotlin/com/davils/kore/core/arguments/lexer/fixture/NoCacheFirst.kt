@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.lexer.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class NoCacheFirst : KoreParameters() {
+internal class NoCacheFirst : Parameters() {
     val isNotCaching: Boolean by flag("--no-cache")
     val isCaching: Boolean by flag("--cache")
 }

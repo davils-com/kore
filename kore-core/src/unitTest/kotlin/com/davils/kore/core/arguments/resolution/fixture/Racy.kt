@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Racy : KoreParameters() {
-    val port: Int by required("--port", type = KoreConverters.int)
+internal class Racy : Parameters() {
+    val port: Int by required("--port", type = Converters.int)
 }

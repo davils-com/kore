@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.data.KoreDataSource
+import com.davils.kore.core.architecture.data.DataSource
 
-internal interface ServerSource : KoreDataSource {
+internal interface ServerSource : DataSource {
     suspend fun servers(): List<ServerDto>
 
     suspend fun save(server: ServerDto)

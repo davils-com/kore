@@ -16,16 +16,16 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameterLimits
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.ParameterLimits
+import com.davils.kore.core.arguments.Parameters
 
 internal const val FEWEST_ARGUMENTS: Int = 4
 internal const val SHORTEST_ARGUMENT: Int = 16
 internal const val FEWEST_VALUES: Int = 3
 
-internal class Limited : KoreParameters(
+internal class Limited : Parameters(
     environmentPrefix = "APP",
-    limits = KoreParameterLimits(
+    limits = ParameterLimits(
         maxArguments = FEWEST_ARGUMENTS,
         maxArgumentLength = SHORTEST_ARGUMENT,
         maxValuesPerParameter = FEWEST_VALUES,

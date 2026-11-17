@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class FromEnvironment : KoreParameters(environmentPrefix = "APP") {
-    val port: Int? by optional("--port", type = KoreConverters.int)
+internal class FromEnvironment : Parameters(environmentPrefix = "APP") {
+    val port: Int? by optional("--port", type = Converters.int)
 }

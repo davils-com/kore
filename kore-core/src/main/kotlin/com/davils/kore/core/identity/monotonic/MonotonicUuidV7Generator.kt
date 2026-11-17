@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.identity.monotonic
 
-import com.davils.kore.core.identity.KoreUuidV7
-import com.davils.kore.core.identity.generator.KoreUuidGenerator
+import com.davils.kore.core.identity.UuidV7
+import com.davils.kore.core.identity.generator.UuidGenerator
 import java.security.SecureRandom
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Clock
-import kotlin.uuid.Uuid
+import kotlin.uuid.Uuid as KotlinUuid
 
 private const val COUNTER_BITS: Int = 12
 private const val COUNTER_MASK: Long = 0xFFFL
@@ -36,15 +36,15 @@ private const val MAX_STAMP: Long = 0x0FFF_FFFF_FFFF_FFFFL
 internal class MonotonicUuidV7Generator(
     private val clock: Clock = Clock.System,
     private val random: SecureRandom = SecureRandom(),
-) : KoreUuidGenerator<KoreUuidV7> {
+) : UuidGenerator<UuidV7> {
     private val last: AtomicLong = AtomicLong(0L)
 
-    override fun next(): KoreUuidV7 {
+    override fun next(): UuidV7 {
         val stamp = advance()
         val timestamp = stamp ushr COUNTER_BITS
         val high = timestamp shl TIMESTAMP_SHIFT or VERSION_BITS or (stamp and COUNTER_MASK)
         val low = random.nextLong() and RANDOM_MASK or VARIANT_BITS
-        return KoreUuidV7(Uuid.fromLongs(mostSignificantBits = high, leastSignificantBits = low))
+        return UuidV7(KotlinUuid.fromLongs(mostSignificantBits = high, leastSignificantBits = low))
     }
 
     private fun advance(): Long {

@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 
-internal class WarningsBuilder(private val count: Int) : KoreValidatingBuilder<WarningsData>() {
+internal class WarningsBuilder(private val count: Int) : ValidatingBuilder<WarningsData>() {
     override fun assemble(): WarningsData = WarningsData(count)
 }

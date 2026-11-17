@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.KoreLimits
+import com.davils.kore.core.limit.Limits
 
-internal const val VERSION_TOO_LONG_REASON: String = "is longer than ${KoreLimits.MAX_VERSION_LENGTH} characters"
+internal const val VERSION_TOO_LONG_REASON: String = "is longer than ${Limits.MAX_VERSION_LENGTH} characters"
 internal const val PRE_RELEASE_REASON: String = "has an empty or malformed pre-release identifier"
 internal const val BUILD_REASON: String = "has an empty or malformed build identifier"
 
@@ -45,7 +45,7 @@ internal fun fitsVersionLength(
     build: List<String>,
 ): Boolean {
     val core = "$major$IDENTIFIER_SEPARATOR$minor$IDENTIFIER_SEPARATOR$patch".length.toLong()
-    return core + qualifierLength(preRelease) + qualifierLength(build) <= KoreLimits.MAX_VERSION_LENGTH
+    return core + qualifierLength(preRelease) + qualifierLength(build) <= Limits.MAX_VERSION_LENGTH
 }
 
 internal fun preReleaseProblem(identifiers: List<String>): String? =

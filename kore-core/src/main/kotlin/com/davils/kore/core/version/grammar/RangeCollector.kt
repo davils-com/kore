@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.version.interval.KoreVersionInterval
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.version.interval.VersionInterval
 
 private const val TOO_MANY_COMPARATORS_REASON: String =
-    "has more than ${KoreLimits.MAX_RANGE_COMPARATORS} comparators"
+    "has more than ${Limits.MAX_RANGE_COMPARATORS} comparators"
 
 internal class RangeCollector {
-    private val collected: MutableList<KoreVersionInterval> = mutableListOf()
+    private val collected: MutableList<VersionInterval> = mutableListOf()
     private var comparators: Int = 0
     private var refusal: String? = null
 
@@ -31,7 +31,7 @@ internal class RangeCollector {
 
     internal fun count(terms: Int) {
         comparators += terms
-        if (comparators > KoreLimits.MAX_RANGE_COMPARATORS) refuse(TOO_MANY_COMPARATORS_REASON)
+        if (comparators > Limits.MAX_RANGE_COMPARATORS) refuse(TOO_MANY_COMPARATORS_REASON)
     }
 
     internal fun refuse(reason: String) {

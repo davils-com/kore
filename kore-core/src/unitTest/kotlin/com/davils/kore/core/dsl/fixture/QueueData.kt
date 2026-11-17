@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 
-internal data class QueueData(val size: Int) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+internal data class QueueData(val size: Int) : Validatable {
+    override fun ValidationScope.validate() {
         if (size <= 0) fail(::size, "'$size' must be greater than zero")
     }
 }

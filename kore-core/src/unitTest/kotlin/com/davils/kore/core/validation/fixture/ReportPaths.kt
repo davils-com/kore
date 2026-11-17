@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.validation.fixture
 
-import com.davils.kore.core.validation.report.KoreValidationReport
+import com.davils.kore.core.validation.report.ValidationReport
 
-internal fun KoreValidationReport.paths(): List<String> = violations.map { it.path.toString() }
+internal fun ValidationReport.paths(): List<String> = violations.map { it.path.toString() }

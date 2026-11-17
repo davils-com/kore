@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class SecretToken : KoreParameters() {
+internal class SecretToken : Parameters() {
     val token: String by required("--token") {
         sensitive()
         validate { value -> if (!value.startsWith("sk-")) fail("'$value' is not a valid token") }

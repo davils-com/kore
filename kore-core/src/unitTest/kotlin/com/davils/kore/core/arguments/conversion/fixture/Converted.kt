@@ -16,19 +16,19 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import com.davils.kore.core.arguments.fixture.Stage
 import java.net.URI
 import java.nio.file.Path
 import kotlin.time.Duration
 
-internal class Converted : KoreParameters() {
-    val count: Int? by optional("--count", type = KoreConverters.int)
-    val size: Long? by optional("--size", type = KoreConverters.long)
-    val ratio: Double? by optional("--ratio", type = KoreConverters.double)
-    val timeout: Duration? by optional("--timeout", type = KoreConverters.duration())
-    val directory: Path? by optional("--directory", type = KoreConverters.path())
-    val endpoint: URI? by optional("--endpoint", type = KoreConverters.uri())
-    val stage: Stage? by optional("--stage", type = KoreConverters.enum<Stage>())
+internal class Converted : Parameters() {
+    val count: Int? by optional("--count", type = Converters.int)
+    val size: Long? by optional("--size", type = Converters.long)
+    val ratio: Double? by optional("--ratio", type = Converters.double)
+    val timeout: Duration? by optional("--timeout", type = Converters.duration())
+    val directory: Path? by optional("--directory", type = Converters.path())
+    val endpoint: URI? by optional("--endpoint", type = Converters.uri())
+    val stage: Stage? by optional("--stage", type = Converters.enum<Stage>())
 }

@@ -16,14 +16,14 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.report.KoreParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.text.escape.SafeDisplay
 
 internal data class LoadedArguments(
     val rest: List<String>,
     val unknown: List<String>,
     val unknownNames: List<String>,
-    val warnings: List<KoreParameterViolation>,
+    val warnings: List<ParameterViolation>,
 ) {
     override fun toString(): String = "LoadedArguments(${SafeDisplay.REDACTED})"
 }

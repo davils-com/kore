@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.architecture.fixture
 
-import com.davils.kore.core.architecture.mapper.KoreMapper
+import com.davils.kore.core.architecture.mapper.Mapper
 
-internal object ServerMapper : KoreMapper<Server, ServerDto> {
+internal object ServerMapper : Mapper<Server, ServerDto> {
     override fun toDomain(dto: ServerDto): Server =
         Server(id = ServerId(dto.id), name = dto.name, rackUnits = dto.rackUnits)
 

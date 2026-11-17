@@ -16,15 +16,15 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import java.nio.file.Path
 
-internal class MissingDirectory(missing: Path) : KoreParameters() {
+internal class MissingDirectory(missing: Path) : Parameters() {
     val dataDir: Path by defaulted(
         "--data-dir",
-        type = KoreConverters.path(KorePathRequirement.Exists),
+        type = Converters.path(PathRequirement.Exists),
         default = missing,
     )
 }

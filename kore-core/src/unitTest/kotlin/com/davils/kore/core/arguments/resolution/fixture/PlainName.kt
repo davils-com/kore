@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
 private const val SHORTEST_NAME: Int = 3
 
-internal class PlainName : KoreParameters() {
+internal class PlainName : Parameters() {
     val name: String by required("--name") {
         validate { value -> if (value.length < SHORTEST_NAME) fail("'$value' is too short") }
     }

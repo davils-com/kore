@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Syntax : KoreParameters() {
+internal class Syntax : Parameters() {
     val name: String? by optional("--name", "-n")
-    val port: Int? by optional("--port", "-p", type = KoreConverters.int)
+    val port: Int? by optional("--port", "-p", type = Converters.int)
     val isVerbose: Boolean by flag("--verbose", "-v")
     val isArchive: Boolean by flag("--archive", "-a")
     val isColoured: Boolean by flag("--colour", default = true) { negatable() }

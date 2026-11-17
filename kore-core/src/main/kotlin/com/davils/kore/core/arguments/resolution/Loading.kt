@@ -16,19 +16,19 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.KoreParameterLimits
-import com.davils.kore.core.arguments.KoreValueSource
+import com.davils.kore.core.arguments.ParameterLimits
+import com.davils.kore.core.arguments.ValueSource
 import com.davils.kore.core.arguments.declaration.ParameterSpec
 import com.davils.kore.core.arguments.lexer.ArgumentLexer
 import com.davils.kore.core.arguments.lexer.LexResult
 import com.davils.kore.core.arguments.lexer.RawValues
 import com.davils.kore.core.arguments.lexer.lexedCount
-import com.davils.kore.core.arguments.report.KoreParameterException
-import com.davils.kore.core.arguments.report.KoreParameterViolation
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ParameterException
+import com.davils.kore.core.arguments.report.ParameterViolation
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.renderUsage
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.validation.violation.KoreSeverity
+import com.davils.kore.core.validation.violation.Severity
 
 internal fun loadArguments(
     registry: ParameterRegistry,
@@ -54,7 +54,7 @@ internal suspend fun loadArguments(
     registry: ParameterRegistry,
     options: SchemaOptions,
     argv: List<String>,
-    sources: List<KoreValueSource>,
+    sources: List<ValueSource>,
     environment: Map<String, String>,
 ): LoadedArguments {
     val groups = registry.groupCheck()
@@ -72,20 +72,20 @@ internal suspend fun loadArguments(
     )
 }
 
-private fun refuseOversized(registry: ParameterRegistry, limits: KoreParameterLimits, argv: List<String>) {
+private fun refuseOversized(registry: ParameterRegistry, limits: ParameterLimits, argv: List<String>) {
     val violations = oversized(limits, argv)
     if (violations.isEmpty()) return
-    throw KoreParameterException(violations, renderUsage(registry.infos))
+    throw ParameterException(violations, renderUsage(registry.infos))
 }
 
-private fun oversized(limits: KoreParameterLimits, argv: List<String>): List<KoreParameterViolation> {
+private fun oversized(limits: ParameterLimits, argv: List<String>): List<ParameterViolation> {
     if (!limits.admitsArguments(argv.size)) {
-        return listOf(KoreParameterViolation.TooManyArguments(count = argv.size, limit = limits.maxArguments))
+        return listOf(ParameterViolation.TooManyArguments(count = argv.size, limit = limits.maxArguments))
     }
     val lexed = argv.subList(fromIndex = 0, toIndex = lexedCount(argv))
     val positions = lexed.indices.filterNot { index -> limits.admitsLength(lexed[index]) }
     return positions.map { index ->
-        KoreParameterViolation.ArgumentTooLong(position = index + 1, limit = limits.maxArgumentLength)
+        ParameterViolation.ArgumentTooLong(position = index + 1, limit = limits.maxArgumentLength)
     }
 }
 
@@ -104,22 +104,22 @@ private fun environmentValues(
 private fun environmentValue(spec: ParameterSpec<*, *>, environment: Map<String, String>): RawValues? {
     val variable = spec.info.environmentVariable ?: return null
     val raw = environment[variable]?.takeIf { value -> value.isNotEmpty() }
-    return raw?.let { value -> RawValues(listOf(value), KoreValueOrigin.Environment(variable)) }
+    return raw?.let { value -> RawValues(listOf(value), ValueOrigin.Environment(variable)) }
 }
 
 private suspend fun readSources(
     specs: List<ParameterSpec<*, *>>,
     lexed: LexResult,
     values: MutableMap<ParameterSpec<*, *>, RawValues>,
-    sources: List<KoreValueSource>,
-): List<KoreParameterViolation> {
-    val failures = mutableListOf<KoreParameterViolation>()
+    sources: List<ValueSource>,
+): List<ParameterViolation> {
+    val failures = mutableListOf<ParameterViolation>()
     for ((index, source) in sources.withIndex()) {
         val pending = specs.filterNot { spec -> spec in lexed.occurrences || spec in values }
-        val origin = catchingForeign { KoreValueOrigin.External(source.name) }
+        val origin = catchingForeign { ValueOrigin.External(source.name) }
         origin.exceptionOrNull()?.let { cause ->
             pending.mapTo(failures) { spec ->
-                KoreParameterViolation.SourceUnavailable(spec.info, unnamedSource(index), cause)
+                ParameterViolation.SourceUnavailable(spec.info, unnamedSource(index), cause)
             }
         }
         origin.getOrNull()?.let { named ->
@@ -130,16 +130,16 @@ private suspend fun readSources(
 }
 
 private suspend fun readFrom(
-    source: KoreValueSource,
-    origin: KoreValueOrigin.External,
+    source: ValueSource,
+    origin: ValueOrigin.External,
     pending: List<ParameterSpec<*, *>>,
     values: MutableMap<ParameterSpec<*, *>, RawValues>,
-    failures: MutableList<KoreParameterViolation>,
+    failures: MutableList<ParameterViolation>,
 ) {
     for (spec in pending) {
         val result = catchingForeign { source.read(spec.info) }
         result.exceptionOrNull()?.let { cause ->
-            failures += KoreParameterViolation.SourceUnavailable(spec.info, origin.sourceName, cause)
+            failures += ParameterViolation.SourceUnavailable(spec.info, origin.sourceName, cause)
         }
         result.getOrNull()?.let { raw -> values[spec] = RawValues(listOf(raw), origin) }
     }
@@ -153,7 +153,7 @@ private fun settle(
     groups: GroupCheck,
     lexed: LexResult,
     external: Map<ParameterSpec<*, *>, RawValues>,
-    failures: List<KoreParameterViolation>,
+    failures: List<ParameterViolation>,
 ): LoadedArguments {
     val resolutions = registry.specs.map { spec ->
         spec.resolve(givenFor(spec, lexed, external), options.sensitiveOnCommandLine) to spec
@@ -162,8 +162,8 @@ private fun settle(
     val reported = lexed.violations + failures + resolutions.flatMap { (resolution, _) -> resolution.violations }
     val violations = (reported + groups.violations(provided.toSet())).immutableList()
     val assignments = resolutions.mapNotNull { (resolution, _) -> resolution.assignment }
-    if (violations.any { violation -> violation.severity == KoreSeverity.Error }) {
-        throw KoreParameterException(violations, renderUsage(registry.infos))
+    if (violations.any { violation -> violation.severity == Severity.Error }) {
+        throw ParameterException(violations, renderUsage(registry.infos))
     }
     assignments.forEach { assignment -> assignment.apply() }
     return LoadedArguments(

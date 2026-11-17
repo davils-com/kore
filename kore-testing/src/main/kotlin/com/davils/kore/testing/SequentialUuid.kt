@@ -16,9 +16,9 @@
 
 package com.davils.kore.testing
 
-import com.davils.kore.core.identity.KoreUuid
-import com.davils.kore.core.identity.KoreUuidV7
-import kotlin.uuid.Uuid
+import com.davils.kore.core.identity.Uuid
+import com.davils.kore.core.identity.UuidV7
+import kotlin.uuid.Uuid as KotlinUuid
 
 internal const val MAX_TIMESTAMP: Long = 0xFFFF_FFFF_FFFFL
 private const val TIMESTAMP_SHIFT: Int = 16
@@ -26,12 +26,12 @@ private const val VERSION_BITS: Long = 0x7000L
 private const val VARIANT_BITS: Long = Long.MIN_VALUE
 private const val SEQUENCE_MASK: Long = 0x3FFF_FFFF_FFFF_FFFFL
 
-internal fun sequentialUuidV7(epochMilliseconds: Long, sequence: Long): KoreUuidV7 {
+internal fun sequentialUuidV7(epochMilliseconds: Long, sequence: Long): UuidV7 {
     require(epochMilliseconds in 0..MAX_TIMESTAMP) {
         "A version 7 identifier holds 48 bits of milliseconds, but the timestamp is out of that range"
     }
     val high = epochMilliseconds shl TIMESTAMP_SHIFT or VERSION_BITS
     val low = VARIANT_BITS or (sequence and SEQUENCE_MASK)
-    val uuid = KoreUuid.fromKotlinUuid(Uuid.fromLongs(mostSignificantBits = high, leastSignificantBits = low))
-    return uuid as KoreUuidV7
+    val uuid = Uuid.fromKotlinUuid(KotlinUuid.fromLongs(mostSignificantBits = high, leastSignificantBits = low))
+    return uuid as UuidV7
 }

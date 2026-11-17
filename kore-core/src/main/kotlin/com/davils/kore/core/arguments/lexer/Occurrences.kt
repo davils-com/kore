@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.lexer
 
-import com.davils.kore.core.arguments.KoreParameterLimits
+import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.declaration.readOnlyCopy
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ValueOrigin
 
-internal class Occurrences(private val limits: KoreParameterLimits) {
+internal class Occurrences(private val limits: ParameterLimits) {
     private val kept: MutableList<String> = mutableListOf()
     private var count: Int = 0
 
@@ -29,5 +29,5 @@ internal class Occurrences(private val limits: KoreParameterLimits) {
         if (limits.admitsValues(kept.size)) kept += raw
     }
 
-    fun rawValues(): RawValues = RawValues(readOnlyCopy(kept), KoreValueOrigin.CommandLine, count)
+    fun rawValues(): RawValues = RawValues(readOnlyCopy(kept), ValueOrigin.CommandLine, count)
 }

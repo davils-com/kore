@@ -16,22 +16,22 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 import com.davils.kore.core.arguments.fixture.HIGHEST_PORT
 import com.davils.kore.core.arguments.fixture.LOWEST_PORT
 
 private const val LONGEST_NAME: Int = 8
 
-internal class Validated : KoreParameters() {
-    val port: Int? by optional("--port", type = KoreConverters.int) {
+internal class Validated : Parameters() {
+    val port: Int? by optional("--port", type = Converters.int) {
         validate { value -> if (value !in LOWEST_PORT..HIGHEST_PORT) fail("must be a valid TCP port") }
     }
     val name: String? by optional("--name") {
         validate { value -> if (value.isBlank()) fail("must not be blank") }
         validate { value -> if (value.length > LONGEST_NAME) fail("must be at most 8 characters") }
     }
-    val weights: List<Int> by multiple("--weight", type = KoreConverters.int) {
+    val weights: List<Int> by multiple("--weight", type = Converters.int) {
         validate { value -> if (value < 0) fail("must not be negative") }
     }
 }

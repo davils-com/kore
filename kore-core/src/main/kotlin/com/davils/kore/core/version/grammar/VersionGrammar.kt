@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.KoreLimits
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.version.SemanticVersion
 
 internal const val CORE_SEGMENTS: Int = 3
 internal const val PRE_RELEASE_SEPARATOR: Char = '-'
@@ -33,7 +33,7 @@ internal fun readVersion(text: String, minimumCoreSegments: Int = CORE_SEGMENTS)
 }
 
 private fun lengthProblem(text: String): String? {
-    if (text.length > KoreLimits.MAX_VERSION_LENGTH) return VERSION_TOO_LONG_REASON
+    if (text.length > Limits.MAX_VERSION_LENGTH) return VERSION_TOO_LONG_REASON
     return EMPTY_REASON.takeIf { text.isEmpty() }
 }
 
@@ -66,7 +66,7 @@ private fun readCore(
         ?: segments.firstNotNullOfOrNull { segment -> numberProblem(segment) }
     if (problem != null) return VersionReading.Refused(problem)
     val numbers = segments.map(String::toInt) + List(CORE_SEGMENTS - segments.size) { 0 }
-    val version = KoreSemanticVersion(
+    val version = SemanticVersion(
         major = numbers[0],
         minor = numbers[1],
         patch = numbers[2],

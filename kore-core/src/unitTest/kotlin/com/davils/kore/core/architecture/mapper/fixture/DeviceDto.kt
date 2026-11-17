@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.architecture.mapper.fixture
 
-import com.davils.kore.core.architecture.data.KoreDataTransferObject
+import com.davils.kore.core.architecture.data.DataTransferObject
 
-internal open class DeviceDto(val name: String) : KoreDataTransferObject
+internal open class DeviceDto(val name: String) : DataTransferObject

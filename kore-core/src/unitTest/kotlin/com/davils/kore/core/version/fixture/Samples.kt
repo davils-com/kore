@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.version.fixture
 
-import com.davils.kore.core.version.KoreSemanticVersion
-import com.davils.kore.core.version.KoreSemanticVersionRange
+import com.davils.kore.core.version.SemanticVersion
+import com.davils.kore.core.version.SemanticVersionRange
 
-internal fun version(text: String): KoreSemanticVersion = KoreSemanticVersion.parse(text)
+internal fun version(text: String): SemanticVersion = SemanticVersion.parse(text)
 
-internal fun range(text: String): KoreSemanticVersionRange = KoreSemanticVersionRange.parse(text)
+internal fun range(text: String): SemanticVersionRange = SemanticVersionRange.parse(text)
 
-internal fun versions(vararg texts: String): List<KoreSemanticVersion> = texts.map(::version)
+internal fun versions(vararg texts: String): List<SemanticVersion> = texts.map(::version)

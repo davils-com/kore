@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.dsl.KoreValidatingBuilder
+import com.davils.kore.core.dsl.ValidatingBuilder
 import kotlin.reflect.KProperty
 
-internal class ProbeBuilder(private val onAssemble: ProbeBuilder.() -> Unit = {}) : KoreValidatingBuilder<QueueData>() {
+internal class ProbeBuilder(private val onAssemble: ProbeBuilder.() -> Unit = {}) : ValidatingBuilder<QueueData>() {
     private val items = mutableListOf<QueueData>()
 
     var size: Int = QueueBuilder.DEFAULT_QUEUE_SIZE

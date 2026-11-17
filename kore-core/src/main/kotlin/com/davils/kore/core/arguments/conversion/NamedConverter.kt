@@ -20,6 +20,6 @@ internal class NamedConverter<out T>(
     override val typeName: String,
     internal val isCheckingDefaults: Boolean = false,
     private val reading: (String) -> T,
-) : KoreConverter<T> {
+) : Converter<T> {
     override fun convert(raw: String): T = reading(raw)
 }

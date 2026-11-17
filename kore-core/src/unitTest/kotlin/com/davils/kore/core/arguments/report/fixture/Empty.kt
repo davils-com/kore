@@ -16,6 +16,6 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Empty : KoreParameters()
+internal class Empty : Parameters()

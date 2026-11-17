@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class Breaking : KoreParameters() {
-    val value: String? by optional("--value", type = KoreConverters.custom("broken") { throw AssertionError("broken") })
+internal class Breaking : Parameters() {
+    val value: String? by optional("--value", type = Converters.custom("broken") { throw AssertionError("broken") })
 }

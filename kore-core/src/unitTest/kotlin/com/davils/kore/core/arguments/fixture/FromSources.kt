@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class FromSources : KoreParameters() {
+internal class FromSources : Parameters() {
     val token: String? by optional("--token") { sensitive() }
-    val region: Int? by optional("--region", type = KoreConverters.int)
+    val region: Int? by optional("--region", type = Converters.int)
 }

@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal.context
 
-import com.davils.kore.core.principal.KorePrincipal
+import com.davils.kore.core.principal.Principal
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.currentCoroutineContext
@@ -29,11 +29,11 @@ private const val REPLACING_MESSAGE: String = "A different principal is already 
     "context. Pass replacing = true to replace it for the block on purpose."
 
 internal class PrincipalElement private constructor(
-    private val principal: KorePrincipal,
+    private val principal: Principal,
 ) : AbstractCoroutineContextElement(PrincipalElement) {
     private val isOpen: AtomicBoolean = AtomicBoolean(true)
 
-    private val openPrincipal: KorePrincipal?
+    private val openPrincipal: Principal?
         get() {
             val isStillOpen = isOpen.get()
             return principal.takeIf { isStillOpen }
@@ -46,11 +46,7 @@ internal class PrincipalElement private constructor(
     }
 
     companion object Key : CoroutineContext.Key<PrincipalElement> {
-        suspend fun <T> establish(
-            principal: KorePrincipal,
-            replacing: Boolean,
-            block: suspend CoroutineScope.() -> T,
-        ): T {
+        suspend fun <T> establish(principal: Principal, replacing: Boolean, block: suspend CoroutineScope.() -> T): T {
             val established = principalIn(currentCoroutineContext())
             check(replacing || established == null || established == principal) { REPLACING_MESSAGE }
             val element = PrincipalElement(principal)
@@ -63,6 +59,6 @@ internal class PrincipalElement private constructor(
             }
         }
 
-        fun principalIn(context: CoroutineContext): KorePrincipal? = context[Key]?.openPrincipal
+        fun principalIn(context: CoroutineContext): Principal? = context[Key]?.openPrincipal
     }
 }

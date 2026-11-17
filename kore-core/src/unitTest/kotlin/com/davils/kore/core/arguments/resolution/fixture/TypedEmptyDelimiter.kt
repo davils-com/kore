@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class TypedEmptyDelimiter : KoreParameters() {
-    val ports: List<Int> by multiple("--port", type = KoreConverters.int) { split("") }
+internal class TypedEmptyDelimiter : Parameters() {
+    val ports: List<Int> by multiple("--port", type = Converters.int) { split("") }
 }

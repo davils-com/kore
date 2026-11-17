@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class EmptyDelimiter : KoreParameters() {
+internal class EmptyDelimiter : Parameters() {
     val tags: List<String> by multiple("--tag") { split("") }
 }

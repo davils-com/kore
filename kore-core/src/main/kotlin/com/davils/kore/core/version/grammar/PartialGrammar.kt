@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.releaseFloor
 
 private const val WILDCARD_REASON: String = "has a wildcard followed by a number, such as 1.x.3"
@@ -25,7 +25,7 @@ private const val PARTIAL_REASON: String = "must be a version, or up to three nu
 
 private val wildcards: Set<String> = setOf("x", "X", "*")
 
-internal fun partialOf(version: KoreSemanticVersion): Partial =
+internal fun partialOf(version: SemanticVersion): Partial =
     Partial(listOf(version.major, version.minor, version.patch), version)
 
 internal fun readPartial(text: String): PartialReading {

@@ -71,7 +71,7 @@ comments:
        */
 
 kreate:
-  # Protected members of public abstract classes, such as the declarations of KoreParameters, are API.
+  # Protected members of public abstract classes, such as the declarations of Parameters, are API.
   KDocOnNonPublicDeclaration:
     allowProtected: true
   ForbiddenBlockComment:
@@ -123,12 +123,12 @@ style:
   # Explicit API mode requires the modifier, which this rule would report as redundant.
   RedundantVisibilityModifier:
     active: false
-  # KoreParameters and KoreParameterDeclarations are abstract so that a schema can only be declared by subclassing.
+  # Parameters and ParameterDeclarations are abstract so that a schema can only be declared by subclassing.
   AbstractClassCanBeConcreteClass:
     active: true
     excludes:
-      - '**/arguments/KoreParameters.kt'
-      - '**/arguments/KoreParameterDeclarations.kt'
+      - '**/arguments/Parameters.kt'
+      - '**/arguments/ParameterDeclarations.kt'
   # The compiler rejects an explicit Unit return type as redundant under warnings as errors.
   OptionalUnit:
     active: false

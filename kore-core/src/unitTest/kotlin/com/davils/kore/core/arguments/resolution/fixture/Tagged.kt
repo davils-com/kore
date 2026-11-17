@@ -16,15 +16,15 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.KoreUnknownArgumentPolicy
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.UnknownArgumentPolicy
+import com.davils.kore.core.arguments.conversion.Converters
 
 private const val HTTP: Int = 80
 private const val HTTPS: Int = 443
 
-internal class Tagged : KoreParameters(unknownArguments = KoreUnknownArgumentPolicy.Collect) {
+internal class Tagged : Parameters(unknownArguments = UnknownArgumentPolicy.Collect) {
     val tags: List<String> by multiple("--tag")
-    val ports: List<Int> by multiple("--port", type = KoreConverters.int, default = listOf(HTTP, HTTPS))
+    val ports: List<Int> by multiple("--port", type = Converters.int, default = listOf(HTTP, HTTPS))
     val isLegacy: Boolean by flag("--legacy") { deprecated() }
 }

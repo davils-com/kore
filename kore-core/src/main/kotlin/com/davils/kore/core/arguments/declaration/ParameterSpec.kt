@@ -16,18 +16,18 @@
 
 package com.davils.kore.core.arguments.declaration
 
-import com.davils.kore.core.arguments.KoreParameterInfo
+import com.davils.kore.core.arguments.ParameterInfo
 import com.davils.kore.core.arguments.lexer.RawValues
-import com.davils.kore.core.arguments.report.KoreParameterViolation
-import com.davils.kore.core.arguments.report.KoreValueOrigin
+import com.davils.kore.core.arguments.report.ParameterViolation
+import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.resolution.Assignment
 import com.davils.kore.core.arguments.resolution.ParameterSlot
 import com.davils.kore.core.arguments.resolution.SpecResolution
 import com.davils.kore.core.arguments.resolution.ValueReading
-import com.davils.kore.core.validation.violation.KoreSeverity
+import com.davils.kore.core.validation.violation.Severity
 
 internal class ParameterSpec<T : Any, V>(
-    val info: KoreParameterInfo,
+    val info: ParameterInfo,
     val propertyName: String,
     val negatedNames: List<String>,
     private val reading: ValueReading<T>,
@@ -36,22 +36,22 @@ internal class ParameterSpec<T : Any, V>(
 ) {
     val matchableNames: List<String> get() = info.names + negatedNames
 
-    fun resolve(given: RawValues?, exposure: KoreSeverity): SpecResolution {
-        val violations = mutableListOf<KoreParameterViolation>()
+    fun resolve(given: RawValues?, exposure: Severity): SpecResolution {
+        val violations = mutableListOf<ParameterViolation>()
         val advice = info.deprecation
-        if (given != null && advice != null) violations += KoreParameterViolation.Deprecated(info, advice)
-        val isExposed = info.isSensitive && given?.origin == KoreValueOrigin.CommandLine
-        if (isExposed) violations += KoreParameterViolation.SensitiveOnCommandLine(info, exposure)
+        if (given != null && advice != null) violations += ParameterViolation.Deprecated(info, advice)
+        val isExposed = info.isSensitive && given?.origin == ValueOrigin.CommandLine
+        if (isExposed) violations += ParameterViolation.SensitiveOnCommandLine(info, exposure)
         val assignment = assignmentFor(given, violations)
         return SpecResolution(violations = violations, isProvided = given != null, assignment = assignment)
     }
 
     fun describeValue(): String = slot.describe(info.isSensitive)
 
-    private fun assignmentFor(given: RawValues?, violations: MutableList<KoreParameterViolation>): Assignment? {
+    private fun assignmentFor(given: RawValues?, violations: MutableList<ParameterViolation>): Assignment? {
         if (given == null) return arity.absent(reading, slot, violations)
         val occurrences = given.occurrences
-        if (!info.isRepeatable && occurrences > 1) violations += KoreParameterViolation.Repeated(info, occurrences)
+        if (!info.isRepeatable && occurrences > 1) violations += ParameterViolation.Repeated(info, occurrences)
         val values = reading.read(given, violations)
         return arity.given(values, given.origin, slot)
     }

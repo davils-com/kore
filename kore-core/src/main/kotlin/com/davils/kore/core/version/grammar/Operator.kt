@@ -17,7 +17,7 @@
 package com.davils.kore.core.version.grammar
 
 import com.davils.kore.core.version.interval.EVERYTHING
-import com.davils.kore.core.version.interval.KoreVersionInterval
+import com.davils.kore.core.version.interval.VersionInterval
 import com.davils.kore.core.version.interval.floorAbove
 import com.davils.kore.core.version.interval.interval
 import com.davils.kore.core.version.interval.preReleaseFloor
@@ -32,7 +32,7 @@ internal enum class Operator(internal val symbol: String) {
     Caret("^"),
 }
 
-internal fun intervalFor(operator: Operator, partial: Partial): KoreVersionInterval? = when (operator) {
+internal fun intervalFor(operator: Operator, partial: Partial): VersionInterval? = when (operator) {
     Operator.Equal -> exactInterval(partial)
     Operator.GreaterOrEqual -> atLeastInterval(partial)
     Operator.Greater -> aboveInterval(partial)
@@ -42,32 +42,32 @@ internal fun intervalFor(operator: Operator, partial: Partial): KoreVersionInter
     Operator.Caret -> caretInterval(partial)
 }
 
-private fun exactInterval(partial: Partial): KoreVersionInterval? {
+private fun exactInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return EVERYTHING
     return interval(start = partial.lowest(), end = partial.firstAbove())
 }
 
-private fun atLeastInterval(partial: Partial): KoreVersionInterval? {
+private fun atLeastInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return EVERYTHING
     return interval(start = partial.lowest(), end = null)
 }
 
-private fun aboveInterval(partial: Partial): KoreVersionInterval? {
+private fun aboveInterval(partial: Partial): VersionInterval? {
     val complete = partial.version ?: return aboveLine(partial)
     return interval(start = complete, end = null, isStartExclusive = true)
 }
 
-private fun aboveLine(partial: Partial): KoreVersionInterval? {
+private fun aboveLine(partial: Partial): VersionInterval? {
     if (partial.isAny) return null
     return floorAbove(partial.numbers)?.let { next -> interval(start = next.release(), end = null) }
 }
 
-private fun belowInterval(partial: Partial): KoreVersionInterval? {
+private fun belowInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return null
     return interval(start = null, end = partial.version ?: preReleaseFloor(partial.numbers))
 }
 
-private fun atMostInterval(partial: Partial): KoreVersionInterval? {
+private fun atMostInterval(partial: Partial): VersionInterval? {
     if (partial.isAny) return EVERYTHING
     return interval(start = null, end = partial.firstAbove())
 }

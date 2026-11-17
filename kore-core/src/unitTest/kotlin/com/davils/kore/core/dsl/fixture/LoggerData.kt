@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.dsl.fixture
 
-import com.davils.kore.core.validation.KoreValidatable
-import com.davils.kore.core.validation.KoreValidationScope
+import com.davils.kore.core.validation.Validatable
+import com.davils.kore.core.validation.ValidationScope
 
-internal data class LoggerData(val level: String) : KoreValidatable {
-    override fun KoreValidationScope.validate() {
+internal data class LoggerData(val level: String) : Validatable {
+    override fun ValidationScope.validate() {
         if (level.isBlank()) fail(::level, "must not be blank")
     }
 }

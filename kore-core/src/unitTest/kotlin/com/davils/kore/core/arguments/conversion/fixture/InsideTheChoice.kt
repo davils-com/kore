@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.conversion.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class InsideTheChoice : KoreParameters() {
-    val level: String by defaulted("--level", type = KoreConverters.choice("low", "high"), default = "low")
+internal class InsideTheChoice : Parameters() {
+    val level: String by defaulted("--level", type = Converters.choice("low", "high"), default = "low")
 }

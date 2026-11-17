@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.version.KoreSemanticVersion
+import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.boundedInterval
 import com.davils.kore.core.version.interval.interval
 
@@ -57,7 +57,7 @@ private fun readExact(bound: String, bothInclusive: Boolean): RangeReading {
     }
 }
 
-private fun exactly(version: KoreSemanticVersion): RangeReading {
+private fun exactly(version: SemanticVersion): RangeReading {
     val interval = boundedInterval(lower = version, lowerInclusive = true, upper = version, upperInclusive = true)
     return RangeReading.Read(listOfNotNull(interval))
 }
@@ -96,7 +96,7 @@ private fun readBoundVersions(
     return readingOf(interval, INTERVAL_EMPTY_REASON)
 }
 
-private fun versionOf(reading: VersionReading?): KoreSemanticVersion? = (reading as? VersionReading.Read)?.version
+private fun versionOf(reading: VersionReading?): SemanticVersion? = (reading as? VersionReading.Read)?.version
 
 private fun boundRefusal(reading: VersionReading.Refused): RangeReading =
     RangeReading.Refused("$INTERVAL_BOUND_REASON ${reading.reason}")

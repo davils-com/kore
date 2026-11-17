@@ -15,11 +15,11 @@
  */
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
 private const val STRONG_LENGTH: Int = 64
 
-internal class WeakSecret : KoreParameters() {
+internal class WeakSecret : Parameters() {
     val token: String? by optional("--token") {
         sensitive()
         validate { value -> if (value.length < STRONG_LENGTH) warn("token '$value' is weak") }

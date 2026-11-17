@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.declaration.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
 private const val DEFAULT_TIMEOUT: Int = 30
 
-internal class StrayBesideBadInput : KoreParameters() {
+internal class StrayBesideBadInput : Parameters() {
     val isQuiet: Boolean by flag("--quiet")
     val port: String by required("--port")
     val timeout: Int = DEFAULT_TIMEOUT

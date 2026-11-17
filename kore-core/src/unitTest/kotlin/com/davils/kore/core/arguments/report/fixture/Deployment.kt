@@ -16,16 +16,16 @@
 
 package com.davils.kore.core.arguments.report.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
-import com.davils.kore.core.arguments.conversion.KorePathRequirement
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
+import com.davils.kore.core.arguments.conversion.PathRequirement
 import com.davils.kore.core.arguments.fixture.Stage
 import java.nio.file.Path
 
-internal class Deployment : KoreParameters(environmentPrefix = "APP") {
-    val mode: Stage by defaulted("--mode", type = KoreConverters.enum<Stage>(), default = Stage.Production)
-    val port: Int by required("--port", "-p", type = KoreConverters.int) { describedAs("The port to listen on.") }
-    val dataDir: Path by required("--data-dir", type = KoreConverters.path(KorePathRequirement.Exists))
+internal class Deployment : Parameters(environmentPrefix = "APP") {
+    val mode: Stage by defaulted("--mode", type = Converters.enum<Stage>(), default = Stage.Production)
+    val port: Int by required("--port", "-p", type = Converters.int) { describedAs("The port to listen on.") }
+    val dataDir: Path by required("--data-dir", type = Converters.path(PathRequirement.Exists))
     val dbPassword: String by required("--db-password") { sensitive() }
     val tags: List<String> by multiple("--tag")
     val isDryRun: Boolean by flag("--dry-run")

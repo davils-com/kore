@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
+import com.davils.kore.core.arguments.Parameters
 
-internal class Sourced : KoreParameters(environmentPrefix = "APP") {
+internal class Sourced : Parameters(environmentPrefix = "APP") {
     val token: String? by optional("--token")
     val region: String? by optional("--region")
 }

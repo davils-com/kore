@@ -16,10 +16,10 @@
 
 package com.davils.kore.core.arguments.resolution.fixture
 
-import com.davils.kore.core.arguments.KoreParameters
-import com.davils.kore.core.arguments.conversion.KoreConverters
+import com.davils.kore.core.arguments.Parameters
+import com.davils.kore.core.arguments.conversion.Converters
 
-internal class CarelessConverter : KoreParameters() {
-    val port: Int? by optional("--port", type = KoreConverters.custom("port") { raw -> raw.toInt() })
-    val workers: Int? by optional("--workers", type = KoreConverters.int)
+internal class CarelessConverter : Parameters() {
+    val port: Int? by optional("--port", type = Converters.custom("port") { raw -> raw.toInt() })
+    val workers: Int? by optional("--workers", type = Converters.int)
 }

@@ -16,64 +16,64 @@
 
 package com.davils.kore.core.arguments.resolution
 
-import com.davils.kore.core.arguments.KoreParameterInfo
-import com.davils.kore.core.arguments.KoreParameterLimits
+import com.davils.kore.core.arguments.ParameterInfo
+import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.conversion.NamedConverter
 import com.davils.kore.core.arguments.declaration.ValueRules
 import com.davils.kore.core.arguments.lexer.RawValues
-import com.davils.kore.core.arguments.report.KoreParameterViolation
-import com.davils.kore.core.arguments.report.KoreParameterViolationCodes
-import com.davils.kore.core.arguments.report.KoreValueOrigin
-import com.davils.kore.core.validation.KoreValidationScope
-import com.davils.kore.core.validation.violation.KoreSeverity
-import com.davils.kore.core.validation.violation.KoreViolationPath
+import com.davils.kore.core.arguments.report.ParameterViolation
+import com.davils.kore.core.arguments.report.ParameterViolationCodes
+import com.davils.kore.core.arguments.report.ValueOrigin
+import com.davils.kore.core.validation.ValidationScope
+import com.davils.kore.core.validation.violation.Severity
+import com.davils.kore.core.validation.violation.ViolationPath
 
 private const val FAILED_RULE_DETAIL: String = "could not be validated, because one of its rules failed unexpectedly"
 
 internal class ValueReading<T : Any>(
-    val info: KoreParameterInfo,
+    val info: ParameterInfo,
     private val rules: ValueRules<T>,
-    private val limits: KoreParameterLimits,
+    private val limits: ParameterLimits,
 ) {
     private val isCheckingDefaults: Boolean = (rules.converter as? NamedConverter<*>)?.isCheckingDefaults == true
 
-    fun read(given: RawValues, violations: MutableList<KoreParameterViolation>): List<T> {
+    fun read(given: RawValues, violations: MutableList<ParameterViolation>): List<T> {
         val pieces = admittedPieces(given, violations) ?: return emptyList()
         return pieces.mapNotNull { piece -> readOne(piece, given.origin, violations) }
     }
 
-    fun admitsDefault(value: T, violations: MutableList<KoreParameterViolation>): Boolean {
+    fun admitsDefault(value: T, violations: MutableList<ParameterViolation>): Boolean {
         val isConvertible = !isCheckingDefaults ||
-            converted(value.toString(), KoreValueOrigin.Default, violations) != null
-        return isConvertible && isValid(value, KoreValueOrigin.Default, violations)
+            converted(value.toString(), ValueOrigin.Default, violations) != null
+        return isConvertible && isValid(value, ValueOrigin.Default, violations)
     }
 
-    private fun admittedPieces(given: RawValues, violations: MutableList<KoreParameterViolation>): List<String>? {
+    private fun admittedPieces(given: RawValues, violations: MutableList<ParameterViolation>): List<String>? {
         if (!given.raws.all(limits::admitsLength)) {
-            violations += KoreParameterViolation.ValueTooLong(info, given.origin, limits.maxArgumentLength)
+            violations += ParameterViolation.ValueTooLong(info, given.origin, limits.maxArgumentLength)
             return null
         }
         return countedPieces(given, violations)
     }
 
-    private fun countedPieces(given: RawValues, violations: MutableList<KoreParameterViolation>): List<String>? {
+    private fun countedPieces(given: RawValues, violations: MutableList<ParameterViolation>): List<String>? {
         val admitted = given.raws.takeIf { limits.admitsValues(given.occurrences) }
         val pieces = admitted?.let(::piecesOf)
         if (pieces == null) {
-            violations += KoreParameterViolation.TooManyValues(info, given.origin, limits.maxValuesPerParameter)
+            violations += ParameterViolation.TooManyValues(info, given.origin, limits.maxValuesPerParameter)
         }
         return pieces
     }
 
-    private fun readOne(raw: String, origin: KoreValueOrigin, violations: MutableList<KoreParameterViolation>): T? {
+    private fun readOne(raw: String, origin: ValueOrigin, violations: MutableList<ParameterViolation>): T? {
         val value = converted(raw, origin, violations) ?: return null
         return value.takeIf { isValid(value, origin, violations) }
     }
 
-    private fun converted(raw: String, origin: KoreValueOrigin, violations: MutableList<KoreParameterViolation>): T? {
+    private fun converted(raw: String, origin: ValueOrigin, violations: MutableList<ParameterViolation>): T? {
         val result = catchingForeign { rules.converter.convert(raw) }
         result.exceptionOrNull()?.let { cause ->
-            violations += KoreParameterViolation.ConversionFailure(
+            violations += ParameterViolation.ConversionFailure(
                 parameter = info,
                 origin = origin,
                 given = raw,
@@ -83,12 +83,12 @@ internal class ValueReading<T : Any>(
         return result.getOrNull()
     }
 
-    private fun isValid(value: T, origin: KoreValueOrigin, violations: MutableList<KoreParameterViolation>): Boolean {
-        val scope = KoreValidationScope(KoreViolationPath.ROOT, KoreParameterViolationCodes.VALIDATION_FAILED)
+    private fun isValid(value: T, origin: ValueOrigin, violations: MutableList<ParameterViolation>): Boolean {
+        val scope = ValidationScope(ViolationPath.ROOT, ParameterViolationCodes.VALIDATION_FAILED)
         val outcomes = rules.validators.map { rule -> catchingForeign { scope.rule(value) } }
         val reported = scope.violations()
         reported.forEach { failure ->
-            violations += KoreParameterViolation.ValidationFailure(
+            violations += ParameterViolation.ValidationFailure(
                 parameter = info,
                 origin = origin,
                 detail = failure.message,
@@ -98,15 +98,15 @@ internal class ValueReading<T : Any>(
         }
         val hasFailedRule = outcomes.any { outcome -> outcome.isFailure }
         if (hasFailedRule) violations += failedRule(origin)
-        return !hasFailedRule && reported.none { failure -> failure.severity == KoreSeverity.Error }
+        return !hasFailedRule && reported.none { failure -> failure.severity == Severity.Error }
     }
 
-    private fun failedRule(origin: KoreValueOrigin): KoreParameterViolation = KoreParameterViolation.ValidationFailure(
+    private fun failedRule(origin: ValueOrigin): ParameterViolation = ParameterViolation.ValidationFailure(
         parameter = info,
         origin = origin,
         detail = FAILED_RULE_DETAIL,
-        code = KoreParameterViolationCodes.VALIDATION_FAILED,
-        severity = KoreSeverity.Error,
+        code = ParameterViolationCodes.VALIDATION_FAILED,
+        severity = Severity.Error,
     )
 
     private fun piecesOf(raws: List<String>): List<String>? {
