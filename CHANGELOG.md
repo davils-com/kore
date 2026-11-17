@@ -5,11 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 1.0.0 - 2026-11-17
 
 The first version of Kore: the core building blocks of Davils as an open source library under the Apache License
-2.0, built with Kreate 5.0.0 and published to `https://repo.davils.com`. The code
-comes from the core of an internal Davils project and was hardened for use with untrusted input on the way.
+2.0, built with Kreate 5.0.0 and published to `https://repo.davils.com`. The code comes from the core of an
+internal Davils project and was hardened for use with untrusted input on the way.
 
 ### Added
 

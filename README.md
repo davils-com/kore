@@ -71,7 +71,7 @@ val range = SemanticVersionRange.parse("^1.2.0 || >=2.0.0-rc.1 <2.1.0")
 val version = SemanticVersion.parse("1.4.2")
 
 range.contains(version)                                       // true
-range.contains(SemanticVersion.parse("1.5.0-beta.1"))   // false: pre-releases only on the same core
+range.contains(SemanticVersion.parse("1.5.0-beta.1"))         // false: pre-releases only on the same core
 val newest = range.maxSatisfying(listOf("1.2.0", "1.9.3", "2.0.0").map(SemanticVersion::parse))   // 2.0.0
 ```
 
