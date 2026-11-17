@@ -5,10 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.0.2 - 2026-11-17
+
+The first published version of Kore. It holds the code and the API of 1.0.0 and 1.0.1, which were tagged but
+never published: the Windows check of 1.0.0 failed while Kreate 5.0.0 installed Trivy for several scans at once,
+and the release guard of 1.0.1 could not see `origin/main` in the shallow checkout of the publish job.
+
+### Changed
+
+- **Released through the current pipeline of kotlin-workflow**, whose publish job checks out the whole history.
+
 ## 1.0.1 - 2026-11-17
 
-The first published version of Kore. It holds the code and the API of 1.0.0, which was tagged but never
-published: the Windows check of its release failed while Kreate 5.0.0 installed Trivy for several scans at once.
+Tagged but never published.
 
 ### Changed
 
