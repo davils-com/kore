@@ -17,21 +17,10 @@
 plugins {
     base
     id("kore.base")
-}
-
-kreate {
-    project {
-        changelog {
-            enabled = true
-            runOnCheck = true
-            includeDates = true
-            tagPrefix = ""
-        }
-
-        licenseHeader {
-            enabled = true
-            apacheLicense("Copyright 2026 Davils")
-            excludes.add(".port/**")
-        }
-    }
+    id("kore.dependency-locking")
+    id("kore.git-hooks")
+    id("kore.trivy")
+    id("kore.assurance")
+    id("kore.changelog")
+    id("kore.license-header")
 }

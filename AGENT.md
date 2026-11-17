@@ -10,7 +10,7 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 |---|---|---|
 | `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation, text positions and snippets, command line and environment parameters, principals, data sizes, the `Davils*` annotations and the architecture contracts |
 | `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs and marked text; never on a production class path |
-| `build-logic` | - | The convention plugins `kore.base`, `kore.kotlin-library` and `kore.root`; they hold nothing but `plugins { }` and `kreate { }` |
+| `build-logic` | - | One convention plugin per Kreate concern, composed by `kore.kotlin-library` for the modules and `kore.root` for the root project; they hold nothing but `plugins { }` and `kreate { }` |
 
 The root package of a module is `com.davils.kore.<module without kore->`, such as `com.davils.kore.core`, and its
 Java module has the same name. `kore-core` declares it in `src/main/java/module-info.java` and exports only packages
@@ -104,6 +104,30 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   `build-logic`, through Kreate.
 - `build-logic` holds no Kotlin classes, no tasks of its own and no Gradle API calls beyond reading the version
   catalog. What Kreate cannot express yet is added to Kreate, never programmed here.
+- Every plugin in `build-logic` configures one Kreate concern and applies `kore.base`:
+
+  | Plugin | Configures |
+  |---|---|
+  | `kore.base` | The Kreate plugin, the group and the version |
+  | `kore.dependency-locking` | Strict locking of every configuration |
+  | `kore.git-hooks` | The Git hooks |
+  | `kore.trivy` | Every Trivy scan |
+  | `kore.assurance` | The assurance gate and its `ignore` rules |
+  | `kore.platform` | The JDK, the Kotlin compiler and the Java module name |
+  | `kore.testing` | Kotest and the test suites |
+  | `kore.detekt` | Detekt and its reports |
+  | `kore.coverage` | Kover and its verification |
+  | `kore.api-validation` | The API dump and the semver check |
+  | `kore.docs` | Dokka |
+  | `kore.publish` | The POM, the release guard and the Davils repository |
+  | `kore.archives` | The legal files and the manifest of every archive |
+  | `kore.tool-classpaths` | The version floors on the class paths of the build tools |
+  | `kore.changelog` | The changelog check |
+  | `kore.license-header` | The license header check |
+
+  `kore.kotlin-library` composes them for a module and adds only the class paths the assurance gate reads;
+  `kore.root` composes them for the root project. A new concern gets a plugin of its own, never a block in a
+  composing plugin.
 - Dependencies are declared in `gradle/libs.versions.toml`. Libraries of JetBrains may be added when they are
   needed; every other dependency needs the approval of a maintainer.
 - Only `repo.davils.com` serves `com.davils` and its subgroups, through `exclusiveContent`. Everything else comes
@@ -125,7 +149,7 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   version in the catalog, remove that trust rule and the flag in `.github/kotlin-workflow.yml`, and record its
   signature.
 - A finding of the assurance gate that is a known, harmless property of a dependency gets an `ignore` rule in
-  `build-logic/src/main/kotlin/kore.base.gradle.kts`, with a reason, the exact module and an expiry date no more
+  `build-logic/src/main/kotlin/kore.assurance.gradle.kts`, with a reason, the exact module and an expiry date no more
   than six months ahead. CRITICAL and HIGH findings can never be ignored.
 
 ## Public API
