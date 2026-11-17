@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.limit
+package com.davils.kore.core
 
 /**
  * The upper bounds Kore enforces on everything it reads from outside the program.

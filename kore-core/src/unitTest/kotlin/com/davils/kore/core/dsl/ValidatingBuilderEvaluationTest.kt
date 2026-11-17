@@ -16,12 +16,12 @@
 
 package com.davils.kore.core.dsl
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.dsl.fixture.LoggingBuilder
 import com.davils.kore.core.dsl.fixture.ProbeBuilder
 import com.davils.kore.core.dsl.fixture.QueueBuilder
 import com.davils.kore.core.dsl.fixture.QueueData
 import com.davils.kore.core.dsl.fixture.WarningsBuilder
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.validation.ViolationCollector
 import com.davils.kore.core.validation.fixture.paths
 import com.davils.kore.core.validation.report.ValidationException

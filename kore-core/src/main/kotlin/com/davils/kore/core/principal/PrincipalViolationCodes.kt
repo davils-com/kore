@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.validation.violation.ViolationCode
 
 /**

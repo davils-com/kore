@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.report
 
 import com.davils.kore.core.arguments.conversion.maskedUserInfo
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 import java.net.URI
 import java.util.Objects
 

@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 
 private const val LONGEST_EDITED_TEXT: Int = (Int.MAX_VALUE - 8) / 2
 

@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.grammar.fitsVersionLength
 import com.davils.kore.core.version.grammar.isNumeric
 import com.davils.kore.core.version.grammar.isPreReleaseIdentifier

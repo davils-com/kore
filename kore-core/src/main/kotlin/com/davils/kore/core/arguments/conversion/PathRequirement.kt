@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 import java.nio.file.Path
 
 /**

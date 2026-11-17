@@ -16,11 +16,11 @@
 
 package com.davils.kore.core.arguments.conversion
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.arguments.conversion.fixture.Role
 import com.davils.kore.core.arguments.conversion.fixture.Scale
 import com.davils.kore.core.arguments.conversion.fixture.numbersInForeignDigits
 import com.davils.kore.core.arguments.fixture.Stage
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.text.fixture.hostileText
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue

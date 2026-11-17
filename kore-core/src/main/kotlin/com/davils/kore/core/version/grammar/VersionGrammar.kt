@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.SemanticVersion
 
 internal const val CORE_SEGMENTS: Int = 3

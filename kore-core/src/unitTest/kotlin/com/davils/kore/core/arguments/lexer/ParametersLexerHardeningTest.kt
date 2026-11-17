@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.arguments.lexer
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.UnknownArgumentPolicy
 import com.davils.kore.core.arguments.fixture.Lenient
@@ -31,7 +32,6 @@ import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.fixture.Many
 import com.davils.kore.core.arguments.resolution.SchemaOptions
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.text.fixture.hostileText
 import com.davils.kore.core.text.fixture.shouldBeSafeToShow
 import com.davils.kore.core.text.fixture.shouldBeSafeToShowLineByLine

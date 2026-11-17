@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.interval.VersionInterval
 import com.davils.kore.core.version.interval.normalized
 

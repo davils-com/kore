@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.fixture.range
 import com.davils.kore.core.version.fixture.version
 import com.davils.kore.core.version.interval.VersionInterval

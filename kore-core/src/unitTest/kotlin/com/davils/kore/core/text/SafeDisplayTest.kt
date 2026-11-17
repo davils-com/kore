@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.text.escape
+package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
-import com.davils.kore.core.text.TextRange
+import com.davils.kore.core.Limits
 import com.davils.kore.core.text.fixture.CLEAR_SCREEN
 import com.davils.kore.core.text.fixture.COMBINING_GRAPHEME_JOINER
 import com.davils.kore.core.text.fixture.COMBINING_LONG_SOLIDUS

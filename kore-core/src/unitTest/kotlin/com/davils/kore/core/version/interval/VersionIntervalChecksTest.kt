@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.interval
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.SemanticVersionRange
 import io.kotest.assertions.throwables.shouldThrow

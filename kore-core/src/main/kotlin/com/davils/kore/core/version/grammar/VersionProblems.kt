@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 
 internal const val VERSION_TOO_LONG_REASON: String = "is longer than ${Limits.MAX_VERSION_LENGTH} characters"
 internal const val PRE_RELEASE_REASON: String = "has an empty or malformed pre-release identifier"

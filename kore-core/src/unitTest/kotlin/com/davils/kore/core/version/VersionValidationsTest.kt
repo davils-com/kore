@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.validation.validate
 import com.davils.kore.core.version.fixture.Manifest
 import io.kotest.core.spec.style.FunSpec

@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.principal.fixture.PLACEHOLDER
 import com.davils.kore.core.principal.fixture.chainOf
 import com.davils.kore.core.validation.report.ValidationException

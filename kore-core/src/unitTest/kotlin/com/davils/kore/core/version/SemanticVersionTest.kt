@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.withClue
 import io.kotest.core.spec.style.FunSpec

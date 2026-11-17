@@ -20,7 +20,7 @@ import com.davils.kore.core.arguments.ParameterInfo
 import com.davils.kore.core.arguments.ParameterLimits
 import com.davils.kore.core.arguments.declaration.ParameterDraft
 import com.davils.kore.core.arguments.declaration.ParameterSpec
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 
 private val variableName: Regex = Regex("[A-Za-z_][A-Za-z0-9_]*")
 

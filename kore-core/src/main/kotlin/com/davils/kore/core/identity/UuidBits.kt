@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.identity
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import kotlin.uuid.Uuid as KotlinUuid
 
 internal const val BYTE_LENGTH: Int = 16

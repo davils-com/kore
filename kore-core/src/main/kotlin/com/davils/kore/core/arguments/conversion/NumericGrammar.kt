@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 
 private const val MINUS: Char = '-'
 private const val PLUS: Char = '+'

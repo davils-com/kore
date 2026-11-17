@@ -14,10 +14,8 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.identity.monotonic
+package com.davils.kore.core.identity
 
-import com.davils.kore.core.identity.Uuid
-import com.davils.kore.core.identity.UuidV7
 import com.davils.kore.core.identity.generator.fixture.FallingClock
 import com.davils.kore.core.identity.generator.fixture.ScriptedClock
 import io.kotest.assertions.throwables.shouldThrow

@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.arguments
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.arguments.fixture.FEWEST_ARGUMENTS
 import com.davils.kore.core.arguments.fixture.FEWEST_VALUES
 import com.davils.kore.core.arguments.fixture.FixedSource
@@ -26,7 +27,6 @@ import com.davils.kore.core.arguments.report.ParameterException
 import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.ParameterViolationCodes
 import com.davils.kore.core.arguments.report.ValueOrigin
-import com.davils.kore.core.limit.Limits
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly

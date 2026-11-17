@@ -95,7 +95,7 @@ import kotlin.reflect.KProperty
  * name of ASCII letters, digits and underscores, or declaring the parameter throws [IllegalArgumentException].
  * @param unknownArguments what happens to an argument that names no declared parameter;
  * [UnknownArgumentPolicy.Reject] refuses the load.
- * @param limits the bounds every load enforces; the defaults come from [com.davils.kore.core.limit.Limits].
+ * @param limits the bounds every load enforces; the defaults come from [com.davils.kore.core.Limits].
  * @param sensitiveOnCommandLine the severity of the violation reported when a sensitive parameter is given on the
  * command line, where the process list and the shell history show it; [Severity.Error] refuses such a load.
  * @since 1.0.0
@@ -265,7 +265,7 @@ public abstract class Parameters(
      *
      * Each line names a parameter with its type and adds its description, whether it is required or repeatable, its
      * default, its environment variable and whether it is deprecated. The description, type and variable are escaped,
-     * the description is shortened to [com.davils.kore.core.limit.Limits.MAX_MESSAGE_LENGTH], and the default of a
+     * the description is shortened to [com.davils.kore.core.Limits.MAX_MESSAGE_LENGTH], and the default of a
      * sensitive parameter is shown as `****`. A schema without parameters returns a sentence that says so.
      *
      * @return the listing, one line per parameter.

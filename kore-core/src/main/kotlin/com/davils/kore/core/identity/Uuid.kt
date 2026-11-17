@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.identity
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import java.util.UUID
 import kotlin.uuid.Uuid as KotlinUuid
 

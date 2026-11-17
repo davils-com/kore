@@ -46,7 +46,7 @@ public fun interface DomainMapper<in T : DataTransferObject, out D : DomainModel
  * Turns every transfer object of [dtos] into its domain model, in the order of iteration.
  *
  * The result is a new list that belongs to the caller. An exception of [DomainMapper.toDomain] stops the mapping
- * and is passed on unchanged. No limit of [com.davils.kore.core.limit.Limits] applies, so the caller bounds the
+ * and is passed on unchanged. No limit of [com.davils.kore.core.Limits] applies, so the caller bounds the
  * number of transfer objects it accepts from outside.
  *
  * @param T the transfer object the mapper reads.

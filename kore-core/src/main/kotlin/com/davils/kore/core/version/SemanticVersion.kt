@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.version
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.version.grammar.BUILD_SEPARATOR
 import com.davils.kore.core.version.grammar.IDENTIFIER_SEPARATOR
 import com.davils.kore.core.version.grammar.PRE_RELEASE_SEPARATOR

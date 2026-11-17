@@ -25,8 +25,8 @@ import com.davils.kore.core.validation.violation.ViolationPath
  *
  * Runs [Validatable.validate] once, on the calling thread, at the root path and with
  * [ViolationCode.INVALID] as the default code. The validation collects at most
- * [Limits.MAX_VIOLATIONS][com.davils.kore.core.limit.Limits.MAX_VIOLATIONS] violations and counts the rest, and
- * it stops descending below [Limits.MAX_PATH_DEPTH][com.davils.kore.core.limit.Limits.MAX_PATH_DEPTH] levels,
+ * [Limits.MAX_VIOLATIONS][com.davils.kore.core.Limits.MAX_VIOLATIONS] violations and counts the rest, and
+ * it stops descending below [Limits.MAX_PATH_DEPTH][com.davils.kore.core.Limits.MAX_PATH_DEPTH] levels,
  * as [ValidationScope] describes. It never throws because the value is invalid; an exception thrown by the rules
  * of the value reaches the caller unchanged. The function is as thread-safe as the value: it keeps no state of its own,
  * but the value must not change while it is validated.
@@ -48,7 +48,7 @@ public fun Validatable.validate(subject: String): ValidationReport {
  *
  * Validates exactly as [validate][com.davils.kore.core.validation.validate] does, with the same limits. Warnings alone
  * never make it throw, unless the validation finds more than
- * [Limits.MAX_VIOLATIONS][com.davils.kore.core.limit.Limits.MAX_VIOLATIONS] problems: the
+ * [Limits.MAX_VIOLATIONS][com.davils.kore.core.Limits.MAX_VIOLATIONS] problems: the
  * [TOO_MANY][ViolationCode.TOO_MANY] violation that then counts the rest is an error, whatever the severity of the
  * problems it counts.
  *

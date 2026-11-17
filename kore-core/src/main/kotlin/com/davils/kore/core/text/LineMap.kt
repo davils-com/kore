@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 
 private const val LINE_FEED: Char = '\n'
 private const val CARRIAGE_RETURN: Char = '\r'

@@ -16,7 +16,6 @@
 
 package com.davils.kore.core.text
 
-import com.davils.kore.core.text.escape.SafeDisplay
 import com.davils.kore.core.text.fixture.CLEAR_SCREEN
 import com.davils.kore.core.text.fixture.COMBINING_LONG_SOLIDUS
 import com.davils.kore.core.text.fixture.ESCAPE

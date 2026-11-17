@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.dsl
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.annotation.DavilsDsl
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.validation.Validatable
 import com.davils.kore.core.validation.ValidationScope
 import com.davils.kore.core.validation.ViolationCollector

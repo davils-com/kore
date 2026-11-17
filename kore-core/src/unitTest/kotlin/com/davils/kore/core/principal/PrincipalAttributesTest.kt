@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.principal
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.principal.fixture.COMBINING_GRAPHEME_JOINER
 import com.davils.kore.core.principal.fixture.HANGUL_FILLER
 import com.davils.kore.core.principal.fixture.PLACEHOLDER

@@ -16,8 +16,7 @@
 
 package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.Limits
 
 private const val CUT_MARK: String = "..."
 private const val GUTTER_SEPARATOR: String = " | "

@@ -16,9 +16,6 @@
 
 package com.davils.kore.core.identity
 
-import com.davils.kore.core.identity.fixture.V4_TEXT
-import com.davils.kore.core.identity.fixture.V7_EPOCH_MILLISECONDS
-import com.davils.kore.core.identity.fixture.V7_TEXT
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeStrictlyIncreasing

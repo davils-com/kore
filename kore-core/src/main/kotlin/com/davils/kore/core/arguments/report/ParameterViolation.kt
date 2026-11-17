@@ -20,7 +20,7 @@ import com.davils.kore.core.arguments.ParameterInfo
 import com.davils.kore.core.arguments.conversion.ConversionException
 import com.davils.kore.core.arguments.conversion.maskedUserInfo
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 import com.davils.kore.core.validation.violation.Severity
 import com.davils.kore.core.validation.violation.Violation
 import com.davils.kore.core.validation.violation.ViolationCode

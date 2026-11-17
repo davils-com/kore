@@ -42,7 +42,7 @@ public object Converters {
      * Reads an [Int] written as an optional `-` followed by ASCII digits, such as `8080` or `-1`.
      *
      * Leading zeros are allowed. A leading `+`, whitespace, separators, digits of other scripts and text longer than
-     * [com.davils.kore.core.limit.Limits.MAX_NUMERIC_TEXT_LENGTH] are refused before the text is parsed, and a
+     * [com.davils.kore.core.Limits.MAX_NUMERIC_TEXT_LENGTH] are refused before the text is parsed, and a
      * number outside the range of [Int] is refused for its size.
      *
      * @since 1.0.0
@@ -64,7 +64,7 @@ public object Converters {
      * The text is an optional `-`, ASCII digits with at most one `.` and at least one digit, and an optional exponent
      * of `e` or `E`, an optional sign and ASCII digits. `NaN`, `Infinity`, hexadecimal floats, the `d` and `f`
      * suffixes, a leading `+`, whitespace and text longer than
-     * [com.davils.kore.core.limit.Limits.MAX_NUMERIC_TEXT_LENGTH] are refused, and so is a number that is too large
+     * [com.davils.kore.core.Limits.MAX_NUMERIC_TEXT_LENGTH] are refused, and so is a number that is too large
      * and would be read as infinite, such as `1e999`. A number too small to represent is read as zero.
      *
      * @since 1.0.0
@@ -154,7 +154,7 @@ public object Converters {
      * Returns a converter that reads a finite, non-negative [Duration] between [min] and [max].
      *
      * It reads the formats of [Duration.parseOrNull], such as `30s`, `1h 30m` or the ISO 8601 form `PT1H`. Text that is
-     * longer than [com.davils.kore.core.limit.Limits.MAX_NUMERIC_TEXT_LENGTH] or contains anything but printable
+     * longer than [com.davils.kore.core.Limits.MAX_NUMERIC_TEXT_LENGTH] or contains anything but printable
      * ASCII is refused before it is parsed. An infinite duration, a negative one and one outside the bounds are
      * refused, each with its own reason.
      *

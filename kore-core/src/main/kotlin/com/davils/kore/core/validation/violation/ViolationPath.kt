@@ -16,9 +16,9 @@
 
 package com.davils.kore.core.validation.violation
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.limit.Limits
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 import kotlin.reflect.KProperty
 
 private const val SEPARATOR: Char = '.'

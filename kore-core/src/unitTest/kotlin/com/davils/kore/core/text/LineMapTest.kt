@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.text.fixture.RepeatedText
 import com.davils.kore.core.text.fixture.UnderReportedText
 import com.davils.kore.core.text.fixture.hostileText

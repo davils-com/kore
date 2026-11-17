@@ -16,12 +16,6 @@
 
 package com.davils.kore.core.identity
 
-import com.davils.kore.core.identity.fixture.NIL_TEXT
-import com.davils.kore.core.identity.fixture.V1_TEXT
-import com.davils.kore.core.identity.fixture.V4_TEXT
-import com.davils.kore.core.identity.fixture.V7_TEXT
-import com.davils.kore.core.identity.fixture.WRONG_VARIANT_TEXT
-import com.davils.kore.core.identity.fixture.v4Of
 import com.davils.kore.core.text.fixture.hostileText
 import com.davils.kore.core.text.fixture.shouldBeSafeToShow
 import io.kotest.assertions.throwables.shouldThrow

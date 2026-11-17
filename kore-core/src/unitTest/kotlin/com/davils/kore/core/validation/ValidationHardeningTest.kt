@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.validation
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.text.fixture.CLIPBOARD_WRITE
 import com.davils.kore.core.text.fixture.FORGED_LOG_LINE
 import com.davils.kore.core.text.fixture.hostileText

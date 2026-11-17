@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 
 /**
  * The bounds a [Parameters] schema enforces on its input before it reads it.

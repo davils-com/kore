@@ -16,8 +16,6 @@
 
 package com.davils.kore.core.identity
 
-import com.davils.kore.core.identity.fixture.v4Of
-import com.davils.kore.core.identity.fixture.v7Of
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.property.Arb

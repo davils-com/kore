@@ -18,7 +18,7 @@ package com.davils.kore.core.arguments.lexer
 
 import com.davils.kore.core.arguments.declaration.ParameterSpec
 import com.davils.kore.core.arguments.report.ParameterViolation
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 
 internal data class LexResult(
     val occurrences: Map<ParameterSpec<*, *>, RawValues>,

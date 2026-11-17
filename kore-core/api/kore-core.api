@@ -1,3 +1,30 @@
+public final class com/davils/kore/core/Limits {
+	public static final field INSTANCE Lcom/davils/kore/core/Limits;
+	public static final field MAX_ARGUMENTS I
+	public static final field MAX_ARGUMENT_LENGTH I
+	public static final field MAX_ATTRIBUTES I
+	public static final field MAX_ATTRIBUTE_NAME_LENGTH I
+	public static final field MAX_ATTRIBUTE_VALUE_LENGTH I
+	public static final field MAX_DELEGATION_CHAIN I
+	public static final field MAX_DISPLAY_LENGTH I
+	public static final field MAX_LINE_MAP_LENGTH I
+	public static final field MAX_MESSAGE_LENGTH I
+	public static final field MAX_NUMERIC_TEXT_LENGTH I
+	public static final field MAX_PATH_DEPTH I
+	public static final field MAX_PRINCIPAL_ID_LENGTH I
+	public static final field MAX_PRINCIPAL_TEXT_LENGTH I
+	public static final field MAX_RANGE_COMPARATORS I
+	public static final field MAX_RANGE_LENGTH I
+	public static final field MAX_RENDERED_VIOLATIONS I
+	public static final field MAX_ROLES I
+	public static final field MAX_SNIPPET_WIDTH I
+	public static final field MAX_SUGGESTED_ARGUMENTS I
+	public static final field MAX_UUID_TEXT_LENGTH I
+	public static final field MAX_VALUES_PER_PARAMETER I
+	public static final field MAX_VERSION_LENGTH I
+	public static final field MAX_VIOLATIONS I
+}
+
 public abstract interface com/davils/kore/core/annotation/DavilsDsl : java/lang/annotation/Annotation {
 }
 
@@ -562,33 +589,6 @@ public final class com/davils/kore/core/identity/generator/UuidV7Generator : com
 	public static final field INSTANCE Lcom/davils/kore/core/identity/generator/UuidV7Generator;
 	public synthetic fun next ()Lcom/davils/kore/core/identity/Uuid;
 	public fun next ()Lcom/davils/kore/core/identity/UuidV7;
-}
-
-public final class com/davils/kore/core/limit/Limits {
-	public static final field INSTANCE Lcom/davils/kore/core/limit/Limits;
-	public static final field MAX_ARGUMENTS I
-	public static final field MAX_ARGUMENT_LENGTH I
-	public static final field MAX_ATTRIBUTES I
-	public static final field MAX_ATTRIBUTE_NAME_LENGTH I
-	public static final field MAX_ATTRIBUTE_VALUE_LENGTH I
-	public static final field MAX_DELEGATION_CHAIN I
-	public static final field MAX_DISPLAY_LENGTH I
-	public static final field MAX_LINE_MAP_LENGTH I
-	public static final field MAX_MESSAGE_LENGTH I
-	public static final field MAX_NUMERIC_TEXT_LENGTH I
-	public static final field MAX_PATH_DEPTH I
-	public static final field MAX_PRINCIPAL_ID_LENGTH I
-	public static final field MAX_PRINCIPAL_TEXT_LENGTH I
-	public static final field MAX_RANGE_COMPARATORS I
-	public static final field MAX_RANGE_LENGTH I
-	public static final field MAX_RENDERED_VIOLATIONS I
-	public static final field MAX_ROLES I
-	public static final field MAX_SNIPPET_WIDTH I
-	public static final field MAX_SUGGESTED_ARGUMENTS I
-	public static final field MAX_UUID_TEXT_LENGTH I
-	public static final field MAX_VALUES_PER_PARAMETER I
-	public static final field MAX_VERSION_LENGTH I
-	public static final field MAX_VIOLATIONS I
 }
 
 public final class com/davils/kore/core/platform/NativeLibrary {

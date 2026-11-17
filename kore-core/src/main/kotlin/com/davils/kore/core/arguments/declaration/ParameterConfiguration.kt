@@ -36,7 +36,7 @@ public sealed class ParameterConfiguration {
     /**
      * Sets the description that the usage lists next to the parameter.
      *
-     * The description is escaped and shortened to [com.davils.kore.core.limit.Limits.MAX_MESSAGE_LENGTH] when it is
+     * The description is escaped and shortened to [com.davils.kore.core.Limits.MAX_MESSAGE_LENGTH] when it is
      * listed.
      *
      * @param description what the parameter is for, in a short phrase.

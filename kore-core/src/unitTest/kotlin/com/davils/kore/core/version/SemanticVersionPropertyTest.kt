@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.version
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.text.fixture.hostileText
 import com.davils.kore.core.text.fixture.shouldBeSafeToShow
 import io.kotest.core.spec.style.FunSpec

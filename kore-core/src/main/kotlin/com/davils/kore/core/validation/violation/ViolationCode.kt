@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.validation.violation
 
-import com.davils.kore.core.limit.Limits
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.Limits
+import com.davils.kore.core.text.SafeDisplay
 
 private val codePattern = Regex("[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+")
 

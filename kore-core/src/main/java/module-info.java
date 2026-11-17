@@ -18,6 +18,7 @@ module com.davils.kore.core {
     requires transitive kotlin.stdlib;
     requires transitive kotlinx.coroutines.core;
 
+    exports com.davils.kore.core;
     exports com.davils.kore.core.annotation;
     exports com.davils.kore.core.architecture.data;
     exports com.davils.kore.core.architecture.domain;
@@ -30,7 +31,6 @@ module com.davils.kore.core {
     exports com.davils.kore.core.dsl;
     exports com.davils.kore.core.identity;
     exports com.davils.kore.core.identity.generator;
-    exports com.davils.kore.core.limit;
     exports com.davils.kore.core.platform;
     exports com.davils.kore.core.principal;
     exports com.davils.kore.core.size;

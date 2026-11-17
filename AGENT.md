@@ -46,6 +46,9 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 - **No `else`.** Return early; a `when` over a sealed type or an enum is exhaustive without `else ->`.
 - **At most two chained calls.** Name intermediate results and computed conditions.
 - **One top-level type per file**, named after it; a file of functions is named after its role.
+- **No package for a single file.** A subpackage holds at least two files. A file that would stand alone in a
+  package lives in the parent package instead, and when a subpackage shrinks to one file, that file moves up and the
+  subpackage goes away. The root package of a module is the only exception.
 - **No `!!`, no `lateinit`.** Model absence as a type or return early.
 - **Explicit API.** Everything is `internal` unless a consumer needs it.
 - **Names.** No type, file, function or property carries the name of the library as a prefix: `SemanticVersion`,
@@ -94,9 +97,10 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
 
 - Kotest `FunSpec` only, Kotest assertions only, no mocking library; fakes come from `kore-testing` or a `fixture`.
 - One `context` per behaviour or function; test names read as sentences.
-- Tests live in `src/unitTest/kotlin`, in the subpackage of the code they test. A fixture lives in the `fixture`
-  folder of the only subpackage that uses it, or in the shared `fixture` folder of the area. `src/test` is rejected
-  by the build.
+- Tests live in `src/unitTest/kotlin`, in the package of the code they test, even when that package holds a single
+  test. A fixture lives in the `fixture` folder of the only subpackage that uses it, or in the shared `fixture` folder
+  of the area; a `fixture` folder holds at least two files, so a lone fixture lives next to the tests that use it.
+  `src/test` is rejected by the build.
 - Property tests with adversarial generators for every parser and every security invariant.
 - Every change ships with its tests; a fixed weakness ships with a test that would have caught it.
 

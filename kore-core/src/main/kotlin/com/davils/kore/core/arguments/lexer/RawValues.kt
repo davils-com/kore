@@ -17,7 +17,7 @@
 package com.davils.kore.core.arguments.lexer
 
 import com.davils.kore.core.arguments.report.ValueOrigin
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 
 internal data class RawValues(
     val raws: List<String>,

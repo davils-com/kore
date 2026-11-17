@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.text.escape
+package com.davils.kore.core.text
 
-import com.davils.kore.core.limit.Limits
-import com.davils.kore.core.text.TextRange
+import com.davils.kore.core.Limits
 import java.util.Locale
 
 private const val TAB: Int = '\t'.code

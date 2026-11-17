@@ -16,8 +16,8 @@
 
 package com.davils.kore.core.validation
 
+import com.davils.kore.core.Limits
 import com.davils.kore.core.annotation.DavilsDsl
-import com.davils.kore.core.limit.Limits
 import com.davils.kore.core.validation.violation.Severity
 import com.davils.kore.core.validation.violation.Violation
 import com.davils.kore.core.validation.violation.ViolationCode

@@ -19,7 +19,7 @@ package com.davils.kore.core.identity.generator
 import com.davils.kore.core.identity.Uuid
 import com.davils.kore.core.identity.UuidV7
 import com.davils.kore.core.identity.UuidVersion
-import com.davils.kore.core.identity.fixture.V7_TEXT
+import com.davils.kore.core.identity.V7_TEXT
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf

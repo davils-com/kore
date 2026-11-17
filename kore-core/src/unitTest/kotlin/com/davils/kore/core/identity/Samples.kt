@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.identity.fixture
+package com.davils.kore.core.identity
 
-import com.davils.kore.core.identity.Uuid
 import kotlin.uuid.Uuid as KotlinUuid
 
 internal const val V4_TEXT: String = "f81d4fae-7dec-41d0-a765-00a0c91e6bf6"

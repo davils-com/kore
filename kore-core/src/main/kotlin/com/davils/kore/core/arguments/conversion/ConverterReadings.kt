@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.limit.Limits
+import com.davils.kore.core.Limits
 import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.SemanticVersionRange
 import kotlin.time.Duration

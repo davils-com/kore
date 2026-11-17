@@ -16,7 +16,7 @@
 
 package com.davils.kore.core.arguments.conversion
 
-import com.davils.kore.core.text.escape.SafeDisplay
+import com.davils.kore.core.text.SafeDisplay
 
 private const val CHOICE_SEPARATOR: String = ", "
 private const val NO_CHOICE_MESSAGE: String = "A choice needs at least one value to choose from"
