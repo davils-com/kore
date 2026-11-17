@@ -19,7 +19,6 @@ package com.davils.kore.core.arguments.conversion
 import java.nio.file.InvalidPathException
 import java.nio.file.Path
 
-private const val INVALID_PATH_REASON: String = "is not a valid path"
 private const val CONTRADICTION_MESSAGE: String = "A path cannot be required to be both a directory and a regular file"
 private const val SEVERAL_BASES_MESSAGE: String = "A path can be confined to one base directory only"
 

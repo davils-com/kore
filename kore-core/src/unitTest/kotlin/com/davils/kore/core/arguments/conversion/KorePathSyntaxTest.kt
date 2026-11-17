@@ -33,6 +33,7 @@ private const val RESERVED: String = "names a device that Windows reserves"
 private const val STREAM: String = "names an alternate data stream"
 private const val TRAILING: String = "has a name that ends in a dot or a space"
 private const val CONTROL: String = "contains a control character"
+private const val INVALID: String = "is not a valid path"
 
 private fun onWindows(raw: String): String? = pathProblem(raw, PathFlavour.Windows)
 
@@ -143,10 +144,19 @@ class KorePathSyntaxTest : FunSpec({
             shouldThrow<KoreConversionException> { converter.convert("/etc/passwd\u0000.png") }.message shouldBe CONTROL
         }
 
+        test("refuses a lone surrogate on every platform and keeps a paired one") {
+            listOf("a\uD800b", "a\uDC00b", "a\uD800").forEach { raw ->
+                onPosix(raw) shouldBe INVALID
+                onWindows(raw) shouldBe INVALID
+            }
+            onPosix("a\uD83D\uDE00b").shouldBeNull()
+            onWindows("a\uD83D\uDE00b").shouldBeNull()
+        }
+
         test("refuses text the platform cannot turn into a path without repeating it") {
             val failure = shouldThrow<KoreConversionException> { KoreConverters.path().convert("a\uD800b") }
 
-            failure.message shouldBe "is not a valid path"
+            failure.message shouldBe INVALID
             failure.cause.shouldBeNull()
         }
     }

@@ -16,6 +16,8 @@
 
 package com.davils.kore.core.arguments.conversion
 
+internal const val INVALID_PATH_REASON: String = "is not a valid path"
+
 private const val EMPTY_REASON: String = "is empty"
 private const val CONTROL_REASON: String = "contains a control character"
 private const val NETWORK_REASON: String = "is a network path"
@@ -44,7 +46,17 @@ private val deviceNumbers: Set<String> = buildSet {
 
 internal fun pathProblem(raw: String, flavour: PathFlavour): String? {
     if (raw.isEmpty()) return EMPTY_REASON
-    return CONTROL_REASON.takeIf { raw.any(Char::isISOControl) } ?: flavourProblem(raw, flavour)
+    return characterProblem(raw) ?: flavourProblem(raw, flavour)
+}
+
+private fun characterProblem(raw: String): String? {
+    if (raw.any(Char::isISOControl)) return CONTROL_REASON
+    return INVALID_PATH_REASON.takeIf { hasLoneSurrogate(raw) }
+}
+
+private fun hasLoneSurrogate(raw: String): Boolean {
+    val surrogate = Character.SURROGATE.toInt()
+    return raw.codePoints().anyMatch { codePoint -> Character.getType(codePoint) == surrogate }
 }
 
 private fun flavourProblem(raw: String, flavour: PathFlavour): String? = when (flavour) {
