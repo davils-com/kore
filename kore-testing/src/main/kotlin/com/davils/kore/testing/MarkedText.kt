@@ -22,7 +22,7 @@ import java.util.stream.Collectors
 /**
  * A text for tests together with the carets and ranges that were marked in it.
  *
- * [KoreMarkedText.of] reads a text in which places are marked inline, such as `port: <caret>80` or
+ * [MarkedText.of] reads a text in which places are marked inline, such as `port: <caret>80` or
  * `port: <range>80</range>`, removes the markers and keeps where they stood. This lets a test write the input it feeds
  * to code built on Kore and the offsets it expects back in one literal. Offsets count UTF-16 code units of [text], the
  * text without its markers, and fit [TextRange] and the other types of `com.davils.kore.core.text`.
@@ -40,13 +40,13 @@ import java.util.stream.Collectors
  * @throws NullPointerException if [carets] or [ranges] contains `null`, which only a caller in Java can pass.
  * @since 1.0.0
  */
-public class KoreMarkedText(
+public class MarkedText(
     public val text: String,
     carets: List<Int>,
     ranges: List<TextRange>,
 ) {
     /**
-     * The offsets in [text] at which carets were marked; [KoreMarkedText.of] lists them in the order they appear in.
+     * The offsets in [text] at which carets were marked; [MarkedText.of] lists them in the order they appear in.
      *
      * The list is an unmodifiable copy: a cast to [MutableList] does not make it changeable, and every attempt to
      * change it throws [UnsupportedOperationException].
@@ -56,7 +56,7 @@ public class KoreMarkedText(
     public val carets: List<Int> = carets.stream().collect(Collectors.toUnmodifiableList())
 
     /**
-     * The marked ranges of [text]; [KoreMarkedText.of] sorts them by start and then by end.
+     * The marked ranges of [text]; [MarkedText.of] sorts them by start and then by end.
      *
      * The list is an unmodifiable copy: a cast to [MutableList] does not make it changeable, and every attempt to
      * change it throws [UnsupportedOperationException].
@@ -93,7 +93,7 @@ public class KoreMarkedText(
      * @return `true` if [other] is an equal marked text, `false` otherwise.
      * @since 1.0.0
      */
-    override fun equals(other: Any?): Boolean = other is KoreMarkedText && identity == other.identity
+    override fun equals(other: Any?): Boolean = other is MarkedText && identity == other.identity
 
     /**
      * Returns a hash code derived from the text, the carets and the ranges.
@@ -104,7 +104,7 @@ public class KoreMarkedText(
     override fun hashCode(): Int = identity.hashCode()
 
     /**
-     * Returns the marked text as one line, such as `KoreMarkedText(length=8, carets=[6], ranges=[6..8])`.
+     * Returns the marked text as one line, such as `MarkedText(length=8, carets=[6], ranges=[6..8])`.
      *
      * The line names the length of the text, the carets and the ranges, but never the text itself, so a test text full
      * of control characters or secrets cannot garble or leak into a test report. Compare [text] directly to see it.
@@ -112,7 +112,7 @@ public class KoreMarkedText(
      * @return the length of the text, the carets and the ranges.
      * @since 1.0.0
      */
-    override fun toString(): String = "KoreMarkedText(length=${text.length}, carets=$carets, ranges=$ranges)"
+    override fun toString(): String = "MarkedText(length=${text.length}, carets=$carets, ranges=$ranges)"
 
     /**
      * Reads marked texts and names the markers they use.
@@ -121,7 +121,7 @@ public class KoreMarkedText(
      */
     public companion object {
         /**
-         * The marker of a caret, `<caret>`; [of] adds the offset at which it stands to [KoreMarkedText.carets].
+         * The marker of a caret, `<caret>`; [of] adds the offset at which it stands to [MarkedText.carets].
          *
          * @since 1.0.0
          */
@@ -162,6 +162,6 @@ public class KoreMarkedText(
          * the text without markers would contain a marker.
          * @since 1.0.0
          */
-        public fun of(marked: String): KoreMarkedText = TextMarkers(marked).read()
+        public fun of(marked: String): MarkedText = TextMarkers(marked).read()
     }
 }

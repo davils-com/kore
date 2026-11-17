@@ -1,6 +1,6 @@
-public final class com/davils/kore/testing/KoreMarkedText {
+public final class com/davils/kore/testing/MarkedText {
 	public static final field CARET Ljava/lang/String;
-	public static final field Companion Lcom/davils/kore/testing/KoreMarkedText$Companion;
+	public static final field Companion Lcom/davils/kore/testing/MarkedText$Companion;
 	public static final field RANGE_END Ljava/lang/String;
 	public static final field RANGE_START Ljava/lang/String;
 	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
@@ -14,11 +14,11 @@ public final class com/davils/kore/testing/KoreMarkedText {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/davils/kore/testing/KoreMarkedText$Companion {
-	public final fun of (Ljava/lang/String;)Lcom/davils/kore/testing/KoreMarkedText;
+public final class com/davils/kore/testing/MarkedText$Companion {
+	public final fun of (Ljava/lang/String;)Lcom/davils/kore/testing/MarkedText;
 }
 
-public final class com/davils/kore/testing/KoreSequentialUuidV7Generator : com/davils/kore/core/identity/generator/UuidGenerator {
+public final class com/davils/kore/testing/SequentialUuidV7Generator : com/davils/kore/core/identity/generator/UuidGenerator {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Instant;)V
 	public synthetic fun <init> (Lkotlin/time/Instant;ILkotlin/jvm/internal/DefaultConstructorMarker;)V

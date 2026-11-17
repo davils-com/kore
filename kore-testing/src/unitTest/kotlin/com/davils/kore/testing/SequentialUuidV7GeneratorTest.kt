@@ -39,11 +39,11 @@ private const val THREADS: Int = 8
 private const val PER_THREAD: Int = 2_000
 private const val START: Long = 1_000_000L
 
-class KoreSequentialUuidV7GeneratorTest : FunSpec({
+class SequentialUuidV7GeneratorTest : FunSpec({
     context("minting") {
         test("hands out the same identifiers in the same order every time") {
-            val first = KoreSequentialUuidV7Generator()
-            val second = KoreSequentialUuidV7Generator()
+            val first = SequentialUuidV7Generator()
+            val second = SequentialUuidV7Generator()
             val firstRun = List(BATCH) { first.next() }
             val secondRun = List(BATCH) { second.next() }
 
@@ -52,14 +52,14 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
         }
 
         test("starts at the given instant and moves one millisecond per identifier") {
-            val generator = KoreSequentialUuidV7Generator(Instant.parse("2026-01-01T00:00:00Z"))
+            val generator = SequentialUuidV7Generator(Instant.parse("2026-01-01T00:00:00Z"))
 
             generator.next().instant shouldBe Instant.parse("2026-01-01T00:00:00Z")
             generator.next().instant shouldBe Instant.parse("2026-01-01T00:00:00.001Z")
         }
 
         test("produces valid version 7 identifiers that survive a round trip through text") {
-            val uuid = KoreSequentialUuidV7Generator().next()
+            val uuid = SequentialUuidV7Generator().next()
 
             uuid.version shouldBe UuidVersion.TimeOrdered
             UuidV7.parse(uuid.toString()) shouldBe uuid
@@ -67,7 +67,7 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
 
         test("starts every identifier at its start, whatever millisecond of the 48-bit range that is") {
             checkAll(Arb.long(min = 0L, max = LAST_MILLISECOND)) { milliseconds ->
-                val uuid = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(milliseconds)).next()
+                val uuid = SequentialUuidV7Generator(Instant.fromEpochMilliseconds(milliseconds)).next()
 
                 uuid.epochMilliseconds shouldBe milliseconds
                 UuidV7.parse(uuid.toString()) shouldBe uuid
@@ -75,7 +75,7 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
         }
 
         test("counts what it has issued") {
-            val generator = KoreSequentialUuidV7Generator()
+            val generator = SequentialUuidV7Generator()
             repeat(ISSUED) { generator.next() }
 
             generator.issued shouldBe ISSUED
@@ -85,33 +85,33 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
     context("start") {
         test("refuses an instant before the epoch") {
             shouldThrow<IllegalArgumentException> {
-                KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(-1))
+                SequentialUuidV7Generator(Instant.fromEpochMilliseconds(-1))
             }
         }
 
         test("refuses an instant beyond the 48-bit range of milliseconds right away") {
             val message = shouldThrow<IllegalArgumentException> {
-                KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND + 1))
+                SequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND + 1))
             }.message
 
             message shouldContain "48 bits"
         }
 
         test("refuses the distant future instead of wrapping around") {
-            shouldThrow<IllegalArgumentException> { KoreSequentialUuidV7Generator(Instant.DISTANT_FUTURE) }
+            shouldThrow<IllegalArgumentException> { SequentialUuidV7Generator(Instant.DISTANT_FUTURE) }
         }
     }
 
     context("end of the range") {
         test("hands out the last millisecond of the range and then refuses with a clear reason") {
-            val generator = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND))
+            val generator = SequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND))
 
             generator.next().epochMilliseconds shouldBe LAST_MILLISECOND
             shouldThrow<IllegalStateException> { generator.next() }.message shouldContain "end of the 48-bit range"
         }
 
         test("stays used up and never counts a refused identifier as issued") {
-            val generator = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND - 1))
+            val generator = SequentialUuidV7Generator(Instant.fromEpochMilliseconds(LAST_MILLISECOND - 1))
             repeat(2) { generator.next() }
 
             repeat(ISSUED) { shouldThrow<IllegalStateException> { generator.next() } }
@@ -122,7 +122,7 @@ class KoreSequentialUuidV7GeneratorTest : FunSpec({
 
     context("minting from several threads at once") {
         test("hands out every millisecond exactly once and keeps each thread in order") {
-            val generator = KoreSequentialUuidV7Generator(Instant.fromEpochMilliseconds(START))
+            val generator = SequentialUuidV7Generator(Instant.fromEpochMilliseconds(START))
             val begin = CountDownLatch(1)
             val batches = ConcurrentLinkedQueue<List<UuidV7>>()
 

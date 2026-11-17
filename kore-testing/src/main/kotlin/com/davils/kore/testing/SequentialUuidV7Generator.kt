@@ -38,7 +38,7 @@ import kotlin.time.Instant
  * a version 7 identifier holds, after a moment in the year 10889.
  * @since 1.0.0
  */
-public class KoreSequentialUuidV7Generator(
+public class SequentialUuidV7Generator(
     public val start: Instant = Instant.fromEpochMilliseconds(0),
 ) : UuidGenerator<UuidV7> {
     private val startMilliseconds: Long = start.toEpochMilliseconds()

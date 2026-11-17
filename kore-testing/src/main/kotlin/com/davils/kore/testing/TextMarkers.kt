@@ -17,9 +17,9 @@
 package com.davils.kore.testing
 
 import com.davils.kore.core.text.TextRange
-import com.davils.kore.testing.KoreMarkedText.Companion.CARET
-import com.davils.kore.testing.KoreMarkedText.Companion.RANGE_END
-import com.davils.kore.testing.KoreMarkedText.Companion.RANGE_START
+import com.davils.kore.testing.MarkedText.Companion.CARET
+import com.davils.kore.testing.MarkedText.Companion.RANGE_END
+import com.davils.kore.testing.MarkedText.Companion.RANGE_START
 
 private val markers: List<String> = listOf(CARET, RANGE_START, RANGE_END)
 
@@ -29,7 +29,7 @@ internal class TextMarkers(private val marked: String) {
     private val ranges = ArrayList<TextRange>()
     private val openRanges = ArrayDeque<Int>()
 
-    fun read(): KoreMarkedText {
+    fun read(): MarkedText {
         var index = 0
         while (index < marked.length) {
             index = step(index)
@@ -38,7 +38,7 @@ internal class TextMarkers(private val marked: String) {
         check(markers.none { marker -> marker in text }) {
             "Removing a marker joined the text around it into another marker; build such a text with the constructor"
         }
-        return KoreMarkedText(text = text.toString(), carets = carets, ranges = ranges.sorted())
+        return MarkedText(text = text.toString(), carets = carets, ranges = ranges.sorted())
     }
 
     private fun step(index: Int): Int {
