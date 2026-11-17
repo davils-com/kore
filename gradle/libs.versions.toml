@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.4.21"
-kreate = "5.0.0"
+kreate = "5.0.1"
 coroutines = "1.11.0"
 # Floors for the classpaths of build tools, raised past known vulnerabilities.
 tooling-jackson = "2.22.3"
