@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-import com.davils.kore.gradle.LicenseHeaderCheck
-import com.davils.kore.gradle.ReleaseGuard
-
 plugins {
     base
     id("kore.base")
@@ -30,42 +27,11 @@ kreate {
             includeDates = true
             tagPrefix = ""
         }
-    }
-}
 
-val catalog: VersionCatalog = the<VersionCatalogsExtension>().named("libs")
-val tools: List<String> = listOf("kreate", "detekt", "kotlin").map { tool ->
-    "$tool ${catalog.findVersion(tool).get().requiredVersion}"
-}
-val mainContainsHead: Provider<Boolean> = providers.exec {
-    commandLine("git", "merge-base", "--is-ancestor", "HEAD", "origin/main")
-    isIgnoreExitValue = true
-}.result.map { result -> result.exitValue == 0 }
-
-val releaseGuard = tasks.register<ReleaseGuard>("koreReleaseGuard") {
-    description = "Refuses to publish a version that does not match gradle.properties and the release tag."
-    group = "verification"
-    referenceType = providers.environmentVariable("GITHUB_REF_TYPE").orElse("")
-    referenceName = providers.environmentVariable("GITHUB_REF_NAME").orElse("")
-    declaredVersion = providers.gradleProperty("version")
-    resolvedVersion = provider { project.version.toString() }
-    onMain = mainContainsHead
-    toolVersions = tools
-}
-
-val licenseHeaderCheck = tasks.register<LicenseHeaderCheck>("koreLicenseHeaderCheck") {
-    description = "Verifies that every source, build script and configuration file starts with the license header."
-    group = "verification"
-    sources.from(
-        fileTree(layout.projectDirectory) {
-            include("**/*.kt", "**/*.kts", "**/*.java", "**/*.properties", "**/*.yaml", "**/*.yml")
-            exclude("**/build/**", "**/.gradle/**", "**/.kotlin/**", ".port/**", ".idea/**")
-            exclude("gradle/wrapper/**", "gradle/gradle-daemon-jvm.properties")
+        licenseHeader {
+            enabled = true
+            apacheLicense("Copyright 2026 Davils")
+            excludes.add(".port/**")
         }
-    )
-    report = layout.buildDirectory.file("reports/kore/license-headers.txt")
-}
-
-tasks.named("check") {
-    dependsOn(releaseGuard, licenseHeaderCheck)
+    }
 }

@@ -10,7 +10,7 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 |---|---|---|
 | `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation, text positions and snippets, command line and environment parameters, principals, data sizes, the `Davils*` annotations and the architecture contracts |
 | `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs and marked text; never on a production class path |
-| `build-logic` | - | The convention plugins `kore.base`, `kore.kotlin-library` and `kore.root`, all configured through Kreate |
+| `build-logic` | - | The convention plugins `kore.base`, `kore.kotlin-library` and `kore.root`; they hold nothing but `plugins { }` and `kreate { }` |
 
 The root package of a module is `com.davils.kore.<module without kore->`, such as `com.davils.kore.core`, and its
 Java module has the same name. `kore-core` declares it in `src/main/java/module-info.java` and exports only packages
@@ -37,7 +37,7 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 
 - **License header first.** Every `.kt`, `.kts`, `.java`, `.properties` and YAML file starts with the Apache 2.0
   header, byte for byte as in the existing files; only the files Gradle generates in `gradle/` are exempt.
-  `koreLicenseHeaderCheck` and Detekt enforce it.
+  `kreateLicenseHeaderCheck` and Detekt enforce it.
 - **No comments.** No `//`, no `/* */` other than the license header. Names, types and tests carry the intent.
 - **KDoc on public API only**, with `@param`, `@return`, `@throws` and `@since`, and never on internal or private
   declarations; protected members of public open or abstract classes are API and get KDoc. A new declaration gets
@@ -102,6 +102,8 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
 - Every module applies exactly one plugin, `id("kore.kotlin-library")`, and declares nothing but its description
   and its dependencies. Detekt, Kover, Kotest, Trivy, the compiler and publishing are configured only in
   `build-logic`, through Kreate.
+- `build-logic` holds no Kotlin classes, no tasks of its own and no Gradle API calls beyond reading the version
+  catalog. What Kreate cannot express yet is added to Kreate, never programmed here.
 - Dependencies are declared in `gradle/libs.versions.toml`. Libraries of JetBrains may be added when they are
   needed; every other dependency needs the approval of a maintainer.
 - Only `repo.davils.com` serves `com.davils` and its subgroups, through `exclusiveContent`. Everything else comes
@@ -133,8 +135,8 @@ marked as breaking. Deprecate before removing: `@Deprecated` with a `ReplaceWith
 
 ## Releases
 
-The version lives in `gradle.properties` and nowhere else; `koreReleaseGuard` refuses a build whose resolved version
-differs from it, so no environment variable can change what is published. Every build without a release tag is a
+The version lives in `gradle.properties` and nowhere else; `kreateReleaseGuard`, which runs before every publication,
+refuses a build whose resolved version differs from it, so no environment variable can change what is published. Every build without a release tag is a
 `-SNAPSHOT`. A release is a tag without a `v`, such as `1.0.0`, that equals that version, sits on a commit of `main`
 and is built without any snapshot tooling; the guard refuses every other combination before anything is published.
 Snapshots go to `https://repo.davils.com/snapshots`, releases to `https://repo.davils.com/releases`, and never to

@@ -31,15 +31,12 @@ val isRoot: Boolean = path == ":"
 val scannedRoot: String = projectDir.absolutePath
 val generatedDirectories: List<String> = listOf("**/build", "**/.gradle", "**/.kotlin", "**/.git")
     .map { directory -> "$scannedRoot/$directory" } + listOf("$scannedRoot/.idea", "$scannedRoot/.port")
-val untaggedBuild: Provider<Boolean> = providers.environmentVariable("GITHUB_REF_TYPE")
-    .map { referenceType -> referenceType != "tag" }
-    .orElse(true)
 
 kreate {
     project {
         version {
             property = "version"
-            snapshot = untaggedBuild
+            snapshotUnlessTagged = true
         }
 
         dependencyLocking {

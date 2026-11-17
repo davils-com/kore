@@ -1,10 +1,10 @@
 # Third-Party Material
 
-No published artifact of Kore contains third-party code. The build logic and the tests use the following material.
+No published artifact of Kore contains third-party code. The tests use the following material.
 
 | Material | Used in | Source | License |
 |---|---|---|---|
-| The regular expression for a valid version and the examples of precedence of *Semantic Versioning 2.0.0* by Tom Preston-Werner | `build-logic/src/main/kotlin/com/davils/kore/gradle/ReleaseGuard.kt` (the expression, without build metadata), `kore-core/src/unitTest/kotlin/com/davils/kore/core/version/KoreSemanticVersionConformanceTest.kt`, `KoreSemanticVersionTest.kt` | [semver.org](https://semver.org) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| The regular expression for a valid version and the examples of precedence of *Semantic Versioning 2.0.0* by Tom Preston-Werner | `kore-core/src/unitTest/kotlin/com/davils/kore/core/version/KoreSemanticVersionConformanceTest.kt`, `KoreSemanticVersionTest.kt` | [semver.org](https://semver.org) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | The tables of caret, tilde, X-range, primitive and hyphen ranges of node-semver | `kore-core/src/unitTest/kotlin/com/davils/kore/core/version/KoreNpmRangeConformanceTest.kt` | [npm/node-semver](https://github.com/npm/node-semver) | ISC, see below |
 
 The build and the tests depend on libraries under their own licenses; `gradle/verification-metadata.xml` records

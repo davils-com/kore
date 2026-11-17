@@ -1,8 +1,7 @@
 [versions]
 kotlin = "2.4.21"
-kreate = "4.2.0-SNAPSHOT"
+kreate = "5.0.0-SNAPSHOT"
 coroutines = "1.11.0"
-detekt = "2.0.0-alpha.6"
 # Floors for the classpaths of build tools, raised past known vulnerabilities.
 tooling-jackson = "2.22.3"
 tooling-bouncycastle = "1.85"
@@ -11,8 +10,6 @@ tooling-bouncycastle = "1.85"
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kreate-gradle-plugin = { module = "com.davils.kreate:com.davils.kreate.gradle.plugin", version.ref = "kreate" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-detekt-rules-libraries = { module = "dev.detekt:detekt-rules-libraries", version.ref = "detekt" }
-detekt-gradle-plugin = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 
 [bundles]
 build-logic = [

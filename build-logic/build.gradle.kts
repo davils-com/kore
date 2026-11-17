@@ -31,5 +31,4 @@ kotlin {
 
 dependencies {
     implementation(libs.bundles.build.logic)
-    compileOnly(libs.detekt.gradle.plugin)
 }

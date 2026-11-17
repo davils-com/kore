@@ -16,15 +16,11 @@
 
 @file:Suppress("UnstableApiUsage")
 
-import com.davils.kore.gradle.ModulePatch
-import com.davils.kore.gradle.VersionFloor
 import com.davils.kreate.coverage.Grouping
 import com.davils.kreate.testing.KotestModule
 import com.davils.kreate.testing.LegacyTestPolicy
-import dev.detekt.gradle.Detekt
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
@@ -33,17 +29,30 @@ plugins {
 
 val koreUrl = "https://github.com/davils-com/kore"
 val annotationPackage = "com.davils.kore.core.annotation"
-val moduleName: String = "com.davils.kore.${project.name.removePrefix("kore-")}"
-val javaRelease = 25
+val koreModuleName: String = "com.davils.kore.${name.removePrefix("kore-")}"
 val parallelForks: Int = maxOf(1, Runtime.getRuntime().availableProcessors() / 2)
 val catalog: VersionCatalog = the<VersionCatalogsExtension>().named("libs")
-val hasModuleDescriptor: Boolean = file("src/main/java/module-info.java").exists()
+val jacksonFloor: String = catalog.findVersion("tooling-jackson").get().requiredVersion
+val bouncyCastleFloor: String = catalog.findVersion("tooling-bouncycastle").get().requiredVersion
 
 kreate {
     platform {
         javaVersion = JavaVersion.VERSION_25
         explicitApi = true
         allWarningsAsErrors = true
+
+        compiler {
+            progressiveMode = true
+            extraWarnings = true
+            languageVersion = KotlinVersion.KOTLIN_2_4
+            apiVersion = KotlinVersion.KOTLIN_2_4
+            jvmDefault = JvmDefaultMode.NO_COMPATIBILITY
+        }
+
+        jvm {
+            moduleName = koreModuleName
+            javaWarningsAsErrors = true
+        }
     }
 
     project {
@@ -79,6 +88,8 @@ kreate {
             buildUponDefaultConfig = true
             kreateRules = true
             formatting = true
+            libraryRules = true
+            typeResolution = true
 
             reports {
                 sarif {
@@ -187,6 +198,12 @@ kreate {
                 }
             }
 
+            releaseGuard {
+                enabled = true
+                releaseBranch = "main"
+                tagPrefix = ""
+            }
+
             repositories {
                 maven {
                     enabled = true
@@ -200,6 +217,20 @@ kreate {
                 }
             }
         }
+
+        archives {
+            legalFiles.from(isolated.rootProject.projectDirectory.file("LICENSE"))
+            legalFiles.from(isolated.rootProject.projectDirectory.file("NOTICE"))
+            implementationManifest = true
+            vendor = "Davils"
+        }
+
+        toolClasspaths {
+            floor("com.fasterxml.jackson", jacksonFloor) {
+                exclude("jackson-annotations")
+            }
+            floor("org.bouncycastle", bouncyCastleFloor)
+        }
     }
 
     assurance {
@@ -212,95 +243,4 @@ kreate {
             )
         }
     }
-}
-
-pluginManager.withPlugin("dev.detekt") {
-    dependencies.addProvider("detektPlugins", catalog.findLibrary("detekt-rules-libraries").get())
-}
-
-tasks.named("check") {
-    dependsOn(tasks.matching { task -> task.name == "detektMain" || task.name == "detektUnitTest" })
-}
-
-val requestedTasks: List<String> = gradle.startParameter.taskNames
-val formatRequested: Boolean = requestedTasks.any { name -> name.substringAfterLast(':') == "kreateFormatApply" }
-
-tasks.withType<Detekt>().matching { task -> task.name == "kreateFormatApply" }.configureEach {
-    enabled = formatRequested
-    reports.sarif.required = false
-}
-
-val jacksonFloor = VersionFloor(
-    groups = setOf("com.fasterxml.jackson"),
-    floor = catalog.findVersion("tooling-jackson").get().requiredVersion,
-    excluded = setOf("jackson-annotations"),
-)
-val bouncyCastleFloor = VersionFloor(
-    groups = setOf("org.bouncycastle"),
-    floor = catalog.findVersion("tooling-bouncycastle").get().requiredVersion,
-)
-
-configurations.matching { configuration -> configuration.name.startsWith("dokka") }.configureEach {
-    resolutionStrategy.eachDependency(jacksonFloor)
-}
-
-configurations.matching { configuration -> configuration.name == "kotlinBouncyCastleConfiguration" }.configureEach {
-    resolutionStrategy.eachDependency(bouncyCastleFloor)
-}
-
-tasks.withType<KotlinJvmCompile>().configureEach {
-    compilerOptions {
-        progressiveMode = true
-        extraWarnings = true
-        jvmDefault = JvmDefaultMode.NO_COMPATIBILITY
-        languageVersion = KotlinVersion.KOTLIN_2_4
-        apiVersion = KotlinVersion.KOTLIN_2_4
-    }
-}
-
-val kotlinClasses: Provider<Directory> = tasks.named<KotlinJvmCompile>("compileKotlin")
-    .flatMap { compile -> compile.destinationDirectory }
-
-tasks.named<JavaCompile>("compileJava") {
-    options.release = javaRelease
-    options.compilerArgs.addAll(listOf("-Xlint:all", "-Werror"))
-
-    if (hasModuleDescriptor) {
-        options.compilerArgumentProviders.add(ModulePatch(moduleName, kotlinClasses))
-    }
-}
-
-tasks.withType<PublishToMavenRepository>().configureEach {
-    dependsOn(":koreReleaseGuard")
-}
-
-val implementationVersion: Provider<String> = provider { project.version.toString() }
-
-tasks.named<Jar>("jar") {
-    from(isolated.rootProject.projectDirectory.file("LICENSE")) {
-        into("META-INF")
-    }
-
-    from(isolated.rootProject.projectDirectory.file("NOTICE")) {
-        into("META-INF")
-    }
-
-    manifest {
-        attributes(
-            mapOf(
-                "Implementation-Title" to moduleName,
-                "Implementation-Vendor" to "Davils",
-                "Implementation-Version" to implementationVersion,
-            )
-        )
-
-        if (!hasModuleDescriptor) {
-            attributes(mapOf("Automatic-Module-Name" to moduleName))
-        }
-    }
-}
-
-tasks.withType<AbstractArchiveTask>().configureEach {
-    isPreserveFileTimestamps = false
-    isReproducibleFileOrder = true
 }

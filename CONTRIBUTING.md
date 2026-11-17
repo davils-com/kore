@@ -63,7 +63,7 @@ A new dependency other than a library of JetBrains needs the approval of a maint
 `gradle.properties` holds the version in development. Every push to `develop` publishes it as a `-SNAPSHOT` to
 `https://repo.davils.com/snapshots`. A release is the tag of that version without a `v`, such as `1.0.0`, pushed
 on a commit of `main`; the pipeline signs it, publishes it to `https://repo.davils.com/releases` and attests it.
-`koreReleaseGuard` refuses a tag that does not equal the version, a tag on a commit outside `main` and a build with
+`kreateReleaseGuard` refuses a tag that does not equal the version, a tag on a commit outside `main` and a build with
 snapshot tooling, such as a Kreate snapshot. Protect the tags `[0-9]*` with a GitHub tag ruleset so that only
 maintainers can push them. Before the tag, the version gets its section in [CHANGELOG.md](CHANGELOG.md).
 

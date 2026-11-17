@@ -49,7 +49,7 @@ comments:
     active: true
   DocumentationOverPrivateProperty:
     active: true
-  # Detekt 2.0.0-alpha.6 reads the template inline only; koreLicenseHeaderCheck covers the files Detekt never reads.
+  # Detekt 2.0.0-alpha.6 reads the template inline only; kreateLicenseHeaderCheck covers the files Detekt never reads.
   AbsentOrWrongFileLicense:
     active: true
     licenseTemplateIsRegex: false

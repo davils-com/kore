@@ -6,7 +6,7 @@
       <trusted-artifacts>
          <trust file=".*-javadoc[.]jar" regex="true" reason="Documentation jars are fetched by the IDE only and never enter a build."/>
          <trust file=".*-sources[.]jar" regex="true" reason="Source jars are fetched by the IDE only and never enter a build."/>
-         <trust group="^com[.]davils($|([.].*))" version=".*-SNAPSHOT" regex="true" reason="Snapshots of Davils builds change with every push and are not signed. Kreate 4.2.0 is verified by its signature once it is released."/>
+         <trust group="^com[.]davils($|([.].*))" version=".*-SNAPSHOT" regex="true" reason="Snapshots of Davils builds change with every push and are not signed. Kreate 5.0.0 is verified by its signature once it is released."/>
       </trusted-artifacts>
       <trusted-keys>
          <trusted-key id="05F1A5DA5701D415BEFC67FC6329ADE2B25B244B" group="io.github.pdvrieze.xmlutil"/>
