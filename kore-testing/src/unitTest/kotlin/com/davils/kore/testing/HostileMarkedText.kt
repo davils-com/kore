@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.davils.kore.testing.fixture
+package com.davils.kore.testing
 
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.element

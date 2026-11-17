@@ -17,9 +17,6 @@
 package com.davils.kore.testing
 
 import com.davils.kore.core.text.TextRange
-import com.davils.kore.testing.fixture.HOSTILE_MARKED_TEXT
-import com.davils.kore.testing.fixture.isPlainAscii
-import com.davils.kore.testing.fixture.markerSoup
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldBeEmpty
