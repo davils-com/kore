@@ -17,6 +17,10 @@
 # What the pipeline of Kore does. Every key overrides a default of
 # actions/plan/defaults.yml in davils-com/kotlin-workflow; a key that is not there stops the run.
 version: 1
+gradle:
+  # While Kreate is a snapshot, a run resolves its newest build instead of the one the cache kept for a day.
+  # Drop --refresh-dependencies together with the snapshot trust rule of gradle/verification-metadata.xml.
+  args: ["--stacktrace", "--refresh-dependencies"]
 
 check:
   tasks: [check]
