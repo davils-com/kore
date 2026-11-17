@@ -7,7 +7,6 @@
          <trust file=".*-javadoc[.]jar" regex="true" reason="Documentation jars are fetched by the IDE only and never enter a build."/>
          <trust file=".*-sources[.]jar" regex="true" reason="Source jars are fetched by the IDE only and never enter a build."/>
          <trust group="gradle" name="gradle" file="gradle-.*-src[.]zip" regex="true" reason="The sources of the Gradle distribution are fetched by the IDE only, to navigate the Gradle API, and never enter a build."/>
-         <trust group="^com[.]davils($|([.].*))" version=".*-SNAPSHOT" regex="true" reason="Snapshots of Davils builds change with every push and are not signed. Kreate 5.0.0 is verified by its signature once it is released."/>
       </trusted-artifacts>
       <trusted-keys>
          <trusted-key id="05F1A5DA5701D415BEFC67FC6329ADE2B25B244B" group="io.github.pdvrieze.xmlutil"/>
@@ -25,6 +24,7 @@
          <trusted-key id="2FC53E6B1F681184F4CCD637F5C81DE10A0B8ECC" group="org.snakeyaml" name="snakeyaml-engine" version="2.10"/>
          <trusted-key id="33FD4BFD33554634053D73C0C2148900BCD3C2AF" group="^org[.]jetbrains($|([.].*))" regex="true"/>
          <trusted-key id="34441E504A937F43EB0DAEF96A65176A0FB1CD0B" group="org.apache.groovy"/>
+         <trusted-key id="36F578E8AD2D4391E0FA6C18154C625FAD370063" group="^com[.]davils($|([.].*))" regex="true"/>
          <trusted-key id="5CBA19E56141E78D54BF716F08A4A4958D61FC3D" group="io.kotest"/>
          <trusted-key id="5F6C2148AD4911FE308110E5F0D0AE433308B042" group="dev.detekt"/>
          <trusted-key id="60200AC4AE761F1614D6C46766D68DAA073BE985" group="org.slf4j"/>
