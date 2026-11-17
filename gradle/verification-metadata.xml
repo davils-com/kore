@@ -7,7 +7,6 @@
          <trust file=".*-javadoc[.]jar" regex="true" reason="Documentation jars are fetched by the IDE only and never enter a build."/>
          <trust file=".*-sources[.]jar" regex="true" reason="Source jars are fetched by the IDE only and never enter a build."/>
          <trust group="gradle" name="gradle" file="gradle-.*-src[.]zip" regex="true" reason="The sources of the Gradle distribution are fetched by the IDE only, to navigate the Gradle API, and never enter a build."/>
-         <trust group="^com[.]davils($|([.].*))" version=".*-SNAPSHOT" regex="true" reason="Kreate 5.0.2-SNAPSHOT is tried on develop before its release; snapshots of Davils builds are not signed."/>
       </trusted-artifacts>
       <trusted-keys>
          <trusted-key id="05F1A5DA5701D415BEFC67FC6329ADE2B25B244B" group="io.github.pdvrieze.xmlutil"/>
