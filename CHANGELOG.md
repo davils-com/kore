@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- **A `wasmJs` target.** `kore-core` and `kore-testing` are Kotlin Multiplatform libraries for the JVM and for
+  WebAssembly in a JavaScript host. Everything that does not need the JDK is common code, and the same tests run on
+  both targets, under Node.js on Wasm. On Wasm, the escaping of untrusted text reads the Unicode categories of the
+  JavaScript engine, random bits come from `crypto.getRandomValues`, and `Parameters.load` reads `process.env` under
+  Node.js and no environment in a browser.
+
+### Changed
+
+- **Breaking: the JVM-only members became extension functions of the JVM.** `Converters.uri`, `Converters.path` and
+  `Converters.file` are extensions in `com.davils.kore.core.arguments.conversion`, `Uuid.toJavaUuid` and
+  `Uuid.fromJavaUuid` extensions in `com.davils.kore.core.identity`. Kotlin code imports them; Java code calls them
+  on `JvmConvertersKt` and `JavaUuidsKt`. They, `blocking` and `NativeLibrary` exist on the JVM only.
+- **Breaking: Maven builds depend on `kore-core-jvm` and `kore-testing-jvm`.** `com.davils:kore-core` and
+  `com.davils:kore-testing` are the multiplatform publications now, from which Gradle picks the JVM or the Wasm
+  variant.
+- **`RedactedException` no longer disables suppression.** It still has no cause, no suppressed exception when Kore
+  creates it and, on the JVM, no stack trace.
+
 ## 1.0.3 - 2026-11-18
 
 ### Changed

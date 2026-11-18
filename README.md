@@ -1,15 +1,21 @@
 # Kore
 
-Kore is the foundation library of Davils: small, strict building blocks for Kotlin on the JVM that are safe to feed
-with untrusted input. It is published under the [Apache License 2.0](LICENSE).
+Kore is the foundation library of Davils: small, strict building blocks for Kotlin on the JVM and on WebAssembly
+(`wasmJs`) that are safe to feed with untrusted input. It is published under the [Apache License 2.0](LICENSE).
 
 | Module | Artifact | What it holds |
 |---|---|---|
 | `kore-core` | `com.davils:kore-core` | Semantic versions and npm-style ranges, UUIDs of version 4 and 7, validation with paths and stable codes, text positions, edits and snippets, command line and environment parameters, principals, data sizes, architecture contracts and the `Davils*` annotations |
 | `kore-testing` | `com.davils:kore-testing` | Deterministic UUIDs and marked text for tests; keep it out of production class paths |
 
-Kore requires JDK 25 and is written for Kotlin 2.4 or newer. Besides the Kotlin standard library (2.4.21 or newer) it
-has a single runtime dependency, `kotlinx-coroutines-core`. `kore-core` is a named Java module, `com.davils.kore.core`.
+Kore is a Kotlin Multiplatform library for two targets, `jvm` and `wasmJs`, and is written for Kotlin 2.4 or newer.
+Besides the Kotlin standard library (2.4.21 or newer) it has a single runtime dependency, `kotlinx-coroutines-core`.
+On the JVM it requires JDK 25, and `kore-core` is a named Java module, `com.davils.kore.core`. On Wasm it is tested
+under Node.js and runs in the browser as well.
+
+A few parts exist on the JVM only, because they are built on the JDK: the converters `Converters.path`,
+`Converters.file` and `Converters.uri`, the conversion between `Uuid` and `java.util.UUID`, `blocking` and
+`NativeLibrary`. Everything else is common code and behaves the same on both targets.
 
 ## Installation
 
@@ -36,6 +42,9 @@ dependencies {
     testImplementation("com.davils:kore-testing:1.0.3")
 }
 ```
+
+Gradle picks the JVM or the Wasm variant from these coordinates. A Maven build names the JVM artifacts directly, from
+2.0.0 on `com.davils:kore-core-jvm` and `com.davils:kore-testing-jvm`.
 
 Snapshots of the `develop` branch are in `https://repo.davils.com/snapshots`. They are neither signed nor attested
 and not meant for production.

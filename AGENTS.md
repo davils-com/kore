@@ -1,7 +1,8 @@
 # AGENT.md
 
 Binding rules for every agent and every person working in this repository. Kore is the foundation library of
-Davils: small, strict building blocks for Kotlin on the JVM that other Davils libraries and applications build on.
+Davils: small, strict building blocks for Kotlin on the JVM and on WebAssembly (`wasmJs`) that other Davils libraries
+and applications build on.
 It is published under the Apache License 2.0 and is built to the standard it is used for, with security first.
 
 ## Repository
@@ -13,8 +14,21 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 | `build-logic` | - | One convention plugin per Kreate concern, composed by `kore.kotlin-library` for the modules and `kore.root` for the root project; they hold nothing but `plugins { }` and `kreate { }` |
 
 The root package of a module is `com.davils.kore.<module without kore->`, such as `com.davils.kore.core`, and its
-Java module has the same name. `kore-core` declares it in `src/main/java/module-info.java` and exports only packages
-with public API; every other module names it as `Automatic-Module-Name`.
+Java module has the same name. `kore-core` declares it in `src/jvmMain/java/module-info.java` and exports only
+packages with public API; every other module names it as `Automatic-Module-Name`.
+
+## Targets
+
+Every module is a Kotlin Multiplatform library with two targets: `jvm` and `wasmJs`. The Wasm tests run under Node.js;
+the published klib runs in the browser as well.
+
+- Code lives in `src/commonMain/kotlin` unless it needs the JVM. What only the JVM can offer, such as files, paths,
+  URIs, threads, native libraries and the types of the JDK, lives in `src/jvmMain/kotlin`; a member of a common class
+  that needs a JDK type becomes an extension function there.
+- A platform difference hides behind an `internal expect fun` in `<Role>.kt` with its `actual` in `<Role>.jvm.kt` and
+  `<Role>.wasmJs.kt`. Kore declares no `expect` or `actual` class: they are a Beta language feature.
+- JavaScript interop is written with `js("...")` in `src/wasmJsMain/kotlin` only, behind a file-level
+  `@file:OptIn(ExperimentalWasmJsInterop::class)`.
 
 ## Verify
 
@@ -66,7 +80,8 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
   `equals`, `hashCode` and `toString`; `value class` stays allowed.
 - **Explicit return types** on public functions with an expression body or a result; a block body that returns
   nothing omits `: Unit`, which the compiler rejects as redundant.
-- **Kotlin first**, Java only where Kotlin offers no equivalent. Atomics come from `java.util.concurrent.atomic`.
+- **Kotlin first**, Java only where Kotlin offers no equivalent. Atomics come from `kotlin.concurrent.atomics`, through
+  a local `@OptIn(ExperimentalAtomicApi::class)`.
   Experimental Kotlin API is allowed only through a local `@OptIn` and never appears in a public signature.
 - **Nothing global.** No mutable singletons, no static configuration, no threads or timers of the library's own. The
   one sanctioned exception is the process-wide monotonic state of `UuidV7Generator`, documented in its KDoc.
@@ -95,7 +110,8 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   sanitizer, the context element of principals or the monotonic UUID state, lives in the `internal` subpackage of
   its package, for example `com.davils.kore.core.text.internal`, and `module-info.java` never exports an `internal`
   package.
-- **Secure randomness only.** No `java.util.Random`, `kotlin.random.Random` or `ThreadLocalRandom`.
+- **Secure randomness only.** No `java.util.Random`, `kotlin.random.Random` or `ThreadLocalRandom`. Random bits come
+  from the internal `SecureRandomness`: `SecureRandom` on the JVM, `crypto.getRandomValues` on Wasm.
 - **Every sink has an injection test.** A renderer is tested with the `hostileText` fixture and
   `shouldBeSafeToShow`; a sensitive value has a property test that it appears nowhere.
 
@@ -103,8 +119,9 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
 
 - Kotest `FunSpec` only, Kotest assertions only, no mocking library; fakes come from `kore-testing` or a `fixture`.
 - One `context` per behaviour or function; test names read as sentences.
-- Tests live in `src/unitTest/kotlin`, in the package of the code they test, even when that package holds a single
-  test. A fixture lives in the `fixture` folder of the only subpackage that uses it, or in the shared `fixture` folder
+- Tests live in `src/commonUnitTest/kotlin`, which runs on the JVM and on Wasm, in the package of the code they test,
+  even when that package holds a single test. A test that needs the JVM, through reflection, threads, files, Java
+  serialization or a JDK type, lives in `src/jvmUnitTest/kotlin`; a test of common code stays common wherever it can. A fixture lives in the `fixture` folder of the only subpackage that uses it, or in the shared `fixture` folder
   of the area; a `fixture` folder holds at least two files, so a lone fixture lives next to the tests that use it.
   `src/test` is rejected by the build.
 - Property tests with adversarial generators for every parser and every security invariant.
@@ -113,7 +130,7 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
 ## Build
 
 - Every module applies exactly one plugin, `id("kore.kotlin-library")`, and declares nothing but its description
-  and its dependencies. Detekt, Kover, Kotest, Trivy, the compiler and publishing are configured only in
+  and its dependencies, through the configurations of the source sets such as `commonMainApi`. Detekt, Kover, Kotest, Trivy, the compiler and publishing are configured only in
   `build-logic`, through Kreate.
 - `build-logic` holds no Kotlin classes, no tasks of its own and no Gradle API calls beyond reading the version
   catalog. What Kreate cannot express yet is added to Kreate, never programmed here.
@@ -126,7 +143,8 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   | `kore.git-hooks` | The Git hooks |
   | `kore.trivy` | Every Trivy scan |
   | `kore.assurance` | The assurance gate and its `ignore` rules |
-  | `kore.platform` | The JDK, the Kotlin compiler and the Java module name |
+  | `kore.platform` | The JDK, the Kotlin compiler, the targets and the Java module name |
+  | `kore.web-tools` | Node.js and Yarn for the Wasm target, from the repositories of the settings |
   | `kore.testing` | Kotest and the test suites |
   | `kore.detekt` | Detekt and its reports |
   | `kore.coverage` | Kover and its verification |
@@ -145,8 +163,9 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   needed; every other dependency needs the approval of a maintainer.
 - Only `repo.davils.com` serves `com.davils` and its subgroups, through `exclusiveContent`. Everything else comes
   from Maven Central, except the Gradle plugins `kotlin-dsl`, `kotlinx-benchmark-plugin` and
-  `kotest-framework-plugin-gradle`, which only the Gradle Plugin Portal has. Nothing is ever resolved from
-  `mavenLocal()`.
+  `kotest-framework-plugin-gradle`, which only the Gradle Plugin Portal has, and Node.js and Yarn, which come from
+  `nodejs.org` and the GitHub releases of Yarn. `gradle/verification-metadata.xml` names the Node.js archive of every
+  platform the pipeline runs on. Nothing is ever resolved from `mavenLocal()`.
 - After a dependency changes, refresh the locks and the verification metadata and review what changed:
 
   ```bash
