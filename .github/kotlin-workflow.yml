@@ -24,7 +24,7 @@ check:
   tasks: [check]
   reproducible:
     clean-tasks: [":kore-core:clean", ":kore-testing:clean"]
-    tasks: [":kore-core:jar", ":kore-testing:jar"]
+    tasks: [":kore-core:jvmJar", ":kore-testing:jvmJar"]
     artifacts: ["kore-core/build/libs/*.jar", "kore-testing/build/libs/*.jar"]
 
 policy:
@@ -62,17 +62,32 @@ snapshot:
 release:
   publications:
     discovery: explicit
+    # In upload order: the publication of every target before the multiplatform publication that names them.
     list:
+      - path: com/davils/kore-core-jvm
+        artifact: kore-core-jvm
+        task: ":kore-core:publishJvmPublicationToDavilsRepository"
+      - path: com/davils/kore-core-wasm-js
+        artifact: kore-core-wasm-js
+        task: ":kore-core:publishWasmJsPublicationToDavilsRepository"
       - path: com/davils/kore-core
         artifact: kore-core
-        task: ":kore-core:publishMavenPublicationToDavilsRepository"
+        task: ":kore-core:publishKotlinMultiplatformPublicationToDavilsRepository"
+      - path: com/davils/kore-testing-jvm
+        artifact: kore-testing-jvm
+        task: ":kore-testing:publishJvmPublicationToDavilsRepository"
+      - path: com/davils/kore-testing-wasm-js
+        artifact: kore-testing-wasm-js
+        task: ":kore-testing:publishWasmJsPublicationToDavilsRepository"
       - path: com/davils/kore-testing
         artifact: kore-testing
-        task: ":kore-testing:publishMavenPublicationToDavilsRepository"
+        task: ":kore-testing:publishKotlinMultiplatformPublicationToDavilsRepository"
   attest:
     subjects:
       - "kore-core/build/libs/*.jar"
+      - "kore-core/build/libs/*.klib"
       - "kore-testing/build/libs/*.jar"
+      - "kore-testing/build/libs/*.klib"
   github-release:
     enabled: false
 
