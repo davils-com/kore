@@ -32,8 +32,8 @@ dependencyResolutionManagement {
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.davils:kore-core:1.0.2")
-    testImplementation("com.davils:kore-testing:1.0.2")
+    implementation("com.davils:kore-core:1.0.3")
+    testImplementation("com.davils:kore-testing:1.0.3")
 }
 ```
 
