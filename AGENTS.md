@@ -144,8 +144,9 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
 - Dependencies are declared in `gradle/libs.versions.toml`. Libraries of JetBrains may be added when they are
   needed; every other dependency needs the approval of a maintainer.
 - Only `repo.davils.com` serves `com.davils` and its subgroups, through `exclusiveContent`. Everything else comes
-  from Maven Central, except the Gradle plugins `kotlin-dsl` and `kotlinx-benchmark-plugin`, which only the Gradle
-  Plugin Portal has. Nothing is ever resolved from `mavenLocal()`.
+  from Maven Central, except the Gradle plugins `kotlin-dsl`, `kotlinx-benchmark-plugin` and
+  `kotest-framework-plugin-gradle`, which only the Gradle Plugin Portal has. Nothing is ever resolved from
+  `mavenLocal()`.
 - After a dependency changes, refresh the locks and the verification metadata and review what changed:
 
   ```bash

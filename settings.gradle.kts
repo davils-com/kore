@@ -49,6 +49,7 @@ pluginManagement {
 
             filter {
                 includeModule("org.jetbrains.kotlinx", "kotlinx-benchmark-plugin")
+                includeModule("io.kotest", "kotest-framework-plugin-gradle")
             }
         }
 
