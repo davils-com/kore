@@ -25,5 +25,5 @@ kreate {
 }
 
 dependencies {
-    api(libs.kotlinx.coroutines.core)
+    commonMainApi(libs.kotlinx.coroutines.core)
 }

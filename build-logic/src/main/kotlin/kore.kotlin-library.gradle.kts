@@ -15,13 +15,14 @@
  */
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    id("org.jetbrains.kotlin.multiplatform")
     id("kore.base")
     id("kore.dependency-locking")
     id("kore.git-hooks")
     id("kore.trivy")
     id("kore.assurance")
     id("kore.platform")
+    id("kore.web-tools")
     id("kore.testing")
     id("kore.detekt")
     id("kore.coverage")
@@ -36,10 +37,14 @@ kreate {
     assurance {
         advisories {
             configurations = setOf(
-                "compileClasspath",
-                "runtimeClasspath",
-                "unitTestCompileClasspath",
-                "unitTestRuntimeClasspath",
+                "jvmCompileClasspath",
+                "jvmRuntimeClasspath",
+                "jvmUnitTestCompileClasspath",
+                "jvmUnitTestRuntimeClasspath",
+                "wasmJsCompileClasspath",
+                "wasmJsRuntimeClasspath",
+                "wasmJsTestCompileClasspath",
+                "wasmJsTestRuntimeClasspath",
             )
         }
     }

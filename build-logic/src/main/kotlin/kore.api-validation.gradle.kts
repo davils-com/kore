@@ -22,6 +22,7 @@ kreate {
     project {
         apiValidation {
             enabled = true
+            klib = true
 
             semver {
                 enabled = true

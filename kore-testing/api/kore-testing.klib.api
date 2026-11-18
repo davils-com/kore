@@ -1,0 +1,48 @@
+// Klib ABI Dump
+// Targets: [wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.davils:kore-testing>
+final class com.davils.kore.testing/MarkedText { // com.davils.kore.testing/MarkedText|null[0]
+    constructor <init>(kotlin/String, kotlin.collections/List<kotlin/Int>, kotlin.collections/List<com.davils.kore.core.text/TextRange>) // com.davils.kore.testing/MarkedText.<init>|<init>(kotlin.String;kotlin.collections.List<kotlin.Int>;kotlin.collections.List<com.davils.kore.core.text.TextRange>){}[0]
+
+    final val caret // com.davils.kore.testing/MarkedText.caret|{}caret[0]
+        final fun <get-caret>(): kotlin/Int // com.davils.kore.testing/MarkedText.caret.<get-caret>|<get-caret>(){}[0]
+    final val carets // com.davils.kore.testing/MarkedText.carets|{}carets[0]
+        final fun <get-carets>(): kotlin.collections/List<kotlin/Int> // com.davils.kore.testing/MarkedText.carets.<get-carets>|<get-carets>(){}[0]
+    final val range // com.davils.kore.testing/MarkedText.range|{}range[0]
+        final fun <get-range>(): com.davils.kore.core.text/TextRange // com.davils.kore.testing/MarkedText.range.<get-range>|<get-range>(){}[0]
+    final val ranges // com.davils.kore.testing/MarkedText.ranges|{}ranges[0]
+        final fun <get-ranges>(): kotlin.collections/List<com.davils.kore.core.text/TextRange> // com.davils.kore.testing/MarkedText.ranges.<get-ranges>|<get-ranges>(){}[0]
+    final val text // com.davils.kore.testing/MarkedText.text|{}text[0]
+        final fun <get-text>(): kotlin/String // com.davils.kore.testing/MarkedText.text.<get-text>|<get-text>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.testing/MarkedText.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.testing/MarkedText.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.testing/MarkedText.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.testing/MarkedText.Companion|null[0]
+        final const val CARET // com.davils.kore.testing/MarkedText.Companion.CARET|{}CARET[0]
+            final fun <get-CARET>(): kotlin/String // com.davils.kore.testing/MarkedText.Companion.CARET.<get-CARET>|<get-CARET>(){}[0]
+        final const val RANGE_END // com.davils.kore.testing/MarkedText.Companion.RANGE_END|{}RANGE_END[0]
+            final fun <get-RANGE_END>(): kotlin/String // com.davils.kore.testing/MarkedText.Companion.RANGE_END.<get-RANGE_END>|<get-RANGE_END>(){}[0]
+        final const val RANGE_START // com.davils.kore.testing/MarkedText.Companion.RANGE_START|{}RANGE_START[0]
+            final fun <get-RANGE_START>(): kotlin/String // com.davils.kore.testing/MarkedText.Companion.RANGE_START.<get-RANGE_START>|<get-RANGE_START>(){}[0]
+
+        final fun of(kotlin/String): com.davils.kore.testing/MarkedText // com.davils.kore.testing/MarkedText.Companion.of|of(kotlin.String){}[0]
+    }
+}
+
+final class com.davils.kore.testing/SequentialUuidV7Generator : com.davils.kore.core.identity.generator/UuidGenerator<com.davils.kore.core.identity/UuidV7> { // com.davils.kore.testing/SequentialUuidV7Generator|null[0]
+    constructor <init>(kotlin.time/Instant = ...) // com.davils.kore.testing/SequentialUuidV7Generator.<init>|<init>(kotlin.time.Instant){}[0]
+
+    final val issued // com.davils.kore.testing/SequentialUuidV7Generator.issued|{}issued[0]
+        final fun <get-issued>(): kotlin/Long // com.davils.kore.testing/SequentialUuidV7Generator.issued.<get-issued>|<get-issued>(){}[0]
+    final val start // com.davils.kore.testing/SequentialUuidV7Generator.start|{}start[0]
+        final fun <get-start>(): kotlin.time/Instant // com.davils.kore.testing/SequentialUuidV7Generator.start.<get-start>|<get-start>(){}[0]
+
+    final fun next(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.testing/SequentialUuidV7Generator.next|next(){}[0]
+}

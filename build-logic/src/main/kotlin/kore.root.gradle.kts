@@ -23,4 +23,5 @@ plugins {
     id("kore.assurance")
     id("kore.changelog")
     id("kore.license-header")
+    id("kore.web-tools")
 }

@@ -25,5 +25,5 @@ kreate {
 }
 
 dependencies {
-    api(project(":kore-core"))
+    commonMainApi(project(":kore-core"))
 }

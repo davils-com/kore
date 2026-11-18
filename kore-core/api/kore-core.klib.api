@@ -1,0 +1,1254 @@
+// Klib ABI Dump
+// Targets: [wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.davils:kore-core>
+open annotation class com.davils.kore.core.annotation/DavilsDsl : kotlin/Annotation { // com.davils.kore.core.annotation/DavilsDsl|null[0]
+    constructor <init>() // com.davils.kore.core.annotation/DavilsDsl.<init>|<init>(){}[0]
+}
+
+open annotation class com.davils.kore.core.annotation/DavilsExperimental : kotlin/Annotation { // com.davils.kore.core.annotation/DavilsExperimental|null[0]
+    constructor <init>() // com.davils.kore.core.annotation/DavilsExperimental.<init>|<init>(){}[0]
+}
+
+open annotation class com.davils.kore.core.annotation/DavilsGenerated : kotlin/Annotation { // com.davils.kore.core.annotation/DavilsGenerated|null[0]
+    constructor <init>(kotlin/String, kotlin/String) // com.davils.kore.core.annotation/DavilsGenerated.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+    final val by // com.davils.kore.core.annotation/DavilsGenerated.by|{}by[0]
+        final fun <get-by>(): kotlin/String // com.davils.kore.core.annotation/DavilsGenerated.by.<get-by>|<get-by>(){}[0]
+    final val from // com.davils.kore.core.annotation/DavilsGenerated.from|{}from[0]
+        final fun <get-from>(): kotlin/String // com.davils.kore.core.annotation/DavilsGenerated.from.<get-from>|<get-from>(){}[0]
+}
+
+open annotation class com.davils.kore.core.annotation/DavilsInternal : kotlin/Annotation { // com.davils.kore.core.annotation/DavilsInternal|null[0]
+    constructor <init>() // com.davils.kore.core.annotation/DavilsInternal.<init>|<init>(){}[0]
+}
+
+open annotation class com.davils.kore.core.annotation/DavilsPlatformBinding : kotlin/Annotation { // com.davils.kore.core.annotation/DavilsPlatformBinding|null[0]
+    constructor <init>() // com.davils.kore.core.annotation/DavilsPlatformBinding.<init>|<init>(){}[0]
+}
+
+final enum class com.davils.kore.core.architecture.data/DataMode : kotlin/Enum<com.davils.kore.core.architecture.data/DataMode> { // com.davils.kore.core.architecture.data/DataMode|null[0]
+    enum entry Live // com.davils.kore.core.architecture.data/DataMode.Live|null[0]
+    enum entry Mock // com.davils.kore.core.architecture.data/DataMode.Mock|null[0]
+
+    final val entries // com.davils.kore.core.architecture.data/DataMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.architecture.data/DataMode> // com.davils.kore.core.architecture.data/DataMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.architecture.data/DataMode // com.davils.kore.core.architecture.data/DataMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.architecture.data/DataMode> // com.davils.kore.core.architecture.data/DataMode.values|values#static(){}[0]
+}
+
+final enum class com.davils.kore.core.arguments/UnknownArgumentPolicy : kotlin/Enum<com.davils.kore.core.arguments/UnknownArgumentPolicy> { // com.davils.kore.core.arguments/UnknownArgumentPolicy|null[0]
+    enum entry Collect // com.davils.kore.core.arguments/UnknownArgumentPolicy.Collect|null[0]
+    enum entry Reject // com.davils.kore.core.arguments/UnknownArgumentPolicy.Reject|null[0]
+
+    final val entries // com.davils.kore.core.arguments/UnknownArgumentPolicy.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.arguments/UnknownArgumentPolicy> // com.davils.kore.core.arguments/UnknownArgumentPolicy.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.arguments/UnknownArgumentPolicy // com.davils.kore.core.arguments/UnknownArgumentPolicy.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.arguments/UnknownArgumentPolicy> // com.davils.kore.core.arguments/UnknownArgumentPolicy.values|values#static(){}[0]
+}
+
+final enum class com.davils.kore.core.identity/UuidVersion : kotlin/Enum<com.davils.kore.core.identity/UuidVersion> { // com.davils.kore.core.identity/UuidVersion|null[0]
+    enum entry Random // com.davils.kore.core.identity/UuidVersion.Random|null[0]
+    enum entry TimeOrdered // com.davils.kore.core.identity/UuidVersion.TimeOrdered|null[0]
+
+    final val entries // com.davils.kore.core.identity/UuidVersion.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.identity/UuidVersion> // com.davils.kore.core.identity/UuidVersion.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val number // com.davils.kore.core.identity/UuidVersion.number|{}number[0]
+        final fun <get-number>(): kotlin/Int // com.davils.kore.core.identity/UuidVersion.number.<get-number>|<get-number>(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.identity/UuidVersion // com.davils.kore.core.identity/UuidVersion.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.identity/UuidVersion> // com.davils.kore.core.identity/UuidVersion.values|values#static(){}[0]
+}
+
+final enum class com.davils.kore.core.principal/PrincipalKind : kotlin/Enum<com.davils.kore.core.principal/PrincipalKind> { // com.davils.kore.core.principal/PrincipalKind|null[0]
+    enum entry Service // com.davils.kore.core.principal/PrincipalKind.Service|null[0]
+    enum entry System // com.davils.kore.core.principal/PrincipalKind.System|null[0]
+    enum entry User // com.davils.kore.core.principal/PrincipalKind.User|null[0]
+
+    final val entries // com.davils.kore.core.principal/PrincipalKind.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.principal/PrincipalKind> // com.davils.kore.core.principal/PrincipalKind.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.principal/PrincipalKind // com.davils.kore.core.principal/PrincipalKind.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.principal/PrincipalKind> // com.davils.kore.core.principal/PrincipalKind.values|values#static(){}[0]
+}
+
+final enum class com.davils.kore.core.validation.violation/Severity : kotlin/Enum<com.davils.kore.core.validation.violation/Severity> { // com.davils.kore.core.validation.violation/Severity|null[0]
+    enum entry Error // com.davils.kore.core.validation.violation/Severity.Error|null[0]
+    enum entry Warning // com.davils.kore.core.validation.violation/Severity.Warning|null[0]
+
+    final val entries // com.davils.kore.core.validation.violation/Severity.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.validation.violation/Severity> // com.davils.kore.core.validation.violation/Severity.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.validation.violation/Severity.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.validation.violation/Severity> // com.davils.kore.core.validation.violation/Severity.values|values#static(){}[0]
+}
+
+final enum class com.davils.kore.core.version/PreReleasePolicy : kotlin/Enum<com.davils.kore.core.version/PreReleasePolicy> { // com.davils.kore.core.version/PreReleasePolicy|null[0]
+    enum entry ByPrecedence // com.davils.kore.core.version/PreReleasePolicy.ByPrecedence|null[0]
+    enum entry ReleasesOnly // com.davils.kore.core.version/PreReleasePolicy.ReleasesOnly|null[0]
+    enum entry SameCoreOnly // com.davils.kore.core.version/PreReleasePolicy.SameCoreOnly|null[0]
+
+    final val entries // com.davils.kore.core.version/PreReleasePolicy.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.version/PreReleasePolicy> // com.davils.kore.core.version/PreReleasePolicy.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.version/PreReleasePolicy // com.davils.kore.core.version/PreReleasePolicy.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.version/PreReleasePolicy> // com.davils.kore.core.version/PreReleasePolicy.values|values#static(){}[0]
+}
+
+abstract fun interface <#A: in com.davils.kore.core.architecture.data/DataTransferObject, #B: out com.davils.kore.core.architecture.domain/DomainModel> com.davils.kore.core.architecture.mapper/DomainMapper { // com.davils.kore.core.architecture.mapper/DomainMapper|null[0]
+    abstract fun toDomain(#A): #B // com.davils.kore.core.architecture.mapper/DomainMapper.toDomain|toDomain(1:0){}[0]
+}
+
+abstract fun interface <#A: in com.davils.kore.core.architecture.domain/DomainModel, #B: out com.davils.kore.core.architecture.data/DataTransferObject> com.davils.kore.core.architecture.mapper/DtoMapper { // com.davils.kore.core.architecture.mapper/DtoMapper|null[0]
+    abstract fun toDto(#A): #B // com.davils.kore.core.architecture.mapper/DtoMapper.toDto|toDto(1:0){}[0]
+}
+
+abstract fun interface <#A: in kotlin/Any?, #B: out kotlin/Any?> com.davils.kore.core.architecture.domain/UseCase { // com.davils.kore.core.architecture.domain/UseCase|null[0]
+    abstract suspend fun invoke(#A): #B // com.davils.kore.core.architecture.domain/UseCase.invoke|invoke(1:0){}[0]
+}
+
+abstract fun interface <#A: out com.davils.kore.core.identity/Uuid> com.davils.kore.core.identity.generator/UuidGenerator { // com.davils.kore.core.identity.generator/UuidGenerator|null[0]
+    abstract fun next(): #A // com.davils.kore.core.identity.generator/UuidGenerator.next|next(){}[0]
+}
+
+abstract fun interface <#A: out kotlin/Any?> com.davils.kore.core.arguments.conversion/Converter { // com.davils.kore.core.arguments.conversion/Converter|null[0]
+    open val typeName // com.davils.kore.core.arguments.conversion/Converter.typeName|{}typeName[0]
+        open fun <get-typeName>(): kotlin/String // com.davils.kore.core.arguments.conversion/Converter.typeName.<get-typeName>|<get-typeName>(){}[0]
+
+    abstract fun convert(kotlin/String): #A // com.davils.kore.core.arguments.conversion/Converter.convert|convert(kotlin.String){}[0]
+}
+
+abstract fun interface <#A: out kotlin/Any?> com.davils.kore.core.dsl/Builder { // com.davils.kore.core.dsl/Builder|null[0]
+    abstract fun build(): #A // com.davils.kore.core.dsl/Builder.build|build(){}[0]
+}
+
+abstract interface <#A: com.davils.kore.core.architecture.domain/DomainModel, #B: com.davils.kore.core.architecture.data/DataTransferObject> com.davils.kore.core.architecture.mapper/Mapper : com.davils.kore.core.architecture.mapper/DomainMapper<#B, #A>, com.davils.kore.core.architecture.mapper/DtoMapper<#A, #B> // com.davils.kore.core.architecture.mapper/Mapper|null[0]
+
+abstract interface <#A: com.davils.kore.core.architecture.domain/DomainModel> com.davils.kore.core.architecture.data/Repository // com.davils.kore.core.architecture.data/Repository|null[0]
+
+abstract interface com.davils.kore.core.architecture.data/DataSource // com.davils.kore.core.architecture.data/DataSource|null[0]
+
+abstract interface com.davils.kore.core.architecture.data/DataTransferObject // com.davils.kore.core.architecture.data/DataTransferObject|null[0]
+
+abstract interface com.davils.kore.core.architecture.domain/DomainModel // com.davils.kore.core.architecture.domain/DomainModel|null[0]
+
+abstract interface com.davils.kore.core.arguments/ValueSource { // com.davils.kore.core.arguments/ValueSource|null[0]
+    abstract val name // com.davils.kore.core.arguments/ValueSource.name|{}name[0]
+        abstract fun <get-name>(): kotlin/String // com.davils.kore.core.arguments/ValueSource.name.<get-name>|<get-name>(){}[0]
+
+    abstract suspend fun read(com.davils.kore.core.arguments/ParameterInfo): kotlin/String? // com.davils.kore.core.arguments/ValueSource.read|read(com.davils.kore.core.arguments.ParameterInfo){}[0]
+}
+
+abstract interface com.davils.kore.core.validation/Validatable { // com.davils.kore.core.validation/Validatable|null[0]
+    abstract fun (com.davils.kore.core.validation/ValidationScope).validate() // com.davils.kore.core.validation/Validatable.validate|validate@com.davils.kore.core.validation.ValidationScope(){}[0]
+}
+
+sealed interface com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin|null[0]
+    abstract fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
+
+    final class Environment : com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin.Environment|null[0]
+        constructor <init>(kotlin/String) // com.davils.kore.core.arguments.report/ValueOrigin.Environment.<init>|<init>(kotlin.String){}[0]
+
+        final val variable // com.davils.kore.core.arguments.report/ValueOrigin.Environment.variable|{}variable[0]
+            final fun <get-variable>(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.Environment.variable.<get-variable>|<get-variable>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments.report/ValueOrigin.Environment.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments.report/ValueOrigin.Environment.hashCode|hashCode(){}[0]
+        final fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.Environment.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.Environment.toString|toString(){}[0]
+    }
+
+    final class External : com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin.External|null[0]
+        constructor <init>(kotlin/String) // com.davils.kore.core.arguments.report/ValueOrigin.External.<init>|<init>(kotlin.String){}[0]
+
+        final val sourceName // com.davils.kore.core.arguments.report/ValueOrigin.External.sourceName|{}sourceName[0]
+            final fun <get-sourceName>(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.External.sourceName.<get-sourceName>|<get-sourceName>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments.report/ValueOrigin.External.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments.report/ValueOrigin.External.hashCode|hashCode(){}[0]
+        final fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.External.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.External.toString|toString(){}[0]
+    }
+
+    final object CommandLine : com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin.CommandLine|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments.report/ValueOrigin.CommandLine.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments.report/ValueOrigin.CommandLine.hashCode|hashCode(){}[0]
+        final fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.CommandLine.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.CommandLine.toString|toString(){}[0]
+    }
+
+    final object Default : com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin.Default|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments.report/ValueOrigin.Default.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments.report/ValueOrigin.Default.hashCode|hashCode(){}[0]
+        final fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.Default.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.Default.toString|toString(){}[0]
+    }
+}
+
+abstract class <#A: com.davils.kore.core.validation/Validatable> com.davils.kore.core.dsl/ValidatingBuilder : com.davils.kore.core.dsl/Builder<#A> { // com.davils.kore.core.dsl/ValidatingBuilder|null[0]
+    constructor <init>() // com.davils.kore.core.dsl/ValidatingBuilder.<init>|<init>(){}[0]
+
+    open val subject // com.davils.kore.core.dsl/ValidatingBuilder.subject|{}subject[0]
+        open fun <get-subject>(): kotlin/String // com.davils.kore.core.dsl/ValidatingBuilder.subject.<get-subject>|<get-subject>(){}[0]
+
+    abstract fun assemble(): #A // com.davils.kore.core.dsl/ValidatingBuilder.assemble|assemble(){}[0]
+    final fun <#A1: com.davils.kore.core.validation/Validatable, #B1: com.davils.kore.core.dsl/ValidatingBuilder<#A1>> collect(kotlin.collections/MutableList<in #A1>, #B1, kotlin.reflect/KProperty<*>, kotlin/Function1<#B1, kotlin/Unit>) // com.davils.kore.core.dsl/ValidatingBuilder.collect|collect(kotlin.collections.MutableList<in|0:0>;0:1;kotlin.reflect.KProperty<*>;kotlin.Function1<0:1,kotlin.Unit>){0§<com.davils.kore.core.validation.Validatable>;1§<com.davils.kore.core.dsl.ValidatingBuilder<0:0>>}[0]
+    final fun <#A1: com.davils.kore.core.validation/Validatable, #B1: com.davils.kore.core.dsl/ValidatingBuilder<#A1>> collect(kotlin.collections/MutableMap<kotlin/String, in #A1>, kotlin/String, #B1, kotlin.reflect/KProperty<*>, kotlin/Function1<#B1, kotlin/Unit>) // com.davils.kore.core.dsl/ValidatingBuilder.collect|collect(kotlin.collections.MutableMap<kotlin.String,in|0:0>;kotlin.String;0:1;kotlin.reflect.KProperty<*>;kotlin.Function1<0:1,kotlin.Unit>){0§<com.davils.kore.core.validation.Validatable>;1§<com.davils.kore.core.dsl.ValidatingBuilder<0:0>>}[0]
+    final fun <#A1: com.davils.kore.core.validation/Validatable, #B1: com.davils.kore.core.dsl/ValidatingBuilder<#A1>> nested(#B1, kotlin.reflect/KProperty<*>, kotlin/Function1<#B1, kotlin/Unit>): #A1? // com.davils.kore.core.dsl/ValidatingBuilder.nested|nested(0:1;kotlin.reflect.KProperty<*>;kotlin.Function1<0:1,kotlin.Unit>){0§<com.davils.kore.core.validation.Validatable>;1§<com.davils.kore.core.dsl.ValidatingBuilder<0:0>>}[0]
+    final fun adopt(kotlin.collections/List<com.davils.kore.core.validation.violation/Violation>, com.davils.kore.core.validation.violation/ViolationPath) // com.davils.kore.core.dsl/ValidatingBuilder.adopt|adopt(kotlin.collections.List<com.davils.kore.core.validation.violation.Violation>;com.davils.kore.core.validation.violation.ViolationPath){}[0]
+    final fun build(): #A // com.davils.kore.core.dsl/ValidatingBuilder.build|build(){}[0]
+    final fun checkOpen() // com.davils.kore.core.dsl/ValidatingBuilder.checkOpen|checkOpen(){}[0]
+    final fun validate(): com.davils.kore.core.validation.report/ValidationReport // com.davils.kore.core.dsl/ValidatingBuilder.validate|validate(){}[0]
+}
+
+abstract class com.davils.kore.core.arguments/ParameterDeclarations { // com.davils.kore.core.arguments/ParameterDeclarations|null[0]
+    final fun <#A1: kotlin/Any> defaulted(kotlin/Array<out kotlin/String>..., com.davils.kore.core.arguments.conversion/Converter<#A1>, #A1, kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<#A1>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<#A1> // com.davils.kore.core.arguments/ParameterDeclarations.defaulted|defaulted(kotlin.Array<out|kotlin.String>...;com.davils.kore.core.arguments.conversion.Converter<0:0>;0:0;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<0:0>,kotlin.Unit>){0§<kotlin.Any>}[0]
+    final fun <#A1: kotlin/Any> multiple(kotlin/Array<out kotlin/String>..., com.davils.kore.core.arguments.conversion/Converter<#A1>, kotlin.collections/List<#A1> = ..., kotlin/Function1<com.davils.kore.core.arguments.declaration/MultipleConfiguration<#A1>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin.collections/List<#A1>> // com.davils.kore.core.arguments/ParameterDeclarations.multiple|multiple(kotlin.Array<out|kotlin.String>...;com.davils.kore.core.arguments.conversion.Converter<0:0>;kotlin.collections.List<0:0>;kotlin.Function1<com.davils.kore.core.arguments.declaration.MultipleConfiguration<0:0>,kotlin.Unit>){0§<kotlin.Any>}[0]
+    final fun <#A1: kotlin/Any> optional(kotlin/Array<out kotlin/String>..., com.davils.kore.core.arguments.conversion/Converter<#A1>, kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<#A1>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<#A1?> // com.davils.kore.core.arguments/ParameterDeclarations.optional|optional(kotlin.Array<out|kotlin.String>...;com.davils.kore.core.arguments.conversion.Converter<0:0>;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<0:0>,kotlin.Unit>){0§<kotlin.Any>}[0]
+    final fun <#A1: kotlin/Any> required(kotlin/Array<out kotlin/String>..., com.davils.kore.core.arguments.conversion/Converter<#A1>, kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<#A1>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<#A1> // com.davils.kore.core.arguments/ParameterDeclarations.required|required(kotlin.Array<out|kotlin.String>...;com.davils.kore.core.arguments.conversion.Converter<0:0>;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<0:0>,kotlin.Unit>){0§<kotlin.Any>}[0]
+    final fun defaulted(kotlin/Array<out kotlin/String>..., kotlin/String, kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<kotlin/String>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin/String> // com.davils.kore.core.arguments/ParameterDeclarations.defaulted|defaulted(kotlin.Array<out|kotlin.String>...;kotlin.String;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<kotlin.String>,kotlin.Unit>){}[0]
+    final fun flag(kotlin/Array<out kotlin/String>..., kotlin/Boolean = ..., kotlin/Function1<com.davils.kore.core.arguments.declaration/FlagConfiguration, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin/Boolean> // com.davils.kore.core.arguments/ParameterDeclarations.flag|flag(kotlin.Array<out|kotlin.String>...;kotlin.Boolean;kotlin.Function1<com.davils.kore.core.arguments.declaration.FlagConfiguration,kotlin.Unit>){}[0]
+    final fun multiple(kotlin/Array<out kotlin/String>..., kotlin.collections/List<kotlin/String> = ..., kotlin/Function1<com.davils.kore.core.arguments.declaration/MultipleConfiguration<kotlin/String>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin.collections/List<kotlin/String>> // com.davils.kore.core.arguments/ParameterDeclarations.multiple|multiple(kotlin.Array<out|kotlin.String>...;kotlin.collections.List<kotlin.String>;kotlin.Function1<com.davils.kore.core.arguments.declaration.MultipleConfiguration<kotlin.String>,kotlin.Unit>){}[0]
+    final fun optional(kotlin/Array<out kotlin/String>..., kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<kotlin/String>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin/String?> // com.davils.kore.core.arguments/ParameterDeclarations.optional|optional(kotlin.Array<out|kotlin.String>...;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<kotlin.String>,kotlin.Unit>){}[0]
+    final fun required(kotlin/Array<out kotlin/String>..., kotlin/Function1<com.davils.kore.core.arguments.declaration/ValueConfiguration<kotlin/String>, kotlin/Unit> = ...): com.davils.kore.core.arguments/Parameter<kotlin/String> // com.davils.kore.core.arguments/ParameterDeclarations.required|required(kotlin.Array<out|kotlin.String>...;kotlin.Function1<com.davils.kore.core.arguments.declaration.ValueConfiguration<kotlin.String>,kotlin.Unit>){}[0]
+}
+
+abstract class com.davils.kore.core.arguments/Parameters : com.davils.kore.core.arguments/ParameterDeclarations { // com.davils.kore.core.arguments/Parameters|null[0]
+    constructor <init>(kotlin/String? = ..., com.davils.kore.core.arguments/UnknownArgumentPolicy = ..., com.davils.kore.core.arguments/ParameterLimits = ..., com.davils.kore.core.validation.violation/Severity = ...) // com.davils.kore.core.arguments/Parameters.<init>|<init>(kotlin.String?;com.davils.kore.core.arguments.UnknownArgumentPolicy;com.davils.kore.core.arguments.ParameterLimits;com.davils.kore.core.validation.violation.Severity){}[0]
+
+    final val isLoaded // com.davils.kore.core.arguments/Parameters.isLoaded|{}isLoaded[0]
+        final fun <get-isLoaded>(): kotlin/Boolean // com.davils.kore.core.arguments/Parameters.isLoaded.<get-isLoaded>|<get-isLoaded>(){}[0]
+    final val rest // com.davils.kore.core.arguments/Parameters.rest|{}rest[0]
+        final fun <get-rest>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.arguments/Parameters.rest.<get-rest>|<get-rest>(){}[0]
+    final val unknown // com.davils.kore.core.arguments/Parameters.unknown|{}unknown[0]
+        final fun <get-unknown>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.arguments/Parameters.unknown.<get-unknown>|<get-unknown>(){}[0]
+    final val unknownNames // com.davils.kore.core.arguments/Parameters.unknownNames|{}unknownNames[0]
+        final fun <get-unknownNames>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.arguments/Parameters.unknownNames.<get-unknownNames>|<get-unknownNames>(){}[0]
+    final val warnings // com.davils.kore.core.arguments/Parameters.warnings|{}warnings[0]
+        final fun <get-warnings>(): kotlin.collections/List<com.davils.kore.core.arguments.report/ParameterViolation> // com.davils.kore.core.arguments/Parameters.warnings.<get-warnings>|<get-warnings>(){}[0]
+
+    final fun describe(): kotlin/String // com.davils.kore.core.arguments/Parameters.describe|describe(){}[0]
+    final fun exclusive(kotlin/Array<out kotlin.reflect/KProperty<*>>...) // com.davils.kore.core.arguments/Parameters.exclusive|exclusive(kotlin.Array<out|kotlin.reflect.KProperty<*>>...){}[0]
+    final fun load(kotlin.collections/List<kotlin/String>, kotlin.collections/Map<kotlin/String, kotlin/String> = ...) // com.davils.kore.core.arguments/Parameters.load|load(kotlin.collections.List<kotlin.String>;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+    final fun load(kotlin/Array<out kotlin/String>) // com.davils.kore.core.arguments/Parameters.load|load(kotlin.Array<out|kotlin.String>){}[0]
+    final fun requires(kotlin.reflect/KProperty<*>, kotlin/Array<out kotlin.reflect/KProperty<*>>...) // com.davils.kore.core.arguments/Parameters.requires|requires(kotlin.reflect.KProperty<*>;kotlin.Array<out|kotlin.reflect.KProperty<*>>...){}[0]
+    final fun usage(): kotlin/String // com.davils.kore.core.arguments/Parameters.usage|usage(){}[0]
+    final suspend fun load(kotlin.collections/List<kotlin/String>, kotlin.collections/List<com.davils.kore.core.arguments/ValueSource>, kotlin.collections/Map<kotlin/String, kotlin/String> = ...) // com.davils.kore.core.arguments/Parameters.load|load(kotlin.collections.List<kotlin.String>;kotlin.collections.List<com.davils.kore.core.arguments.ValueSource>;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
+}
+
+final class <#A: kotlin/Any> com.davils.kore.core.arguments.declaration/MultipleConfiguration : com.davils.kore.core.arguments.declaration/ValueConfiguration<#A> { // com.davils.kore.core.arguments.declaration/MultipleConfiguration|null[0]
+    final fun split(kotlin/String) // com.davils.kore.core.arguments.declaration/MultipleConfiguration.split|split(kotlin.String){}[0]
+}
+
+final class <#A: kotlin/Any?> com.davils.kore.core.arguments/Parameter : kotlin.properties/PropertyDelegateProvider<com.davils.kore.core.arguments/Parameters, kotlin.properties/ReadOnlyProperty<com.davils.kore.core.arguments/Parameters, #A>> { // com.davils.kore.core.arguments/Parameter|null[0]
+    final fun provideDelegate(com.davils.kore.core.arguments/Parameters, kotlin.reflect/KProperty<*>): kotlin.properties/ReadOnlyProperty<com.davils.kore.core.arguments/Parameters, #A> // com.davils.kore.core.arguments/Parameter.provideDelegate|provideDelegate(com.davils.kore.core.arguments.Parameters;kotlin.reflect.KProperty<*>){}[0]
+}
+
+final class com.davils.kore.core.arguments.conversion/ConversionException : kotlin/RuntimeException { // com.davils.kore.core.arguments.conversion/ConversionException|null[0]
+    constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.davils.kore.core.arguments.conversion/ConversionException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
+
+    final val message // com.davils.kore.core.arguments.conversion/ConversionException.message|{}message[0]
+        final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.conversion/ConversionException.message.<get-message>|<get-message>(){}[0]
+}
+
+final class com.davils.kore.core.arguments.declaration/FlagConfiguration : com.davils.kore.core.arguments.declaration/ParameterConfiguration { // com.davils.kore.core.arguments.declaration/FlagConfiguration|null[0]
+    final fun negatable() // com.davils.kore.core.arguments.declaration/FlagConfiguration.negatable|negatable(){}[0]
+}
+
+final class com.davils.kore.core.arguments.report/ParameterException : com.davils.kore.core.validation.report/ValidationException { // com.davils.kore.core.arguments.report/ParameterException|null[0]
+    final val usage // com.davils.kore.core.arguments.report/ParameterException.usage|{}usage[0]
+        final fun <get-usage>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterException.usage.<get-usage>|<get-usage>(){}[0]
+    final val violations // com.davils.kore.core.arguments.report/ParameterException.violations|{}violations[0]
+        final fun <get-violations>(): kotlin.collections/List<com.davils.kore.core.arguments.report/ParameterViolation> // com.davils.kore.core.arguments.report/ParameterException.violations.<get-violations>|<get-violations>(){}[0]
+}
+
+final class com.davils.kore.core.arguments.report/ParametersNotLoadedException : kotlin/IllegalStateException // com.davils.kore.core.arguments.report/ParametersNotLoadedException|null[0]
+
+final class com.davils.kore.core.arguments.report/RedactedException : kotlin/RuntimeException { // com.davils.kore.core.arguments.report/RedactedException|null[0]
+    final val originalType // com.davils.kore.core.arguments.report/RedactedException.originalType|{}originalType[0]
+        final fun <get-originalType>(): kotlin/String // com.davils.kore.core.arguments.report/RedactedException.originalType.<get-originalType>|<get-originalType>(){}[0]
+}
+
+final class com.davils.kore.core.arguments/ParameterInfo { // com.davils.kore.core.arguments/ParameterInfo|null[0]
+    final val defaultDisplay // com.davils.kore.core.arguments/ParameterInfo.defaultDisplay|{}defaultDisplay[0]
+        final fun <get-defaultDisplay>(): kotlin/String? // com.davils.kore.core.arguments/ParameterInfo.defaultDisplay.<get-defaultDisplay>|<get-defaultDisplay>(){}[0]
+    final val deprecation // com.davils.kore.core.arguments/ParameterInfo.deprecation|{}deprecation[0]
+        final fun <get-deprecation>(): kotlin/String? // com.davils.kore.core.arguments/ParameterInfo.deprecation.<get-deprecation>|<get-deprecation>(){}[0]
+    final val description // com.davils.kore.core.arguments/ParameterInfo.description|{}description[0]
+        final fun <get-description>(): kotlin/String? // com.davils.kore.core.arguments/ParameterInfo.description.<get-description>|<get-description>(){}[0]
+    final val environmentVariable // com.davils.kore.core.arguments/ParameterInfo.environmentVariable|{}environmentVariable[0]
+        final fun <get-environmentVariable>(): kotlin/String? // com.davils.kore.core.arguments/ParameterInfo.environmentVariable.<get-environmentVariable>|<get-environmentVariable>(){}[0]
+    final val isFlag // com.davils.kore.core.arguments/ParameterInfo.isFlag|{}isFlag[0]
+        final fun <get-isFlag>(): kotlin/Boolean // com.davils.kore.core.arguments/ParameterInfo.isFlag.<get-isFlag>|<get-isFlag>(){}[0]
+    final val isRepeatable // com.davils.kore.core.arguments/ParameterInfo.isRepeatable|{}isRepeatable[0]
+        final fun <get-isRepeatable>(): kotlin/Boolean // com.davils.kore.core.arguments/ParameterInfo.isRepeatable.<get-isRepeatable>|<get-isRepeatable>(){}[0]
+    final val isRequired // com.davils.kore.core.arguments/ParameterInfo.isRequired|{}isRequired[0]
+        final fun <get-isRequired>(): kotlin/Boolean // com.davils.kore.core.arguments/ParameterInfo.isRequired.<get-isRequired>|<get-isRequired>(){}[0]
+    final val isSensitive // com.davils.kore.core.arguments/ParameterInfo.isSensitive|{}isSensitive[0]
+        final fun <get-isSensitive>(): kotlin/Boolean // com.davils.kore.core.arguments/ParameterInfo.isSensitive.<get-isSensitive>|<get-isSensitive>(){}[0]
+    final val names // com.davils.kore.core.arguments/ParameterInfo.names|{}names[0]
+        final fun <get-names>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.arguments/ParameterInfo.names.<get-names>|<get-names>(){}[0]
+    final val primaryName // com.davils.kore.core.arguments/ParameterInfo.primaryName|{}primaryName[0]
+        final fun <get-primaryName>(): kotlin/String // com.davils.kore.core.arguments/ParameterInfo.primaryName.<get-primaryName>|<get-primaryName>(){}[0]
+    final val typeName // com.davils.kore.core.arguments/ParameterInfo.typeName|{}typeName[0]
+        final fun <get-typeName>(): kotlin/String // com.davils.kore.core.arguments/ParameterInfo.typeName.<get-typeName>|<get-typeName>(){}[0]
+
+    final fun toString(): kotlin/String // com.davils.kore.core.arguments/ParameterInfo.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.arguments/ParameterLimits { // com.davils.kore.core.arguments/ParameterLimits|null[0]
+    constructor <init>(kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...) // com.davils.kore.core.arguments/ParameterLimits.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+
+    final val maxArgumentLength // com.davils.kore.core.arguments/ParameterLimits.maxArgumentLength|{}maxArgumentLength[0]
+        final fun <get-maxArgumentLength>(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.maxArgumentLength.<get-maxArgumentLength>|<get-maxArgumentLength>(){}[0]
+    final val maxArguments // com.davils.kore.core.arguments/ParameterLimits.maxArguments|{}maxArguments[0]
+        final fun <get-maxArguments>(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.maxArguments.<get-maxArguments>|<get-maxArguments>(){}[0]
+    final val maxSuggestedArguments // com.davils.kore.core.arguments/ParameterLimits.maxSuggestedArguments|{}maxSuggestedArguments[0]
+        final fun <get-maxSuggestedArguments>(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.maxSuggestedArguments.<get-maxSuggestedArguments>|<get-maxSuggestedArguments>(){}[0]
+    final val maxValuesPerParameter // com.davils.kore.core.arguments/ParameterLimits.maxValuesPerParameter|{}maxValuesPerParameter[0]
+        final fun <get-maxValuesPerParameter>(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.maxValuesPerParameter.<get-maxValuesPerParameter>|<get-maxValuesPerParameter>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments/ParameterLimits.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.arguments/ParameterLimits.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.identity/UuidV4 : com.davils.kore.core.identity/Uuid { // com.davils.kore.core.identity/UuidV4|null[0]
+    final val version // com.davils.kore.core.identity/UuidV4.version|{}version[0]
+        final fun <get-version>(): com.davils.kore.core.identity/UuidVersion // com.davils.kore.core.identity/UuidV4.version.<get-version>|<get-version>(){}[0]
+
+    final object Companion { // com.davils.kore.core.identity/UuidV4.Companion|null[0]
+        final fun parse(kotlin/String): com.davils.kore.core.identity/UuidV4 // com.davils.kore.core.identity/UuidV4.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.identity/UuidV4? // com.davils.kore.core.identity/UuidV4.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+        final fun random(): com.davils.kore.core.identity/UuidV4 // com.davils.kore.core.identity/UuidV4.Companion.random|random(){}[0]
+    }
+}
+
+final class com.davils.kore.core.identity/UuidV7 : com.davils.kore.core.identity/Uuid { // com.davils.kore.core.identity/UuidV7|null[0]
+    final val epochMilliseconds // com.davils.kore.core.identity/UuidV7.epochMilliseconds|{}epochMilliseconds[0]
+        final fun <get-epochMilliseconds>(): kotlin/Long // com.davils.kore.core.identity/UuidV7.epochMilliseconds.<get-epochMilliseconds>|<get-epochMilliseconds>(){}[0]
+    final val instant // com.davils.kore.core.identity/UuidV7.instant|{}instant[0]
+        final fun <get-instant>(): kotlin.time/Instant // com.davils.kore.core.identity/UuidV7.instant.<get-instant>|<get-instant>(){}[0]
+    final val version // com.davils.kore.core.identity/UuidV7.version|{}version[0]
+        final fun <get-version>(): com.davils.kore.core.identity/UuidVersion // com.davils.kore.core.identity/UuidV7.version.<get-version>|<get-version>(){}[0]
+
+    final object Companion { // com.davils.kore.core.identity/UuidV7.Companion|null[0]
+        final fun parse(kotlin/String): com.davils.kore.core.identity/UuidV7 // com.davils.kore.core.identity/UuidV7.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.identity/UuidV7? // com.davils.kore.core.identity/UuidV7.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+        final fun random(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.core.identity/UuidV7.Companion.random|random(){}[0]
+    }
+}
+
+final class com.davils.kore.core.principal/Principal : com.davils.kore.core.validation/Validatable { // com.davils.kore.core.principal/Principal|null[0]
+    final val actingFor // com.davils.kore.core.principal/Principal.actingFor|{}actingFor[0]
+        final fun <get-actingFor>(): com.davils.kore.core.principal/Principal? // com.davils.kore.core.principal/Principal.actingFor.<get-actingFor>|<get-actingFor>(){}[0]
+    final val attributes // com.davils.kore.core.principal/Principal.attributes|{}attributes[0]
+        final fun <get-attributes>(): com.davils.kore.core.principal/PrincipalAttributes // com.davils.kore.core.principal/Principal.attributes.<get-attributes>|<get-attributes>(){}[0]
+    final val chain // com.davils.kore.core.principal/Principal.chain|{}chain[0]
+        final fun <get-chain>(): kotlin.collections/List<com.davils.kore.core.principal/Principal> // com.davils.kore.core.principal/Principal.chain.<get-chain>|<get-chain>(){}[0]
+    final val displayName // com.davils.kore.core.principal/Principal.displayName|{}displayName[0]
+        final fun <get-displayName>(): kotlin/String? // com.davils.kore.core.principal/Principal.displayName.<get-displayName>|<get-displayName>(){}[0]
+    final val id // com.davils.kore.core.principal/Principal.id|{}id[0]
+        final fun <get-id>(): kotlin/String // com.davils.kore.core.principal/Principal.id.<get-id>|<get-id>(){}[0]
+    final val isDelegated // com.davils.kore.core.principal/Principal.isDelegated|{}isDelegated[0]
+        final fun <get-isDelegated>(): kotlin/Boolean // com.davils.kore.core.principal/Principal.isDelegated.<get-isDelegated>|<get-isDelegated>(){}[0]
+    final val kind // com.davils.kore.core.principal/Principal.kind|{}kind[0]
+        final fun <get-kind>(): com.davils.kore.core.principal/PrincipalKind // com.davils.kore.core.principal/Principal.kind.<get-kind>|<get-kind>(){}[0]
+    final val originator // com.davils.kore.core.principal/Principal.originator|{}originator[0]
+        final fun <get-originator>(): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/Principal.originator.<get-originator>|<get-originator>(){}[0]
+    final val roles // com.davils.kore.core.principal/Principal.roles|{}roles[0]
+        final fun <get-roles>(): kotlin.collections/Set<kotlin/String> // com.davils.kore.core.principal/Principal.roles.<get-roles>|<get-roles>(){}[0]
+    final val tenant // com.davils.kore.core.principal/Principal.tenant|{}tenant[0]
+        final fun <get-tenant>(): kotlin/String? // com.davils.kore.core.principal/Principal.tenant.<get-tenant>|<get-tenant>(){}[0]
+
+    final fun (com.davils.kore.core.validation/ValidationScope).validate() // com.davils.kore.core.principal/Principal.validate|validate@com.davils.kore.core.validation.ValidationScope(){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.principal/Principal.equals|equals(kotlin.Any?){}[0]
+    final fun hasAllRoles(kotlin.collections/Collection<kotlin/String>): kotlin/Boolean // com.davils.kore.core.principal/Principal.hasAllRoles|hasAllRoles(kotlin.collections.Collection<kotlin.String>){}[0]
+    final fun hasAllRoles(kotlin/String, kotlin/Array<out kotlin/String>...): kotlin/Boolean // com.davils.kore.core.principal/Principal.hasAllRoles|hasAllRoles(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+    final fun hasAnyRole(kotlin.collections/Collection<kotlin/String>): kotlin/Boolean // com.davils.kore.core.principal/Principal.hasAnyRole|hasAnyRole(kotlin.collections.Collection<kotlin.String>){}[0]
+    final fun hasAnyRole(kotlin/String, kotlin/Array<out kotlin/String>...): kotlin/Boolean // com.davils.kore.core.principal/Principal.hasAnyRole|hasAnyRole(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+    final fun hasRole(kotlin/String): kotlin/Boolean // com.davils.kore.core.principal/Principal.hasRole|hasRole(kotlin.String){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.principal/Principal.hashCode|hashCode(){}[0]
+    final fun onBehalfOf(com.davils.kore.core.principal/Principal, kotlin/Boolean = ...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/Principal.onBehalfOf|onBehalfOf(com.davils.kore.core.principal.Principal;kotlin.Boolean){}[0]
+    final fun sameTenantAs(com.davils.kore.core.principal/Principal): kotlin/Boolean // com.davils.kore.core.principal/Principal.sameTenantAs|sameTenantAs(com.davils.kore.core.principal.Principal){}[0]
+    final fun sameTenantAs(kotlin/String?): kotlin/Boolean // com.davils.kore.core.principal/Principal.sameTenantAs|sameTenantAs(kotlin.String?){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.principal/Principal.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.principal/Principal.Companion|null[0]
+        final fun invoke(kotlin/String, com.davils.kore.core.principal/PrincipalKind = ..., kotlin.collections/Set<kotlin/String> = ...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/Principal.Companion.invoke|invoke(kotlin.String;com.davils.kore.core.principal.PrincipalKind;kotlin.collections.Set<kotlin.String>){}[0]
+    }
+}
+
+final class com.davils.kore.core.principal/PrincipalAttributes { // com.davils.kore.core.principal/PrincipalAttributes|null[0]
+    final val isEmpty // com.davils.kore.core.principal/PrincipalAttributes.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.davils.kore.core.principal/PrincipalAttributes.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+    final val names // com.davils.kore.core.principal/PrincipalAttributes.names|{}names[0]
+        final fun <get-names>(): kotlin.collections/Set<kotlin/String> // com.davils.kore.core.principal/PrincipalAttributes.names.<get-names>|<get-names>(){}[0]
+
+    final fun contains(kotlin/String): kotlin/Boolean // com.davils.kore.core.principal/PrincipalAttributes.contains|contains(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.principal/PrincipalAttributes.equals|equals(kotlin.Any?){}[0]
+    final fun get(kotlin/String): kotlin/String? // com.davils.kore.core.principal/PrincipalAttributes.get|get(kotlin.String){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.principal/PrincipalAttributes.hashCode|hashCode(){}[0]
+    final fun isSensitive(kotlin/String): kotlin/Boolean // com.davils.kore.core.principal/PrincipalAttributes.isSensitive|isSensitive(kotlin.String){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.principal/PrincipalAttributes.toString|toString(){}[0]
+    final fun with(kotlin/String, kotlin/String, kotlin/Boolean = ...): com.davils.kore.core.principal/PrincipalAttributes // com.davils.kore.core.principal/PrincipalAttributes.with|with(kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+    final fun without(kotlin/String): com.davils.kore.core.principal/PrincipalAttributes // com.davils.kore.core.principal/PrincipalAttributes.without|without(kotlin.String){}[0]
+
+    final object Companion { // com.davils.kore.core.principal/PrincipalAttributes.Companion|null[0]
+        final val EMPTY // com.davils.kore.core.principal/PrincipalAttributes.Companion.EMPTY|{}EMPTY[0]
+            final fun <get-EMPTY>(): com.davils.kore.core.principal/PrincipalAttributes // com.davils.kore.core.principal/PrincipalAttributes.Companion.EMPTY.<get-EMPTY>|<get-EMPTY>(){}[0]
+
+        final fun invoke(kotlin/Array<out kotlin/Pair<kotlin/String, kotlin/String>>...): com.davils.kore.core.principal/PrincipalAttributes // com.davils.kore.core.principal/PrincipalAttributes.Companion.invoke|invoke(kotlin.Array<out|kotlin.Pair<kotlin.String,kotlin.String>>...){}[0]
+    }
+}
+
+final class com.davils.kore.core.principal/PrincipalBuilder : com.davils.kore.core.dsl/ValidatingBuilder<com.davils.kore.core.principal/Principal> { // com.davils.kore.core.principal/PrincipalBuilder|null[0]
+    final var displayName // com.davils.kore.core.principal/PrincipalBuilder.displayName|{}displayName[0]
+        final fun <get-displayName>(): kotlin/String? // com.davils.kore.core.principal/PrincipalBuilder.displayName.<get-displayName>|<get-displayName>(){}[0]
+        final fun <set-displayName>(kotlin/String?) // com.davils.kore.core.principal/PrincipalBuilder.displayName.<set-displayName>|<set-displayName>(kotlin.String?){}[0]
+    final var kind // com.davils.kore.core.principal/PrincipalBuilder.kind|{}kind[0]
+        final fun <get-kind>(): com.davils.kore.core.principal/PrincipalKind // com.davils.kore.core.principal/PrincipalBuilder.kind.<get-kind>|<get-kind>(){}[0]
+        final fun <set-kind>(com.davils.kore.core.principal/PrincipalKind) // com.davils.kore.core.principal/PrincipalBuilder.kind.<set-kind>|<set-kind>(com.davils.kore.core.principal.PrincipalKind){}[0]
+    final var tenant // com.davils.kore.core.principal/PrincipalBuilder.tenant|{}tenant[0]
+        final fun <get-tenant>(): kotlin/String? // com.davils.kore.core.principal/PrincipalBuilder.tenant.<get-tenant>|<get-tenant>(){}[0]
+        final fun <set-tenant>(kotlin/String?) // com.davils.kore.core.principal/PrincipalBuilder.tenant.<set-tenant>|<set-tenant>(kotlin.String?){}[0]
+
+    final fun actingFor(com.davils.kore.core.principal/Principal, kotlin/Boolean = ...) // com.davils.kore.core.principal/PrincipalBuilder.actingFor|actingFor(com.davils.kore.core.principal.Principal;kotlin.Boolean){}[0]
+    final fun attribute(kotlin/String, kotlin/String, kotlin/Boolean = ...) // com.davils.kore.core.principal/PrincipalBuilder.attribute|attribute(kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+    final fun roles(kotlin/Array<out kotlin/String>...) // com.davils.kore.core.principal/PrincipalBuilder.roles|roles(kotlin.Array<out|kotlin.String>...){}[0]
+}
+
+final class com.davils.kore.core.principal/PrincipalMissingException : kotlin/IllegalStateException // com.davils.kore.core.principal/PrincipalMissingException|null[0]
+
+final class com.davils.kore.core.text/LineMap { // com.davils.kore.core.text/LineMap|null[0]
+    final val lineCount // com.davils.kore.core.text/LineMap.lineCount|{}lineCount[0]
+        final fun <get-lineCount>(): kotlin/Int // com.davils.kore.core.text/LineMap.lineCount.<get-lineCount>|<get-lineCount>(){}[0]
+
+    final fun codePointColumnOf(kotlin/Int): kotlin/Int // com.davils.kore.core.text/LineMap.codePointColumnOf|codePointColumnOf(kotlin.Int){}[0]
+    final fun lineOf(kotlin/Int): kotlin/Int // com.davils.kore.core.text/LineMap.lineOf|lineOf(kotlin.Int){}[0]
+    final fun lineRange(kotlin/Int): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/LineMap.lineRange|lineRange(kotlin.Int){}[0]
+    final fun offsetOf(com.davils.kore.core.text/TextPosition): kotlin/Int // com.davils.kore.core.text/LineMap.offsetOf|offsetOf(com.davils.kore.core.text.TextPosition){}[0]
+    final fun positionOf(kotlin/Int): com.davils.kore.core.text/TextPosition // com.davils.kore.core.text/LineMap.positionOf|positionOf(kotlin.Int){}[0]
+    final fun snippet(com.davils.kore.core.text/TextRange, kotlin/Int = ...): com.davils.kore.core.text/TextSnippet // com.davils.kore.core.text/LineMap.snippet|snippet(com.davils.kore.core.text.TextRange;kotlin.Int){}[0]
+
+    final object Companion { // com.davils.kore.core.text/LineMap.Companion|null[0]
+        final fun of(kotlin/CharSequence): com.davils.kore.core.text/LineMap // com.davils.kore.core.text/LineMap.Companion.of|of(kotlin.CharSequence){}[0]
+    }
+}
+
+final class com.davils.kore.core.text/TextEdit { // com.davils.kore.core.text/TextEdit|null[0]
+    constructor <init>(com.davils.kore.core.text/TextRange, kotlin/String) // com.davils.kore.core.text/TextEdit.<init>|<init>(com.davils.kore.core.text.TextRange;kotlin.String){}[0]
+
+    final val delta // com.davils.kore.core.text/TextEdit.delta|{}delta[0]
+        final fun <get-delta>(): kotlin/Int // com.davils.kore.core.text/TextEdit.delta.<get-delta>|<get-delta>(){}[0]
+    final val isDeletion // com.davils.kore.core.text/TextEdit.isDeletion|{}isDeletion[0]
+        final fun <get-isDeletion>(): kotlin/Boolean // com.davils.kore.core.text/TextEdit.isDeletion.<get-isDeletion>|<get-isDeletion>(){}[0]
+    final val isInsertion // com.davils.kore.core.text/TextEdit.isInsertion|{}isInsertion[0]
+        final fun <get-isInsertion>(): kotlin/Boolean // com.davils.kore.core.text/TextEdit.isInsertion.<get-isInsertion>|<get-isInsertion>(){}[0]
+    final val range // com.davils.kore.core.text/TextEdit.range|{}range[0]
+        final fun <get-range>(): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/TextEdit.range.<get-range>|<get-range>(){}[0]
+    final val replacement // com.davils.kore.core.text/TextEdit.replacement|{}replacement[0]
+        final fun <get-replacement>(): kotlin/String // com.davils.kore.core.text/TextEdit.replacement.<get-replacement>|<get-replacement>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text/TextEdit.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text/TextEdit.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text/TextEdit.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.text/TextPosition : kotlin/Comparable<com.davils.kore.core.text/TextPosition> { // com.davils.kore.core.text/TextPosition|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int) // com.davils.kore.core.text/TextPosition.<init>|<init>(kotlin.Int;kotlin.Int){}[0]
+
+    final val column // com.davils.kore.core.text/TextPosition.column|{}column[0]
+        final fun <get-column>(): kotlin/Int // com.davils.kore.core.text/TextPosition.column.<get-column>|<get-column>(){}[0]
+    final val line // com.davils.kore.core.text/TextPosition.line|{}line[0]
+        final fun <get-line>(): kotlin/Int // com.davils.kore.core.text/TextPosition.line.<get-line>|<get-line>(){}[0]
+
+    final fun compareTo(com.davils.kore.core.text/TextPosition): kotlin/Int // com.davils.kore.core.text/TextPosition.compareTo|compareTo(com.davils.kore.core.text.TextPosition){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text/TextPosition.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text/TextPosition.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text/TextPosition.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.text/TextRange : kotlin/Comparable<com.davils.kore.core.text/TextRange> { // com.davils.kore.core.text/TextRange|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int) // com.davils.kore.core.text/TextRange.<init>|<init>(kotlin.Int;kotlin.Int){}[0]
+
+    final val end // com.davils.kore.core.text/TextRange.end|{}end[0]
+        final fun <get-end>(): kotlin/Int // com.davils.kore.core.text/TextRange.end.<get-end>|<get-end>(){}[0]
+    final val isEmpty // com.davils.kore.core.text/TextRange.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.davils.kore.core.text/TextRange.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+    final val length // com.davils.kore.core.text/TextRange.length|{}length[0]
+        final fun <get-length>(): kotlin/Int // com.davils.kore.core.text/TextRange.length.<get-length>|<get-length>(){}[0]
+    final val start // com.davils.kore.core.text/TextRange.start|{}start[0]
+        final fun <get-start>(): kotlin/Int // com.davils.kore.core.text/TextRange.start.<get-start>|<get-start>(){}[0]
+
+    final fun compareTo(com.davils.kore.core.text/TextRange): kotlin/Int // com.davils.kore.core.text/TextRange.compareTo|compareTo(com.davils.kore.core.text.TextRange){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text/TextRange.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text/TextRange.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text/TextRange.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.text/TextRange.Companion|null[0]
+        final fun at(kotlin/Int): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/TextRange.Companion.at|at(kotlin.Int){}[0]
+        final fun of(kotlin/Int, kotlin/Int): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/TextRange.Companion.of|of(kotlin.Int;kotlin.Int){}[0]
+    }
+}
+
+final class com.davils.kore.core.text/TextSnippet { // com.davils.kore.core.text/TextSnippet|null[0]
+    constructor <init>(com.davils.kore.core.text/TextPosition, kotlin/String, com.davils.kore.core.text/TextRange, kotlin/Boolean, kotlin/Boolean) // com.davils.kore.core.text/TextSnippet.<init>|<init>(com.davils.kore.core.text.TextPosition;kotlin.String;com.davils.kore.core.text.TextRange;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val highlight // com.davils.kore.core.text/TextSnippet.highlight|{}highlight[0]
+        final fun <get-highlight>(): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/TextSnippet.highlight.<get-highlight>|<get-highlight>(){}[0]
+    final val isCutAfter // com.davils.kore.core.text/TextSnippet.isCutAfter|{}isCutAfter[0]
+        final fun <get-isCutAfter>(): kotlin/Boolean // com.davils.kore.core.text/TextSnippet.isCutAfter.<get-isCutAfter>|<get-isCutAfter>(){}[0]
+    final val isCutBefore // com.davils.kore.core.text/TextSnippet.isCutBefore|{}isCutBefore[0]
+        final fun <get-isCutBefore>(): kotlin/Boolean // com.davils.kore.core.text/TextSnippet.isCutBefore.<get-isCutBefore>|<get-isCutBefore>(){}[0]
+    final val line // com.davils.kore.core.text/TextSnippet.line|{}line[0]
+        final fun <get-line>(): kotlin/String // com.davils.kore.core.text/TextSnippet.line.<get-line>|<get-line>(){}[0]
+    final val position // com.davils.kore.core.text/TextSnippet.position|{}position[0]
+        final fun <get-position>(): com.davils.kore.core.text/TextPosition // com.davils.kore.core.text/TextSnippet.position.<get-position>|<get-position>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text/TextSnippet.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text/TextSnippet.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text/TextSnippet.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.validation.report/ValidationReport { // com.davils.kore.core.validation.report/ValidationReport|null[0]
+    final val errors // com.davils.kore.core.validation.report/ValidationReport.errors|{}errors[0]
+        final fun <get-errors>(): kotlin.collections/List<com.davils.kore.core.validation.violation/Violation> // com.davils.kore.core.validation.report/ValidationReport.errors.<get-errors>|<get-errors>(){}[0]
+    final val isValid // com.davils.kore.core.validation.report/ValidationReport.isValid|{}isValid[0]
+        final fun <get-isValid>(): kotlin/Boolean // com.davils.kore.core.validation.report/ValidationReport.isValid.<get-isValid>|<get-isValid>(){}[0]
+    final val subject // com.davils.kore.core.validation.report/ValidationReport.subject|{}subject[0]
+        final fun <get-subject>(): kotlin/String // com.davils.kore.core.validation.report/ValidationReport.subject.<get-subject>|<get-subject>(){}[0]
+    final val violations // com.davils.kore.core.validation.report/ValidationReport.violations|{}violations[0]
+        final fun <get-violations>(): kotlin.collections/List<com.davils.kore.core.validation.violation/Violation> // com.davils.kore.core.validation.report/ValidationReport.violations.<get-violations>|<get-violations>(){}[0]
+    final val warnings // com.davils.kore.core.validation.report/ValidationReport.warnings|{}warnings[0]
+        final fun <get-warnings>(): kotlin.collections/List<com.davils.kore.core.validation.violation/Violation> // com.davils.kore.core.validation.report/ValidationReport.warnings.<get-warnings>|<get-warnings>(){}[0]
+
+    final fun render(): kotlin/String // com.davils.kore.core.validation.report/ValidationReport.render|render(){}[0]
+    final fun throwIfInvalid() // com.davils.kore.core.validation.report/ValidationReport.throwIfInvalid|throwIfInvalid(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.validation.report/ValidationReport.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.validation.violation/Violation { // com.davils.kore.core.validation.violation/Violation|null[0]
+    final val code // com.davils.kore.core.validation.violation/Violation.code|{}code[0]
+        final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/Violation.code.<get-code>|<get-code>(){}[0]
+    final val message // com.davils.kore.core.validation.violation/Violation.message|{}message[0]
+        final fun <get-message>(): kotlin/String // com.davils.kore.core.validation.violation/Violation.message.<get-message>|<get-message>(){}[0]
+    final val path // com.davils.kore.core.validation.violation/Violation.path|{}path[0]
+        final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/Violation.path.<get-path>|<get-path>(){}[0]
+    final val severity // com.davils.kore.core.validation.violation/Violation.severity|{}severity[0]
+        final fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.validation.violation/Violation.severity.<get-severity>|<get-severity>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/Violation.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/Violation.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/Violation.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.validation.violation/ViolationPath { // com.davils.kore.core.validation.violation/ViolationPath|null[0]
+    final val depth // com.davils.kore.core.validation.violation/ViolationPath.depth|{}depth[0]
+        final fun <get-depth>(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.depth.<get-depth>|<get-depth>(){}[0]
+    final val isRoot // com.davils.kore.core.validation.violation/ViolationPath.isRoot|{}isRoot[0]
+        final fun <get-isRoot>(): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationPath.isRoot.<get-isRoot>|<get-isRoot>(){}[0]
+    final val segments // com.davils.kore.core.validation.violation/ViolationPath.segments|{}segments[0]
+        final fun <get-segments>(): kotlin.collections/List<com.davils.kore.core.validation.violation/ViolationPath.Segment> // com.davils.kore.core.validation.violation/ViolationPath.segments.<get-segments>|<get-segments>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationPath.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.hashCode|hashCode(){}[0]
+    final fun index(kotlin/Int): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.index|index(kotlin.Int){}[0]
+    final fun key(kotlin/String): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.key|key(kotlin.String){}[0]
+    final fun name(kotlin.reflect/KProperty<*>): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.name|name(kotlin.reflect.KProperty<*>){}[0]
+    final fun name(kotlin/String): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.name|name(kotlin.String){}[0]
+    final fun plus(com.davils.kore.core.validation.violation/ViolationPath): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.plus|plus(com.davils.kore.core.validation.violation.ViolationPath){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.toString|toString(){}[0]
+
+    sealed interface Segment { // com.davils.kore.core.validation.violation/ViolationPath.Segment|null[0]
+        final value class Index : com.davils.kore.core.validation.violation/ViolationPath.Segment { // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index|null[0]
+            constructor <init>(kotlin/Int) // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.<init>|<init>(kotlin.Int){}[0]
+
+            final val value // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.value|{}value[0]
+                final fun <get-value>(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.value.<get-value>|<get-value>(){}[0]
+
+            final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.equals|equals(kotlin.Any?){}[0]
+            final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.hashCode|hashCode(){}[0]
+            final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.Segment.Index.toString|toString(){}[0]
+        }
+
+        final value class Key : com.davils.kore.core.validation.violation/ViolationPath.Segment { // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key|null[0]
+            constructor <init>(kotlin/String) // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.<init>|<init>(kotlin.String){}[0]
+
+            final val value // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.value|{}value[0]
+                final fun <get-value>(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.value.<get-value>|<get-value>(){}[0]
+
+            final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.equals|equals(kotlin.Any?){}[0]
+            final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.hashCode|hashCode(){}[0]
+            final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.Segment.Key.toString|toString(){}[0]
+        }
+
+        final value class Name : com.davils.kore.core.validation.violation/ViolationPath.Segment { // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name|null[0]
+            constructor <init>(kotlin/String) // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.<init>|<init>(kotlin.String){}[0]
+
+            final val value // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.value|{}value[0]
+                final fun <get-value>(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.value.<get-value>|<get-value>(){}[0]
+
+            final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.equals|equals(kotlin.Any?){}[0]
+            final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.hashCode|hashCode(){}[0]
+            final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/ViolationPath.Segment.Name.toString|toString(){}[0]
+        }
+    }
+
+    final object Companion { // com.davils.kore.core.validation.violation/ViolationPath.Companion|null[0]
+        final val ROOT // com.davils.kore.core.validation.violation/ViolationPath.Companion.ROOT|{}ROOT[0]
+            final fun <get-ROOT>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.Companion.ROOT.<get-ROOT>|<get-ROOT>(){}[0]
+
+        final fun keyed(kotlin/String): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.Companion.keyed|keyed(kotlin.String){}[0]
+        final fun named(kotlin.reflect/KProperty<*>): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.Companion.named|named(kotlin.reflect.KProperty<*>){}[0]
+        final fun named(kotlin/String): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.validation.violation/ViolationPath.Companion.named|named(kotlin.String){}[0]
+    }
+}
+
+final class com.davils.kore.core.validation/ValidationScope { // com.davils.kore.core.validation/ValidationScope|null[0]
+    final fun <#A1: kotlin/Any?> each(kotlin.reflect/KProperty<*>, kotlin.collections/Iterable<#A1>, kotlin/Function2<com.davils.kore.core.validation/ValidationScope, #A1, kotlin/Unit>) // com.davils.kore.core.validation/ValidationScope.each|each(kotlin.reflect.KProperty<*>;kotlin.collections.Iterable<0:0>;kotlin.Function2<com.davils.kore.core.validation.ValidationScope,0:0,kotlin.Unit>){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Any?> each(kotlin.reflect/KProperty<*>, kotlin.collections/Map<kotlin/String, #A1>, kotlin/Function2<com.davils.kore.core.validation/ValidationScope, #A1, kotlin/Unit>) // com.davils.kore.core.validation/ValidationScope.each|each(kotlin.reflect.KProperty<*>;kotlin.collections.Map<kotlin.String,0:0>;kotlin.Function2<com.davils.kore.core.validation.ValidationScope,0:0,kotlin.Unit>){0§<kotlin.Any?>}[0]
+    final fun fail(kotlin.reflect/KProperty<*>, kotlin/String, com.davils.kore.core.validation.violation/ViolationCode = ...) // com.davils.kore.core.validation/ValidationScope.fail|fail(kotlin.reflect.KProperty<*>;kotlin.String;com.davils.kore.core.validation.violation.ViolationCode){}[0]
+    final fun fail(kotlin/String, com.davils.kore.core.validation.violation/ViolationCode = ...) // com.davils.kore.core.validation/ValidationScope.fail|fail(kotlin.String;com.davils.kore.core.validation.violation.ViolationCode){}[0]
+    final fun include(kotlin.collections/List<com.davils.kore.core.validation.violation/Violation>, com.davils.kore.core.validation.violation/ViolationPath = ...) // com.davils.kore.core.validation/ValidationScope.include|include(kotlin.collections.List<com.davils.kore.core.validation.violation.Violation>;com.davils.kore.core.validation.violation.ViolationPath){}[0]
+    final fun warn(kotlin.reflect/KProperty<*>, kotlin/String, com.davils.kore.core.validation.violation/ViolationCode = ...) // com.davils.kore.core.validation/ValidationScope.warn|warn(kotlin.reflect.KProperty<*>;kotlin.String;com.davils.kore.core.validation.violation.ViolationCode){}[0]
+    final fun warn(kotlin/String, com.davils.kore.core.validation.violation/ViolationCode = ...) // com.davils.kore.core.validation/ValidationScope.warn|warn(kotlin.String;com.davils.kore.core.validation.violation.ViolationCode){}[0]
+    final fun within(kotlin.reflect/KProperty<*>, kotlin/Function1<com.davils.kore.core.validation/ValidationScope, kotlin/Unit>) // com.davils.kore.core.validation/ValidationScope.within|within(kotlin.reflect.KProperty<*>;kotlin.Function1<com.davils.kore.core.validation.ValidationScope,kotlin.Unit>){}[0]
+}
+
+final class com.davils.kore.core.version.interval/VersionInterval { // com.davils.kore.core.version.interval/VersionInterval|null[0]
+    final val isLowerInclusive // com.davils.kore.core.version.interval/VersionInterval.isLowerInclusive|{}isLowerInclusive[0]
+        final fun <get-isLowerInclusive>(): kotlin/Boolean // com.davils.kore.core.version.interval/VersionInterval.isLowerInclusive.<get-isLowerInclusive>|<get-isLowerInclusive>(){}[0]
+    final val isUpperInclusive // com.davils.kore.core.version.interval/VersionInterval.isUpperInclusive|{}isUpperInclusive[0]
+        final fun <get-isUpperInclusive>(): kotlin/Boolean // com.davils.kore.core.version.interval/VersionInterval.isUpperInclusive.<get-isUpperInclusive>|<get-isUpperInclusive>(){}[0]
+    final val lower // com.davils.kore.core.version.interval/VersionInterval.lower|{}lower[0]
+        final fun <get-lower>(): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version.interval/VersionInterval.lower.<get-lower>|<get-lower>(){}[0]
+    final val upper // com.davils.kore.core.version.interval/VersionInterval.upper|{}upper[0]
+        final fun <get-upper>(): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version.interval/VersionInterval.upper.<get-upper>|<get-upper>(){}[0]
+
+    final fun contains(com.davils.kore.core.version/SemanticVersion): kotlin/Boolean // com.davils.kore.core.version.interval/VersionInterval.contains|contains(com.davils.kore.core.version.SemanticVersion){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.version.interval/VersionInterval.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.version.interval/VersionInterval.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.version.interval/VersionInterval.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.version/SemanticVersion : kotlin/Comparable<com.davils.kore.core.version/SemanticVersion> { // com.davils.kore.core.version/SemanticVersion|null[0]
+    final val build // com.davils.kore.core.version/SemanticVersion.build|{}build[0]
+        final fun <get-build>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.version/SemanticVersion.build.<get-build>|<get-build>(){}[0]
+    final val isPreRelease // com.davils.kore.core.version/SemanticVersion.isPreRelease|{}isPreRelease[0]
+        final fun <get-isPreRelease>(): kotlin/Boolean // com.davils.kore.core.version/SemanticVersion.isPreRelease.<get-isPreRelease>|<get-isPreRelease>(){}[0]
+    final val isStable // com.davils.kore.core.version/SemanticVersion.isStable|{}isStable[0]
+        final fun <get-isStable>(): kotlin/Boolean // com.davils.kore.core.version/SemanticVersion.isStable.<get-isStable>|<get-isStable>(){}[0]
+    final val major // com.davils.kore.core.version/SemanticVersion.major|{}major[0]
+        final fun <get-major>(): kotlin/Int // com.davils.kore.core.version/SemanticVersion.major.<get-major>|<get-major>(){}[0]
+    final val minor // com.davils.kore.core.version/SemanticVersion.minor|{}minor[0]
+        final fun <get-minor>(): kotlin/Int // com.davils.kore.core.version/SemanticVersion.minor.<get-minor>|<get-minor>(){}[0]
+    final val patch // com.davils.kore.core.version/SemanticVersion.patch|{}patch[0]
+        final fun <get-patch>(): kotlin/Int // com.davils.kore.core.version/SemanticVersion.patch.<get-patch>|<get-patch>(){}[0]
+    final val preRelease // com.davils.kore.core.version/SemanticVersion.preRelease|{}preRelease[0]
+        final fun <get-preRelease>(): kotlin.collections/List<kotlin/String> // com.davils.kore.core.version/SemanticVersion.preRelease.<get-preRelease>|<get-preRelease>(){}[0]
+
+    final fun compareTo(com.davils.kore.core.version/SemanticVersion): kotlin/Int // com.davils.kore.core.version/SemanticVersion.compareTo|compareTo(com.davils.kore.core.version.SemanticVersion){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.version/SemanticVersion.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.version/SemanticVersion.hashCode|hashCode(){}[0]
+    final fun isCompatibleWith(com.davils.kore.core.version/SemanticVersion): kotlin/Boolean // com.davils.kore.core.version/SemanticVersion.isCompatibleWith|isCompatibleWith(com.davils.kore.core.version.SemanticVersion){}[0]
+    final fun isSamePrecedence(com.davils.kore.core.version/SemanticVersion): kotlin/Boolean // com.davils.kore.core.version/SemanticVersion.isSamePrecedence|isSamePrecedence(com.davils.kore.core.version.SemanticVersion){}[0]
+    final fun release(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.release|release(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.version/SemanticVersion.toString|toString(){}[0]
+    final fun withBuild(kotlin/Array<out kotlin/String>...): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.withBuild|withBuild(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun withPreRelease(kotlin/Array<out kotlin/String>...): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.withPreRelease|withPreRelease(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun withoutBuild(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.withoutBuild|withoutBuild(){}[0]
+
+    final object Companion { // com.davils.kore.core.version/SemanticVersion.Companion|null[0]
+        final val PRECEDENCE // com.davils.kore.core.version/SemanticVersion.Companion.PRECEDENCE|{}PRECEDENCE[0]
+            final fun <get-PRECEDENCE>(): kotlin/Comparator<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.core.version/SemanticVersion.Companion.PRECEDENCE.<get-PRECEDENCE>|<get-PRECEDENCE>(){}[0]
+        final val TOTAL_ORDER // com.davils.kore.core.version/SemanticVersion.Companion.TOTAL_ORDER|{}TOTAL_ORDER[0]
+            final fun <get-TOTAL_ORDER>(): kotlin/Comparator<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.core.version/SemanticVersion.Companion.TOTAL_ORDER.<get-TOTAL_ORDER>|<get-TOTAL_ORDER>(){}[0]
+
+        final fun invoke(kotlin/Int, kotlin/Int = ..., kotlin/Int = ..., kotlin.collections/List<kotlin/String> = ..., kotlin.collections/List<kotlin/String> = ...): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.Companion.invoke|invoke(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.collections.List<kotlin.String>;kotlin.collections.List<kotlin.String>){}[0]
+        final fun parse(kotlin/String): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/SemanticVersion.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/SemanticVersion.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+    }
+}
+
+final class com.davils.kore.core.version/SemanticVersionRange { // com.davils.kore.core.version/SemanticVersionRange|null[0]
+    final val intervals // com.davils.kore.core.version/SemanticVersionRange.intervals|{}intervals[0]
+        final fun <get-intervals>(): kotlin.collections/List<com.davils.kore.core.version.interval/VersionInterval> // com.davils.kore.core.version/SemanticVersionRange.intervals.<get-intervals>|<get-intervals>(){}[0]
+    final val isAny // com.davils.kore.core.version/SemanticVersionRange.isAny|{}isAny[0]
+        final fun <get-isAny>(): kotlin/Boolean // com.davils.kore.core.version/SemanticVersionRange.isAny.<get-isAny>|<get-isAny>(){}[0]
+    final val isEmpty // com.davils.kore.core.version/SemanticVersionRange.isEmpty|{}isEmpty[0]
+        final fun <get-isEmpty>(): kotlin/Boolean // com.davils.kore.core.version/SemanticVersionRange.isEmpty.<get-isEmpty>|<get-isEmpty>(){}[0]
+
+    final fun contains(com.davils.kore.core.version/SemanticVersion, com.davils.kore.core.version/PreReleasePolicy = ...): kotlin/Boolean // com.davils.kore.core.version/SemanticVersionRange.contains|contains(com.davils.kore.core.version.SemanticVersion;com.davils.kore.core.version.PreReleasePolicy){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.version/SemanticVersionRange.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.version/SemanticVersionRange.hashCode|hashCode(){}[0]
+    final fun intersect(com.davils.kore.core.version/SemanticVersionRange): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.intersect|intersect(com.davils.kore.core.version.SemanticVersionRange){}[0]
+    final fun maxSatisfying(kotlin.collections/Iterable<com.davils.kore.core.version/SemanticVersion>, com.davils.kore.core.version/PreReleasePolicy = ...): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/SemanticVersionRange.maxSatisfying|maxSatisfying(kotlin.collections.Iterable<com.davils.kore.core.version.SemanticVersion>;com.davils.kore.core.version.PreReleasePolicy){}[0]
+    final fun minSatisfying(kotlin.collections/Iterable<com.davils.kore.core.version/SemanticVersion>, com.davils.kore.core.version/PreReleasePolicy = ...): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/SemanticVersionRange.minSatisfying|minSatisfying(kotlin.collections.Iterable<com.davils.kore.core.version.SemanticVersion>;com.davils.kore.core.version.PreReleasePolicy){}[0]
+    final fun satisfying(kotlin.collections/Iterable<com.davils.kore.core.version/SemanticVersion>, com.davils.kore.core.version/PreReleasePolicy = ...): kotlin.collections/List<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.core.version/SemanticVersionRange.satisfying|satisfying(kotlin.collections.Iterable<com.davils.kore.core.version.SemanticVersion>;com.davils.kore.core.version.PreReleasePolicy){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.version/SemanticVersionRange.toString|toString(){}[0]
+    final fun union(com.davils.kore.core.version/SemanticVersionRange): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.union|union(com.davils.kore.core.version.SemanticVersionRange){}[0]
+
+    final object Companion { // com.davils.kore.core.version/SemanticVersionRange.Companion|null[0]
+        final val ANY // com.davils.kore.core.version/SemanticVersionRange.Companion.ANY|{}ANY[0]
+            final fun <get-ANY>(): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.ANY.<get-ANY>|<get-ANY>(){}[0]
+        final val NONE // com.davils.kore.core.version/SemanticVersionRange.Companion.NONE|{}NONE[0]
+            final fun <get-NONE>(): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.NONE.<get-NONE>|<get-NONE>(){}[0]
+
+        final fun atLeast(com.davils.kore.core.version/SemanticVersion): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.atLeast|atLeast(com.davils.kore.core.version.SemanticVersion){}[0]
+        final fun below(com.davils.kore.core.version/SemanticVersion): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.below|below(com.davils.kore.core.version.SemanticVersion){}[0]
+        final fun between(com.davils.kore.core.version/SemanticVersion, com.davils.kore.core.version/SemanticVersion?): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.between|between(com.davils.kore.core.version.SemanticVersion;com.davils.kore.core.version.SemanticVersion?){}[0]
+        final fun bounded(com.davils.kore.core.version/SemanticVersion?, kotlin/Boolean, com.davils.kore.core.version/SemanticVersion?, kotlin/Boolean): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.bounded|bounded(com.davils.kore.core.version.SemanticVersion?;kotlin.Boolean;com.davils.kore.core.version.SemanticVersion?;kotlin.Boolean){}[0]
+        final fun caret(com.davils.kore.core.version/SemanticVersion): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.caret|caret(com.davils.kore.core.version.SemanticVersion){}[0]
+        final fun exactly(com.davils.kore.core.version/SemanticVersion): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.exactly|exactly(com.davils.kore.core.version.SemanticVersion){}[0]
+        final fun parse(kotlin/String): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.version/SemanticVersionRange? // com.davils.kore.core.version/SemanticVersionRange.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+        final fun tilde(com.davils.kore.core.version/SemanticVersion): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/SemanticVersionRange.Companion.tilde|tilde(com.davils.kore.core.version.SemanticVersion){}[0]
+    }
+}
+
+final value class com.davils.kore.core.size/DataSize : kotlin/Comparable<com.davils.kore.core.size/DataSize> { // com.davils.kore.core.size/DataSize|null[0]
+    constructor <init>(kotlin/Long) // com.davils.kore.core.size/DataSize.<init>|<init>(kotlin.Long){}[0]
+
+    final val bytes // com.davils.kore.core.size/DataSize.bytes|{}bytes[0]
+        final fun <get-bytes>(): kotlin/Long // com.davils.kore.core.size/DataSize.bytes.<get-bytes>|<get-bytes>(){}[0]
+
+    final fun compareTo(com.davils.kore.core.size/DataSize): kotlin/Int // com.davils.kore.core.size/DataSize.compareTo|compareTo(com.davils.kore.core.size.DataSize){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.size/DataSize.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.size/DataSize.hashCode|hashCode(){}[0]
+    final fun minus(com.davils.kore.core.size/DataSize): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.minus|minus(com.davils.kore.core.size.DataSize){}[0]
+    final fun plus(com.davils.kore.core.size/DataSize): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.plus|plus(com.davils.kore.core.size.DataSize){}[0]
+    final fun times(kotlin/Int): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.times|times(kotlin.Int){}[0]
+    final fun times(kotlin/Long): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.times|times(kotlin.Long){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.size/DataSize.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.size/DataSize.Companion|null[0]
+        final const val GIBIBYTE // com.davils.kore.core.size/DataSize.Companion.GIBIBYTE|{}GIBIBYTE[0]
+            final fun <get-GIBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.GIBIBYTE.<get-GIBIBYTE>|<get-GIBIBYTE>(){}[0]
+        final const val KIBIBYTE // com.davils.kore.core.size/DataSize.Companion.KIBIBYTE|{}KIBIBYTE[0]
+            final fun <get-KIBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.KIBIBYTE.<get-KIBIBYTE>|<get-KIBIBYTE>(){}[0]
+        final const val MEBIBYTE // com.davils.kore.core.size/DataSize.Companion.MEBIBYTE|{}MEBIBYTE[0]
+            final fun <get-MEBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.MEBIBYTE.<get-MEBIBYTE>|<get-MEBIBYTE>(){}[0]
+
+        final val ZERO // com.davils.kore.core.size/DataSize.Companion.ZERO|{}ZERO[0]
+            final fun <get-ZERO>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.Companion.ZERO.<get-ZERO>|<get-ZERO>(){}[0]
+    }
+}
+
+final value class com.davils.kore.core.validation.violation/ViolationCode { // com.davils.kore.core.validation.violation/ViolationCode|null[0]
+    constructor <init>(kotlin/String) // com.davils.kore.core.validation.violation/ViolationCode.<init>|<init>(kotlin.String){}[0]
+
+    final val value // com.davils.kore.core.validation.violation/ViolationCode.value|{}value[0]
+        final fun <get-value>(): kotlin/String // com.davils.kore.core.validation.violation/ViolationCode.value.<get-value>|<get-value>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.validation.violation/ViolationCode.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.validation.violation/ViolationCode.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.validation.violation/ViolationCode.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.validation.violation/ViolationCode.Companion|null[0]
+        final val DEPRECATED // com.davils.kore.core.validation.violation/ViolationCode.Companion.DEPRECATED|{}DEPRECATED[0]
+            final fun <get-DEPRECATED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.DEPRECATED.<get-DEPRECATED>|<get-DEPRECATED>(){}[0]
+        final val DUPLICATE // com.davils.kore.core.validation.violation/ViolationCode.Companion.DUPLICATE|{}DUPLICATE[0]
+            final fun <get-DUPLICATE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.DUPLICATE.<get-DUPLICATE>|<get-DUPLICATE>(){}[0]
+        final val INVALID // com.davils.kore.core.validation.violation/ViolationCode.Companion.INVALID|{}INVALID[0]
+            final fun <get-INVALID>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.INVALID.<get-INVALID>|<get-INVALID>(){}[0]
+        final val REQUIRED // com.davils.kore.core.validation.violation/ViolationCode.Companion.REQUIRED|{}REQUIRED[0]
+            final fun <get-REQUIRED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.REQUIRED.<get-REQUIRED>|<get-REQUIRED>(){}[0]
+        final val TOO_DEEP // com.davils.kore.core.validation.violation/ViolationCode.Companion.TOO_DEEP|{}TOO_DEEP[0]
+            final fun <get-TOO_DEEP>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.TOO_DEEP.<get-TOO_DEEP>|<get-TOO_DEEP>(){}[0]
+        final val TOO_MANY // com.davils.kore.core.validation.violation/ViolationCode.Companion.TOO_MANY|{}TOO_MANY[0]
+            final fun <get-TOO_MANY>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.validation.violation/ViolationCode.Companion.TOO_MANY.<get-TOO_MANY>|<get-TOO_MANY>(){}[0]
+    }
+}
+
+open class <#A: kotlin/Any> com.davils.kore.core.arguments.declaration/ValueConfiguration : com.davils.kore.core.arguments.declaration/ParameterConfiguration { // com.davils.kore.core.arguments.declaration/ValueConfiguration|null[0]
+    final fun sensitive() // com.davils.kore.core.arguments.declaration/ValueConfiguration.sensitive|sensitive(){}[0]
+    final fun validate(kotlin/Function2<com.davils.kore.core.validation/ValidationScope, #A, kotlin/Unit>) // com.davils.kore.core.arguments.declaration/ValueConfiguration.validate|validate(kotlin.Function2<com.davils.kore.core.validation.ValidationScope,1:0,kotlin.Unit>){}[0]
+}
+
+open class com.davils.kore.core.validation.report/ValidationException : kotlin/RuntimeException { // com.davils.kore.core.validation.report/ValidationException|null[0]
+    final val report // com.davils.kore.core.validation.report/ValidationException.report|{}report[0]
+        final fun <get-report>(): com.davils.kore.core.validation.report/ValidationReport // com.davils.kore.core.validation.report/ValidationException.report.<get-report>|<get-report>(){}[0]
+    open val message // com.davils.kore.core.validation.report/ValidationException.message|{}message[0]
+        open fun <get-message>(): kotlin/String // com.davils.kore.core.validation.report/ValidationException.message.<get-message>|<get-message>(){}[0]
+
+    final fun writeReplace(): kotlin/Any // com.davils.kore.core.validation.report/ValidationException.writeReplace|writeReplace(){}[0]
+}
+
+sealed class com.davils.kore.core.arguments.declaration/ParameterConfiguration { // com.davils.kore.core.arguments.declaration/ParameterConfiguration|null[0]
+    final fun deprecated(kotlin/String = ...) // com.davils.kore.core.arguments.declaration/ParameterConfiguration.deprecated|deprecated(kotlin.String){}[0]
+    final fun describedAs(kotlin/String) // com.davils.kore.core.arguments.declaration/ParameterConfiguration.describedAs|describedAs(kotlin.String){}[0]
+    final fun env(kotlin/String) // com.davils.kore.core.arguments.declaration/ParameterConfiguration.env|env(kotlin.String){}[0]
+    final fun noEnv() // com.davils.kore.core.arguments.declaration/ParameterConfiguration.noEnv|noEnv(){}[0]
+}
+
+sealed class com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation|null[0]
+    abstract val code // com.davils.kore.core.arguments.report/ParameterViolation.code|{}code[0]
+        abstract fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.code.<get-code>|<get-code>(){}[0]
+    abstract val message // com.davils.kore.core.arguments.report/ParameterViolation.message|{}message[0]
+        abstract fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.message.<get-message>|<get-message>(){}[0]
+    abstract val path // com.davils.kore.core.arguments.report/ParameterViolation.path|{}path[0]
+        abstract fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.path.<get-path>|<get-path>(){}[0]
+    open val severity // com.davils.kore.core.arguments.report/ParameterViolation.severity|{}severity[0]
+        open fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.arguments.report/ParameterViolation.severity.<get-severity>|<get-severity>(){}[0]
+
+    open fun toString(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.toString|toString(){}[0]
+
+    final class ArgumentTooLong : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.code.<get-code>|<get-code>(){}[0]
+        final val limit // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.limit|{}limit[0]
+            final fun <get-limit>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.limit.<get-limit>|<get-limit>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.message.<get-message>|<get-message>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.path.<get-path>|<get-path>(){}[0]
+        final val position // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.position|{}position[0]
+            final fun <get-position>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.ArgumentTooLong.position.<get-position>|<get-position>(){}[0]
+    }
+
+    final class ConversionFailure : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure|null[0]
+        final val cause // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.cause|{}cause[0]
+            final fun <get-cause>(): kotlin/Throwable // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.cause.<get-cause>|<get-cause>(){}[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.message.<get-message>|<get-message>(){}[0]
+        final val origin // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.origin|{}origin[0]
+            final fun <get-origin>(): com.davils.kore.core.arguments.report/ValueOrigin // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.origin.<get-origin>|<get-origin>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.path.<get-path>|<get-path>(){}[0]
+        final val reason // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.reason|{}reason[0]
+            final fun <get-reason>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.reason.<get-reason>|<get-reason>(){}[0]
+        final val value // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.value|{}value[0]
+            final fun <get-value>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ConversionFailure.value.<get-value>|<get-value>(){}[0]
+    }
+
+    final class Deprecated : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated|null[0]
+        final val advice // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.advice|{}advice[0]
+            final fun <get-advice>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.advice.<get-advice>|<get-advice>(){}[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.message.<get-message>|<get-message>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.path.<get-path>|<get-path>(){}[0]
+        final val severity // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.severity|{}severity[0]
+            final fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.arguments.report/ParameterViolation.Deprecated.severity.<get-severity>|<get-severity>(){}[0]
+    }
+
+    final class MalformedArgument : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.message.<get-message>|<get-message>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.path.<get-path>|<get-path>(){}[0]
+        final val reason // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.reason|{}reason[0]
+            final fun <get-reason>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.reason.<get-reason>|<get-reason>(){}[0]
+        final val token // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.token|{}token[0]
+            final fun <get-token>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MalformedArgument.token.<get-token>|<get-token>(){}[0]
+    }
+
+    final class MissingDependency : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.message.<get-message>|<get-message>(){}[0]
+        final val missing // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.missing|{}missing[0]
+            final fun <get-missing>(): kotlin.collections/List<com.davils.kore.core.arguments/ParameterInfo> // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.missing.<get-missing>|<get-missing>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.MissingDependency.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class MissingRequired : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.message.<get-message>|<get-message>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.MissingRequired.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class MissingValue : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.message.<get-message>|<get-message>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.path.<get-path>|<get-path>(){}[0]
+        final val token // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.token|{}token[0]
+            final fun <get-token>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MissingValue.token.<get-token>|<get-token>(){}[0]
+    }
+
+    final class MutuallyExclusive : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.message.<get-message>|<get-message>(){}[0]
+        final val parameters // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.parameters|{}parameters[0]
+            final fun <get-parameters>(): kotlin.collections/List<com.davils.kore.core.arguments/ParameterInfo> // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.parameters.<get-parameters>|<get-parameters>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.MutuallyExclusive.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class Repeated : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.Repeated|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.message.<get-message>|<get-message>(){}[0]
+        final val occurrences // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.occurrences|{}occurrences[0]
+            final fun <get-occurrences>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.occurrences.<get-occurrences>|<get-occurrences>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.Repeated.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class SensitiveOnCommandLine : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.message.<get-message>|<get-message>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.path.<get-path>|<get-path>(){}[0]
+        final val severity // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.severity|{}severity[0]
+            final fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.arguments.report/ParameterViolation.SensitiveOnCommandLine.severity.<get-severity>|<get-severity>(){}[0]
+    }
+
+    final class SourceUnavailable : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable|null[0]
+        final val cause // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.cause|{}cause[0]
+            final fun <get-cause>(): kotlin/Throwable // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.cause.<get-cause>|<get-cause>(){}[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.message.<get-message>|<get-message>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.path.<get-path>|<get-path>(){}[0]
+        final val sourceName // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.sourceName|{}sourceName[0]
+            final fun <get-sourceName>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.SourceUnavailable.sourceName.<get-sourceName>|<get-sourceName>(){}[0]
+    }
+
+    final class StrayValue : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.message.<get-message>|<get-message>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.path.<get-path>|<get-path>(){}[0]
+        final val position // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.position|{}position[0]
+            final fun <get-position>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.StrayValue.position.<get-position>|<get-position>(){}[0]
+    }
+
+    final class TooManyArguments : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.code.<get-code>|<get-code>(){}[0]
+        final val count // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.count|{}count[0]
+            final fun <get-count>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.count.<get-count>|<get-count>(){}[0]
+        final val limit // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.limit|{}limit[0]
+            final fun <get-limit>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.limit.<get-limit>|<get-limit>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.message.<get-message>|<get-message>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.TooManyArguments.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class TooManyValues : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.code.<get-code>|<get-code>(){}[0]
+        final val limit // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.limit|{}limit[0]
+            final fun <get-limit>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.limit.<get-limit>|<get-limit>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.message.<get-message>|<get-message>(){}[0]
+        final val origin // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.origin|{}origin[0]
+            final fun <get-origin>(): com.davils.kore.core.arguments.report/ValueOrigin // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.origin.<get-origin>|<get-origin>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.TooManyValues.path.<get-path>|<get-path>(){}[0]
+    }
+
+    final class UnknownArgument : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument|null[0]
+        final val bundlePosition // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.bundlePosition|{}bundlePosition[0]
+            final fun <get-bundlePosition>(): kotlin/Int? // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.bundlePosition.<get-bundlePosition>|<get-bundlePosition>(){}[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.message.<get-message>|<get-message>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.path.<get-path>|<get-path>(){}[0]
+        final val suggestion // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.suggestion|{}suggestion[0]
+            final fun <get-suggestion>(): kotlin/String? // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.suggestion.<get-suggestion>|<get-suggestion>(){}[0]
+        final val token // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.token|{}token[0]
+            final fun <get-token>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.UnknownArgument.token.<get-token>|<get-token>(){}[0]
+    }
+
+    final class ValidationFailure : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.code.<get-code>|<get-code>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.message.<get-message>|<get-message>(){}[0]
+        final val origin // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.origin|{}origin[0]
+            final fun <get-origin>(): com.davils.kore.core.arguments.report/ValueOrigin // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.origin.<get-origin>|<get-origin>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.path.<get-path>|<get-path>(){}[0]
+        final val severity // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.severity|{}severity[0]
+            final fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.arguments.report/ParameterViolation.ValidationFailure.severity.<get-severity>|<get-severity>(){}[0]
+    }
+
+    final class ValueTooLong : com.davils.kore.core.arguments.report/ParameterViolation { // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong|null[0]
+        final val code // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.code|{}code[0]
+            final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.code.<get-code>|<get-code>(){}[0]
+        final val limit // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.limit|{}limit[0]
+            final fun <get-limit>(): kotlin/Int // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.limit.<get-limit>|<get-limit>(){}[0]
+        final val message // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.message|{}message[0]
+            final fun <get-message>(): kotlin/String // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.message.<get-message>|<get-message>(){}[0]
+        final val origin // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.origin|{}origin[0]
+            final fun <get-origin>(): com.davils.kore.core.arguments.report/ValueOrigin // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.origin.<get-origin>|<get-origin>(){}[0]
+        final val parameter // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.parameter|{}parameter[0]
+            final fun <get-parameter>(): com.davils.kore.core.arguments/ParameterInfo // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.parameter.<get-parameter>|<get-parameter>(){}[0]
+        final val path // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.path|{}path[0]
+            final fun <get-path>(): com.davils.kore.core.validation.violation/ViolationPath // com.davils.kore.core.arguments.report/ParameterViolation.ValueTooLong.path.<get-path>|<get-path>(){}[0]
+    }
+}
+
+sealed class com.davils.kore.core.identity/Uuid : kotlin/Comparable<com.davils.kore.core.identity/Uuid> { // com.davils.kore.core.identity/Uuid|null[0]
+    abstract val version // com.davils.kore.core.identity/Uuid.version|{}version[0]
+        abstract fun <get-version>(): com.davils.kore.core.identity/UuidVersion // com.davils.kore.core.identity/Uuid.version.<get-version>|<get-version>(){}[0]
+    final val leastSignificantBits // com.davils.kore.core.identity/Uuid.leastSignificantBits|{}leastSignificantBits[0]
+        final fun <get-leastSignificantBits>(): kotlin/Long // com.davils.kore.core.identity/Uuid.leastSignificantBits.<get-leastSignificantBits>|<get-leastSignificantBits>(){}[0]
+    final val mostSignificantBits // com.davils.kore.core.identity/Uuid.mostSignificantBits|{}mostSignificantBits[0]
+        final fun <get-mostSignificantBits>(): kotlin/Long // com.davils.kore.core.identity/Uuid.mostSignificantBits.<get-mostSignificantBits>|<get-mostSignificantBits>(){}[0]
+
+    final fun compareTo(com.davils.kore.core.identity/Uuid): kotlin/Int // com.davils.kore.core.identity/Uuid.compareTo|compareTo(com.davils.kore.core.identity.Uuid){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.identity/Uuid.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.identity/Uuid.hashCode|hashCode(){}[0]
+    final fun toByteArray(): kotlin/ByteArray // com.davils.kore.core.identity/Uuid.toByteArray|toByteArray(){}[0]
+    final fun toKotlinUuid(): kotlin.uuid/Uuid // com.davils.kore.core.identity/Uuid.toKotlinUuid|toKotlinUuid(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.identity/Uuid.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.identity/Uuid.Companion|null[0]
+        final fun fromByteArray(kotlin/ByteArray): com.davils.kore.core.identity/Uuid // com.davils.kore.core.identity/Uuid.Companion.fromByteArray|fromByteArray(kotlin.ByteArray){}[0]
+        final fun fromByteArrayOrNull(kotlin/ByteArray): com.davils.kore.core.identity/Uuid? // com.davils.kore.core.identity/Uuid.Companion.fromByteArrayOrNull|fromByteArrayOrNull(kotlin.ByteArray){}[0]
+        final fun fromKotlinUuid(kotlin.uuid/Uuid): com.davils.kore.core.identity/Uuid // com.davils.kore.core.identity/Uuid.Companion.fromKotlinUuid|fromKotlinUuid(kotlin.uuid.Uuid){}[0]
+        final fun parse(kotlin/String): com.davils.kore.core.identity/Uuid // com.davils.kore.core.identity/Uuid.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.identity/Uuid? // com.davils.kore.core.identity/Uuid.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+    }
+}
+
+final object com.davils.kore.core.arguments.conversion/Converters { // com.davils.kore.core.arguments.conversion/Converters|null[0]
+    final val boolean // com.davils.kore.core.arguments.conversion/Converters.boolean|{}boolean[0]
+        final fun <get-boolean>(): com.davils.kore.core.arguments.conversion/Converter<kotlin/Boolean> // com.davils.kore.core.arguments.conversion/Converters.boolean.<get-boolean>|<get-boolean>(){}[0]
+    final val double // com.davils.kore.core.arguments.conversion/Converters.double|{}double[0]
+        final fun <get-double>(): com.davils.kore.core.arguments.conversion/Converter<kotlin/Double> // com.davils.kore.core.arguments.conversion/Converters.double.<get-double>|<get-double>(){}[0]
+    final val int // com.davils.kore.core.arguments.conversion/Converters.int|{}int[0]
+        final fun <get-int>(): com.davils.kore.core.arguments.conversion/Converter<kotlin/Int> // com.davils.kore.core.arguments.conversion/Converters.int.<get-int>|<get-int>(){}[0]
+    final val long // com.davils.kore.core.arguments.conversion/Converters.long|{}long[0]
+        final fun <get-long>(): com.davils.kore.core.arguments.conversion/Converter<kotlin/Long> // com.davils.kore.core.arguments.conversion/Converters.long.<get-long>|<get-long>(){}[0]
+    final val semanticVersion // com.davils.kore.core.arguments.conversion/Converters.semanticVersion|{}semanticVersion[0]
+        final fun <get-semanticVersion>(): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.core.arguments.conversion/Converters.semanticVersion.<get-semanticVersion>|<get-semanticVersion>(){}[0]
+    final val semanticVersionRange // com.davils.kore.core.arguments.conversion/Converters.semanticVersionRange|{}semanticVersionRange[0]
+        final fun <get-semanticVersionRange>(): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.version/SemanticVersionRange> // com.davils.kore.core.arguments.conversion/Converters.semanticVersionRange.<get-semanticVersionRange>|<get-semanticVersionRange>(){}[0]
+
+    final fun <#A1: kotlin/Any?> custom(kotlin/String, com.davils.kore.core.arguments.conversion/Converter<#A1>): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.custom|custom(kotlin.String;com.davils.kore.core.arguments.conversion.Converter<0:0>){0§<kotlin.Any?>}[0]
+    final fun <#A1: kotlin/Enum<#A1>> enumConverter(kotlin/String, kotlin.collections/List<#A1>): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.enumConverter|enumConverter(kotlin.String;kotlin.collections.List<0:0>){0§<kotlin.Enum<0:0>>}[0]
+    final fun choice(kotlin/Array<out kotlin/String>...): com.davils.kore.core.arguments.conversion/Converter<kotlin/String> // com.davils.kore.core.arguments.conversion/Converters.choice|choice(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun duration(kotlin.time/Duration = ..., kotlin.time/Duration = ...): com.davils.kore.core.arguments.conversion/Converter<kotlin.time/Duration> // com.davils.kore.core.arguments.conversion/Converters.duration|duration(kotlin.time.Duration;kotlin.time.Duration){}[0]
+    final inline fun <#A1: reified kotlin/Enum<#A1>> enum(): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.enum|enum(){0§<kotlin.Enum<0:0>>}[0]
+}
+
+final object com.davils.kore.core.arguments.report/ParameterViolationCodes { // com.davils.kore.core.arguments.report/ParameterViolationCodes|null[0]
+    final val CONVERSION_FAILED // com.davils.kore.core.arguments.report/ParameterViolationCodes.CONVERSION_FAILED|{}CONVERSION_FAILED[0]
+        final fun <get-CONVERSION_FAILED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.CONVERSION_FAILED.<get-CONVERSION_FAILED>|<get-CONVERSION_FAILED>(){}[0]
+    final val DEPRECATED // com.davils.kore.core.arguments.report/ParameterViolationCodes.DEPRECATED|{}DEPRECATED[0]
+        final fun <get-DEPRECATED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.DEPRECATED.<get-DEPRECATED>|<get-DEPRECATED>(){}[0]
+    final val MALFORMED_ARGUMENT // com.davils.kore.core.arguments.report/ParameterViolationCodes.MALFORMED_ARGUMENT|{}MALFORMED_ARGUMENT[0]
+        final fun <get-MALFORMED_ARGUMENT>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.MALFORMED_ARGUMENT.<get-MALFORMED_ARGUMENT>|<get-MALFORMED_ARGUMENT>(){}[0]
+    final val MISSING_DEPENDENCY // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_DEPENDENCY|{}MISSING_DEPENDENCY[0]
+        final fun <get-MISSING_DEPENDENCY>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_DEPENDENCY.<get-MISSING_DEPENDENCY>|<get-MISSING_DEPENDENCY>(){}[0]
+    final val MISSING_REQUIRED // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_REQUIRED|{}MISSING_REQUIRED[0]
+        final fun <get-MISSING_REQUIRED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_REQUIRED.<get-MISSING_REQUIRED>|<get-MISSING_REQUIRED>(){}[0]
+    final val MISSING_VALUE // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_VALUE|{}MISSING_VALUE[0]
+        final fun <get-MISSING_VALUE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.MISSING_VALUE.<get-MISSING_VALUE>|<get-MISSING_VALUE>(){}[0]
+    final val MUTUALLY_EXCLUSIVE // com.davils.kore.core.arguments.report/ParameterViolationCodes.MUTUALLY_EXCLUSIVE|{}MUTUALLY_EXCLUSIVE[0]
+        final fun <get-MUTUALLY_EXCLUSIVE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.MUTUALLY_EXCLUSIVE.<get-MUTUALLY_EXCLUSIVE>|<get-MUTUALLY_EXCLUSIVE>(){}[0]
+    final val REPEATED // com.davils.kore.core.arguments.report/ParameterViolationCodes.REPEATED|{}REPEATED[0]
+        final fun <get-REPEATED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.REPEATED.<get-REPEATED>|<get-REPEATED>(){}[0]
+    final val SENSITIVE_ON_COMMAND_LINE // com.davils.kore.core.arguments.report/ParameterViolationCodes.SENSITIVE_ON_COMMAND_LINE|{}SENSITIVE_ON_COMMAND_LINE[0]
+        final fun <get-SENSITIVE_ON_COMMAND_LINE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.SENSITIVE_ON_COMMAND_LINE.<get-SENSITIVE_ON_COMMAND_LINE>|<get-SENSITIVE_ON_COMMAND_LINE>(){}[0]
+    final val SOURCE_UNAVAILABLE // com.davils.kore.core.arguments.report/ParameterViolationCodes.SOURCE_UNAVAILABLE|{}SOURCE_UNAVAILABLE[0]
+        final fun <get-SOURCE_UNAVAILABLE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.SOURCE_UNAVAILABLE.<get-SOURCE_UNAVAILABLE>|<get-SOURCE_UNAVAILABLE>(){}[0]
+    final val STRAY_VALUE // com.davils.kore.core.arguments.report/ParameterViolationCodes.STRAY_VALUE|{}STRAY_VALUE[0]
+        final fun <get-STRAY_VALUE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.STRAY_VALUE.<get-STRAY_VALUE>|<get-STRAY_VALUE>(){}[0]
+    final val TOO_LONG // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_LONG|{}TOO_LONG[0]
+        final fun <get-TOO_LONG>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_LONG.<get-TOO_LONG>|<get-TOO_LONG>(){}[0]
+    final val TOO_MANY_ARGUMENTS // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_MANY_ARGUMENTS|{}TOO_MANY_ARGUMENTS[0]
+        final fun <get-TOO_MANY_ARGUMENTS>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_MANY_ARGUMENTS.<get-TOO_MANY_ARGUMENTS>|<get-TOO_MANY_ARGUMENTS>(){}[0]
+    final val TOO_MANY_VALUES // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_MANY_VALUES|{}TOO_MANY_VALUES[0]
+        final fun <get-TOO_MANY_VALUES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.TOO_MANY_VALUES.<get-TOO_MANY_VALUES>|<get-TOO_MANY_VALUES>(){}[0]
+    final val UNKNOWN_ARGUMENT // com.davils.kore.core.arguments.report/ParameterViolationCodes.UNKNOWN_ARGUMENT|{}UNKNOWN_ARGUMENT[0]
+        final fun <get-UNKNOWN_ARGUMENT>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.UNKNOWN_ARGUMENT.<get-UNKNOWN_ARGUMENT>|<get-UNKNOWN_ARGUMENT>(){}[0]
+    final val VALIDATION_FAILED // com.davils.kore.core.arguments.report/ParameterViolationCodes.VALIDATION_FAILED|{}VALIDATION_FAILED[0]
+        final fun <get-VALIDATION_FAILED>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.arguments.report/ParameterViolationCodes.VALIDATION_FAILED.<get-VALIDATION_FAILED>|<get-VALIDATION_FAILED>(){}[0]
+}
+
+final object com.davils.kore.core.identity.generator/UuidV4Generator : com.davils.kore.core.identity.generator/UuidGenerator<com.davils.kore.core.identity/UuidV4> { // com.davils.kore.core.identity.generator/UuidV4Generator|null[0]
+    final fun next(): com.davils.kore.core.identity/UuidV4 // com.davils.kore.core.identity.generator/UuidV4Generator.next|next(){}[0]
+}
+
+final object com.davils.kore.core.identity.generator/UuidV7Generator : com.davils.kore.core.identity.generator/UuidGenerator<com.davils.kore.core.identity/UuidV7> { // com.davils.kore.core.identity.generator/UuidV7Generator|null[0]
+    final fun next(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.core.identity.generator/UuidV7Generator.next|next(){}[0]
+}
+
+final object com.davils.kore.core.principal/PrincipalViolationCodes { // com.davils.kore.core.principal/PrincipalViolationCodes|null[0]
+    final val BLANK_DISPLAY_NAME // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_DISPLAY_NAME|{}BLANK_DISPLAY_NAME[0]
+        final fun <get-BLANK_DISPLAY_NAME>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_DISPLAY_NAME.<get-BLANK_DISPLAY_NAME>|<get-BLANK_DISPLAY_NAME>(){}[0]
+    final val BLANK_ID // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_ID|{}BLANK_ID[0]
+        final fun <get-BLANK_ID>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_ID.<get-BLANK_ID>|<get-BLANK_ID>(){}[0]
+    final val BLANK_ROLE // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_ROLE|{}BLANK_ROLE[0]
+        final fun <get-BLANK_ROLE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_ROLE.<get-BLANK_ROLE>|<get-BLANK_ROLE>(){}[0]
+    final val BLANK_TENANT // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_TENANT|{}BLANK_TENANT[0]
+        final fun <get-BLANK_TENANT>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_TENANT.<get-BLANK_TENANT>|<get-BLANK_TENANT>(){}[0]
+    final val CROSS_TENANT_DELEGATION // com.davils.kore.core.principal/PrincipalViolationCodes.CROSS_TENANT_DELEGATION|{}CROSS_TENANT_DELEGATION[0]
+        final fun <get-CROSS_TENANT_DELEGATION>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.CROSS_TENANT_DELEGATION.<get-CROSS_TENANT_DELEGATION>|<get-CROSS_TENANT_DELEGATION>(){}[0]
+    final val DELEGATION_CYCLE // com.davils.kore.core.principal/PrincipalViolationCodes.DELEGATION_CYCLE|{}DELEGATION_CYCLE[0]
+        final fun <get-DELEGATION_CYCLE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.DELEGATION_CYCLE.<get-DELEGATION_CYCLE>|<get-DELEGATION_CYCLE>(){}[0]
+    final val DELEGATION_TOO_DEEP // com.davils.kore.core.principal/PrincipalViolationCodes.DELEGATION_TOO_DEEP|{}DELEGATION_TOO_DEEP[0]
+        final fun <get-DELEGATION_TOO_DEEP>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.DELEGATION_TOO_DEEP.<get-DELEGATION_TOO_DEEP>|<get-DELEGATION_TOO_DEEP>(){}[0]
+    final val INVALID_ATTRIBUTE // com.davils.kore.core.principal/PrincipalViolationCodes.INVALID_ATTRIBUTE|{}INVALID_ATTRIBUTE[0]
+        final fun <get-INVALID_ATTRIBUTE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.INVALID_ATTRIBUTE.<get-INVALID_ATTRIBUTE>|<get-INVALID_ATTRIBUTE>(){}[0]
+    final val INVALID_CHARACTER // com.davils.kore.core.principal/PrincipalViolationCodes.INVALID_CHARACTER|{}INVALID_CHARACTER[0]
+        final fun <get-INVALID_CHARACTER>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.INVALID_CHARACTER.<get-INVALID_CHARACTER>|<get-INVALID_CHARACTER>(){}[0]
+    final val SELF_DELEGATION // com.davils.kore.core.principal/PrincipalViolationCodes.SELF_DELEGATION|{}SELF_DELEGATION[0]
+        final fun <get-SELF_DELEGATION>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.SELF_DELEGATION.<get-SELF_DELEGATION>|<get-SELF_DELEGATION>(){}[0]
+    final val SURROUNDING_WHITESPACE // com.davils.kore.core.principal/PrincipalViolationCodes.SURROUNDING_WHITESPACE|{}SURROUNDING_WHITESPACE[0]
+        final fun <get-SURROUNDING_WHITESPACE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.SURROUNDING_WHITESPACE.<get-SURROUNDING_WHITESPACE>|<get-SURROUNDING_WHITESPACE>(){}[0]
+    final val TOO_LONG // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_LONG|{}TOO_LONG[0]
+        final fun <get-TOO_LONG>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_LONG.<get-TOO_LONG>|<get-TOO_LONG>(){}[0]
+    final val TOO_MANY_ATTRIBUTES // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ATTRIBUTES|{}TOO_MANY_ATTRIBUTES[0]
+        final fun <get-TOO_MANY_ATTRIBUTES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ATTRIBUTES.<get-TOO_MANY_ATTRIBUTES>|<get-TOO_MANY_ATTRIBUTES>(){}[0]
+    final val TOO_MANY_ROLES // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ROLES|{}TOO_MANY_ROLES[0]
+        final fun <get-TOO_MANY_ROLES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ROLES.<get-TOO_MANY_ROLES>|<get-TOO_MANY_ROLES>(){}[0]
+}
+
+final object com.davils.kore.core.version/VersionViolationCodes { // com.davils.kore.core.version/VersionViolationCodes|null[0]
+    final val INVALID_RANGE // com.davils.kore.core.version/VersionViolationCodes.INVALID_RANGE|{}INVALID_RANGE[0]
+        final fun <get-INVALID_RANGE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.version/VersionViolationCodes.INVALID_RANGE.<get-INVALID_RANGE>|<get-INVALID_RANGE>(){}[0]
+    final val INVALID_VERSION // com.davils.kore.core.version/VersionViolationCodes.INVALID_VERSION|{}INVALID_VERSION[0]
+        final fun <get-INVALID_VERSION>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.version/VersionViolationCodes.INVALID_VERSION.<get-INVALID_VERSION>|<get-INVALID_VERSION>(){}[0]
+}
+
+final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0]
+    final const val MAX_ARGUMENTS // com.davils.kore.core/Limits.MAX_ARGUMENTS|{}MAX_ARGUMENTS[0]
+        final fun <get-MAX_ARGUMENTS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ARGUMENTS.<get-MAX_ARGUMENTS>|<get-MAX_ARGUMENTS>(){}[0]
+    final const val MAX_ARGUMENT_LENGTH // com.davils.kore.core/Limits.MAX_ARGUMENT_LENGTH|{}MAX_ARGUMENT_LENGTH[0]
+        final fun <get-MAX_ARGUMENT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ARGUMENT_LENGTH.<get-MAX_ARGUMENT_LENGTH>|<get-MAX_ARGUMENT_LENGTH>(){}[0]
+    final const val MAX_ATTRIBUTES // com.davils.kore.core/Limits.MAX_ATTRIBUTES|{}MAX_ATTRIBUTES[0]
+        final fun <get-MAX_ATTRIBUTES>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ATTRIBUTES.<get-MAX_ATTRIBUTES>|<get-MAX_ATTRIBUTES>(){}[0]
+    final const val MAX_ATTRIBUTE_NAME_LENGTH // com.davils.kore.core/Limits.MAX_ATTRIBUTE_NAME_LENGTH|{}MAX_ATTRIBUTE_NAME_LENGTH[0]
+        final fun <get-MAX_ATTRIBUTE_NAME_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ATTRIBUTE_NAME_LENGTH.<get-MAX_ATTRIBUTE_NAME_LENGTH>|<get-MAX_ATTRIBUTE_NAME_LENGTH>(){}[0]
+    final const val MAX_ATTRIBUTE_VALUE_LENGTH // com.davils.kore.core/Limits.MAX_ATTRIBUTE_VALUE_LENGTH|{}MAX_ATTRIBUTE_VALUE_LENGTH[0]
+        final fun <get-MAX_ATTRIBUTE_VALUE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ATTRIBUTE_VALUE_LENGTH.<get-MAX_ATTRIBUTE_VALUE_LENGTH>|<get-MAX_ATTRIBUTE_VALUE_LENGTH>(){}[0]
+    final const val MAX_DELEGATION_CHAIN // com.davils.kore.core/Limits.MAX_DELEGATION_CHAIN|{}MAX_DELEGATION_CHAIN[0]
+        final fun <get-MAX_DELEGATION_CHAIN>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DELEGATION_CHAIN.<get-MAX_DELEGATION_CHAIN>|<get-MAX_DELEGATION_CHAIN>(){}[0]
+    final const val MAX_DISPLAY_LENGTH // com.davils.kore.core/Limits.MAX_DISPLAY_LENGTH|{}MAX_DISPLAY_LENGTH[0]
+        final fun <get-MAX_DISPLAY_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DISPLAY_LENGTH.<get-MAX_DISPLAY_LENGTH>|<get-MAX_DISPLAY_LENGTH>(){}[0]
+    final const val MAX_LINE_MAP_LENGTH // com.davils.kore.core/Limits.MAX_LINE_MAP_LENGTH|{}MAX_LINE_MAP_LENGTH[0]
+        final fun <get-MAX_LINE_MAP_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_LINE_MAP_LENGTH.<get-MAX_LINE_MAP_LENGTH>|<get-MAX_LINE_MAP_LENGTH>(){}[0]
+    final const val MAX_MESSAGE_LENGTH // com.davils.kore.core/Limits.MAX_MESSAGE_LENGTH|{}MAX_MESSAGE_LENGTH[0]
+        final fun <get-MAX_MESSAGE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_MESSAGE_LENGTH.<get-MAX_MESSAGE_LENGTH>|<get-MAX_MESSAGE_LENGTH>(){}[0]
+    final const val MAX_NUMERIC_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_NUMERIC_TEXT_LENGTH|{}MAX_NUMERIC_TEXT_LENGTH[0]
+        final fun <get-MAX_NUMERIC_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_NUMERIC_TEXT_LENGTH.<get-MAX_NUMERIC_TEXT_LENGTH>|<get-MAX_NUMERIC_TEXT_LENGTH>(){}[0]
+    final const val MAX_PATH_DEPTH // com.davils.kore.core/Limits.MAX_PATH_DEPTH|{}MAX_PATH_DEPTH[0]
+        final fun <get-MAX_PATH_DEPTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_PATH_DEPTH.<get-MAX_PATH_DEPTH>|<get-MAX_PATH_DEPTH>(){}[0]
+    final const val MAX_PRINCIPAL_ID_LENGTH // com.davils.kore.core/Limits.MAX_PRINCIPAL_ID_LENGTH|{}MAX_PRINCIPAL_ID_LENGTH[0]
+        final fun <get-MAX_PRINCIPAL_ID_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_PRINCIPAL_ID_LENGTH.<get-MAX_PRINCIPAL_ID_LENGTH>|<get-MAX_PRINCIPAL_ID_LENGTH>(){}[0]
+    final const val MAX_PRINCIPAL_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_PRINCIPAL_TEXT_LENGTH|{}MAX_PRINCIPAL_TEXT_LENGTH[0]
+        final fun <get-MAX_PRINCIPAL_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_PRINCIPAL_TEXT_LENGTH.<get-MAX_PRINCIPAL_TEXT_LENGTH>|<get-MAX_PRINCIPAL_TEXT_LENGTH>(){}[0]
+    final const val MAX_RANGE_COMPARATORS // com.davils.kore.core/Limits.MAX_RANGE_COMPARATORS|{}MAX_RANGE_COMPARATORS[0]
+        final fun <get-MAX_RANGE_COMPARATORS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_RANGE_COMPARATORS.<get-MAX_RANGE_COMPARATORS>|<get-MAX_RANGE_COMPARATORS>(){}[0]
+    final const val MAX_RANGE_LENGTH // com.davils.kore.core/Limits.MAX_RANGE_LENGTH|{}MAX_RANGE_LENGTH[0]
+        final fun <get-MAX_RANGE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_RANGE_LENGTH.<get-MAX_RANGE_LENGTH>|<get-MAX_RANGE_LENGTH>(){}[0]
+    final const val MAX_RENDERED_VIOLATIONS // com.davils.kore.core/Limits.MAX_RENDERED_VIOLATIONS|{}MAX_RENDERED_VIOLATIONS[0]
+        final fun <get-MAX_RENDERED_VIOLATIONS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_RENDERED_VIOLATIONS.<get-MAX_RENDERED_VIOLATIONS>|<get-MAX_RENDERED_VIOLATIONS>(){}[0]
+    final const val MAX_ROLES // com.davils.kore.core/Limits.MAX_ROLES|{}MAX_ROLES[0]
+        final fun <get-MAX_ROLES>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ROLES.<get-MAX_ROLES>|<get-MAX_ROLES>(){}[0]
+    final const val MAX_SNIPPET_WIDTH // com.davils.kore.core/Limits.MAX_SNIPPET_WIDTH|{}MAX_SNIPPET_WIDTH[0]
+        final fun <get-MAX_SNIPPET_WIDTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_SNIPPET_WIDTH.<get-MAX_SNIPPET_WIDTH>|<get-MAX_SNIPPET_WIDTH>(){}[0]
+    final const val MAX_SUGGESTED_ARGUMENTS // com.davils.kore.core/Limits.MAX_SUGGESTED_ARGUMENTS|{}MAX_SUGGESTED_ARGUMENTS[0]
+        final fun <get-MAX_SUGGESTED_ARGUMENTS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_SUGGESTED_ARGUMENTS.<get-MAX_SUGGESTED_ARGUMENTS>|<get-MAX_SUGGESTED_ARGUMENTS>(){}[0]
+    final const val MAX_UUID_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_UUID_TEXT_LENGTH|{}MAX_UUID_TEXT_LENGTH[0]
+        final fun <get-MAX_UUID_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_UUID_TEXT_LENGTH.<get-MAX_UUID_TEXT_LENGTH>|<get-MAX_UUID_TEXT_LENGTH>(){}[0]
+    final const val MAX_VALUES_PER_PARAMETER // com.davils.kore.core/Limits.MAX_VALUES_PER_PARAMETER|{}MAX_VALUES_PER_PARAMETER[0]
+        final fun <get-MAX_VALUES_PER_PARAMETER>(): kotlin/Int // com.davils.kore.core/Limits.MAX_VALUES_PER_PARAMETER.<get-MAX_VALUES_PER_PARAMETER>|<get-MAX_VALUES_PER_PARAMETER>(){}[0]
+    final const val MAX_VERSION_LENGTH // com.davils.kore.core/Limits.MAX_VERSION_LENGTH|{}MAX_VERSION_LENGTH[0]
+        final fun <get-MAX_VERSION_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_VERSION_LENGTH.<get-MAX_VERSION_LENGTH>|<get-MAX_VERSION_LENGTH>(){}[0]
+    final const val MAX_VIOLATIONS // com.davils.kore.core/Limits.MAX_VIOLATIONS|{}MAX_VIOLATIONS[0]
+        final fun <get-MAX_VIOLATIONS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_VIOLATIONS.<get-MAX_VIOLATIONS>|<get-MAX_VIOLATIONS>(){}[0]
+}
+
+final val com.davils.kore.core.size/bytes // com.davils.kore.core.size/bytes|@kotlin.Int{}bytes[0]
+    final fun (kotlin/Int).<get-bytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/bytes.<get-bytes>|<get-bytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/bytes // com.davils.kore.core.size/bytes|@kotlin.Long{}bytes[0]
+    final fun (kotlin/Long).<get-bytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/bytes.<get-bytes>|<get-bytes>@kotlin.Long(){}[0]
+final val com.davils.kore.core.size/gibibytes // com.davils.kore.core.size/gibibytes|@kotlin.Int{}gibibytes[0]
+    final fun (kotlin/Int).<get-gibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/gibibytes.<get-gibibytes>|<get-gibibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/kibibytes // com.davils.kore.core.size/kibibytes|@kotlin.Int{}kibibytes[0]
+    final fun (kotlin/Int).<get-kibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/kibibytes.<get-kibibytes>|<get-kibibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/mebibytes // com.davils.kore.core.size/mebibytes|@kotlin.Int{}mebibytes[0]
+    final fun (kotlin/Int).<get-mebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/mebibytes.<get-mebibytes>|<get-mebibytes>@kotlin.Int(){}[0]
+
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(com.davils.kore.core.text/TextRange): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(kotlin/Int): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(kotlin.Int){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/covering(com.davils.kore.core.text/TextRange): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/covering|covering@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/intersects(com.davils.kore.core.text/TextRange): kotlin/Boolean // com.davils.kore.core.text/intersects|intersects@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/shiftedBy(kotlin/Int): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/shiftedBy|shiftedBy@com.davils.kore.core.text.TextRange(kotlin.Int){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/textIn(kotlin/CharSequence): kotlin/String // com.davils.kore.core.text/textIn|textIn@com.davils.kore.core.text.TextRange(kotlin.CharSequence){}[0]
+final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/touches(kotlin/Int): kotlin/Boolean // com.davils.kore.core.text/touches|touches@com.davils.kore.core.text.TextRange(kotlin.Int){}[0]
+final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/masked(): com.davils.kore.core.text/TextSnippet // com.davils.kore.core.text/masked|masked@com.davils.kore.core.text.TextSnippet(){}[0]
+final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/render(): kotlin/String // com.davils.kore.core.text/render|render@com.davils.kore.core.text.TextSnippet(){}[0]
+final fun (com.davils.kore.core.validation/Validatable).com.davils.kore.core.validation/validate(kotlin/String): com.davils.kore.core.validation.report/ValidationReport // com.davils.kore.core.validation/validate|validate@com.davils.kore.core.validation.Validatable(kotlin.String){}[0]
+final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.version/semanticVersion(kotlin.reflect/KProperty<*>, kotlin/String): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/semanticVersion|semanticVersion@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.String){}[0]
+final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.version/semanticVersionRange(kotlin.reflect/KProperty<*>, kotlin/String): com.davils.kore.core.version/SemanticVersionRange? // com.davils.kore.core.version/semanticVersionRange|semanticVersionRange@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.String){}[0]
+final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextMajor(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextMajor|nextMajor@com.davils.kore.core.version.SemanticVersion(){}[0]
+final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextMinor(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextMinor|nextMinor@com.davils.kore.core.version.SemanticVersion(){}[0]
+final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextPatch(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextPatch|nextPatch@com.davils.kore.core.version.SemanticVersion(){}[0]
+final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextPreRelease(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextPreRelease|nextPreRelease@com.davils.kore.core.version.SemanticVersion(){}[0]
+final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextPreRelease(kotlin/String): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextPreRelease|nextPreRelease@com.davils.kore.core.version.SemanticVersion(kotlin.String){}[0]
+final fun (kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>).com.davils.kore.core.text/mapOffset(kotlin/Int): kotlin/Int // com.davils.kore.core.text/mapOffset|mapOffset@kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>(kotlin.Int){}[0]
+final fun (kotlin/CharSequence).com.davils.kore.core.text/edited(kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>): kotlin/String // com.davils.kore.core.text/edited|edited@kotlin.CharSequence(kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>){}[0]
+final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersion(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/toSemanticVersion|toSemanticVersion@kotlin.String(){}[0]
+final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionOrNull(): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/toSemanticVersionOrNull|toSemanticVersionOrNull@kotlin.String(){}[0]
+final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionRange(): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/toSemanticVersionRange|toSemanticVersionRange@kotlin.String(){}[0]
+final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionRangeOrNull(): com.davils.kore.core.version/SemanticVersionRange? // com.davils.kore.core.version/toSemanticVersionRangeOrNull|toSemanticVersionRangeOrNull@kotlin.String(){}[0]
+final fun <#A: com.davils.kore.core.architecture.data/DataTransferObject, #B: com.davils.kore.core.architecture.domain/DomainModel> (com.davils.kore.core.architecture.mapper/DomainMapper<#A, #B>).com.davils.kore.core.architecture.mapper/toDomain(kotlin.collections/Iterable<#A>): kotlin.collections/List<#B> // com.davils.kore.core.architecture.mapper/toDomain|toDomain@com.davils.kore.core.architecture.mapper.DomainMapper<0:0,0:1>(kotlin.collections.Iterable<0:0>){0§<com.davils.kore.core.architecture.data.DataTransferObject>;1§<com.davils.kore.core.architecture.domain.DomainModel>}[0]
+final fun <#A: com.davils.kore.core.architecture.domain/DomainModel, #B: com.davils.kore.core.architecture.data/DataTransferObject> (com.davils.kore.core.architecture.mapper/DtoMapper<#A, #B>).com.davils.kore.core.architecture.mapper/toDto(kotlin.collections/Iterable<#A>): kotlin.collections/List<#B> // com.davils.kore.core.architecture.mapper/toDto|toDto@com.davils.kore.core.architecture.mapper.DtoMapper<0:0,0:1>(kotlin.collections.Iterable<0:0>){0§<com.davils.kore.core.architecture.domain.DomainModel>;1§<com.davils.kore.core.architecture.data.DataTransferObject>}[0]
+final fun <#A: com.davils.kore.core.validation/Validatable> (#A).com.davils.kore.core.validation/validateOrThrow(kotlin/String): #A // com.davils.kore.core.validation/validateOrThrow|validateOrThrow@0:0(kotlin.String){0§<com.davils.kore.core.validation.Validatable>}[0]
+final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
+final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
+final suspend fun <#A: kotlin/Any?> (com.davils.kore.core.architecture.domain/UseCase<kotlin/Unit, #A>).com.davils.kore.core.architecture.domain/invoke(): #A // com.davils.kore.core.architecture.domain/invoke|invoke@com.davils.kore.core.architecture.domain.UseCase<kotlin.Unit,0:0>(){0§<kotlin.Any?>}[0]
+final suspend fun <#A: kotlin/Any?> com.davils.kore.core.principal/withPrincipal(com.davils.kore.core.principal/Principal, kotlin/Boolean = ..., kotlin.coroutines/SuspendFunction1<kotlinx.coroutines/CoroutineScope, #A>): #A // com.davils.kore.core.principal/withPrincipal|withPrincipal(com.davils.kore.core.principal.Principal;kotlin.Boolean;kotlin.coroutines.SuspendFunction1<kotlinx.coroutines.CoroutineScope,0:0>){0§<kotlin.Any?>}[0]
+final suspend fun com.davils.kore.core.principal/currentPrincipal(): com.davils.kore.core.principal/Principal? // com.davils.kore.core.principal/currentPrincipal|currentPrincipal(){}[0]
+final suspend fun com.davils.kore.core.principal/requirePrincipal(): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/requirePrincipal|requirePrincipal(){}[0]

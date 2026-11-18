@@ -25,21 +25,21 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_VIOLATIONS I
 }
 
-public abstract interface com/davils/kore/core/annotation/DavilsDsl : java/lang/annotation/Annotation {
+public abstract interface annotation class com/davils/kore/core/annotation/DavilsDsl : java/lang/annotation/Annotation {
 }
 
-public abstract interface com/davils/kore/core/annotation/DavilsExperimental : java/lang/annotation/Annotation {
+public abstract interface annotation class com/davils/kore/core/annotation/DavilsExperimental : java/lang/annotation/Annotation {
 }
 
-public abstract interface com/davils/kore/core/annotation/DavilsGenerated : java/lang/annotation/Annotation {
+public abstract interface annotation class com/davils/kore/core/annotation/DavilsGenerated : java/lang/annotation/Annotation {
 	public abstract fun by ()Ljava/lang/String;
 	public abstract fun from ()Ljava/lang/String;
 }
 
-public abstract interface com/davils/kore/core/annotation/DavilsInternal : java/lang/annotation/Annotation {
+public abstract interface annotation class com/davils/kore/core/annotation/DavilsInternal : java/lang/annotation/Annotation {
 }
 
-public abstract interface com/davils/kore/core/annotation/DavilsPlatformBinding : java/lang/annotation/Annotation {
+public abstract interface annotation class com/davils/kore/core/annotation/DavilsPlatformBinding : java/lang/annotation/Annotation {
 }
 
 public final class com/davils/kore/core/architecture/data/DataMode : java/lang/Enum {
@@ -50,19 +50,19 @@ public final class com/davils/kore/core/architecture/data/DataMode : java/lang/E
 	public static fun values ()[Lcom/davils/kore/core/architecture/data/DataMode;
 }
 
-public abstract interface com/davils/kore/core/architecture/data/DataSource {
+public abstract interface class com/davils/kore/core/architecture/data/DataSource {
 }
 
-public abstract interface com/davils/kore/core/architecture/data/DataTransferObject {
+public abstract interface class com/davils/kore/core/architecture/data/DataTransferObject {
 }
 
-public abstract interface com/davils/kore/core/architecture/data/Repository {
+public abstract interface class com/davils/kore/core/architecture/data/Repository {
 }
 
-public abstract interface com/davils/kore/core/architecture/domain/DomainModel {
+public abstract interface class com/davils/kore/core/architecture/domain/DomainModel {
 }
 
-public abstract interface com/davils/kore/core/architecture/domain/UseCase {
+public abstract interface class com/davils/kore/core/architecture/domain/UseCase {
 	public abstract fun invoke (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -70,7 +70,7 @@ public final class com/davils/kore/core/architecture/domain/UseCaseKt {
 	public static final fun invoke (Lcom/davils/kore/core/architecture/domain/UseCase;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface com/davils/kore/core/architecture/mapper/DomainMapper {
+public abstract interface class com/davils/kore/core/architecture/mapper/DomainMapper {
 	public abstract fun toDomain (Lcom/davils/kore/core/architecture/data/DataTransferObject;)Lcom/davils/kore/core/architecture/domain/DomainModel;
 }
 
@@ -78,7 +78,7 @@ public final class com/davils/kore/core/architecture/mapper/DomainMapperKt {
 	public static final fun toDomain (Lcom/davils/kore/core/architecture/mapper/DomainMapper;Ljava/lang/Iterable;)Ljava/util/List;
 }
 
-public abstract interface com/davils/kore/core/architecture/mapper/DtoMapper {
+public abstract interface class com/davils/kore/core/architecture/mapper/DtoMapper {
 	public abstract fun toDto (Lcom/davils/kore/core/architecture/domain/DomainModel;)Lcom/davils/kore/core/architecture/data/DataTransferObject;
 }
 
@@ -86,7 +86,7 @@ public final class com/davils/kore/core/architecture/mapper/DtoMapperKt {
 	public static final fun toDto (Lcom/davils/kore/core/architecture/mapper/DtoMapper;Ljava/lang/Iterable;)Ljava/util/List;
 }
 
-public abstract interface com/davils/kore/core/architecture/mapper/Mapper : com/davils/kore/core/architecture/mapper/DomainMapper, com/davils/kore/core/architecture/mapper/DtoMapper {
+public abstract interface class com/davils/kore/core/architecture/mapper/Mapper : com/davils/kore/core/architecture/mapper/DomainMapper, com/davils/kore/core/architecture/mapper/DtoMapper {
 }
 
 public final class com/davils/kore/core/arguments/Parameter : kotlin/properties/PropertyDelegateProvider {
@@ -171,7 +171,7 @@ public final class com/davils/kore/core/arguments/UnknownArgumentPolicy : java/l
 	public static fun values ()[Lcom/davils/kore/core/arguments/UnknownArgumentPolicy;
 }
 
-public abstract interface com/davils/kore/core/arguments/ValueSource {
+public abstract interface class com/davils/kore/core/arguments/ValueSource {
 	public abstract fun getName ()Ljava/lang/String;
 	public abstract fun read (Lcom/davils/kore/core/arguments/ParameterInfo;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
@@ -182,7 +182,7 @@ public final class com/davils/kore/core/arguments/conversion/ConversionException
 	public fun getMessage ()Ljava/lang/String;
 }
 
-public abstract interface com/davils/kore/core/arguments/conversion/Converter {
+public abstract interface class com/davils/kore/core/arguments/conversion/Converter {
 	public abstract fun convert (Ljava/lang/String;)Ljava/lang/Object;
 	public fun getTypeName ()Ljava/lang/String;
 }
@@ -193,17 +193,19 @@ public final class com/davils/kore/core/arguments/conversion/Converters {
 	public final fun custom (Ljava/lang/String;Lcom/davils/kore/core/arguments/conversion/Converter;)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun duration-QTBD994 (JJ)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public static synthetic fun duration-QTBD994$default (Lcom/davils/kore/core/arguments/conversion/Converters;JJILjava/lang/Object;)Lcom/davils/kore/core/arguments/conversion/Converter;
-	public final synthetic fun enum ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun enumConverter (Ljava/lang/String;Ljava/util/List;)Lcom/davils/kore/core/arguments/conversion/Converter;
-	public final fun file ([Lcom/davils/kore/core/arguments/conversion/PathRequirement;)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getBoolean ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getDouble ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getInt ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getLong ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getSemanticVersion ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getSemanticVersionRange ()Lcom/davils/kore/core/arguments/conversion/Converter;
-	public final fun path ([Lcom/davils/kore/core/arguments/conversion/PathRequirement;)Lcom/davils/kore/core/arguments/conversion/Converter;
-	public final fun uri (Ljava/util/Set;ZZ)Lcom/davils/kore/core/arguments/conversion/Converter;
+}
+
+public final class com/davils/kore/core/arguments/conversion/JvmConvertersKt {
+	public static final fun file (Lcom/davils/kore/core/arguments/conversion/Converters;[Lcom/davils/kore/core/arguments/conversion/PathRequirement;)Lcom/davils/kore/core/arguments/conversion/Converter;
+	public static final fun path (Lcom/davils/kore/core/arguments/conversion/Converters;[Lcom/davils/kore/core/arguments/conversion/PathRequirement;)Lcom/davils/kore/core/arguments/conversion/Converter;
+	public static final fun uri (Lcom/davils/kore/core/arguments/conversion/Converters;Ljava/util/Set;ZZ)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public static synthetic fun uri$default (Lcom/davils/kore/core/arguments/conversion/Converters;Ljava/util/Set;ZZILjava/lang/Object;)Lcom/davils/kore/core/arguments/conversion/Converter;
 }
 
@@ -456,7 +458,7 @@ public final class com/davils/kore/core/arguments/report/RedactedException : jav
 	public final fun getOriginalType ()Ljava/lang/String;
 }
 
-public abstract interface com/davils/kore/core/arguments/report/ValueOrigin {
+public abstract interface class com/davils/kore/core/arguments/report/ValueOrigin {
 	public abstract fun label (Lcom/davils/kore/core/arguments/ParameterInfo;)Ljava/lang/String;
 }
 
@@ -499,7 +501,7 @@ public final class com/davils/kore/core/concurrency/BlockingKt {
 	public static synthetic fun blocking$default (Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public abstract interface com/davils/kore/core/dsl/Builder {
+public abstract interface class com/davils/kore/core/dsl/Builder {
 	public abstract fun build ()Ljava/lang/Object;
 }
 
@@ -517,6 +519,11 @@ public abstract class com/davils/kore/core/dsl/ValidatingBuilder : com/davils/ko
 	public final fun validate ()Lcom/davils/kore/core/validation/report/ValidationReport;
 }
 
+public final class com/davils/kore/core/identity/JavaUuidsKt {
+	public static final fun fromJavaUuid (Lcom/davils/kore/core/identity/Uuid$Companion;Ljava/util/UUID;)Lcom/davils/kore/core/identity/Uuid;
+	public static final fun toJavaUuid (Lcom/davils/kore/core/identity/Uuid;)Ljava/util/UUID;
+}
+
 public abstract class com/davils/kore/core/identity/Uuid : java/lang/Comparable {
 	public static final field Companion Lcom/davils/kore/core/identity/Uuid$Companion;
 	public synthetic fun <init> (Lkotlin/uuid/Uuid;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -528,7 +535,6 @@ public abstract class com/davils/kore/core/identity/Uuid : java/lang/Comparable 
 	public abstract fun getVersion ()Lcom/davils/kore/core/identity/UuidVersion;
 	public final fun hashCode ()I
 	public final fun toByteArray ()[B
-	public final fun toJavaUuid ()Ljava/util/UUID;
 	public final fun toKotlinUuid ()Lkotlin/uuid/Uuid;
 	public final fun toString ()Ljava/lang/String;
 }
@@ -536,7 +542,6 @@ public abstract class com/davils/kore/core/identity/Uuid : java/lang/Comparable 
 public final class com/davils/kore/core/identity/Uuid$Companion {
 	public final fun fromByteArray ([B)Lcom/davils/kore/core/identity/Uuid;
 	public final fun fromByteArrayOrNull ([B)Lcom/davils/kore/core/identity/Uuid;
-	public final fun fromJavaUuid (Ljava/util/UUID;)Lcom/davils/kore/core/identity/Uuid;
 	public final fun fromKotlinUuid (Lkotlin/uuid/Uuid;)Lcom/davils/kore/core/identity/Uuid;
 	public final fun parse (Ljava/lang/String;)Lcom/davils/kore/core/identity/Uuid;
 	public final fun parseOrNull (Ljava/lang/String;)Lcom/davils/kore/core/identity/Uuid;
@@ -575,7 +580,7 @@ public final class com/davils/kore/core/identity/UuidVersion : java/lang/Enum {
 	public static fun values ()[Lcom/davils/kore/core/identity/UuidVersion;
 }
 
-public abstract interface com/davils/kore/core/identity/generator/UuidGenerator {
+public abstract interface class com/davils/kore/core/identity/generator/UuidGenerator {
 	public abstract fun next ()Lcom/davils/kore/core/identity/Uuid;
 }
 
@@ -597,7 +602,7 @@ public final class com/davils/kore/core/platform/NativeLibrary {
 	public final fun getFailure ()Ljava/lang/Throwable;
 }
 
-public abstract interface com/davils/kore/core/platform/NativeLoader {
+public abstract interface class com/davils/kore/core/platform/NativeLoader {
 	public abstract fun load ()Ljava/lang/Object;
 }
 
@@ -625,7 +630,6 @@ public final class com/davils/kore/core/platform/NativeResult$Companion {
 
 public final class com/davils/kore/core/principal/Principal : com/davils/kore/core/validation/Validatable {
 	public static final field Companion Lcom/davils/kore/core/principal/Principal$Companion;
-	public synthetic fun <init> (Lcom/davils/kore/core/principal/CallerIdentity;Ljava/util/Collection;Ljava/lang/String;Lcom/davils/kore/core/principal/PrincipalAttributes;Lcom/davils/kore/core/principal/Principal;ZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getActingFor ()Lcom/davils/kore/core/principal/Principal;
 	public final fun getAttributes ()Lcom/davils/kore/core/principal/PrincipalAttributes;
@@ -679,13 +683,11 @@ public final class com/davils/kore/core/principal/PrincipalAttributes$Companion 
 public final class com/davils/kore/core/principal/PrincipalBuilder : com/davils/kore/core/dsl/ValidatingBuilder {
 	public final fun actingFor (Lcom/davils/kore/core/principal/Principal;Z)V
 	public static synthetic fun actingFor$default (Lcom/davils/kore/core/principal/PrincipalBuilder;Lcom/davils/kore/core/principal/Principal;ZILjava/lang/Object;)V
-	protected fun assemble ()Lcom/davils/kore/core/principal/Principal;
 	public synthetic fun assemble ()Lcom/davils/kore/core/validation/Validatable;
 	public final fun attribute (Ljava/lang/String;Ljava/lang/String;Z)V
 	public static synthetic fun attribute$default (Lcom/davils/kore/core/principal/PrincipalBuilder;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)V
 	public final fun getDisplayName ()Ljava/lang/String;
 	public final fun getKind ()Lcom/davils/kore/core/principal/PrincipalKind;
-	protected fun getSubject ()Ljava/lang/String;
 	public final fun getTenant ()Ljava/lang/String;
 	public final fun roles ([Ljava/lang/String;)V
 	public final fun setDisplayName (Ljava/lang/String;)V
@@ -771,7 +773,6 @@ public final class com/davils/kore/core/size/DataSizesKt {
 
 public final class com/davils/kore/core/text/LineMap {
 	public static final field Companion Lcom/davils/kore/core/text/LineMap$Companion;
-	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun codePointColumnOf (I)I
 	public final fun getLineCount ()I
 	public final fun lineOf (I)I
@@ -860,7 +861,7 @@ public final class com/davils/kore/core/text/TextSnippetsKt {
 	public static final fun render (Lcom/davils/kore/core/text/TextSnippet;)Ljava/lang/String;
 }
 
-public abstract interface com/davils/kore/core/validation/Validatable {
+public abstract interface class com/davils/kore/core/validation/Validatable {
 	public abstract fun validate (Lcom/davils/kore/core/validation/ValidationScope;)V
 }
 
@@ -966,7 +967,7 @@ public final class com/davils/kore/core/validation/violation/ViolationPath$Compa
 	public final fun named (Lkotlin/reflect/KProperty;)Lcom/davils/kore/core/validation/violation/ViolationPath;
 }
 
-public abstract interface com/davils/kore/core/validation/violation/ViolationPath$Segment {
+public abstract interface class com/davils/kore/core/validation/violation/ViolationPath$Segment {
 }
 
 public final class com/davils/kore/core/validation/violation/ViolationPath$Segment$Index : com/davils/kore/core/validation/violation/ViolationPath$Segment {
@@ -1022,7 +1023,6 @@ public final class com/davils/kore/core/version/PreReleasePolicy : java/lang/Enu
 
 public final class com/davils/kore/core/version/SemanticVersion : java/lang/Comparable {
 	public static final field Companion Lcom/davils/kore/core/version/SemanticVersion$Companion;
-	public synthetic fun <init> (IIILjava/util/List;Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun compareTo (Lcom/davils/kore/core/version/SemanticVersion;)I
 	public synthetic fun compareTo (Ljava/lang/Object;)I
 	public fun equals (Ljava/lang/Object;)Z
@@ -1054,7 +1054,6 @@ public final class com/davils/kore/core/version/SemanticVersion$Companion {
 
 public final class com/davils/kore/core/version/SemanticVersionRange {
 	public static final field Companion Lcom/davils/kore/core/version/SemanticVersionRange$Companion;
-	public synthetic fun <init> (Ljava/util/List;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun contains (Lcom/davils/kore/core/version/SemanticVersion;Lcom/davils/kore/core/version/PreReleasePolicy;)Z
 	public static synthetic fun contains$default (Lcom/davils/kore/core/version/SemanticVersionRange;Lcom/davils/kore/core/version/SemanticVersion;Lcom/davils/kore/core/version/PreReleasePolicy;ILjava/lang/Object;)Z
 	public fun equals (Ljava/lang/Object;)Z
