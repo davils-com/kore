@@ -89,6 +89,16 @@ public object Limits {
     public const val MAX_NUMERIC_TEXT_LENGTH: Int = 64
 
     /**
+     * The longest text, in UTF-16 code units, that [parseDecimalOrNull] reads as a decimal number.
+     *
+     * Longer text is refused before it is parsed. It bounds the decimal parsing that Kore shares with the libraries
+     * of Davils; the values of the command line keep to [MAX_NUMERIC_TEXT_LENGTH].
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_DECIMAL_TEXT_LENGTH: Int = 1_024
+
+    /**
      * The longest text, in UTF-16 code units, that is read as a semantic version, and the longest a version may
      * become.
      *

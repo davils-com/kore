@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `com.davils.kore.core.text` shows untrusted text escaped and shortened, exactly like the messages of Kore, so a
   library built on Kore escapes text at its sinks without a copy of the sanitizer. A caller can ask for at most
   `Limits.MAX_MESSAGE_LENGTH` code units, and `isSafe` refuses every value outside the range of code points.
+- **`parseDecimalOrNull` for the libraries of Davils.** The `@DavilsInternal` function in `com.davils.kore.core`
+  reads an ASCII decimal number to the nearest double with the same result on the JVM and on Wasm, where it reads
+  through `Number` of JavaScript, and returns `null` for any other text, for text longer than the new
+  `Limits.MAX_DECIMAL_TEXT_LENGTH` and for a value too large for a double.
 
 ## 2.0.0 - 2026-11-18
 

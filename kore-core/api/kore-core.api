@@ -1,3 +1,7 @@
+public final class com/davils/kore/core/DecimalsKt {
+	public static final fun parseDecimalOrNull (Ljava/lang/String;)Ljava/lang/Double;
+}
+
 public final class com/davils/kore/core/Limits {
 	public static final field INSTANCE Lcom/davils/kore/core/Limits;
 	public static final field MAX_ARGUMENTS I
@@ -5,6 +9,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_ATTRIBUTES I
 	public static final field MAX_ATTRIBUTE_NAME_LENGTH I
 	public static final field MAX_ATTRIBUTE_VALUE_LENGTH I
+	public static final field MAX_DECIMAL_TEXT_LENGTH I
 	public static final field MAX_DELEGATION_CHAIN I
 	public static final field MAX_DISPLAY_LENGTH I
 	public static final field MAX_LINE_MAP_LENGTH I

@@ -33,8 +33,8 @@ internal fun isAsciiInteger(text: String): Boolean {
     return isDigits(withoutSign(text))
 }
 
-internal fun isAsciiDecimal(text: String): Boolean {
-    if (text.length > Limits.MAX_NUMERIC_TEXT_LENGTH) return false
+internal fun isAsciiDecimal(text: String, maxLength: Int = Limits.MAX_NUMERIC_TEXT_LENGTH): Boolean {
+    if (text.length > maxLength) return false
     return isUnsignedDecimal(withoutSign(text))
 }
 
