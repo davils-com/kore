@@ -1153,6 +1153,15 @@ final object com.davils.kore.core.principal/PrincipalViolationCodes { // com.dav
         final fun <get-TOO_MANY_ROLES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ROLES.<get-TOO_MANY_ROLES>|<get-TOO_MANY_ROLES>(){}[0]
 }
 
+final object com.davils.kore.core.text/SafeText { // com.davils.kore.core.text/SafeText|null[0]
+    final const val REDACTED // com.davils.kore.core.text/SafeText.REDACTED|{}REDACTED[0]
+        final fun <get-REDACTED>(): kotlin/String // com.davils.kore.core.text/SafeText.REDACTED.<get-REDACTED>|<get-REDACTED>(){}[0]
+
+    final fun isSafe(kotlin/Int): kotlin/Boolean // com.davils.kore.core.text/SafeText.isSafe|isSafe(kotlin.Int){}[0]
+    final fun quoted(kotlin/CharSequence, kotlin/Int = ...): kotlin/String // com.davils.kore.core.text/SafeText.quoted|quoted(kotlin.CharSequence;kotlin.Int){}[0]
+    final fun text(kotlin/CharSequence, kotlin/Int = ...): kotlin/String // com.davils.kore.core.text/SafeText.text|text(kotlin.CharSequence;kotlin.Int){}[0]
+}
+
 final object com.davils.kore.core.version/VersionViolationCodes { // com.davils.kore.core.version/VersionViolationCodes|null[0]
     final val INVALID_RANGE // com.davils.kore.core.version/VersionViolationCodes.INVALID_RANGE|{}INVALID_RANGE[0]
         final fun <get-INVALID_RANGE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.version/VersionViolationCodes.INVALID_RANGE.<get-INVALID_RANGE>|<get-INVALID_RANGE>(){}[0]

@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- **`SafeText` for the libraries of Davils.** The `@DavilsInternal` object `SafeText` in
+  `com.davils.kore.core.text` shows untrusted text escaped and shortened, exactly like the messages of Kore, so a
+  library built on Kore escapes text at its sinks without a copy of the sanitizer. A caller can ask for at most
+  `Limits.MAX_MESSAGE_LENGTH` code units, and `isSafe` refuses every value outside the range of code points.
+
 ## 2.0.0 - 2026-11-18
 
 ### Added

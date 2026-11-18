@@ -787,6 +787,16 @@ public final class com/davils/kore/core/text/LineMap$Companion {
 	public final fun of (Ljava/lang/CharSequence;)Lcom/davils/kore/core/text/LineMap;
 }
 
+public final class com/davils/kore/core/text/SafeText {
+	public static final field INSTANCE Lcom/davils/kore/core/text/SafeText;
+	public static final field REDACTED Ljava/lang/String;
+	public final fun isSafe (I)Z
+	public final fun quoted (Ljava/lang/CharSequence;I)Ljava/lang/String;
+	public static synthetic fun quoted$default (Lcom/davils/kore/core/text/SafeText;Ljava/lang/CharSequence;IILjava/lang/Object;)Ljava/lang/String;
+	public final fun text (Ljava/lang/CharSequence;I)Ljava/lang/String;
+	public static synthetic fun text$default (Lcom/davils/kore/core/text/SafeText;Ljava/lang/CharSequence;IILjava/lang/Object;)Ljava/lang/String;
+}
+
 public final class com/davils/kore/core/text/TextEdit {
 	public fun <init> (Lcom/davils/kore/core/text/TextRange;Ljava/lang/String;)V
 	public fun equals (Ljava/lang/Object;)Z
