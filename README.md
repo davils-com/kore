@@ -140,7 +140,7 @@ known limitations and how to report a vulnerability privately.
 ```
 
 It needs JDK 25 and network access: besides compilation with warnings as errors, Detekt, the tests and coverage it
-runs Trivy and the Kreate assurance gate. See [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENT.md](AGENT.md).
+runs Trivy and the Kreate assurance gate. See [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md).
 
 ## License
 

@@ -1,4 +1,4 @@
-# AGENT.md
+# AGENTS.md
 
 Binding rules for every agent and every person working in this repository. Kore is the foundation library of
 Davils: small, strict building blocks for Kotlin on the JVM and on WebAssembly (`wasmJs`) that other Davils libraries

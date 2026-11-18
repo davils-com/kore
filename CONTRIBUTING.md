@@ -1,7 +1,7 @@
 # Contributing to Kore
 
 Thank you for helping to build Kore. This document explains how a change gets in. The binding rules for code,
-tests and the build are in [AGENT.md](AGENT.md); read it before your first change.
+tests and the build are in [AGENTS.md](AGENTS.md); read it before your first change.
 
 ## Code of Conduct
 

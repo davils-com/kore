@@ -1,5 +1,5 @@
 # CLAUDE.md
 
-@AGENT.md
+@AGENTS.md
 
-Read and follow [AGENT.md](AGENT.md). It is binding for this repository.
+Read and follow [AGENTS.md](AGENTS.md). It is binding for this repository.
