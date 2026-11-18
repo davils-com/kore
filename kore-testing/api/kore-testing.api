@@ -1,3 +1,29 @@
+public final class com/davils/kore/testing/HostileFragments {
+	public static final field BYTE_ORDER_MARK Ljava/lang/String;
+	public static final field CLEAR_SCREEN Ljava/lang/String;
+	public static final field CLIPBOARD_WRITE Ljava/lang/String;
+	public static final field COMBINING_GRAPHEME_JOINER Ljava/lang/String;
+	public static final field COMBINING_LONG_SOLIDUS Ljava/lang/String;
+	public static final field ESCAPE Ljava/lang/String;
+	public static final field FORGED_LOG_LINE Ljava/lang/String;
+	public static final field HALFWIDTH_HANGUL_FILLER Ljava/lang/String;
+	public static final field HANGUL_CHOSEONG_FILLER Ljava/lang/String;
+	public static final field HANGUL_FILLER Ljava/lang/String;
+	public static final field HEBREW_ALEF Ljava/lang/String;
+	public static final field INSTANCE Lcom/davils/kore/testing/HostileFragments;
+	public static final field KHMER_VOWEL_INHERENT_AQ Ljava/lang/String;
+	public static final field LINE_SEPARATOR Ljava/lang/String;
+	public static final field MONGOLIAN_VARIATION_SELECTOR Ljava/lang/String;
+	public static final field MONGOLIAN_VARIATION_SELECTOR_FOUR Ljava/lang/String;
+	public static final field RIGHT_TO_LEFT_OVERRIDE Ljava/lang/String;
+	public static final field SOFT_HYPHEN Ljava/lang/String;
+	public static final field TAG_LATIN_A Ljava/lang/String;
+	public static final field VARIATION_SELECTOR Ljava/lang/String;
+	public final fun getAll ()Ljava/util/List;
+	public final fun getLONE_HIGH_SURROGATE ()Ljava/lang/String;
+	public final fun getLONE_LOW_SURROGATE ()Ljava/lang/String;
+}
+
 public final class com/davils/kore/testing/MarkedText {
 	public static final field CARET Ljava/lang/String;
 	public static final field Companion Lcom/davils/kore/testing/MarkedText$Companion;
@@ -16,6 +42,13 @@ public final class com/davils/kore/testing/MarkedText {
 
 public final class com/davils/kore/testing/MarkedText$Companion {
 	public final fun of (Ljava/lang/String;)Lcom/davils/kore/testing/MarkedText;
+}
+
+public final class com/davils/kore/testing/SafeToShowKt {
+	public static final fun isSafeToShow (Ljava/lang/String;Z)Z
+	public static synthetic fun isSafeToShow$default (Ljava/lang/String;ZILjava/lang/Object;)Z
+	public static final fun unsafeCodePointsIn (Ljava/lang/String;Z)Ljava/util/List;
+	public static synthetic fun unsafeCodePointsIn$default (Ljava/lang/String;ZILjava/lang/Object;)Ljava/util/List;
 }
 
 public final class com/davils/kore/testing/SequentialUuidV7Generator : com/davils/kore/core/identity/generator/UuidGenerator {

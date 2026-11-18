@@ -20,7 +20,7 @@ plugins {
 
 kreate {
     project {
-        description = "Test support for code built on Kore: deterministic identities and marked text."
+        description = "Test support for code built on Kore: deterministic identities, marked text and hostile text."
     }
 }
 

@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   reads an ASCII decimal number to the nearest double with the same result on the JVM and on Wasm, where it reads
   through `Number` of JavaScript, and returns `null` for any other text, for text longer than the new
   `Limits.MAX_DECIMAL_TEXT_LENGTH` and for a value too large for a double.
+- **Hostile text for the tests of code built on Kore.** `kore-testing` publishes `HostileFragments`, the pieces of
+  text an attacker could send, and `unsafeCodePointsIn` and `isSafeToShow`, which judge what a renderer shows by
+  their own list of invisible code points and surrogates and by the Unicode categories of the platform. The lone
+  surrogates are values rather than constants, because the metadata of a Kotlin library would turn a constant into
+  `U+FFFD` on Wasm.
 
 ## 2.0.0 - 2026-11-18
 
