@@ -42,7 +42,8 @@ private const val NO_NUMBER: String = "does not start with a number of bytes"
 private const val NO_UNIT: String = "has no unit"
 private const val TOO_LARGE: String = "is larger than the largest data size"
 
-private val pieces: List<String> = listOf("1", "0", "9", " ", "\t", " ", "KiB", "kib", "MB", "B", "-", ".", "e", "٣")
+private val pieces: List<String> =
+    listOf("1", "0", "9", " ", "\t", "\u00A0", "KiB", "kib", "MB", "B", "-", ".", "e", "\u0663")
 
 private val adversarial: Arb<String> =
     Arb.list(Arb.element(pieces), 0..LONGEST_HOSTILE).map { parts -> parts.joinToString(separator = "") }

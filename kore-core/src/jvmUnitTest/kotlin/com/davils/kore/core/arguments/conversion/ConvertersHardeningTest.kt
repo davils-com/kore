@@ -141,7 +141,7 @@ class ConvertersHardeningTest : FunSpec({
 
         test("text beyond the numeric limit or outside printable ASCII is refused") {
             refused(Converters.duration(), "1".repeat(Limits.MAX_NUMERIC_TEXT_LENGTH) + "s")
-            refused(Converters.duration(), "١s")
+            refused(Converters.duration(), "\u0661s")
         }
 
         test("bounds that are negative, infinite or reversed are refused when declared") {

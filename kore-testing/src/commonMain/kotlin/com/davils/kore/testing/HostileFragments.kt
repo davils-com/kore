@@ -48,21 +48,21 @@ public object HostileFragments {
      *
      * @since 2.1.0
      */
-    public const val RIGHT_TO_LEFT_OVERRIDE: String = "‮"
+    public const val RIGHT_TO_LEFT_OVERRIDE: String = "\u202E"
 
     /**
      * The line separator `U+2028`, which some viewers show as a line break.
      *
      * @since 2.1.0
      */
-    public const val LINE_SEPARATOR: String = " "
+    public const val LINE_SEPARATOR: String = "\u2028"
 
     /**
      * The soft hyphen `U+00AD`, which is invisible in most places.
      *
      * @since 2.1.0
      */
-    public const val SOFT_HYPHEN: String = "­"
+    public const val SOFT_HYPHEN: String = "\u00AD"
 
     /**
      * A high surrogate `U+D800` without the low surrogate that must follow it.
@@ -88,21 +88,21 @@ public object HostileFragments {
      *
      * @since 2.1.0
      */
-    public const val BYTE_ORDER_MARK: String = "﻿"
+    public const val BYTE_ORDER_MARK: String = "\uFEFF"
 
     /**
      * The tag character `U+E0041`, an invisible copy of the letter `A` that can smuggle text past a reader.
      *
      * @since 2.1.0
      */
-    public const val TAG_LATIN_A: String = "󠁁"
+    public const val TAG_LATIN_A: String = "\uDB40\uDC41"
 
     /**
      * The variation selector `U+FE0F`, which changes how the character before it is drawn.
      *
      * @since 2.1.0
      */
-    public const val VARIATION_SELECTOR: String = "️"
+    public const val VARIATION_SELECTOR: String = "\uFE0F"
 
     /**
      * The control sequence that clears the screen of a terminal.
@@ -130,49 +130,49 @@ public object HostileFragments {
      *
      * @since 2.1.0
      */
-    public const val COMBINING_GRAPHEME_JOINER: String = "͏"
+    public const val COMBINING_GRAPHEME_JOINER: String = "\u034F"
 
     /**
      * The Hangul filler `U+3164`, a letter that is drawn as blank space.
      *
      * @since 2.1.0
      */
-    public const val HANGUL_FILLER: String = "ㅤ"
+    public const val HANGUL_FILLER: String = "\u3164"
 
     /**
      * The halfwidth Hangul filler `U+FFA0`, a letter that is drawn as blank space.
      *
      * @since 2.1.0
      */
-    public const val HALFWIDTH_HANGUL_FILLER: String = "ﾠ"
+    public const val HALFWIDTH_HANGUL_FILLER: String = "\uFFA0"
 
     /**
      * The Hangul choseong filler `U+115F`, a letter that is drawn as nothing.
      *
      * @since 2.1.0
      */
-    public const val HANGUL_CHOSEONG_FILLER: String = "ᅟ"
+    public const val HANGUL_CHOSEONG_FILLER: String = "\u115F"
 
     /**
      * The Khmer inherent vowel `U+17B4`, a letter that is drawn as nothing.
      *
      * @since 2.1.0
      */
-    public const val KHMER_VOWEL_INHERENT_AQ: String = "឴"
+    public const val KHMER_VOWEL_INHERENT_AQ: String = "\u17B4"
 
     /**
      * The Mongolian free variation selector one `U+180B`, which is invisible.
      *
      * @since 2.1.0
      */
-    public const val MONGOLIAN_VARIATION_SELECTOR: String = "᠋"
+    public const val MONGOLIAN_VARIATION_SELECTOR: String = "\u180B"
 
     /**
      * The Mongolian free variation selector four `U+180F`, which is invisible.
      *
      * @since 2.1.0
      */
-    public const val MONGOLIAN_VARIATION_SELECTOR_FOUR: String = "᠏"
+    public const val MONGOLIAN_VARIATION_SELECTOR_FOUR: String = "\u180F"
 
     /**
      * The combining long solidus overlay `U+0338`, a combining mark that is safe after a base character but strikes
@@ -180,14 +180,14 @@ public object HostileFragments {
      *
      * @since 2.1.0
      */
-    public const val COMBINING_LONG_SOLIDUS: String = "̸"
+    public const val COMBINING_LONG_SOLIDUS: String = "\u0338"
 
     /**
      * The Hebrew letter alef `U+05D0`, a printable letter that is written from right to left.
      *
      * @since 2.1.0
      */
-    public const val HEBREW_ALEF: String = "א"
+    public const val HEBREW_ALEF: String = "\u05D0"
 
     /**
      * Every fragment: the values of this object and plain letters, digits, punctuation, quotes,
@@ -201,7 +201,7 @@ public object HostileFragments {
     public val all: List<String> = listOf(
         "a", "Z", "7", ".", "[", "]", "\"", "\\", " ", "ä", "日", "😀",
         ESCAPE, RIGHT_TO_LEFT_OVERRIDE, LINE_SEPARATOR, SOFT_HYPHEN, LONE_HIGH_SURROGATE, LONE_LOW_SURROGATE,
-        BYTE_ORDER_MARK, TAG_LATIN_A, VARIATION_SELECTOR, "\r", "\n", "\t", "\u0000", "\u007F", "\u0085", "​",
+        BYTE_ORDER_MARK, TAG_LATIN_A, VARIATION_SELECTOR, "\r", "\n", "\t", "\u0000", "\u007F", "\u0085", "\u200B",
         CLEAR_SCREEN, CLIPBOARD_WRITE, FORGED_LOG_LINE, COMBINING_GRAPHEME_JOINER, HANGUL_FILLER,
         HALFWIDTH_HANGUL_FILLER, HANGUL_CHOSEONG_FILLER, KHMER_VOWEL_INHERENT_AQ, MONGOLIAN_VARIATION_SELECTOR,
         MONGOLIAN_VARIATION_SELECTOR_FOUR, COMBINING_LONG_SOLIDUS, HEBREW_ALEF,

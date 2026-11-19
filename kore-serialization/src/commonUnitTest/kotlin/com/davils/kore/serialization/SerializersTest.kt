@@ -83,7 +83,7 @@ class SerializersTest : FunSpec({
         test("refuse text that is no duration, too long or outside printable ASCII") {
             refusalOf(DurationSerializer, "soon")
             refusalOf(DurationSerializer, "1".repeat(Limits.MAX_NUMERIC_TEXT_LENGTH) + "s")
-            refusalOf(DurationSerializer, "1 s")
+            refusalOf(DurationSerializer, "1\u00A0s")
             refusalOf(DurationSerializer, "1\ts")
         }
     }

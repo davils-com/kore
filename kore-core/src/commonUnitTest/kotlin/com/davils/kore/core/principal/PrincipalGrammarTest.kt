@@ -60,8 +60,8 @@ private val principalWithRoles: (String, Array<out String>) -> Principal = ::pri
 private val addRoles: PrincipalBuilder.(Array<out String>) -> Unit = PrincipalBuilder::roles
 private const val UNSAFE_MESSAGE: String =
     "must not contain a control, format, private-use, unassigned or invisible character"
-private const val PRIVATE_USE: String = ""
-private const val UNASSIGNED: String = "͸"
+private const val PRIVATE_USE: String = "\uE000"
+private const val UNASSIGNED: String = "\u0378"
 
 private val unsafePieces: List<String> = listOf(
     ESCAPE, RIGHT_TO_LEFT_OVERRIDE, LINE_SEPARATOR, SOFT_HYPHEN, LONE_HIGH_SURROGATE, BYTE_ORDER_MARK, TAG_LATIN_A,
@@ -141,7 +141,7 @@ class PrincipalGrammarTest : FunSpec({
         }
 
         test("must not start or end with whitespace, so two ids never differ only at their edges") {
-            listOf(" alice", "alice ", " alice", "alice　").forEach { id ->
+            listOf(" alice", "alice ", "\u00A0alice", "alice\u3000").forEach { id ->
                 val violation = refusalOf { Principal(id) }
 
                 violation.code shouldBe PrincipalViolationCodes.SURROUNDING_WHITESPACE

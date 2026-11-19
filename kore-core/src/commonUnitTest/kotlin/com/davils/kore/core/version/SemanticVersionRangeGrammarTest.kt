@@ -123,12 +123,12 @@ class SemanticVersionRangeGrammarTest : FunSpec({
 
         test("any other whitespace is refused rather than trimmed away") {
             val refused = listOf(
-                " $CARET",
+                "\u00A0$CARET",
                 "$CARET\n",
                 "\r$CARET",
-                ">=1.2.3　<2",
-                "[1.2, 2.0)",
-                "1.2.3 - 2",
+                ">=1.2.3\u3000<2",
+                "[1.2,\u20032.0)",
+                "1.2.3\u2028-\u20282",
                 "$CARET\u000B||\u000C^2",
             )
             for (text in refused) {

@@ -65,7 +65,7 @@ class DecimalsTest : FunSpec({
         test("refuses text that is no ASCII decimal number") {
             val refused = listOf(
                 "", ".", "-", "+1", " 1", "1 ", "0x10", "Infinity", "-Infinity", "NaN", "1e", "1e+", "--1",
-                "1.2.3", "1_000", "١٢", "1e1.5", "e5",
+                "1.2.3", "1_000", "\u0661\u0662", "1e1.5", "e5",
             )
 
             refused.forEach { text -> parseDecimalOrNull(text).shouldBeNull() }

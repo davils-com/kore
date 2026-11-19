@@ -31,7 +31,7 @@ private const val MONGOLIAN_FREE_VARIATION_SELECTOR_THREE: Int = 0x180D
 private const val MONGOLIAN_FREE_VARIATION_SELECTOR_FOUR: Int = 0x180F
 private const val HANGUL_FILLER: Int = 0x3164
 private const val HALFWIDTH_HANGUL_FILLER: Int = 0xFFA0
-private const val BRAILLE_PATTERN_BLANK: Char = '⠀'
+private const val BRAILLE_PATTERN_BLANK: Char = '\u2800'
 
 private val problemsInCheckOrder: List<TextProblem> = listOf(
     TextProblem.TooLong,

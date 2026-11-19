@@ -47,7 +47,7 @@ class IntegersTest : FunSpec({
         }
 
         test("refuses what Kotlin would read but is no plain ASCII integer") {
-            listOf("+1", " 1", "1 ", "1_000", "٣", "１", "", "-", "--1").forEach { text ->
+            listOf("+1", " 1", "1 ", "1_000", "\u0663", "１", "", "-", "--1").forEach { text ->
                 parseIntOrNull(text).shouldBeNull()
             }
         }

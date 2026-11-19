@@ -60,7 +60,7 @@ class ParametersLexerHardeningTest : FunSpec({
         }
 
         test("is not taken as the value when it only resembles a number") {
-            val lookalikes = listOf("-NaN", "-Infinity", "-0x1p3", "-1d", "-١٢", "-+5", "--5")
+            val lookalikes = listOf("-NaN", "-Infinity", "-0x1p3", "-1d", "-\u0661\u0662", "-+5", "--5")
 
             lookalikes.forEach { token -> looksLikeValue(token) shouldBe false }
         }

@@ -20,8 +20,8 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
 
-private const val ARABIC_INDIC_SEVEN: String = "٧"
-private const val NO_BREAK_SPACE: String = " "
+private const val ARABIC_INDIC_SEVEN: String = "\u0667"
+private const val NO_BREAK_SPACE: String = "\u00A0"
 
 class GrammarRulesTest : FunSpec({
     context("identifiers") {
@@ -46,7 +46,7 @@ class GrammarRulesTest : FunSpec({
         test("is a space or a tab and nothing else") {
             isRangeSpace(' ') shouldBe true
             isRangeSpace('\t') shouldBe true
-            for (other in listOf('\n', '\r', '\u000B', '\u000C', ' ', ' ', '　', ' ')) {
+            for (other in listOf('\n', '\r', '\u000B', '\u000C', '\u00A0', '\u2028', '\u3000', '\u2003')) {
                 isRangeSpace(other) shouldBe false
             }
         }

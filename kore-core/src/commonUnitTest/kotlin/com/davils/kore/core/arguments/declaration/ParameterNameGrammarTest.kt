@@ -54,7 +54,7 @@ class ParameterNameGrammarTest : FunSpec({
 
     context("a short name") {
         test("that is not an ASCII letter or digit is refused when declared") {
-            listOf("-=", "- ", "-é", "-$ESCAPE", "-١").forEach { name ->
+            listOf("-=", "- ", "-é", "-$ESCAPE", "-\u0661").forEach { name ->
                 refusedName(name) shouldContain "Short parameter name"
             }
         }

@@ -75,10 +75,10 @@ class TextDecodingJvmTest : FunSpec({
             checkAll(iterations = ITERATIONS, genA = Arb.byteArray(Arb.int(0..LONGEST), Arb.byte())) { bytes ->
                 charsets.forEach { (encoding, charset) ->
                     val expected = strictlyDecoded(bytes, charset)
-                    val isMarked = encoding.isMarkedIn(bytes) && expected?.startsWith("﻿") == true
+                    val isMarked = encoding.isMarkedIn(bytes) && expected?.startsWith("\uFEFF") == true
                     val decoded = decodeText(bytes, encoding).getOrNull()?.text
 
-                    decoded?.let { text -> text.takeUnless { isMarked } ?: "﻿$text" } shouldBe expected
+                    decoded?.let { text -> text.takeUnless { isMarked } ?: "\uFEFF$text" } shouldBe expected
                 }
             }
         }

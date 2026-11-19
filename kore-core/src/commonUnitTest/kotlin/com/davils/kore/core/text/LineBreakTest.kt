@@ -32,7 +32,7 @@ private const val LONGEST: Int = 32
 private const val LF: String = "\n"
 private const val CR: String = "\r"
 private const val NEXT_LINE: String = "\u0085"
-private const val LINE_SEPARATOR: String = " "
+private const val LINE_SEPARATOR: String = "\u2028"
 
 private val pieces: List<String> = listOf("a", "\n", "\r", "\r\n", "\n\r", " ", NEXT_LINE, LINE_SEPARATOR)
 
