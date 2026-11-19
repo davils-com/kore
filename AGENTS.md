@@ -9,7 +9,7 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 
 | Module | Artifact | Purpose |
 |---|---|---|
-| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation and its common rules, text positions, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, backoff, admission and single flight, the masked process environment, command line and environment parameters, principals, the `Davils*` annotations and the architecture contracts |
+| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation and its common rules, text positions, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, admission and single flight, the masked process environment, command line and environment parameters, principals, the `Davils*` annotations and the architecture contracts |
 | `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs, marked text, hostile text and clocks; never on a production class path |
 | `kore-serialization` | `com.davils:kore-serialization` | Serializers of kotlinx-serialization for the values of Kore and `TextSerializer` for identifiers |
 | `build-logic` | - | One convention plugin per Kreate concern, composed by `kore.kotlin-library` for the modules and `kore.root` for the root project; they hold nothing but `plugins { }` and `kreate { }` |

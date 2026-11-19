@@ -5,7 +5,7 @@ Kore is the foundation library of Davils: small, strict building blocks for Kotl
 
 | Module | Artifact | What it holds |
 |---|---|---|
-| `kore-core` | `com.davils:kore-core` | Semantic versions and npm-style ranges, UUIDs of version 4 and 7, validation with paths, stable codes and common rules, text positions, edits, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, backoff, admission and single flight, the masked process environment, command line and environment parameters, principals, architecture contracts and the `Davils*` annotations |
+| `kore-core` | `com.davils:kore-core` | Semantic versions and npm-style ranges, UUIDs of version 4 and 7, validation with paths, stable codes and common rules, text positions, edits, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, admission and single flight, the masked process environment, command line and environment parameters, principals, architecture contracts and the `Davils*` annotations |
 | `kore-testing` | `com.davils:kore-testing` | Deterministic UUIDs, marked text, hostile text and clocks for tests; keep it out of production class paths |
 | `kore-serialization` | `com.davils:kore-serialization` | Serializers of kotlinx-serialization for durations, data sizes, versions, UUIDs and violation codes, and `TextSerializer` for identifiers of your own |
 

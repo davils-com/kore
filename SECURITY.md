@@ -41,7 +41,7 @@ The following are **in scope**:
 - a value declared as sensitive that appears anywhere outside the value itself,
 - a check that passes when it should refuse: an authorization helper of `Principal`, a path requirement, a
   version range or a converter that accepts what it documents as refused,
-- a weakness in the generation of UUIDs or in the random spread of backoff delays,
+- a weakness in the generation of UUIDs,
 - a `NameRule`, a decoder of `decodeText` or a serializer of `kore-serialization` that accepts what it documents as
   refused, or the process environment revealing a value through its `toString`.
 
