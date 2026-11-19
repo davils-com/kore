@@ -40,14 +40,15 @@ dependencyResolutionManagement {
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.davils:kore-core:2.0.0")
-    testImplementation("com.davils:kore-testing:2.0.0")
-    implementation("com.davils:kore-serialization:2.1.0")   // from 2.1.0, if you use kotlinx-serialization
+    implementation("com.davils:kore-core:2.1.0")
+    implementation("com.davils:kore-serialization:2.1.0")   // only if you use kotlinx-serialization
+    testImplementation("com.davils:kore-testing:2.1.0")
 }
 ```
 
 Gradle picks the JVM or the Wasm variant from these coordinates. A Maven build names the JVM artifacts directly, from
-2.0.0 on `com.davils:kore-core-jvm` and `com.davils:kore-testing-jvm`.
+2.0.0 on `com.davils:kore-core-jvm` and `com.davils:kore-testing-jvm`, and from 2.1.0 on
+`com.davils:kore-serialization-jvm`.
 
 Snapshots of the `develop` branch are in `https://repo.davils.com/snapshots`. They are neither signed nor attested
 and not meant for production.
