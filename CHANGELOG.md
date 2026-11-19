@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   their own list of invisible code points and surrogates and by the Unicode categories of the platform. The lone
   surrogates are values rather than constants, because the metadata of a Kotlin library would turn a constant into
   `U+FFFD` on Wasm.
+- **Containment of foreign code.** `contained` and `attempted` in `com.davils.kore.core.failure` run a block and
+  return its result or its throwable as a `Result`, like `runCatching`, but pass on what no caller may contain: a
+  `CancellationException` and, on the JVM, a `VirtualMachineError` and an `InterruptedException`, the latter after
+  setting the interrupt flag again. Every other `Error` is contained. `attempted` runs in a coroutine and passes on
+  only the cancellation of its own caller; a cancellation from anywhere else becomes an `IllegalStateException` with
+  it as the cause, so it cannot end the caller silently. `rethrowIfFatal` applies the same rule to a throwable.
 
 ## 2.0.0 - 2026-11-18
 

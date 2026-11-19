@@ -14,19 +14,10 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments.resolution
+package com.davils.kore.core.failure
 
-import kotlin.coroutines.cancellation.CancellationException
-
-internal inline fun <R> catchingForeign(block: () -> R): Result<R> {
-    val result = runCatching(block)
-    result.exceptionOrNull()?.let(::rethrowUncontainable)
-    return result
+internal actual fun rethrowPlatformFatal(failure: Throwable) {
+    if (failure is InterruptedException) Thread.currentThread().interrupt()
+    val isFatal = failure is InterruptedException || failure is VirtualMachineError
+    if (isFatal) throw failure
 }
-
-internal fun rethrowUncontainable(failure: Throwable) {
-    rethrowPlatformFatal(failure)
-    if (failure is CancellationException) throw failure
-}
-
-internal expect fun rethrowPlatformFatal(failure: Throwable)

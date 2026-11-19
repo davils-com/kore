@@ -524,6 +524,13 @@ public abstract class com/davils/kore/core/dsl/ValidatingBuilder : com/davils/ko
 	public final fun validate ()Lcom/davils/kore/core/validation/report/ValidationReport;
 }
 
+public final class com/davils/kore/core/failure/ContainmentKt {
+	public static final fun attempted (Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun contained (Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public static final fun containedFailure (Ljava/lang/Throwable;Z)Ljava/lang/Throwable;
+	public static final fun rethrowIfFatal (Ljava/lang/Throwable;)V
+}
+
 public final class com/davils/kore/core/identity/JavaUuidsKt {
 	public static final fun fromJavaUuid (Lcom/davils/kore/core/identity/Uuid$Companion;Ljava/util/UUID;)Lcom/davils/kore/core/identity/Uuid;
 	public static final fun toJavaUuid (Lcom/davils/kore/core/identity/Uuid;)Ljava/util/UUID;

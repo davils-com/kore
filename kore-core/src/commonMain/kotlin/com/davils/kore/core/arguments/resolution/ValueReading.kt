@@ -24,6 +24,7 @@ import com.davils.kore.core.arguments.lexer.RawValues
 import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.ParameterViolationCodes
 import com.davils.kore.core.arguments.report.ValueOrigin
+import com.davils.kore.core.failure.contained
 import com.davils.kore.core.validation.ValidationScope
 import com.davils.kore.core.validation.violation.Severity
 import com.davils.kore.core.validation.violation.ViolationPath
@@ -71,7 +72,7 @@ internal class ValueReading<T : Any>(
     }
 
     private fun converted(raw: String, origin: ValueOrigin, violations: MutableList<ParameterViolation>): T? {
-        val result = catchingForeign { rules.converter.convert(raw) }
+        val result = contained { rules.converter.convert(raw) }
         result.exceptionOrNull()?.let { cause ->
             violations += ParameterViolation.ConversionFailure(
                 parameter = info,
@@ -85,7 +86,7 @@ internal class ValueReading<T : Any>(
 
     private fun isValid(value: T, origin: ValueOrigin, violations: MutableList<ParameterViolation>): Boolean {
         val scope = ValidationScope(ViolationPath.ROOT, ParameterViolationCodes.VALIDATION_FAILED)
-        val outcomes = rules.validators.map { rule -> catchingForeign { scope.rule(value) } }
+        val outcomes = rules.validators.map { rule -> contained { scope.rule(value) } }
         val reported = scope.violations()
         reported.forEach { failure ->
             violations += ParameterViolation.ValidationFailure(

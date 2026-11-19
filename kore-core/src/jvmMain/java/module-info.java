@@ -29,6 +29,7 @@ module com.davils.kore.core {
     exports com.davils.kore.core.arguments.report;
     exports com.davils.kore.core.concurrency;
     exports com.davils.kore.core.dsl;
+    exports com.davils.kore.core.failure;
     exports com.davils.kore.core.identity;
     exports com.davils.kore.core.identity.generator;
     exports com.davils.kore.core.platform;

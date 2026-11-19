@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments.resolution
+package com.davils.kore.core.failure
 
-internal actual fun rethrowPlatformFatal(failure: Throwable) {
-    if (failure is InterruptedException) Thread.currentThread().interrupt()
-    val isFatal = failure is InterruptedException || failure is VirtualMachineError
-    if (isFatal) throw failure
-}
+internal expect fun rethrowPlatformFatal(failure: Throwable)

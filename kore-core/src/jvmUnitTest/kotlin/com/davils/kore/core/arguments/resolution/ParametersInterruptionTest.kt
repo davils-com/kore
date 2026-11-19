@@ -23,8 +23,6 @@ import com.davils.kore.core.arguments.resolution.fixture.InterruptingSource
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.types.shouldBeInstanceOf
-import kotlin.coroutines.cancellation.CancellationException
 
 private fun interruptionWasRestored(): Boolean = Thread.interrupted()
 
@@ -58,35 +56,6 @@ class ParametersInterruptionTest : FunSpec({
             parameters.load(emptyList(), NO_ENVIRONMENT)
 
             parameters.isLoaded shouldBe true
-        }
-    }
-
-    context("containing foreign code") {
-        test("rethrows an interruption after restoring the flag") {
-            shouldThrow<InterruptedException> { catchingForeign { throw InterruptedException() } }
-
-            interruptionWasRestored() shouldBe true
-        }
-
-        test("rethrows a cancellation and a failure of the machine untouched") {
-            shouldThrow<CancellationException> { catchingForeign { throw CancellationException("stop") } }
-            shouldThrow<StackOverflowError> { catchingForeign { throw StackOverflowError() } }
-            shouldThrow<OutOfMemoryError> { catchingForeign { throw OutOfMemoryError() } }
-            interruptionWasRestored() shouldBe false
-        }
-
-        test("contains an error that is not a failure of the machine as a failed result") {
-            val errors = listOf(AssertionError("assumed"), NotImplementedError("later"), NoClassDefFoundError("gone"))
-
-            errors.forEach { error ->
-                catchingForeign { throw error }.exceptionOrNull() shouldBe error
-            }
-        }
-
-        test("contains an ordinary exception as a failed result") {
-            val result = catchingForeign { throw IllegalStateException("broken") }
-
-            result.exceptionOrNull().shouldBeInstanceOf<IllegalStateException>()
         }
     }
 })

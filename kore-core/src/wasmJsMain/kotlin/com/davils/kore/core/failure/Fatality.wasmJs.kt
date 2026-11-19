@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments.resolution
+package com.davils.kore.core.failure
 
 internal actual fun rethrowPlatformFatal(failure: Throwable) = Unit

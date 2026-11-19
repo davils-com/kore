@@ -27,6 +27,7 @@ import com.davils.kore.core.arguments.report.ParameterException
 import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.renderUsage
+import com.davils.kore.core.failure.contained
 import com.davils.kore.core.immutableList
 import com.davils.kore.core.validation.violation.Severity
 
@@ -116,7 +117,7 @@ private suspend fun readSources(
     val failures = mutableListOf<ParameterViolation>()
     for ((index, source) in sources.withIndex()) {
         val pending = specs.filterNot { spec -> spec in lexed.occurrences || spec in values }
-        val origin = catchingForeign { ValueOrigin.External(source.name) }
+        val origin = contained { ValueOrigin.External(source.name) }
         origin.exceptionOrNull()?.let { cause ->
             pending.mapTo(failures) { spec ->
                 ParameterViolation.SourceUnavailable(spec.info, unnamedSource(index), cause)
@@ -137,7 +138,7 @@ private suspend fun readFrom(
     failures: MutableList<ParameterViolation>,
 ) {
     for (spec in pending) {
-        val result = catchingForeign { source.read(spec.info) }
+        val result = contained { source.read(spec.info) }
         result.exceptionOrNull()?.let { cause ->
             failures += ParameterViolation.SourceUnavailable(spec.info, origin.sourceName, cause)
         }
