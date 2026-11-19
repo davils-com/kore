@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments
+package com.davils.kore.core
 
-internal actual fun processEnvironment(): Map<String, String> = System.getenv()
+import com.davils.kore.core.text.internal.SafeDisplay
+
+internal class MaskedEntry(override val key: String, override val value: String) : Map.Entry<String, String> {
+    override fun equals(other: Any?): Boolean = other is Map.Entry<*, *> && other.key == key && other.value == value
+
+    override fun hashCode(): Int = key.hashCode() xor value.hashCode()
+
+    override fun toString(): String = "${SafeDisplay.text(key)}=${SafeDisplay.REDACTED}"
+}

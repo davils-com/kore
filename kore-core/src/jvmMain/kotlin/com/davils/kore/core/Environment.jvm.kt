@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments
+package com.davils.kore.core
 
-internal expect fun processEnvironment(): Map<String, String>
+internal actual fun platformEnvironment(): Map<String, String> = System.getenv()

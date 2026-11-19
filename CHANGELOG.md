@@ -105,6 +105,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `HTTPServerError2` into its lower-case words, and `toCase` writes a name in `CaseStyle.Camel`, `Pascal`, `Kebab`,
   `Snake`, `ScreamingSnake` or `Words`. Only ASCII letters change case, so the result is the same in every locale,
   and text longer than the new `Limits.MAX_WORDS_TEXT_LENGTH` is refused.
+- **The process environment with masked values.** `processEnvironment` in `com.davils.kore.core` returns the
+  environment variables of the process, from `System.getenv` on the JVM and `process.env` under Node.js, as an
+  unchangeable snapshot whose `toString`, and that of each entry, shows the names but `****` for every value, so a
+  logged environment no longer reveals its secrets. `Parameters.load` reads it by default.
 
 ### Changed
 

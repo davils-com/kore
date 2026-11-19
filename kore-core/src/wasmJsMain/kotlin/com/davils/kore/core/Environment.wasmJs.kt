@@ -16,11 +16,9 @@
 
 @file:OptIn(ExperimentalWasmJsInterop::class)
 
-package com.davils.kore.core.arguments
+package com.davils.kore.core
 
-import com.davils.kore.core.immutableMap
-
-internal actual fun processEnvironment(): Map<String, String> {
+internal actual fun platformEnvironment(): Map<String, String> {
     val names = environmentNames()
     val environment = LinkedHashMap<String, String>(names.length)
     for (index in 0 until names.length) {
