@@ -74,6 +74,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   new codes `ViolationCode.OUT_OF_RANGE` and `ViolationCode.TOO_LONG`, `REQUIRED` and `DUPLICATE`, name the bounds
   but never the value, so they may check a secret, and refuse an infinite duration where a positive one is required.
   `unique` reports every later duplicate at its position with the position of the first.
+- **Names inside a validation.** `ValidationScope.name` checks a text against a `NameRule` and reports a violation
+  with the code `NameViolationCodes.INVALID_NAME` and the reason instead of throwing; the message never quotes the
+  text.
 
 ### Changed
 

@@ -1249,6 +1249,11 @@ final object com.davils.kore.core.identity.generator/UuidV7Generator : com.davil
     final fun next(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.core.identity.generator/UuidV7Generator.next|next(){}[0]
 }
 
+final object com.davils.kore.core.naming/NameViolationCodes { // com.davils.kore.core.naming/NameViolationCodes|null[0]
+    final val INVALID_NAME // com.davils.kore.core.naming/NameViolationCodes.INVALID_NAME|{}INVALID_NAME[0]
+        final fun <get-INVALID_NAME>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.naming/NameViolationCodes.INVALID_NAME.<get-INVALID_NAME>|<get-INVALID_NAME>(){}[0]
+}
+
 final object com.davils.kore.core.principal/PrincipalViolationCodes { // com.davils.kore.core.principal/PrincipalViolationCodes|null[0]
     final val BLANK_DISPLAY_NAME // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_DISPLAY_NAME|{}BLANK_DISPLAY_NAME[0]
         final fun <get-BLANK_DISPLAY_NAME>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.BLANK_DISPLAY_NAME.<get-BLANK_DISPLAY_NAME>|<get-BLANK_DISPLAY_NAME>(){}[0]
@@ -1374,6 +1379,7 @@ final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/touche
 final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/masked(): com.davils.kore.core.text/TextSnippet // com.davils.kore.core.text/masked|masked@com.davils.kore.core.text.TextSnippet(){}[0]
 final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/render(): kotlin/String // com.davils.kore.core.text/render|render@com.davils.kore.core.text.TextSnippet(){}[0]
 final fun (com.davils.kore.core.validation/Validatable).com.davils.kore.core.validation/validate(kotlin/String): com.davils.kore.core.validation.report/ValidationReport // com.davils.kore.core.validation/validate|validate@com.davils.kore.core.validation.Validatable(kotlin.String){}[0]
+final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.naming/name(kotlin.reflect/KProperty<*>, kotlin/String, com.davils.kore.core.naming/NameRule, kotlin/String): kotlin/String? // com.davils.kore.core.naming/name|name@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.String;com.davils.kore.core.naming.NameRule;kotlin.String){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/maxLength(kotlin.reflect/KProperty<*>, kotlin/CharSequence, kotlin/Int): kotlin/Boolean // com.davils.kore.core.validation/maxLength|maxLength@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.CharSequence;kotlin.Int){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/nonNegative(kotlin.reflect/KProperty<*>, kotlin.time/Duration): kotlin/Boolean // com.davils.kore.core.validation/nonNegative|nonNegative@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.time.Duration){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/nonNegative(kotlin.reflect/KProperty<*>, kotlin/Int): kotlin/Boolean // com.davils.kore.core.validation/nonNegative|nonNegative@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.Int){}[0]

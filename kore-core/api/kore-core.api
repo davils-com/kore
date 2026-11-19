@@ -677,6 +677,15 @@ public final class com/davils/kore/core/naming/NameStart : java/lang/Enum {
 	public static fun values ()[Lcom/davils/kore/core/naming/NameStart;
 }
 
+public final class com/davils/kore/core/naming/NameValidationsKt {
+	public static final fun name (Lcom/davils/kore/core/validation/ValidationScope;Lkotlin/reflect/KProperty;Ljava/lang/String;Lcom/davils/kore/core/naming/NameRule;Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/naming/NameViolationCodes {
+	public static final field INSTANCE Lcom/davils/kore/core/naming/NameViolationCodes;
+	public final fun getINVALID_NAME-J_S2PC0 ()Ljava/lang/String;
+}
+
 public abstract interface class com/davils/kore/core/outcome/Outcome {
 	public fun isFailure ()Z
 	public fun isSuccess ()Z
