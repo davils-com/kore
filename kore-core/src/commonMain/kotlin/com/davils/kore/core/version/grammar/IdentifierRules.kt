@@ -16,6 +16,9 @@
 
 package com.davils.kore.core.version.grammar
 
+import com.davils.kore.core.text.isAsciiDigit
+import com.davils.kore.core.text.isAsciiLetter
+
 internal const val ZERO: Char = '0'
 
 internal fun isIdentifier(identifier: String): Boolean =
@@ -27,10 +30,6 @@ internal fun isPreReleaseIdentifier(identifier: String): Boolean {
 }
 
 internal fun isNumeric(identifier: String): Boolean = identifier.isNotEmpty() && identifier.all(::isAsciiDigit)
-
-internal fun isAsciiDigit(character: Char): Boolean = character in '0'..'9'
-
-private fun isAsciiLetter(character: Char): Boolean = character in 'a'..'z' || character in 'A'..'Z'
 
 private fun isIdentifierCharacter(character: Char): Boolean =
     isAsciiDigit(character) || isAsciiLetter(character) || character == PRE_RELEASE_SEPARATOR

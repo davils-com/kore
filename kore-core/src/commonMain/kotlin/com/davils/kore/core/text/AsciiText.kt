@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.arguments.conversion
+package com.davils.kore.core.text
 
 private const val CASE_DISTANCE: Int = 'a' - 'A'
 private const val FIRST_PRINTABLE: Char = ' '

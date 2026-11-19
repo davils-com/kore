@@ -16,6 +16,9 @@
 
 package com.davils.kore.core.arguments.conversion
 
+import com.davils.kore.core.text.asciiUppercase
+import com.davils.kore.core.text.isAsciiLetter
+
 internal const val INVALID_PATH_REASON: String = "is not a valid path"
 
 private const val EMPTY_REASON: String = "is empty"
