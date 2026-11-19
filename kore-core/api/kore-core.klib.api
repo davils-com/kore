@@ -66,6 +66,17 @@ final enum class com.davils.kore.core.identity/UuidVersion : kotlin/Enum<com.dav
     final fun values(): kotlin/Array<com.davils.kore.core.identity/UuidVersion> // com.davils.kore.core.identity/UuidVersion.values|values#static(){}[0]
 }
 
+final enum class com.davils.kore.core.naming/NameStart : kotlin/Enum<com.davils.kore.core.naming/NameStart> { // com.davils.kore.core.naming/NameStart|null[0]
+    enum entry Letter // com.davils.kore.core.naming/NameStart.Letter|null[0]
+    enum entry LetterOrDigit // com.davils.kore.core.naming/NameStart.LetterOrDigit|null[0]
+
+    final val entries // com.davils.kore.core.naming/NameStart.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.naming/NameStart> // com.davils.kore.core.naming/NameStart.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.naming/NameStart // com.davils.kore.core.naming/NameStart.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.naming/NameStart> // com.davils.kore.core.naming/NameStart.values|values#static(){}[0]
+}
+
 final enum class com.davils.kore.core.principal/PrincipalKind : kotlin/Enum<com.davils.kore.core.principal/PrincipalKind> { // com.davils.kore.core.principal/PrincipalKind|null[0]
     enum entry Service // com.davils.kore.core.principal/PrincipalKind.Service|null[0]
     enum entry System // com.davils.kore.core.principal/PrincipalKind.System|null[0]
@@ -372,6 +383,52 @@ final class com.davils.kore.core.identity/UuidV7 : com.davils.kore.core.identity
         final fun parseOrNull(kotlin/String): com.davils.kore.core.identity/UuidV7? // com.davils.kore.core.identity/UuidV7.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
         final fun random(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.core.identity/UuidV7.Companion.random|random(){}[0]
     }
+}
+
+final class com.davils.kore.core.naming/NameRule { // com.davils.kore.core.naming/NameRule|null[0]
+    final val example // com.davils.kore.core.naming/NameRule.example|{}example[0]
+        final fun <get-example>(): kotlin/String // com.davils.kore.core.naming/NameRule.example.<get-example>|<get-example>(){}[0]
+    final val maxLength // com.davils.kore.core.naming/NameRule.maxLength|{}maxLength[0]
+        final fun <get-maxLength>(): kotlin/Int // com.davils.kore.core.naming/NameRule.maxLength.<get-maxLength>|<get-maxLength>(){}[0]
+
+    final fun matches(kotlin/CharSequence): kotlin/Boolean // com.davils.kore.core.naming/NameRule.matches|matches(kotlin.CharSequence){}[0]
+    final fun requireValid(kotlin/String, kotlin/String, kotlin/String = ...): kotlin/String // com.davils.kore.core.naming/NameRule.requireValid|requireValid(kotlin.String;kotlin.String;kotlin.String){}[0]
+    final fun validOrNull(kotlin/String): kotlin/String? // com.davils.kore.core.naming/NameRule.validOrNull|validOrNull(kotlin.String){}[0]
+
+    final object Companion { // com.davils.kore.core.naming/NameRule.Companion|null[0]
+        final val DOTTED // com.davils.kore.core.naming/NameRule.Companion.DOTTED|{}DOTTED[0]
+            final fun <get-DOTTED>(): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/NameRule.Companion.DOTTED.<get-DOTTED>|<get-DOTTED>(){}[0]
+        final val KEBAB // com.davils.kore.core.naming/NameRule.Companion.KEBAB|{}KEBAB[0]
+            final fun <get-KEBAB>(): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/NameRule.Companion.KEBAB.<get-KEBAB>|<get-KEBAB>(){}[0]
+        final val QUALIFIED // com.davils.kore.core.naming/NameRule.Companion.QUALIFIED|{}QUALIFIED[0]
+            final fun <get-QUALIFIED>(): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/NameRule.Companion.QUALIFIED.<get-QUALIFIED>|<get-QUALIFIED>(){}[0]
+        final val STRICT_KEBAB // com.davils.kore.core.naming/NameRule.Companion.STRICT_KEBAB|{}STRICT_KEBAB[0]
+            final fun <get-STRICT_KEBAB>(): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/NameRule.Companion.STRICT_KEBAB.<get-STRICT_KEBAB>|<get-STRICT_KEBAB>(){}[0]
+    }
+}
+
+final class com.davils.kore.core.naming/NameRuleBuilder { // com.davils.kore.core.naming/NameRuleBuilder|null[0]
+    final var example // com.davils.kore.core.naming/NameRuleBuilder.example|{}example[0]
+        final fun <get-example>(): kotlin/String // com.davils.kore.core.naming/NameRuleBuilder.example.<get-example>|<get-example>(){}[0]
+        final fun <set-example>(kotlin/String) // com.davils.kore.core.naming/NameRuleBuilder.example.<set-example>|<set-example>(kotlin.String){}[0]
+    final var isStrict // com.davils.kore.core.naming/NameRuleBuilder.isStrict|{}isStrict[0]
+        final fun <get-isStrict>(): kotlin/Boolean // com.davils.kore.core.naming/NameRuleBuilder.isStrict.<get-isStrict>|<get-isStrict>(){}[0]
+        final fun <set-isStrict>(kotlin/Boolean) // com.davils.kore.core.naming/NameRuleBuilder.isStrict.<set-isStrict>|<set-isStrict>(kotlin.Boolean){}[0]
+    final var maxLength // com.davils.kore.core.naming/NameRuleBuilder.maxLength|{}maxLength[0]
+        final fun <get-maxLength>(): kotlin/Int // com.davils.kore.core.naming/NameRuleBuilder.maxLength.<get-maxLength>|<get-maxLength>(){}[0]
+        final fun <set-maxLength>(kotlin/Int) // com.davils.kore.core.naming/NameRuleBuilder.maxLength.<set-maxLength>|<set-maxLength>(kotlin.Int){}[0]
+    final var minSegments // com.davils.kore.core.naming/NameRuleBuilder.minSegments|{}minSegments[0]
+        final fun <get-minSegments>(): kotlin/Int // com.davils.kore.core.naming/NameRuleBuilder.minSegments.<get-minSegments>|<get-minSegments>(){}[0]
+        final fun <set-minSegments>(kotlin/Int) // com.davils.kore.core.naming/NameRuleBuilder.minSegments.<set-minSegments>|<set-minSegments>(kotlin.Int){}[0]
+    final var segmentSeparator // com.davils.kore.core.naming/NameRuleBuilder.segmentSeparator|{}segmentSeparator[0]
+        final fun <get-segmentSeparator>(): kotlin/Char? // com.davils.kore.core.naming/NameRuleBuilder.segmentSeparator.<get-segmentSeparator>|<get-segmentSeparator>(){}[0]
+        final fun <set-segmentSeparator>(kotlin/Char?) // com.davils.kore.core.naming/NameRuleBuilder.segmentSeparator.<set-segmentSeparator>|<set-segmentSeparator>(kotlin.Char?){}[0]
+    final var separators // com.davils.kore.core.naming/NameRuleBuilder.separators|{}separators[0]
+        final fun <get-separators>(): kotlin/String // com.davils.kore.core.naming/NameRuleBuilder.separators.<get-separators>|<get-separators>(){}[0]
+        final fun <set-separators>(kotlin/String) // com.davils.kore.core.naming/NameRuleBuilder.separators.<set-separators>|<set-separators>(kotlin.String){}[0]
+    final var start // com.davils.kore.core.naming/NameRuleBuilder.start|{}start[0]
+        final fun <get-start>(): com.davils.kore.core.naming/NameStart // com.davils.kore.core.naming/NameRuleBuilder.start.<get-start>|<get-start>(){}[0]
+        final fun <set-start>(com.davils.kore.core.naming/NameStart) // com.davils.kore.core.naming/NameRuleBuilder.start.<set-start>|<set-start>(com.davils.kore.core.naming.NameStart){}[0]
 }
 
 final class com.davils.kore.core.principal/Principal : com.davils.kore.core.validation/Validatable { // com.davils.kore.core.principal/Principal|null[0]
@@ -1221,6 +1278,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_LINE_MAP_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_LINE_MAP_LENGTH.<get-MAX_LINE_MAP_LENGTH>|<get-MAX_LINE_MAP_LENGTH>(){}[0]
     final const val MAX_MESSAGE_LENGTH // com.davils.kore.core/Limits.MAX_MESSAGE_LENGTH|{}MAX_MESSAGE_LENGTH[0]
         final fun <get-MAX_MESSAGE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_MESSAGE_LENGTH.<get-MAX_MESSAGE_LENGTH>|<get-MAX_MESSAGE_LENGTH>(){}[0]
+    final const val MAX_NAME_LENGTH // com.davils.kore.core/Limits.MAX_NAME_LENGTH|{}MAX_NAME_LENGTH[0]
+        final fun <get-MAX_NAME_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_NAME_LENGTH.<get-MAX_NAME_LENGTH>|<get-MAX_NAME_LENGTH>(){}[0]
     final const val MAX_NUMERIC_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_NUMERIC_TEXT_LENGTH|{}MAX_NUMERIC_TEXT_LENGTH[0]
         final fun <get-MAX_NUMERIC_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_NUMERIC_TEXT_LENGTH.<get-MAX_NUMERIC_TEXT_LENGTH>|<get-MAX_NUMERIC_TEXT_LENGTH>(){}[0]
     final const val MAX_PATH_DEPTH // com.davils.kore.core/Limits.MAX_PATH_DEPTH|{}MAX_PATH_DEPTH[0]
@@ -1302,6 +1361,7 @@ final fun <#A: kotlin/Any?> (kotlin.collections/Iterable<#A>).com.davils.kore.co
 final fun <#A: kotlin/Any?> (kotlin/Result<#A>).com.davils.kore.core.outcome/toOutcome(): com.davils.kore.core.outcome/Outcome<#A, kotlin/Throwable> // com.davils.kore.core.outcome/toOutcome|toOutcome@kotlin.Result<0:0>(){0§<kotlin.Any?>}[0]
 final fun <#A: kotlin/Any?> com.davils.kore.core.collection/readOnlySetOf(kotlin.collections/Set<#A>): kotlin.collections/Set<#A> // com.davils.kore.core.collection/readOnlySetOf|readOnlySetOf(kotlin.collections.Set<0:0>){0§<kotlin.Any?>}[0]
 final fun com.davils.kore.core.failure/containedFailure(kotlin/Throwable, kotlin/Boolean): kotlin/Throwable // com.davils.kore.core.failure/containedFailure|containedFailure(kotlin.Throwable;kotlin.Boolean){}[0]
+final fun com.davils.kore.core.naming/nameRule(kotlin/Function1<com.davils.kore.core.naming/NameRuleBuilder, kotlin/Unit>): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/nameRule|nameRule(kotlin.Function1<com.davils.kore.core.naming.NameRuleBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.text/closeMatches(kotlin/String, kotlin.collections/Iterable<kotlin/String>, kotlin/Int, kotlin/Int = ..., kotlin/Boolean = ...): kotlin.collections/List<kotlin/String> // com.davils.kore.core.text/closeMatches|closeMatches(kotlin.String;kotlin.collections.Iterable<kotlin.String>;kotlin.Int;kotlin.Int;kotlin.Boolean){}[0]

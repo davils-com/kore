@@ -295,4 +295,15 @@ public object Limits {
      * @since 2.1.0
      */
     public const val MAX_SUGGESTION_TOKEN_LENGTH: Int = 64
+
+    /**
+     * The longest name, in characters, that a [com.davils.kore.core.naming.NameRule] accepts, and the default of
+     * every rule.
+     *
+     * A longer text is refused before a single character of it is checked. The limit equals [MAX_DISPLAY_LENGTH], so
+     * a valid name is always shown in full.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_NAME_LENGTH: Int = 256
 }

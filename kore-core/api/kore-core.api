@@ -15,6 +15,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_EDIT_DISTANCE_LENGTH I
 	public static final field MAX_LINE_MAP_LENGTH I
 	public static final field MAX_MESSAGE_LENGTH I
+	public static final field MAX_NAME_LENGTH I
 	public static final field MAX_NUMERIC_TEXT_LENGTH I
 	public static final field MAX_PATH_DEPTH I
 	public static final field MAX_PRINCIPAL_ID_LENGTH I
@@ -621,6 +622,52 @@ public final class com/davils/kore/core/identity/generator/UuidV7Generator : com
 	public static final field INSTANCE Lcom/davils/kore/core/identity/generator/UuidV7Generator;
 	public synthetic fun next ()Lcom/davils/kore/core/identity/Uuid;
 	public fun next ()Lcom/davils/kore/core/identity/UuidV7;
+}
+
+public final class com/davils/kore/core/naming/NameRule {
+	public static final field Companion Lcom/davils/kore/core/naming/NameRule$Companion;
+	public final fun getExample ()Ljava/lang/String;
+	public final fun getMaxLength ()I
+	public final fun matches (Ljava/lang/CharSequence;)Z
+	public final fun requireValid (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+	public static synthetic fun requireValid$default (Lcom/davils/kore/core/naming/NameRule;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/String;
+	public final fun validOrNull (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/naming/NameRule$Companion {
+	public final fun getDOTTED ()Lcom/davils/kore/core/naming/NameRule;
+	public final fun getKEBAB ()Lcom/davils/kore/core/naming/NameRule;
+	public final fun getQUALIFIED ()Lcom/davils/kore/core/naming/NameRule;
+	public final fun getSTRICT_KEBAB ()Lcom/davils/kore/core/naming/NameRule;
+}
+
+public final class com/davils/kore/core/naming/NameRuleBuilder {
+	public final fun getExample ()Ljava/lang/String;
+	public final fun getMaxLength ()I
+	public final fun getMinSegments ()I
+	public final fun getSegmentSeparator ()Ljava/lang/Character;
+	public final fun getSeparators ()Ljava/lang/String;
+	public final fun getStart ()Lcom/davils/kore/core/naming/NameStart;
+	public final fun isStrict ()Z
+	public final fun setExample (Ljava/lang/String;)V
+	public final fun setMaxLength (I)V
+	public final fun setMinSegments (I)V
+	public final fun setSegmentSeparator (Ljava/lang/Character;)V
+	public final fun setSeparators (Ljava/lang/String;)V
+	public final fun setStart (Lcom/davils/kore/core/naming/NameStart;)V
+	public final fun setStrict (Z)V
+}
+
+public final class com/davils/kore/core/naming/NameRulesKt {
+	public static final fun nameRule (Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/naming/NameRule;
+}
+
+public final class com/davils/kore/core/naming/NameStart : java/lang/Enum {
+	public static final field Letter Lcom/davils/kore/core/naming/NameStart;
+	public static final field LetterOrDigit Lcom/davils/kore/core/naming/NameStart;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/naming/NameStart;
+	public static fun values ()[Lcom/davils/kore/core/naming/NameStart;
 }
 
 public abstract interface class com/davils/kore/core/outcome/Outcome {

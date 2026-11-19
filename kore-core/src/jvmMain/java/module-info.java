@@ -33,6 +33,7 @@ module com.davils.kore.core {
     exports com.davils.kore.core.failure;
     exports com.davils.kore.core.identity;
     exports com.davils.kore.core.identity.generator;
+    exports com.davils.kore.core.naming;
     exports com.davils.kore.core.outcome;
     exports com.davils.kore.core.platform;
     exports com.davils.kore.core.principal;

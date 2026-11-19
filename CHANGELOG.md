@@ -46,6 +46,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   only, so the result is the same on every platform and in every locale. The new `Limits.MAX_EDIT_DISTANCE_LENGTH`
   and `Limits.MAX_SUGGESTION_TOKEN_LENGTH` bound the work of a comparison. The suggestions of `Parameters` come from
   `closestMatch` now.
+- **Rules for names without regular expressions.** `NameRule` in `com.davils.kore.core.naming` checks names and
+  identifiers in one pass that grows linearly with the text, with the same result on the JVM and on Wasm and
+  without the risk of a regular expression that backtracks or overflows the stack. `KEBAB`, `DOTTED`, `QUALIFIED`
+  and `STRICT_KEBAB` accept exactly what `[a-z][a-z0-9-]*` and its dotted, qualified and strict variants accept;
+  `nameRule { }` builds any other rule from its start, word and part separators, least number of parts, strictness
+  and longest length, at most the new `Limits.MAX_NAME_LENGTH`. `requireValid` refuses a text with a message that
+  escapes it and says why, for the `init` block of an identifier type.
 
 ### Changed
 
