@@ -306,4 +306,13 @@ public object Limits {
      * @since 2.1.0
      */
     public const val MAX_NAME_LENGTH: Int = 256
+
+    /**
+     * The longest text, in UTF-16 code units, that is read as a data size.
+     *
+     * [com.davils.kore.core.size.DataSize.parse] refuses a longer text before it reads it.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_DATA_SIZE_TEXT_LENGTH: Int = 32
 }

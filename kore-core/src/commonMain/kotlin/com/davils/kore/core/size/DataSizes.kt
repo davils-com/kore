@@ -61,3 +61,48 @@ public val Int.mebibytes: DataSize get() = DataSize(toLong() * DataSize.MEBIBYTE
  * @since 1.0.0
  */
 public val Int.gibibytes: DataSize get() = DataSize(toLong() * DataSize.GIBIBYTE)
+
+/**
+ * This number of tebibytes, each [DataSize.TEBIBYTE] bytes, as a [DataSize].
+ *
+ * @throws IllegalArgumentException if the number is negative.
+ * @throws ArithmeticException if the size exceeds [Long.MAX_VALUE] bytes.
+ * @since 2.1.0
+ */
+public val Int.tebibytes: DataSize get() = toLong().tebibytes
+
+/**
+ * This number of kibibytes, each [DataSize.KIBIBYTE] bytes, as a [DataSize], exactly as [DataSize.times] multiplies.
+ *
+ * @throws IllegalArgumentException if the number is negative.
+ * @throws ArithmeticException if the size exceeds [Long.MAX_VALUE] bytes.
+ * @since 2.1.0
+ */
+public val Long.kibibytes: DataSize get() = DataSize(this) * DataSize.KIBIBYTE
+
+/**
+ * This number of mebibytes, each [DataSize.MEBIBYTE] bytes, as a [DataSize], exactly as [DataSize.times] multiplies.
+ *
+ * @throws IllegalArgumentException if the number is negative.
+ * @throws ArithmeticException if the size exceeds [Long.MAX_VALUE] bytes.
+ * @since 2.1.0
+ */
+public val Long.mebibytes: DataSize get() = DataSize(this) * DataSize.MEBIBYTE
+
+/**
+ * This number of gibibytes, each [DataSize.GIBIBYTE] bytes, as a [DataSize], exactly as [DataSize.times] multiplies.
+ *
+ * @throws IllegalArgumentException if the number is negative.
+ * @throws ArithmeticException if the size exceeds [Long.MAX_VALUE] bytes.
+ * @since 2.1.0
+ */
+public val Long.gibibytes: DataSize get() = DataSize(this) * DataSize.GIBIBYTE
+
+/**
+ * This number of tebibytes, each [DataSize.TEBIBYTE] bytes, as a [DataSize], exactly as [DataSize.times] multiplies.
+ *
+ * @throws IllegalArgumentException if the number is negative.
+ * @throws ArithmeticException if the size exceeds [Long.MAX_VALUE] bytes.
+ * @since 2.1.0
+ */
+public val Long.tebibytes: DataSize get() = DataSize(this) * DataSize.TEBIBYTE

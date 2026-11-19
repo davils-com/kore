@@ -77,6 +77,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Names inside a validation.** `ValidationScope.name` checks a text against a `NameRule` and reports a violation
   with the code `NameViolationCodes.INVALID_NAME` and the reason instead of throwing; the message never quotes the
   text.
+- **Data sizes from text.** `DataSize.parse` and `DataSize.parseOrNull` read sizes such as `64 MiB` or `512KiB` in
+  the binary units from `B` to `EiB`, read back every text `DataSize.toString` returns, and refuse decimal units
+  such as `GB`, abbreviations and units in another case rather than guess whether `1 GB` means 10^9 or 2^30 bytes.
+  Text longer than the new `Limits.MAX_DATA_SIZE_TEXT_LENGTH` is refused before it is read, and a size beyond
+  `Long.MAX_VALUE` bytes without overflowing. `ValidationScope.dataSize` reads a size inside a validation with the
+  code `SizeViolationCodes.INVALID_SIZE`, and `ValidationScope.positive` checks a size. `DataSize` also gains
+  `TEBIBYTE`, `PEBIBYTE` and `EXBIBYTE`, division by a count and by another size, `Int.tebibytes` and the checked
+  extensions `kibibytes` to `tebibytes` on `Long`.
 
 ### Changed
 

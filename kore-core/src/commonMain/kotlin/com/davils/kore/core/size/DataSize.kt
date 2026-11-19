@@ -16,6 +16,10 @@
 
 package com.davils.kore.core.size
 
+import com.davils.kore.core.Limits
+import com.davils.kore.core.outcome.getOrElse
+import com.davils.kore.core.outcome.getOrNull
+import com.davils.kore.core.text.internal.SafeDisplay
 import kotlin.jvm.JvmInline
 
 private const val BEYOND_LARGEST: String = "exceeds the largest data size of ${Long.MAX_VALUE} B"
@@ -109,6 +113,32 @@ public value class DataSize(public val bytes: Long) : Comparable<DataSize> {
     public operator fun times(factor: Int): DataSize = times(factor.toLong())
 
     /**
+     * Divides this size into [divisor] equal parts, rounding down to whole bytes.
+     *
+     * @param divisor the number of parts, at least 1.
+     * @return the size of one part, rounded down.
+     * @throws IllegalArgumentException if [divisor] is zero or negative.
+     * @since 2.1.0
+     */
+    public operator fun div(divisor: Long): DataSize {
+        require(divisor > 0L) { "A data size can only be divided into a positive number of parts, but was $divisor" }
+        return DataSize(bytes / divisor)
+    }
+
+    /**
+     * Returns how many times [other] fits into this size, rounded down.
+     *
+     * @param other the size to measure with, larger than zero.
+     * @return the number of whole times [other] fits.
+     * @throws ArithmeticException if [other] is zero bytes.
+     * @since 2.1.0
+     */
+    public operator fun div(other: DataSize): Long {
+        if (other.bytes == 0L) throw ArithmeticException("A data size cannot be measured in units of 0 B")
+        return bytes / other.bytes
+    }
+
+    /**
      * Returns the size in the largest of the units GiB, MiB and KiB that divides it exactly, such as `64 KiB` or
      * `3 GiB`, and in bytes, such as `1536 B` or `0 B`, when none divides it.
      *
@@ -150,6 +180,27 @@ public value class DataSize(public val bytes: Long) : Comparable<DataSize> {
         public const val GIBIBYTE: Long = MEBIBYTE * KIBIBYTE
 
         /**
+         * The number of bytes in a tebibyte, 1024 gibibytes.
+         *
+         * @since 2.1.0
+         */
+        public const val TEBIBYTE: Long = GIBIBYTE * KIBIBYTE
+
+        /**
+         * The number of bytes in a pebibyte, 1024 tebibytes.
+         *
+         * @since 2.1.0
+         */
+        public const val PEBIBYTE: Long = TEBIBYTE * KIBIBYTE
+
+        /**
+         * The number of bytes in an exbibyte, 1024 pebibytes; a [DataSize] holds less than eight of them.
+         *
+         * @since 2.1.0
+         */
+        public const val EXBIBYTE: Long = PEBIBYTE * KIBIBYTE
+
+        /**
          * The size of nothing, zero bytes.
          *
          * @since 1.0.0
@@ -161,5 +212,35 @@ public value class DataSize(public val bytes: Long) : Comparable<DataSize> {
             MEBIBYTE to "MiB",
             KIBIBYTE to "KiB",
         )
+
+        /**
+         * Reads [text] as a data size, such as `64 MiB`, `512KiB` or `0 B`.
+         *
+         * The text is a number of ASCII digits without a sign, a fraction or a leading zero, an optional single space,
+         * and one of the binary units `B`, `KiB`, `MiB`, `GiB`, `TiB`, `PiB` and `EiB`, in exactly this case. Every
+         * text that [DataSize.toString] returns is read back to the same size. The decimal units `KB`, `MB` and `GB`,
+         * abbreviations such as `k` and units in another case are refused: whether `1 GB` means 10^9 or 2^30 bytes
+         * differs between tools, and a size that means the one in one place and the other elsewhere is refused
+         * rather than guessed. Text longer than [Limits.MAX_DATA_SIZE_TEXT_LENGTH] is refused before it is read, and
+         * a size beyond [Long.MAX_VALUE] bytes is refused without overflowing.
+         *
+         * @param text the text to read, which may contain anything.
+         * @return the size.
+         * @throws IllegalArgumentException if [text] is no data size. The message names the text, escaped and
+         * shortened, and the reason.
+         * @since 2.1.0
+         */
+        public fun parse(text: String): DataSize = readDataSize(text).getOrElse { reason ->
+            throw IllegalArgumentException("${SafeDisplay.quoted(text)} is not a data size such as 64 MiB: it $reason")
+        }
+
+        /**
+         * Reads [text] as a data size like [parse], and returns `null` instead of throwing.
+         *
+         * @param text the text to read, which may contain anything.
+         * @return the size, or `null` if [text] is no data size.
+         * @since 2.1.0
+         */
+        public fun parseOrNull(text: String): DataSize? = readDataSize(text).getOrNull()
     }
 }

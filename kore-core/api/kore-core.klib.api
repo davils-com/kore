@@ -843,6 +843,8 @@ final value class com.davils.kore.core.size/DataSize : kotlin/Comparable<com.dav
         final fun <get-bytes>(): kotlin/Long // com.davils.kore.core.size/DataSize.bytes.<get-bytes>|<get-bytes>(){}[0]
 
     final fun compareTo(com.davils.kore.core.size/DataSize): kotlin/Int // com.davils.kore.core.size/DataSize.compareTo|compareTo(com.davils.kore.core.size.DataSize){}[0]
+    final fun div(com.davils.kore.core.size/DataSize): kotlin/Long // com.davils.kore.core.size/DataSize.div|div(com.davils.kore.core.size.DataSize){}[0]
+    final fun div(kotlin/Long): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.div|div(kotlin.Long){}[0]
     final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.size/DataSize.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.davils.kore.core.size/DataSize.hashCode|hashCode(){}[0]
     final fun minus(com.davils.kore.core.size/DataSize): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.minus|minus(com.davils.kore.core.size.DataSize){}[0]
@@ -852,15 +854,24 @@ final value class com.davils.kore.core.size/DataSize : kotlin/Comparable<com.dav
     final fun toString(): kotlin/String // com.davils.kore.core.size/DataSize.toString|toString(){}[0]
 
     final object Companion { // com.davils.kore.core.size/DataSize.Companion|null[0]
+        final const val EXBIBYTE // com.davils.kore.core.size/DataSize.Companion.EXBIBYTE|{}EXBIBYTE[0]
+            final fun <get-EXBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.EXBIBYTE.<get-EXBIBYTE>|<get-EXBIBYTE>(){}[0]
         final const val GIBIBYTE // com.davils.kore.core.size/DataSize.Companion.GIBIBYTE|{}GIBIBYTE[0]
             final fun <get-GIBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.GIBIBYTE.<get-GIBIBYTE>|<get-GIBIBYTE>(){}[0]
         final const val KIBIBYTE // com.davils.kore.core.size/DataSize.Companion.KIBIBYTE|{}KIBIBYTE[0]
             final fun <get-KIBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.KIBIBYTE.<get-KIBIBYTE>|<get-KIBIBYTE>(){}[0]
         final const val MEBIBYTE // com.davils.kore.core.size/DataSize.Companion.MEBIBYTE|{}MEBIBYTE[0]
             final fun <get-MEBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.MEBIBYTE.<get-MEBIBYTE>|<get-MEBIBYTE>(){}[0]
+        final const val PEBIBYTE // com.davils.kore.core.size/DataSize.Companion.PEBIBYTE|{}PEBIBYTE[0]
+            final fun <get-PEBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.PEBIBYTE.<get-PEBIBYTE>|<get-PEBIBYTE>(){}[0]
+        final const val TEBIBYTE // com.davils.kore.core.size/DataSize.Companion.TEBIBYTE|{}TEBIBYTE[0]
+            final fun <get-TEBIBYTE>(): kotlin/Long // com.davils.kore.core.size/DataSize.Companion.TEBIBYTE.<get-TEBIBYTE>|<get-TEBIBYTE>(){}[0]
 
         final val ZERO // com.davils.kore.core.size/DataSize.Companion.ZERO|{}ZERO[0]
             final fun <get-ZERO>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.Companion.ZERO.<get-ZERO>|<get-ZERO>(){}[0]
+
+        final fun parse(kotlin/String): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/DataSize.Companion.parse|parse(kotlin.String){}[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.size/DataSize? // com.davils.kore.core.size/DataSize.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
     }
 }
 
@@ -1285,6 +1296,11 @@ final object com.davils.kore.core.principal/PrincipalViolationCodes { // com.dav
         final fun <get-TOO_MANY_ROLES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ROLES.<get-TOO_MANY_ROLES>|<get-TOO_MANY_ROLES>(){}[0]
 }
 
+final object com.davils.kore.core.size/SizeViolationCodes { // com.davils.kore.core.size/SizeViolationCodes|null[0]
+    final val INVALID_SIZE // com.davils.kore.core.size/SizeViolationCodes.INVALID_SIZE|{}INVALID_SIZE[0]
+        final fun <get-INVALID_SIZE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.size/SizeViolationCodes.INVALID_SIZE.<get-INVALID_SIZE>|<get-INVALID_SIZE>(){}[0]
+}
+
 final object com.davils.kore.core.text/SafeText { // com.davils.kore.core.text/SafeText|null[0]
     final const val REDACTED // com.davils.kore.core.text/SafeText.REDACTED|{}REDACTED[0]
         final fun <get-REDACTED>(): kotlin/String // com.davils.kore.core.text/SafeText.REDACTED.<get-REDACTED>|<get-REDACTED>(){}[0]
@@ -1312,6 +1328,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_ATTRIBUTE_NAME_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ATTRIBUTE_NAME_LENGTH.<get-MAX_ATTRIBUTE_NAME_LENGTH>|<get-MAX_ATTRIBUTE_NAME_LENGTH>(){}[0]
     final const val MAX_ATTRIBUTE_VALUE_LENGTH // com.davils.kore.core/Limits.MAX_ATTRIBUTE_VALUE_LENGTH|{}MAX_ATTRIBUTE_VALUE_LENGTH[0]
         final fun <get-MAX_ATTRIBUTE_VALUE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ATTRIBUTE_VALUE_LENGTH.<get-MAX_ATTRIBUTE_VALUE_LENGTH>|<get-MAX_ATTRIBUTE_VALUE_LENGTH>(){}[0]
+    final const val MAX_DATA_SIZE_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_DATA_SIZE_TEXT_LENGTH|{}MAX_DATA_SIZE_TEXT_LENGTH[0]
+        final fun <get-MAX_DATA_SIZE_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DATA_SIZE_TEXT_LENGTH.<get-MAX_DATA_SIZE_TEXT_LENGTH>|<get-MAX_DATA_SIZE_TEXT_LENGTH>(){}[0]
     final const val MAX_DECIMAL_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_DECIMAL_TEXT_LENGTH|{}MAX_DECIMAL_TEXT_LENGTH[0]
         final fun <get-MAX_DECIMAL_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DECIMAL_TEXT_LENGTH.<get-MAX_DECIMAL_TEXT_LENGTH>|<get-MAX_DECIMAL_TEXT_LENGTH>(){}[0]
     final const val MAX_DELEGATION_CHAIN // com.davils.kore.core/Limits.MAX_DELEGATION_CHAIN|{}MAX_DELEGATION_CHAIN[0]
@@ -1364,10 +1382,20 @@ final val com.davils.kore.core.size/bytes // com.davils.kore.core.size/bytes|@ko
     final fun (kotlin/Long).<get-bytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/bytes.<get-bytes>|<get-bytes>@kotlin.Long(){}[0]
 final val com.davils.kore.core.size/gibibytes // com.davils.kore.core.size/gibibytes|@kotlin.Int{}gibibytes[0]
     final fun (kotlin/Int).<get-gibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/gibibytes.<get-gibibytes>|<get-gibibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/gibibytes // com.davils.kore.core.size/gibibytes|@kotlin.Long{}gibibytes[0]
+    final fun (kotlin/Long).<get-gibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/gibibytes.<get-gibibytes>|<get-gibibytes>@kotlin.Long(){}[0]
 final val com.davils.kore.core.size/kibibytes // com.davils.kore.core.size/kibibytes|@kotlin.Int{}kibibytes[0]
     final fun (kotlin/Int).<get-kibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/kibibytes.<get-kibibytes>|<get-kibibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/kibibytes // com.davils.kore.core.size/kibibytes|@kotlin.Long{}kibibytes[0]
+    final fun (kotlin/Long).<get-kibibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/kibibytes.<get-kibibytes>|<get-kibibytes>@kotlin.Long(){}[0]
 final val com.davils.kore.core.size/mebibytes // com.davils.kore.core.size/mebibytes|@kotlin.Int{}mebibytes[0]
     final fun (kotlin/Int).<get-mebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/mebibytes.<get-mebibytes>|<get-mebibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/mebibytes // com.davils.kore.core.size/mebibytes|@kotlin.Long{}mebibytes[0]
+    final fun (kotlin/Long).<get-mebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/mebibytes.<get-mebibytes>|<get-mebibytes>@kotlin.Long(){}[0]
+final val com.davils.kore.core.size/tebibytes // com.davils.kore.core.size/tebibytes|@kotlin.Int{}tebibytes[0]
+    final fun (kotlin/Int).<get-tebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/tebibytes.<get-tebibytes>|<get-tebibytes>@kotlin.Int(){}[0]
+final val com.davils.kore.core.size/tebibytes // com.davils.kore.core.size/tebibytes|@kotlin.Long{}tebibytes[0]
+    final fun (kotlin/Long).<get-tebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/tebibytes.<get-tebibytes>|<get-tebibytes>@kotlin.Long(){}[0]
 
 final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(com.davils.kore.core.text/TextRange): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
 final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(kotlin/Int): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(kotlin.Int){}[0]
@@ -1380,6 +1408,8 @@ final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/mask
 final fun (com.davils.kore.core.text/TextSnippet).com.davils.kore.core.text/render(): kotlin/String // com.davils.kore.core.text/render|render@com.davils.kore.core.text.TextSnippet(){}[0]
 final fun (com.davils.kore.core.validation/Validatable).com.davils.kore.core.validation/validate(kotlin/String): com.davils.kore.core.validation.report/ValidationReport // com.davils.kore.core.validation/validate|validate@com.davils.kore.core.validation.Validatable(kotlin.String){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.naming/name(kotlin.reflect/KProperty<*>, kotlin/String, com.davils.kore.core.naming/NameRule, kotlin/String): kotlin/String? // com.davils.kore.core.naming/name|name@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.String;com.davils.kore.core.naming.NameRule;kotlin.String){}[0]
+final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.size/dataSize(kotlin.reflect/KProperty<*>, kotlin/String): com.davils.kore.core.size/DataSize? // com.davils.kore.core.size/dataSize|dataSize@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.String){}[0]
+final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.size/positive(kotlin.reflect/KProperty<*>, com.davils.kore.core.size/DataSize): kotlin/Boolean // com.davils.kore.core.size/positive|positive@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;com.davils.kore.core.size.DataSize){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/maxLength(kotlin.reflect/KProperty<*>, kotlin/CharSequence, kotlin/Int): kotlin/Boolean // com.davils.kore.core.validation/maxLength|maxLength@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.CharSequence;kotlin.Int){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/nonNegative(kotlin.reflect/KProperty<*>, kotlin.time/Duration): kotlin/Boolean // com.davils.kore.core.validation/nonNegative|nonNegative@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.time.Duration){}[0]
 final fun (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/nonNegative(kotlin.reflect/KProperty<*>, kotlin/Int): kotlin/Boolean // com.davils.kore.core.validation/nonNegative|nonNegative@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.Int){}[0]

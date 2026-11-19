@@ -16,6 +16,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_ATTRIBUTES I
 	public static final field MAX_ATTRIBUTE_NAME_LENGTH I
 	public static final field MAX_ATTRIBUTE_VALUE_LENGTH I
+	public static final field MAX_DATA_SIZE_TEXT_LENGTH I
 	public static final field MAX_DECIMAL_TEXT_LENGTH I
 	public static final field MAX_DELEGATION_CHAIN I
 	public static final field MAX_DISPLAY_LENGTH I
@@ -865,14 +866,19 @@ public final class com/davils/kore/core/principal/PrincipalsKt {
 
 public final class com/davils/kore/core/size/DataSize : java/lang/Comparable {
 	public static final field Companion Lcom/davils/kore/core/size/DataSize$Companion;
+	public static final field EXBIBYTE J
 	public static final field GIBIBYTE J
 	public static final field KIBIBYTE J
 	public static final field MEBIBYTE J
+	public static final field PEBIBYTE J
+	public static final field TEBIBYTE J
 	public static final synthetic fun box-impl (J)Lcom/davils/kore/core/size/DataSize;
 	public synthetic fun compareTo (Ljava/lang/Object;)I
 	public fun compareTo-GAg41k0 (J)I
 	public static fun compareTo-GAg41k0 (JJ)I
 	public static fun constructor-impl (J)J
+	public static final fun div-F19-XvQ (JJ)J
+	public static final fun div-GAg41k0 (JJ)J
 	public fun equals (Ljava/lang/Object;)Z
 	public static fun equals-impl (JLjava/lang/Object;)Z
 	public static final fun equals-impl0 (JJ)Z
@@ -890,14 +896,31 @@ public final class com/davils/kore/core/size/DataSize : java/lang/Comparable {
 
 public final class com/davils/kore/core/size/DataSize$Companion {
 	public final fun getZERO-L6kYtKc ()J
+	public final fun parse-F19-XvQ (Ljava/lang/String;)J
+	public final fun parseOrNull-vpBuGbI (Ljava/lang/String;)Lcom/davils/kore/core/size/DataSize;
 }
 
 public final class com/davils/kore/core/size/DataSizesKt {
 	public static final fun getBytes (I)J
 	public static final fun getBytes (J)J
 	public static final fun getGibibytes (I)J
+	public static final fun getGibibytes (J)J
 	public static final fun getKibibytes (I)J
+	public static final fun getKibibytes (J)J
 	public static final fun getMebibytes (I)J
+	public static final fun getMebibytes (J)J
+	public static final fun getTebibytes (I)J
+	public static final fun getTebibytes (J)J
+}
+
+public final class com/davils/kore/core/size/SizeValidationsKt {
+	public static final fun dataSize (Lcom/davils/kore/core/validation/ValidationScope;Lkotlin/reflect/KProperty;Ljava/lang/String;)Lcom/davils/kore/core/size/DataSize;
+	public static final fun positive-SxnduKM (Lcom/davils/kore/core/validation/ValidationScope;Lkotlin/reflect/KProperty;J)Z
+}
+
+public final class com/davils/kore/core/size/SizeViolationCodes {
+	public static final field INSTANCE Lcom/davils/kore/core/size/SizeViolationCodes;
+	public final fun getINVALID_SIZE-J_S2PC0 ()Ljava/lang/String;
 }
 
 public final class com/davils/kore/core/text/LineBreak : java/lang/Enum {
