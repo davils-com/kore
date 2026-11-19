@@ -53,6 +53,18 @@ final enum class com.davils.kore.core.arguments/UnknownArgumentPolicy : kotlin/E
     final fun values(): kotlin/Array<com.davils.kore.core.arguments/UnknownArgumentPolicy> // com.davils.kore.core.arguments/UnknownArgumentPolicy.values|values#static(){}[0]
 }
 
+final enum class com.davils.kore.core.concurrency/GateState : kotlin/Enum<com.davils.kore.core.concurrency/GateState> { // com.davils.kore.core.concurrency/GateState|null[0]
+    enum entry Closed // com.davils.kore.core.concurrency/GateState.Closed|null[0]
+    enum entry Draining // com.davils.kore.core.concurrency/GateState.Draining|null[0]
+    enum entry Open // com.davils.kore.core.concurrency/GateState.Open|null[0]
+
+    final val entries // com.davils.kore.core.concurrency/GateState.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.concurrency/GateState> // com.davils.kore.core.concurrency/GateState.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.concurrency/GateState // com.davils.kore.core.concurrency/GateState.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.concurrency/GateState> // com.davils.kore.core.concurrency/GateState.values|values#static(){}[0]
+}
+
 final enum class com.davils.kore.core.identity/UuidVersion : kotlin/Enum<com.davils.kore.core.identity/UuidVersion> { // com.davils.kore.core.identity/UuidVersion|null[0]
     enum entry Random // com.davils.kore.core.identity/UuidVersion.Random|null[0]
     enum entry TimeOrdered // com.davils.kore.core.identity/UuidVersion.TimeOrdered|null[0]
@@ -300,6 +312,12 @@ abstract class com.davils.kore.core.arguments/Parameters : com.davils.kore.core.
     final suspend fun load(kotlin.collections/List<kotlin/String>, kotlin.collections/List<com.davils.kore.core.arguments/ValueSource>, kotlin.collections/Map<kotlin/String, kotlin/String> = ...) // com.davils.kore.core.arguments/Parameters.load|load(kotlin.collections.List<kotlin.String>;kotlin.collections.List<com.davils.kore.core.arguments.ValueSource>;kotlin.collections.Map<kotlin.String,kotlin.String>){}[0]
 }
 
+final class <#A: kotlin/Any, #B: kotlin/Any?> com.davils.kore.core.concurrency/SingleFlight { // com.davils.kore.core.concurrency/SingleFlight|null[0]
+    constructor <init>() // com.davils.kore.core.concurrency/SingleFlight.<init>|<init>(){}[0]
+
+    final suspend fun run(#A, kotlin.coroutines/SuspendFunction0<#B>): #B // com.davils.kore.core.concurrency/SingleFlight.run|run(1:0;kotlin.coroutines.SuspendFunction0<1:1>){}[0]
+}
+
 final class <#A: kotlin/Any> com.davils.kore.core.arguments.declaration/MultipleConfiguration : com.davils.kore.core.arguments.declaration/ValueConfiguration<#A> { // com.davils.kore.core.arguments.declaration/MultipleConfiguration|null[0]
     final fun split(kotlin/String) // com.davils.kore.core.arguments.declaration/MultipleConfiguration.split|split(kotlin.String){}[0]
 }
@@ -375,6 +393,35 @@ final class com.davils.kore.core.arguments/ParameterLimits { // com.davils.kore.
     final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.arguments/ParameterLimits.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.davils.kore.core.arguments/ParameterLimits.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.davils.kore.core.arguments/ParameterLimits.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.concurrency/AdmissionGate { // com.davils.kore.core.concurrency/AdmissionGate|null[0]
+    constructor <init>() // com.davils.kore.core.concurrency/AdmissionGate.<init>|<init>(){}[0]
+
+    final val inFlight // com.davils.kore.core.concurrency/AdmissionGate.inFlight|{}inFlight[0]
+        final fun <get-inFlight>(): kotlin/Int // com.davils.kore.core.concurrency/AdmissionGate.inFlight.<get-inFlight>|<get-inFlight>(){}[0]
+    final val state // com.davils.kore.core.concurrency/AdmissionGate.state|{}state[0]
+        final fun <get-state>(): com.davils.kore.core.concurrency/GateState // com.davils.kore.core.concurrency/AdmissionGate.state.<get-state>|<get-state>(){}[0]
+
+    final fun close() // com.davils.kore.core.concurrency/AdmissionGate.close|close(){}[0]
+    final fun drain() // com.davils.kore.core.concurrency/AdmissionGate.drain|drain(){}[0]
+    final fun enter(): com.davils.kore.core.concurrency/Permit // com.davils.kore.core.concurrency/AdmissionGate.enter|enter(){}[0]
+    final fun tryEnter(): com.davils.kore.core.concurrency/Permit? // com.davils.kore.core.concurrency/AdmissionGate.tryEnter|tryEnter(){}[0]
+    final inline fun <#A1: kotlin/Any?> admitted(kotlin/Function0<#A1>): #A1 // com.davils.kore.core.concurrency/AdmissionGate.admitted|admitted(kotlin.Function0<0:0>){0§<kotlin.Any?>}[0]
+    final suspend fun awaitIdle() // com.davils.kore.core.concurrency/AdmissionGate.awaitIdle|awaitIdle(){}[0]
+}
+
+final class com.davils.kore.core.concurrency/OnceFlag { // com.davils.kore.core.concurrency/OnceFlag|null[0]
+    constructor <init>() // com.davils.kore.core.concurrency/OnceFlag.<init>|<init>(){}[0]
+
+    final val isSet // com.davils.kore.core.concurrency/OnceFlag.isSet|{}isSet[0]
+        final fun <get-isSet>(): kotlin/Boolean // com.davils.kore.core.concurrency/OnceFlag.isSet.<get-isSet>|<get-isSet>(){}[0]
+
+    final fun trySet(): kotlin/Boolean // com.davils.kore.core.concurrency/OnceFlag.trySet|trySet(){}[0]
+}
+
+final class com.davils.kore.core.concurrency/Permit : kotlin/AutoCloseable { // com.davils.kore.core.concurrency/Permit|null[0]
+    final fun close() // com.davils.kore.core.concurrency/Permit.close|close(){}[0]
 }
 
 final class com.davils.kore.core.identity/UuidV4 : com.davils.kore.core.identity/Uuid { // com.davils.kore.core.identity/UuidV4|null[0]

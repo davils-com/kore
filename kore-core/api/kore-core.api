@@ -525,9 +525,45 @@ public final class com/davils/kore/core/collection/ImmutablesKt {
 	public static final fun immutableSet (Ljava/util/Collection;)Ljava/util/Set;
 }
 
+public final class com/davils/kore/core/concurrency/AdmissionGate {
+	public fun <init> ()V
+	public final fun admitted (Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public final fun awaitIdle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun close ()V
+	public final fun drain ()V
+	public final fun enter ()Lcom/davils/kore/core/concurrency/Permit;
+	public final fun getInFlight ()I
+	public final fun getState ()Lcom/davils/kore/core/concurrency/GateState;
+	public final fun tryEnter ()Lcom/davils/kore/core/concurrency/Permit;
+}
+
 public final class com/davils/kore/core/concurrency/BlockingKt {
 	public static final fun blocking (Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun blocking$default (Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class com/davils/kore/core/concurrency/GateState : java/lang/Enum {
+	public static final field Closed Lcom/davils/kore/core/concurrency/GateState;
+	public static final field Draining Lcom/davils/kore/core/concurrency/GateState;
+	public static final field Open Lcom/davils/kore/core/concurrency/GateState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/concurrency/GateState;
+	public static fun values ()[Lcom/davils/kore/core/concurrency/GateState;
+}
+
+public final class com/davils/kore/core/concurrency/OnceFlag {
+	public fun <init> ()V
+	public final fun isSet ()Z
+	public final fun trySet ()Z
+}
+
+public final class com/davils/kore/core/concurrency/Permit : java/lang/AutoCloseable {
+	public fun close ()V
+}
+
+public final class com/davils/kore/core/concurrency/SingleFlight {
+	public fun <init> ()V
+	public final fun run (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class com/davils/kore/core/dsl/Builder {

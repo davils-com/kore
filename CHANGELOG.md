@@ -85,6 +85,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   code `SizeViolationCodes.INVALID_SIZE`, and `ValidationScope.positive` checks a size. `DataSize` also gains
   `TEBIBYTE`, `PEBIBYTE` and `EXBIBYTE`, division by a count and by another size, `Int.tebibytes` and the checked
   extensions `kibibytes` to `tebibytes` on `Long`.
+- **Once, admission and single flight.** `OnceFlag` in `com.davils.kore.core.concurrency` lets exactly one of any
+  number of threads claim an action, such as closing a resource. The `@DavilsExperimental` `AdmissionGate` admits work
+  with a `Permit` while open, stops admitting on `drain` or `close` and lets `awaitIdle` wait until the admitted work is
+  done; state and count change in one atomic step, so no work is admitted after `drain` has returned. The
+  `@DavilsExperimental` `SingleFlight` shares one execution of a block among concurrent callers of the same key: the
+  leader runs it in its own coroutine, every waiting caller gets the same result or exception, nothing is cached, and
+  a cancelled leader hands over to a waiting caller instead of cancelling it. Neither keeps a scope, thread or timer
+  of its own.
 
 ### Changed
 
