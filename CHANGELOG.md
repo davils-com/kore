@@ -98,6 +98,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   maximum without overflowing. `Jitter.Full` and `Jitter.Equal` spread the delay with the secure random source of
   the platform, and `delayFor` with a fraction gives the same delay every time. A backoff only computes: it neither
   waits nor decides whether to retry.
+- **Clocks for tests.** `kore-testing` publishes `TestClock`, a `Clock` that stands still until a test advances it,
+  with a monotonic `timeSource` that moves with it, and `TimeSource.asClock`, which turns any time source, such as the
+  virtual time of a coroutine test, into a clock.
 
 ### Changed
 

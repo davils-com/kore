@@ -47,6 +47,16 @@ final class com.davils.kore.testing/SequentialUuidV7Generator : com.davils.kore.
     final fun next(): com.davils.kore.core.identity/UuidV7 // com.davils.kore.testing/SequentialUuidV7Generator.next|next(){}[0]
 }
 
+final class com.davils.kore.testing/TestClock : kotlin.time/Clock { // com.davils.kore.testing/TestClock|null[0]
+    constructor <init>(kotlin.time/Instant = ...) // com.davils.kore.testing/TestClock.<init>|<init>(kotlin.time.Instant){}[0]
+
+    final val timeSource // com.davils.kore.testing/TestClock.timeSource|{}timeSource[0]
+        final fun <get-timeSource>(): kotlin.time/TimeSource.WithComparableMarks // com.davils.kore.testing/TestClock.timeSource.<get-timeSource>|<get-timeSource>(){}[0]
+
+    final fun advanceBy(kotlin.time/Duration) // com.davils.kore.testing/TestClock.advanceBy|advanceBy(kotlin.time.Duration){}[0]
+    final fun now(): kotlin.time/Instant // com.davils.kore.testing/TestClock.now|now(){}[0]
+}
+
 final object com.davils.kore.testing/HostileFragments { // com.davils.kore.testing/HostileFragments|null[0]
     final const val BYTE_ORDER_MARK // com.davils.kore.testing/HostileFragments.BYTE_ORDER_MARK|{}BYTE_ORDER_MARK[0]
         final fun <get-BYTE_ORDER_MARK>(): kotlin/String // com.davils.kore.testing/HostileFragments.BYTE_ORDER_MARK.<get-BYTE_ORDER_MARK>|<get-BYTE_ORDER_MARK>(){}[0]
@@ -95,5 +105,6 @@ final object com.davils.kore.testing/HostileFragments { // com.davils.kore.testi
         final fun <get-all>(): kotlin.collections/List<kotlin/String> // com.davils.kore.testing/HostileFragments.all.<get-all>|<get-all>(){}[0]
 }
 
+final fun (kotlin.time/TimeSource).com.davils.kore.testing/asClock(kotlin.time/Instant): kotlin.time/Clock // com.davils.kore.testing/asClock|asClock@kotlin.time.TimeSource(kotlin.time.Instant){}[0]
 final fun com.davils.kore.testing/isSafeToShow(kotlin/String, kotlin/Boolean = ...): kotlin/Boolean // com.davils.kore.testing/isSafeToShow|isSafeToShow(kotlin.String;kotlin.Boolean){}[0]
 final fun com.davils.kore.testing/unsafeCodePointsIn(kotlin/String, kotlin/Boolean = ...): kotlin.collections/List<kotlin/String> // com.davils.kore.testing/unsafeCodePointsIn|unsafeCodePointsIn(kotlin.String;kotlin.Boolean){}[0]
