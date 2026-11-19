@@ -86,7 +86,7 @@ kreate {
 
         aggregate {
             enabled = isRoot
-            members = setOf(":", ":kore-core", ":kore-testing")
+            members = setOf(":", ":kore-core", ":kore-testing", ":kore-serialization")
         }
 
         reports {

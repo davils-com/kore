@@ -1,0 +1,62 @@
+public final class com/davils/kore/serialization/CoreSerializersKt {
+	public static final fun getCoreSerializers ()Lkotlinx/serialization/modules/SerializersModule;
+}
+
+public final class com/davils/kore/serialization/DataSizeSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/DataSizeSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/DurationSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/DurationSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/SemanticVersionRangeSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/SemanticVersionRangeSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/SemanticVersionSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/SemanticVersionSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public abstract class com/davils/kore/serialization/TextSerializer : kotlinx/serialization/KSerializer {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IZ)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;IZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public final fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	protected abstract fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	protected abstract fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/UuidSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/UuidSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/UuidV4Serializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/UuidV4Serializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/UuidV7Serializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/UuidV7Serializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/serialization/ViolationCodeSerializer : com/davils/kore/serialization/TextSerializer {
+	public static final field INSTANCE Lcom/davils/kore/serialization/ViolationCodeSerializer;
+	public synthetic fun read (Ljava/lang/String;)Ljava/lang/Object;
+	public synthetic fun write (Ljava/lang/Object;)Ljava/lang/String;
+}
+

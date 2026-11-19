@@ -127,3 +127,4 @@ rootProject.name = "kore"
 
 include(":kore-core")
 include(":kore-testing")
+include(":kore-serialization")

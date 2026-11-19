@@ -1,0 +1,38 @@
+// Klib ABI Dump
+// Targets: [wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <com.davils:kore-serialization>
+abstract class <#A: kotlin/Any> com.davils.kore.serialization/TextSerializer : kotlinx.serialization/KSerializer<#A> { // com.davils.kore.serialization/TextSerializer|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Int, kotlin/Boolean = ...) // com.davils.kore.serialization/TextSerializer.<init>|<init>(kotlin.String;kotlin.String;kotlin.Int;kotlin.Boolean){}[0]
+
+    final val descriptor // com.davils.kore.serialization/TextSerializer.descriptor|{}descriptor[0]
+        final fun <get-descriptor>(): kotlinx.serialization.descriptors/SerialDescriptor // com.davils.kore.serialization/TextSerializer.descriptor.<get-descriptor>|<get-descriptor>(){}[0]
+
+    abstract fun read(kotlin/String): #A? // com.davils.kore.serialization/TextSerializer.read|read(kotlin.String){}[0]
+    abstract fun write(#A): kotlin/String // com.davils.kore.serialization/TextSerializer.write|write(1:0){}[0]
+    final fun deserialize(kotlinx.serialization.encoding/Decoder): #A // com.davils.kore.serialization/TextSerializer.deserialize|deserialize(kotlinx.serialization.encoding.Decoder){}[0]
+    final fun serialize(kotlinx.serialization.encoding/Encoder, #A) // com.davils.kore.serialization/TextSerializer.serialize|serialize(kotlinx.serialization.encoding.Encoder;1:0){}[0]
+}
+
+final object com.davils.kore.serialization/DataSizeSerializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.size/DataSize> // com.davils.kore.serialization/DataSizeSerializer|null[0]
+
+final object com.davils.kore.serialization/DurationSerializer : com.davils.kore.serialization/TextSerializer<kotlin.time/Duration> // com.davils.kore.serialization/DurationSerializer|null[0]
+
+final object com.davils.kore.serialization/SemanticVersionRangeSerializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.version/SemanticVersionRange> // com.davils.kore.serialization/SemanticVersionRangeSerializer|null[0]
+
+final object com.davils.kore.serialization/SemanticVersionSerializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.serialization/SemanticVersionSerializer|null[0]
+
+final object com.davils.kore.serialization/UuidSerializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.identity/Uuid> // com.davils.kore.serialization/UuidSerializer|null[0]
+
+final object com.davils.kore.serialization/UuidV4Serializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.identity/UuidV4> // com.davils.kore.serialization/UuidV4Serializer|null[0]
+
+final object com.davils.kore.serialization/UuidV7Serializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.identity/UuidV7> // com.davils.kore.serialization/UuidV7Serializer|null[0]
+
+final object com.davils.kore.serialization/ViolationCodeSerializer : com.davils.kore.serialization/TextSerializer<com.davils.kore.core.validation.violation/ViolationCode> // com.davils.kore.serialization/ViolationCodeSerializer|null[0]
+
+final val com.davils.kore.serialization/coreSerializers // com.davils.kore.serialization/coreSerializers|{}coreSerializers[0]
+    final fun <get-coreSerializers>(): kotlinx.serialization.modules/SerializersModule // com.davils.kore.serialization/coreSerializers.<get-coreSerializers>|<get-coreSerializers>(){}[0]

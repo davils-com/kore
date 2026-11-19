@@ -119,6 +119,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   on every platform and refuse overlong sequences, encoded or unpaired surrogates, values beyond U+10FFFF and
   truncated characters with a `DecodingFailure` that names the offset and never the bytes. More than the new
   `Limits.MAX_DECODED_TEXT_BYTES` are refused before any is read.
+- **`kore-serialization`.** A new module, `com.davils:kore-serialization`, holds serializers of kotlinx-serialization
+  for the values of Kore: `DurationSerializer` writes durations as Kotlin does, such as `1h 30m`, instead of ISO-8601
+  and refuses infinite ones, and `DataSizeSerializer`, `SemanticVersionSerializer`, `SemanticVersionRangeSerializer`,
+  `UuidSerializer`, `UuidV4Serializer`, `UuidV7Serializer` and `ViolationCodeSerializer` write their values as text
+  and read them strictly. `coreSerializers` registers all of them as contextual serializers. `TextSerializer` lets a
+  library serialize its own identifiers the same way: it bounds the length of a text before reading it and names a
+  refused text escaped in its message, or `****` for a sensitive one. The module depends on
+  `kotlinx-serialization-core` 1.13.0.
 
 ### Changed
 
