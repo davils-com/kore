@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.interval.EVERYTHING
 import com.davils.kore.core.version.interval.intersection
 
@@ -47,8 +48,8 @@ private fun readComparators(comparators: List<String>?, collector: RangeCollecto
 }
 
 private fun matchingSomething(reading: RangeReading): RangeReading {
-    val isNothingMatched = reading is RangeReading.Read && reading.intervals.isEmpty()
-    if (isNothingMatched) return RangeReading.Refused(MATCHES_NOTHING_REASON)
+    val isNothingMatched = reading is Outcome.Success && reading.value.isEmpty()
+    if (isNothingMatched) return Outcome.Failure(MATCHES_NOTHING_REASON)
     return reading
 }
 
@@ -75,28 +76,28 @@ private fun readComparator(text: String): RangeReading {
     val operator = Operator.entries.firstOrNull { candidate -> text.startsWith(candidate.symbol) }
     val operand = text.removePrefix(operator?.symbol.orEmpty())
     return when (val reading = readPartial(operand)) {
-        is PartialReading.Read -> RangeReading.Read(
-            listOfNotNull(intervalFor(operator ?: Operator.Equal, reading.partial)),
+        is Outcome.Success -> Outcome.Success(
+            listOfNotNull(intervalFor(operator ?: Operator.Equal, reading.value)),
         )
 
-        is PartialReading.Refused -> comparatorRefusal(reading.reason)
+        is Outcome.Failure -> comparatorRefusal(reading.failure)
     }
 }
 
 private fun hyphenReading(tokens: List<String>): RangeReading {
     val isShaped = tokens.size == HYPHEN_TOKENS && tokens[1] == HYPHEN
-    if (!isShaped) return RangeReading.Refused(HYPHEN_REASON)
+    if (!isShaped) return Outcome.Failure(HYPHEN_REASON)
     return hyphenBetween(from = readPartial(tokens[0]), to = readPartial(tokens[2]))
 }
 
 private fun hyphenBetween(from: PartialReading, to: PartialReading): RangeReading = when (from) {
-    is PartialReading.Refused -> comparatorRefusal(from.reason)
-    is PartialReading.Read -> hyphenUpTo(from.partial, to)
+    is Outcome.Failure -> comparatorRefusal(from.failure)
+    is Outcome.Success -> hyphenUpTo(from.value, to)
 }
 
 private fun hyphenUpTo(from: Partial, to: PartialReading): RangeReading = when (to) {
-    is PartialReading.Refused -> comparatorRefusal(to.reason)
-    is PartialReading.Read -> readingOf(hyphenInterval(from, to.partial), MATCHES_NOTHING_REASON)
+    is Outcome.Failure -> comparatorRefusal(to.failure)
+    is Outcome.Success -> readingOf(hyphenInterval(from, to.value), MATCHES_NOTHING_REASON)
 }
 
-private fun comparatorRefusal(reason: String): RangeReading = RangeReading.Refused("$COMPARATOR_REASON $reason")
+private fun comparatorRefusal(reason: String): RangeReading = Outcome.Failure("$COMPARATOR_REASON $reason")

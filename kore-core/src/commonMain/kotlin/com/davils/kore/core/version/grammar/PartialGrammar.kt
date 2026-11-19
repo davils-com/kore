@@ -16,6 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.releaseFloor
 
@@ -35,17 +36,17 @@ internal fun readPartial(text: String): PartialReading {
 }
 
 private fun readQualified(text: String): PartialReading = when (val reading = readVersion(text)) {
-    is VersionReading.Read -> PartialReading.Read(partialOf(reading.version))
-    is VersionReading.Refused -> PartialReading.Refused(reading.reason)
+    is Outcome.Success -> Outcome.Success(partialOf(reading.value))
+    is Outcome.Failure -> Outcome.Failure(reading.failure)
 }
 
 private fun readNumbers(segments: List<String>): PartialReading {
     val given = segments.takeWhile { segment -> segment !in wildcards }
     val problem = segmentsProblem(segments, given)
-    if (problem != null) return PartialReading.Refused(problem)
+    if (problem != null) return Outcome.Failure(problem)
     val numbers = given.map(String::toInt)
     val complete = releaseFloor(numbers).takeIf { numbers.size == CORE_SEGMENTS }
-    return PartialReading.Read(Partial(numbers, complete))
+    return Outcome.Success(Partial(numbers, complete))
 }
 
 private fun segmentsProblem(segments: List<String>, given: List<String>): String? {

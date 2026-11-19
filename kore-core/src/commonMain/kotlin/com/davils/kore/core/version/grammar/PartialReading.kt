@@ -16,8 +16,6 @@
 
 package com.davils.kore.core.version.grammar
 
-internal sealed interface PartialReading {
-    data class Read(val partial: Partial) : PartialReading
+import com.davils.kore.core.outcome.Outcome
 
-    data class Refused(val reason: String) : PartialReading
-}
+internal typealias PartialReading = Outcome<Partial, String>

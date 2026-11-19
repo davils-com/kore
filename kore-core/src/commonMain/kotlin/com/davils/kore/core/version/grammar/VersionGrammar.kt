@@ -17,6 +17,7 @@
 package com.davils.kore.core.version.grammar
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.SemanticVersion
 
 internal const val CORE_SEGMENTS: Int = 3
@@ -28,7 +29,7 @@ internal const val CORE_REASON: String = "must start with three dot-separated nu
 
 internal fun readVersion(text: String, minimumCoreSegments: Int = CORE_SEGMENTS): VersionReading {
     val problem = lengthProblem(text)
-    if (problem != null) return VersionReading.Refused(problem)
+    if (problem != null) return Outcome.Failure(problem)
     return readBuild(text, minimumCoreSegments)
 }
 
@@ -38,14 +39,14 @@ private fun lengthProblem(text: String): String? {
 }
 
 private fun readBuild(text: String, minimumCoreSegments: Int): VersionReading {
-    val build = identifiersOf(partAfter(text, BUILD_SEPARATOR)) ?: return VersionReading.Refused(BUILD_REASON)
+    val build = identifiersOf(partAfter(text, BUILD_SEPARATOR)) ?: return Outcome.Failure(BUILD_REASON)
     return readPreRelease(text.substringBefore(BUILD_SEPARATOR), minimumCoreSegments, build)
 }
 
 private fun readPreRelease(withoutBuild: String, minimumCoreSegments: Int, build: List<String>): VersionReading {
     val identifiers = identifiersOf(partAfter(withoutBuild, PRE_RELEASE_SEPARATOR))
     val preRelease = identifiers?.takeIf { all -> all.all(::isPreReleaseIdentifier) }
-        ?: return VersionReading.Refused(PRE_RELEASE_REASON)
+        ?: return Outcome.Failure(PRE_RELEASE_REASON)
     return readCore(
         core = withoutBuild.substringBefore(PRE_RELEASE_SEPARATOR),
         minimumCoreSegments = minimumCoreSegments,
@@ -64,7 +65,7 @@ private fun readCore(
     val isQualified = preRelease.isNotEmpty() || build.isNotEmpty()
     val problem = shapeProblem(segments = segments, minimumCoreSegments = minimumCoreSegments, qualified = isQualified)
         ?: segments.firstNotNullOfOrNull { segment -> numberProblem(segment) }
-    if (problem != null) return VersionReading.Refused(problem)
+    if (problem != null) return Outcome.Failure(problem)
     val numbers = segments.map(String::toInt) + List(CORE_SEGMENTS - segments.size) { 0 }
     val version = SemanticVersion(
         major = numbers[0],
@@ -73,7 +74,7 @@ private fun readCore(
         preRelease = preRelease,
         build = build,
     )
-    return VersionReading.Read(version)
+    return Outcome.Success(version)
 }
 
 private fun shapeProblem(segments: List<String>, minimumCoreSegments: Int, qualified: Boolean): String? {

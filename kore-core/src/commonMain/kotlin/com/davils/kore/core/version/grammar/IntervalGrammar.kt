@@ -16,6 +16,8 @@
 
 package com.davils.kore.core.version.grammar
 
+import com.davils.kore.core.outcome.Outcome
+import com.davils.kore.core.outcome.getOrNull
 import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.interval.boundedInterval
 import com.davils.kore.core.version.interval.interval
@@ -31,7 +33,7 @@ private const val MOST_BOUNDS: Int = 2
 
 internal fun readInterval(text: String): RangeReading {
     val bounds = text.substring(startIndex = 1, endIndex = text.length - 1).split(BOUND_SEPARATOR)
-    if (bounds.size > MOST_BOUNDS) return RangeReading.Refused(INTERVAL_SHAPE_REASON)
+    if (bounds.size > MOST_BOUNDS) return Outcome.Failure(INTERVAL_SHAPE_REASON)
     return readBoundList(
         bounds = bounds.map(::trimmedRangeSpace),
         lowerInclusive = text.first() == INCLUSIVE_LOWER,
@@ -50,22 +52,22 @@ private fun readBoundList(bounds: List<String>, lowerInclusive: Boolean, upperIn
 }
 
 private fun readExact(bound: String, bothInclusive: Boolean): RangeReading {
-    if (!bothInclusive) return RangeReading.Refused(INTERVAL_SHAPE_REASON)
+    if (!bothInclusive) return Outcome.Failure(INTERVAL_SHAPE_REASON)
     return when (val reading = readVersion(bound, SHORTEST_BOUND)) {
-        is VersionReading.Read -> exactly(reading.version)
-        is VersionReading.Refused -> boundRefusal(reading)
+        is Outcome.Success -> exactly(reading.value)
+        is Outcome.Failure -> boundRefusal(reading)
     }
 }
 
 private fun exactly(version: SemanticVersion): RangeReading {
     val interval = boundedInterval(lower = version, lowerInclusive = true, upper = version, upperInclusive = true)
-    return RangeReading.Read(listOfNotNull(interval))
+    return Outcome.Success(listOfNotNull(interval))
 }
 
 private fun readBounds(lower: String, lowerInclusive: Boolean, upper: String, upperInclusive: Boolean): RangeReading {
     val isLowerMissing = lower.isEmpty() && lowerInclusive
     val isUpperMissing = upper.isEmpty() && upperInclusive
-    if (isLowerMissing || isUpperMissing) return RangeReading.Refused(INTERVAL_SHAPE_REASON)
+    if (isLowerMissing || isUpperMissing) return Outcome.Failure(INTERVAL_SHAPE_REASON)
     return readBoundVersions(
         from = boundOf(lower),
         lowerInclusive = lowerInclusive,
@@ -85,7 +87,7 @@ private fun readBoundVersions(
     to: VersionReading?,
     upperInclusive: Boolean,
 ): RangeReading {
-    val refused = from as? VersionReading.Refused ?: to as? VersionReading.Refused
+    val refused = from as? Outcome.Failure<String> ?: to as? Outcome.Failure<String>
     if (refused != null) return boundRefusal(refused)
     val interval = boundedInterval(
         lower = versionOf(from),
@@ -96,7 +98,7 @@ private fun readBoundVersions(
     return readingOf(interval, INTERVAL_EMPTY_REASON)
 }
 
-private fun versionOf(reading: VersionReading?): SemanticVersion? = (reading as? VersionReading.Read)?.version
+private fun versionOf(reading: VersionReading?): SemanticVersion? = reading?.getOrNull()
 
-private fun boundRefusal(reading: VersionReading.Refused): RangeReading =
-    RangeReading.Refused("$INTERVAL_BOUND_REASON ${reading.reason}")
+private fun boundRefusal(reading: Outcome.Failure<String>): RangeReading =
+    Outcome.Failure("$INTERVAL_BOUND_REASON ${reading.failure}")

@@ -16,10 +16,7 @@
 
 package com.davils.kore.core.version.grammar
 
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.interval.VersionInterval
 
-internal sealed interface RangeReading {
-    data class Read(val intervals: List<VersionInterval>) : RangeReading
-
-    data class Refused(val reason: String) : RangeReading
-}
+internal typealias RangeReading = Outcome<List<VersionInterval>, String>

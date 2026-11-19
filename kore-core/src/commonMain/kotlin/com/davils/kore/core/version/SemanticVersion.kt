@@ -18,11 +18,11 @@ package com.davils.kore.core.version
 
 import com.davils.kore.core.Limits
 import com.davils.kore.core.immutableList
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.grammar.BUILD_SEPARATOR
 import com.davils.kore.core.version.grammar.IDENTIFIER_SEPARATOR
 import com.davils.kore.core.version.grammar.PRE_RELEASE_SEPARATOR
 import com.davils.kore.core.version.grammar.VERSION_TOO_LONG_REASON
-import com.davils.kore.core.version.grammar.VersionReading
 import com.davils.kore.core.version.grammar.compareBuilds
 import com.davils.kore.core.version.grammar.comparePreReleases
 import com.davils.kore.core.version.grammar.fitsVersionLength
@@ -338,8 +338,8 @@ public class SemanticVersion private constructor(
          * @since 1.0.0
          */
         public fun parse(text: String): SemanticVersion = when (val reading = readVersion(text)) {
-            is VersionReading.Read -> reading.version
-            is VersionReading.Refused -> throw IllegalArgumentException(versionRefusal(reading.reason))
+            is Outcome.Success -> reading.value
+            is Outcome.Failure -> throw IllegalArgumentException(versionRefusal(reading.failure))
         }
 
         /**
@@ -350,8 +350,8 @@ public class SemanticVersion private constructor(
          * @since 1.0.0
          */
         public fun parseOrNull(text: String): SemanticVersion? = when (val reading = readVersion(text)) {
-            is VersionReading.Read -> reading.version
-            is VersionReading.Refused -> null
+            is Outcome.Success -> reading.value
+            is Outcome.Failure -> null
         }
 
         @JvmSynthetic

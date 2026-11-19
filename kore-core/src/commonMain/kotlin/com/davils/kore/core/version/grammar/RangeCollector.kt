@@ -17,6 +17,7 @@
 package com.davils.kore.core.version.grammar
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.interval.VersionInterval
 
 private const val TOO_MANY_COMPARATORS_REASON: String =
@@ -41,13 +42,13 @@ internal class RangeCollector {
     internal fun collect(reading: RangeReading) {
         if (isRefused) return
         when (reading) {
-            is RangeReading.Read -> collected += reading.intervals
-            is RangeReading.Refused -> refuse(reading.reason)
+            is Outcome.Success -> collected += reading.value
+            is Outcome.Failure -> refuse(reading.failure)
         }
     }
 
     internal fun reading(): RangeReading {
-        val reason = refusal ?: return RangeReading.Read(collected.toList())
-        return RangeReading.Refused(reason)
+        val reason = refusal ?: return Outcome.Success(collected.toList())
+        return Outcome.Failure(reason)
     }
 }

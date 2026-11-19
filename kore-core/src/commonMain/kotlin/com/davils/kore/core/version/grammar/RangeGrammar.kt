@@ -17,6 +17,7 @@
 package com.davils.kore.core.version.grammar
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.interval.VersionInterval
 import com.davils.kore.core.version.interval.normalized
 
@@ -32,7 +33,7 @@ private const val NOTHING: String = "[]"
 
 internal fun readRange(text: String): RangeReading {
     val problem = rangeTextProblem(text)
-    if (problem != null) return RangeReading.Refused(problem)
+    if (problem != null) return Outcome.Failure(problem)
     return readTrimmedRange(trimmedRangeSpace(text))
 }
 
@@ -41,13 +42,13 @@ internal fun combined(
     initial: List<VersionInterval>,
     merge: (List<VersionInterval>, List<VersionInterval>) -> List<VersionInterval>,
 ): RangeReading {
-    val start: RangeReading = RangeReading.Read(initial)
+    val start: RangeReading = Outcome.Success(initial)
     return readings.fold(start) { sofar, next -> joined(sofar, next, merge) }
 }
 
 internal fun readingOf(interval: VersionInterval?, emptyReason: String): RangeReading {
-    if (interval == null) return RangeReading.Refused(emptyReason)
-    return RangeReading.Read(listOf(interval))
+    if (interval == null) return Outcome.Failure(emptyReason)
+    return Outcome.Success(listOf(interval))
 }
 
 private fun joined(
@@ -55,10 +56,10 @@ private fun joined(
     next: RangeReading,
     merge: (List<VersionInterval>, List<VersionInterval>) -> List<VersionInterval>,
 ): RangeReading {
-    if (sofar !is RangeReading.Read) return sofar
+    if (sofar !is Outcome.Success) return sofar
     return when (next) {
-        is RangeReading.Read -> RangeReading.Read(merge(sofar.intervals, next.intervals))
-        is RangeReading.Refused -> next
+        is Outcome.Success -> Outcome.Success(merge(sofar.value, next.value))
+        is Outcome.Failure -> next
     }
 }
 
@@ -68,7 +69,7 @@ private fun rangeTextProblem(text: String): String? {
 }
 
 private fun readTrimmedRange(text: String): RangeReading {
-    if (text == NOTHING) return RangeReading.Read(emptyList())
+    if (text == NOTHING) return Outcome.Success(emptyList())
     val collector = RangeCollector()
     for (alternative in text.split(ALTERNATIVE_SEPARATOR)) {
         if (collector.isRefused) break
@@ -85,13 +86,13 @@ private fun readAlternative(alternative: String, collector: RangeCollector) {
 }
 
 private fun renderable(reading: RangeReading): RangeReading = when (reading) {
-    is RangeReading.Read -> renderableIntervals(normalized(reading.intervals))
-    is RangeReading.Refused -> reading
+    is Outcome.Success -> renderableIntervals(normalized(reading.value))
+    is Outcome.Failure -> reading
 }
 
 private fun renderableIntervals(intervals: List<VersionInterval>): RangeReading {
     val rendered = intervals.sumOf { interval -> interval.toString().length } + intervals.size - 1
     val isFitting = intervals.size <= Limits.MAX_RANGE_COMPARATORS && rendered <= Limits.MAX_RANGE_LENGTH
-    if (!isFitting) return RangeReading.Refused(CANONICAL_TOO_LARGE_REASON)
-    return RangeReading.Read(intervals)
+    if (!isFitting) return Outcome.Failure(CANONICAL_TOO_LARGE_REASON)
+    return Outcome.Success(intervals)
 }

@@ -18,7 +18,7 @@ package com.davils.kore.core.version
 
 import com.davils.kore.core.Limits
 import com.davils.kore.core.immutableList
-import com.davils.kore.core.version.grammar.RangeReading
+import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.version.grammar.caretInterval
 import com.davils.kore.core.version.grammar.partialOf
 import com.davils.kore.core.version.grammar.readRange
@@ -453,8 +453,8 @@ public class SemanticVersionRange private constructor(given: List<VersionInterva
         @JvmSynthetic
         internal fun <T> read(text: String, read: (SemanticVersionRange) -> T, refused: (String) -> T): T =
             when (val reading = readRange(text)) {
-                is RangeReading.Read -> read(SemanticVersionRange(reading.intervals))
-                is RangeReading.Refused -> refused(reading.reason)
+                is Outcome.Success -> read(SemanticVersionRange(reading.value))
+                is Outcome.Failure -> refused(reading.failure)
             }
     }
 }
