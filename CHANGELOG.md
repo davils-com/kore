@@ -93,6 +93,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   leader runs it in its own coroutine, every waiting caller gets the same result or exception, nothing is cached, and
   a cancelled leader hands over to a waiting caller instead of cancelling it. Neither keeps a scope, thread or timer
   of its own.
+- **Backoff delays.** `Backoff.fixed` and `Backoff.exponential` in `com.davils.kore.core.time` compute the pause
+  before a retry, growing by a factor up to a maximum in constant time, so even attempt `Int.MAX_VALUE` returns the
+  maximum without overflowing. `Jitter.Full` and `Jitter.Equal` spread the delay with the secure random source of
+  the platform, and `delayFor` with a fraction gives the same delay every time. A backoff only computes: it neither
+  waits nor decides whether to retry.
 
 ### Changed
 

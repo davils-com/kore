@@ -119,6 +119,18 @@ final enum class com.davils.kore.core.text/LineBreak : kotlin/Enum<com.davils.ko
     }
 }
 
+final enum class com.davils.kore.core.time/Jitter : kotlin/Enum<com.davils.kore.core.time/Jitter> { // com.davils.kore.core.time/Jitter|null[0]
+    enum entry Equal // com.davils.kore.core.time/Jitter.Equal|null[0]
+    enum entry Full // com.davils.kore.core.time/Jitter.Full|null[0]
+    enum entry None // com.davils.kore.core.time/Jitter.None|null[0]
+
+    final val entries // com.davils.kore.core.time/Jitter.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.time/Jitter> // com.davils.kore.core.time/Jitter.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.time/Jitter // com.davils.kore.core.time/Jitter.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.time/Jitter> // com.davils.kore.core.time/Jitter.values|values#static(){}[0]
+}
+
 final enum class com.davils.kore.core.validation.violation/Severity : kotlin/Enum<com.davils.kore.core.validation.violation/Severity> { // com.davils.kore.core.validation.violation/Severity|null[0]
     enum entry Error // com.davils.kore.core.validation.violation/Severity.Error|null[0]
     enum entry Warning // com.davils.kore.core.validation.violation/Severity.Warning|null[0]
@@ -683,6 +695,17 @@ final class com.davils.kore.core.text/TextSnippet { // com.davils.kore.core.text
     final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text/TextSnippet.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.davils.kore.core.text/TextSnippet.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.davils.kore.core.text/TextSnippet.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.time/Backoff { // com.davils.kore.core.time/Backoff|null[0]
+    final fun delayFor(kotlin/Int): kotlin.time/Duration // com.davils.kore.core.time/Backoff.delayFor|delayFor(kotlin.Int){}[0]
+    final fun delayFor(kotlin/Int, kotlin/Double): kotlin.time/Duration // com.davils.kore.core.time/Backoff.delayFor|delayFor(kotlin.Int;kotlin.Double){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.time/Backoff.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.time/Backoff.Companion|null[0]
+        final fun exponential(kotlin.time/Duration, kotlin.time/Duration, kotlin/Double, com.davils.kore.core.time/Jitter): com.davils.kore.core.time/Backoff // com.davils.kore.core.time/Backoff.Companion.exponential|exponential(kotlin.time.Duration;kotlin.time.Duration;kotlin.Double;com.davils.kore.core.time.Jitter){}[0]
+        final fun fixed(kotlin.time/Duration, com.davils.kore.core.time/Jitter): com.davils.kore.core.time/Backoff // com.davils.kore.core.time/Backoff.Companion.fixed|fixed(kotlin.time.Duration;com.davils.kore.core.time.Jitter){}[0]
+    }
 }
 
 final class com.davils.kore.core.validation.report/ValidationReport { // com.davils.kore.core.validation.report/ValidationReport|null[0]
