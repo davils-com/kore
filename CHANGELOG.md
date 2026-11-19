@@ -109,6 +109,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   environment variables of the process, from `System.getenv` on the JVM and `process.env` under Node.js, as an
   unchangeable snapshot whose `toString`, and that of each entry, shows the names but `****` for every value, so a
   logged environment no longer reveals its secrets. `Parameters.load` reads it by default.
+- **The host platform for the libraries of Davils.** The `@DavilsInternal` class `HostPlatform` in
+  `com.davils.kore.core.platform`, on the JVM only, reads `os.name` and `os.arch` into an `OperatingSystem` and an
+  `Architecture` with their common aliases and a classifier such as `linux-x64`, for choosing a native library. An
+  unknown or malformed name gives `null`, so an unknown host is refused instead of guessed.
 
 ### Changed
 

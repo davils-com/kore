@@ -784,6 +784,35 @@ public final class com/davils/kore/core/outcome/OutcomeTransformsKt {
 	public static final fun toOutcome (Ljava/lang/Object;)Lcom/davils/kore/core/outcome/Outcome;
 }
 
+public final class com/davils/kore/core/platform/Architecture : java/lang/Enum {
+	public static final field Arm32 Lcom/davils/kore/core/platform/Architecture;
+	public static final field Arm64 Lcom/davils/kore/core/platform/Architecture;
+	public static final field Ppc64Le Lcom/davils/kore/core/platform/Architecture;
+	public static final field RiscV64 Lcom/davils/kore/core/platform/Architecture;
+	public static final field S390X Lcom/davils/kore/core/platform/Architecture;
+	public static final field X64 Lcom/davils/kore/core/platform/Architecture;
+	public static final field X86 Lcom/davils/kore/core/platform/Architecture;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getId ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/platform/Architecture;
+	public static fun values ()[Lcom/davils/kore/core/platform/Architecture;
+}
+
+public final class com/davils/kore/core/platform/HostPlatform {
+	public static final field Companion Lcom/davils/kore/core/platform/HostPlatform$Companion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getArchitecture ()Lcom/davils/kore/core/platform/Architecture;
+	public final fun getClassifier ()Ljava/lang/String;
+	public final fun getOperatingSystem ()Lcom/davils/kore/core/platform/OperatingSystem;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/platform/HostPlatform$Companion {
+	public final fun current ()Lcom/davils/kore/core/platform/HostPlatform;
+	public final fun of (Ljava/lang/String;Ljava/lang/String;)Lcom/davils/kore/core/platform/HostPlatform;
+}
+
 public final class com/davils/kore/core/platform/NativeLibrary {
 	public fun <init> (Lcom/davils/kore/core/platform/NativeLoader;)V
 	public final fun getApi ()Ljava/lang/Object;
@@ -814,6 +843,17 @@ public final class com/davils/kore/core/platform/NativeResult$Companion {
 	public final fun failure-w_atutw (J)J
 	public final fun fromEncoded-w_atutw (J)J
 	public final fun success-w_atutw (J)J
+}
+
+public final class com/davils/kore/core/platform/OperatingSystem : java/lang/Enum {
+	public static final field FreeBsd Lcom/davils/kore/core/platform/OperatingSystem;
+	public static final field Linux Lcom/davils/kore/core/platform/OperatingSystem;
+	public static final field MacOs Lcom/davils/kore/core/platform/OperatingSystem;
+	public static final field Windows Lcom/davils/kore/core/platform/OperatingSystem;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getId ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/platform/OperatingSystem;
+	public static fun values ()[Lcom/davils/kore/core/platform/OperatingSystem;
 }
 
 public final class com/davils/kore/core/principal/Principal : com/davils/kore/core/validation/Validatable {
