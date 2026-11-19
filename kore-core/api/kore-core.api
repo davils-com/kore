@@ -884,6 +884,26 @@ public final class com/davils/kore/core/size/DataSizesKt {
 	public static final fun getMebibytes (I)J
 }
 
+public final class com/davils/kore/core/text/LineBreak : java/lang/Enum {
+	public static final field Companion Lcom/davils/kore/core/text/LineBreak$Companion;
+	public static final field Cr Lcom/davils/kore/core/text/LineBreak;
+	public static final field CrLf Lcom/davils/kore/core/text/LineBreak;
+	public static final field Lf Lcom/davils/kore/core/text/LineBreak;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getText ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/text/LineBreak;
+	public static fun values ()[Lcom/davils/kore/core/text/LineBreak;
+}
+
+public final class com/davils/kore/core/text/LineBreak$Companion {
+	public final fun firstIn (Ljava/lang/CharSequence;)Lcom/davils/kore/core/text/LineBreak;
+}
+
+public final class com/davils/kore/core/text/LineBreakKt {
+	public static final fun withLineBreaks (Ljava/lang/CharSequence;Lcom/davils/kore/core/text/LineBreak;)Ljava/lang/String;
+	public static synthetic fun withLineBreaks$default (Ljava/lang/CharSequence;Lcom/davils/kore/core/text/LineBreak;ILjava/lang/Object;)Ljava/lang/String;
+}
+
 public final class com/davils/kore/core/text/LineMap {
 	public static final field Companion Lcom/davils/kore/core/text/LineMap$Companion;
 	public final fun codePointColumnOf (I)I

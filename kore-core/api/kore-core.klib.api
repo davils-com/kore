@@ -89,6 +89,24 @@ final enum class com.davils.kore.core.principal/PrincipalKind : kotlin/Enum<com.
     final fun values(): kotlin/Array<com.davils.kore.core.principal/PrincipalKind> // com.davils.kore.core.principal/PrincipalKind.values|values#static(){}[0]
 }
 
+final enum class com.davils.kore.core.text/LineBreak : kotlin/Enum<com.davils.kore.core.text/LineBreak> { // com.davils.kore.core.text/LineBreak|null[0]
+    enum entry Cr // com.davils.kore.core.text/LineBreak.Cr|null[0]
+    enum entry CrLf // com.davils.kore.core.text/LineBreak.CrLf|null[0]
+    enum entry Lf // com.davils.kore.core.text/LineBreak.Lf|null[0]
+
+    final val entries // com.davils.kore.core.text/LineBreak.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.text/LineBreak> // com.davils.kore.core.text/LineBreak.entries.<get-entries>|<get-entries>#static(){}[0]
+    final val text // com.davils.kore.core.text/LineBreak.text|{}text[0]
+        final fun <get-text>(): kotlin/String // com.davils.kore.core.text/LineBreak.text.<get-text>|<get-text>(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.text/LineBreak // com.davils.kore.core.text/LineBreak.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.text/LineBreak> // com.davils.kore.core.text/LineBreak.values|values#static(){}[0]
+
+    final object Companion { // com.davils.kore.core.text/LineBreak.Companion|null[0]
+        final fun firstIn(kotlin/CharSequence): com.davils.kore.core.text/LineBreak? // com.davils.kore.core.text/LineBreak.Companion.firstIn|firstIn(kotlin.CharSequence){}[0]
+    }
+}
+
 final enum class com.davils.kore.core.validation.violation/Severity : kotlin/Enum<com.davils.kore.core.validation.violation/Severity> { // com.davils.kore.core.validation.violation/Severity|null[0]
     enum entry Error // com.davils.kore.core.validation.violation/Severity.Error|null[0]
     enum entry Warning // com.davils.kore.core.validation.violation/Severity.Warning|null[0]
@@ -1342,6 +1360,7 @@ final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.ve
 final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.version/nextPreRelease(kotlin/String): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/nextPreRelease|nextPreRelease@com.davils.kore.core.version.SemanticVersion(kotlin.String){}[0]
 final fun (kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>).com.davils.kore.core.text/mapOffset(kotlin/Int): kotlin/Int // com.davils.kore.core.text/mapOffset|mapOffset@kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>(kotlin.Int){}[0]
 final fun (kotlin/CharSequence).com.davils.kore.core.text/edited(kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>): kotlin/String // com.davils.kore.core.text/edited|edited@kotlin.CharSequence(kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>){}[0]
+final fun (kotlin/CharSequence).com.davils.kore.core.text/withLineBreaks(com.davils.kore.core.text/LineBreak = ...): kotlin/String // com.davils.kore.core.text/withLineBreaks|withLineBreaks@kotlin.CharSequence(com.davils.kore.core.text.LineBreak){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersion(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/toSemanticVersion|toSemanticVersion@kotlin.String(){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionOrNull(): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/toSemanticVersionOrNull|toSemanticVersionOrNull@kotlin.String(){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionRange(): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/toSemanticVersionRange|toSemanticVersionRange@kotlin.String(){}[0]

@@ -53,6 +53,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `nameRule { }` builds any other rule from its start, word and part separators, least number of parts, strictness
   and longest length, at most the new `Limits.MAX_NAME_LENGTH`. `requireValid` refuses a text with a message that
   escapes it and says why, for the `init` block of an identifier type.
+- **Line breaks.** The enum `LineBreak` in `com.davils.kore.core.text` names the line feed, the carriage return
+  followed by a line feed and the carriage return alone, the three breaks of `LineMap`. `LineBreak.firstIn` finds the
+  break a text uses, and `withLineBreaks` writes every break of a text as one of them, idempotently and only for text
+  of at most `Limits.MAX_LINE_MAP_LENGTH` characters.
 
 ### Changed
 
