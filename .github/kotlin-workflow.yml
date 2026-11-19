@@ -23,9 +23,9 @@ gradle:
 check:
   tasks: [check]
   reproducible:
-    clean-tasks: [":kore-core:clean", ":kore-testing:clean"]
-    tasks: [":kore-core:jvmJar", ":kore-testing:jvmJar"]
-    artifacts: ["kore-core/build/libs/*.jar", "kore-testing/build/libs/*.jar"]
+    clean-tasks: [":kore-core:clean", ":kore-testing:clean", ":kore-serialization:clean"]
+    tasks: [":kore-core:jvmJar", ":kore-testing:jvmJar", ":kore-serialization:jvmJar"]
+    artifacts: ["kore-core/build/libs/*.jar", "kore-testing/build/libs/*.jar", "kore-serialization/build/libs/*.jar"]
 
 policy:
   # The path checks of kore-core behave differently on Windows, so develop, main and a tag run there too.
@@ -54,6 +54,7 @@ publish:
   tasks:
     - ":kore-core:publishAllPublicationsToDavilsRepository"
     - ":kore-testing:publishAllPublicationsToDavilsRepository"
+    - ":kore-serialization:publishAllPublicationsToDavilsRepository"
 
 snapshot:
   # Kore's own build makes every build without a release tag a snapshot.
@@ -82,12 +83,23 @@ release:
       - path: com/davils/kore-testing
         artifact: kore-testing
         task: ":kore-testing:publishKotlinMultiplatformPublicationToDavilsRepository"
+      - path: com/davils/kore-serialization-jvm
+        artifact: kore-serialization-jvm
+        task: ":kore-serialization:publishJvmPublicationToDavilsRepository"
+      - path: com/davils/kore-serialization-wasm-js
+        artifact: kore-serialization-wasm-js
+        task: ":kore-serialization:publishWasmJsPublicationToDavilsRepository"
+      - path: com/davils/kore-serialization
+        artifact: kore-serialization
+        task: ":kore-serialization:publishKotlinMultiplatformPublicationToDavilsRepository"
   attest:
     subjects:
       - "kore-core/build/libs/*.jar"
       - "kore-core/build/libs/*.klib"
       - "kore-testing/build/libs/*.jar"
       - "kore-testing/build/libs/*.klib"
+      - "kore-serialization/build/libs/*.jar"
+      - "kore-serialization/build/libs/*.klib"
   github-release:
     enabled: false
 
