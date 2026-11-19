@@ -5,17 +5,19 @@ Kore is the foundation library of Davils: small, strict building blocks for Kotl
 
 | Module | Artifact | What it holds |
 |---|---|---|
-| `kore-core` | `com.davils:kore-core` | Semantic versions and npm-style ranges, UUIDs of version 4 and 7, validation with paths and stable codes, text positions, edits and snippets, command line and environment parameters, principals, data sizes, architecture contracts and the `Davils*` annotations |
-| `kore-testing` | `com.davils:kore-testing` | Deterministic UUIDs and marked text for tests; keep it out of production class paths |
+| `kore-core` | `com.davils:kore-core` | Semantic versions and npm-style ranges, UUIDs of version 4 and 7, validation with paths, stable codes and common rules, text positions, edits, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, backoff, admission and single flight, the masked process environment, command line and environment parameters, principals, architecture contracts and the `Davils*` annotations |
+| `kore-testing` | `com.davils:kore-testing` | Deterministic UUIDs, marked text, hostile text and clocks for tests; keep it out of production class paths |
+| `kore-serialization` | `com.davils:kore-serialization` | Serializers of kotlinx-serialization for durations, data sizes, versions, UUIDs and violation codes, and `TextSerializer` for identifiers of your own |
 
 Kore is a Kotlin Multiplatform library for two targets, `jvm` and `wasmJs`, and is written for Kotlin 2.4 or newer.
-Besides the Kotlin standard library (2.4.21 or newer) it has a single runtime dependency, `kotlinx-coroutines-core`.
+Besides the Kotlin standard library (2.4.21 or newer) `kore-core` has a single runtime dependency,
+`kotlinx-coroutines-core`; `kore-serialization` adds `kotlinx-serialization-core`.
 On the JVM it requires JDK 25, and `kore-core` is a named Java module, `com.davils.kore.core`. On Wasm it is tested
 under Node.js and runs in the browser as well.
 
 A few parts exist on the JVM only, because they are built on the JDK: the converters `Converters.path`,
-`Converters.file` and `Converters.uri`, the conversion between `Uuid` and `java.util.UUID`, `blocking` and
-`NativeLibrary`. Everything else is common code and behaves the same on both targets.
+`Converters.file` and `Converters.uri`, the conversion between `Uuid` and `java.util.UUID`, `blocking`,
+`NativeLibrary` and `HostPlatform`. Everything else is common code and behaves the same on both targets.
 
 ## Installation
 
@@ -40,6 +42,7 @@ dependencyResolutionManagement {
 dependencies {
     implementation("com.davils:kore-core:2.0.0")
     testImplementation("com.davils:kore-testing:2.0.0")
+    implementation("com.davils:kore-serialization:2.1.0")   // from 2.1.0, if you use kotlinx-serialization
 }
 ```
 
@@ -125,6 +128,41 @@ sensitive by default and `withPrincipal` never replaces a different principal si
 ```kotlin
 val id = UuidV7.random()          // monotonic, SecureRandom, never a capability token
 val limit = 64.mebibytes
+```
+
+### Foreign code, outcomes and names
+
+```kotlin
+val loaded = attempted { plugin.load() }          // a Result; passes on only the caller's own cancellation
+val port: Outcome<Int, String> = readPort(text)   // Success or Failure, with a typed failure
+val id = NameRule.QUALIFIED.requireValid(text, kind = "plugin id")
+val hint = closestMatch("--prot", listOf("--port", "--host"))   // "--port"
+```
+
+`contained` and `attempted` replace `runCatching` around foreign code: they never swallow a cancellation or a failure
+of the virtual machine. `NameRule` checks names in one linear pass without a regular expression.
+
+### Sizes, rules and diagnostics
+
+```kotlin
+val limit = DataSize.parse("64 MiB")              // refuses "64 MB" rather than guessing what it means
+class Upload(val timeout: Duration, val chunk: DataSize) : Validatable {
+    override fun ValidationScope.validate() {
+        positive(Upload::timeout, timeout)        // refuses zero, negative and infinite durations
+        positive(Upload::chunk, chunk)
+    }
+}
+val report = renderDiagnostics("settings.yaml", diagnostics, LineMap.of(text))
+```
+
+### Serialization
+
+```kotlin
+@Serializable
+class Settings(@Contextual val timeout: Duration, @Contextual val limit: DataSize)
+
+val json = Json { serializersModule = coreSerializers }
+json.decodeFromString<Settings>("""{"timeout": "45s", "limit": "64 MiB"}""")
 ```
 
 ## Security

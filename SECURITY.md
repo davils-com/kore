@@ -30,7 +30,8 @@ We acknowledge a report within three working days and agree on a disclosure date
 
 Kore is a library: it runs with the privileges of the application that uses it. It treats everything it reads
 from outside the program as untrusted: command line arguments, environment variables, values of parameter
-sources, version strings, UUIDs, text, file paths and the attributes of principals.
+sources, version strings, UUIDs, names, data sizes, encoded bytes, serialized documents, text, file paths and the
+attributes of principals.
 
 The following are **in scope**:
 
@@ -40,11 +41,14 @@ The following are **in scope**:
 - a value declared as sensitive that appears anywhere outside the value itself,
 - a check that passes when it should refuse: an authorization helper of `Principal`, a path requirement, a
   version range or a converter that accepts what it documents as refused,
-- a weakness in the generation of UUIDs.
+- a weakness in the generation of UUIDs or in the random spread of backoff delays,
+- a `NameRule`, a decoder of `decodeText` or a serializer of `kore-serialization` that accepts what it documents as
+  refused, or the process environment revealing a value through its `toString`.
 
 The following are **not** vulnerabilities in Kore:
 
-- a vulnerability in the JDK, the Kotlin standard library or `kotlinx.coroutines` — report those to the
+- a vulnerability in the JDK, the Kotlin standard library, `kotlinx.coroutines` or `kotlinx-serialization` — report
+  those to the
   respective project,
 - an application that passes a secret to a parameter it did not declare as sensitive, or logs a value it read,
 - the time between a path check of a converter and the moment the application opens the file; those checks are
@@ -53,6 +57,10 @@ The following are **not** vulnerabilities in Kore:
 
 ## Known Limitations
 
+- A format of kotlinx-serialization, such as `Json`, may put parts of its raw input into its own exceptions, before
+  a serializer of Kore sees the text.
+- `SingleFlight` hands one caller's result to every caller of the same key; a key without the identity of the caller
+  shares results across principals.
 - Kore has no type that holds a secret. A sensitive parameter returns its plain value; the application keeps it
   out of its own logs.
 - A UUID of version 7 reveals the time it was created and carries fewer random bits than one of version 4. Never

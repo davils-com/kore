@@ -7,7 +7,8 @@ No published artifact of Kore contains third-party code. The tests use the follo
 | The regular expression for a valid version and the examples of precedence of *Semantic Versioning 2.0.0* by Tom Preston-Werner | `kore-core/src/unitTest/kotlin/com/davils/kore/core/version/SemanticVersionConformanceTest.kt`, `SemanticVersionTest.kt` | [semver.org](https://semver.org) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | The tables of caret, tilde, X-range, primitive and hyphen ranges of node-semver | `kore-core/src/unitTest/kotlin/com/davils/kore/core/version/NpmRangeConformanceTest.kt` | [npm/node-semver](https://github.com/npm/node-semver) | ISC, see below |
 
-The build and the tests depend on libraries under their own licenses; `gradle/verification-metadata.xml` records
+`kore-serialization` depends at runtime on `kotlinx-serialization-core` of JetBrains under the Apache License 2.0;
+its published artifact contains none of its code. The build and the tests depend on libraries under their own licenses; `gradle/verification-metadata.xml` records
 each of them, and the Trivy license scan of `./gradlew check` checks them.
 
 ## node-semver

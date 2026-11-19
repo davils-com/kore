@@ -9,8 +9,9 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 
 | Module | Artifact | Purpose |
 |---|---|---|
-| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation, text positions and snippets, command line and environment parameters, principals, data sizes, the `Davils*` annotations and the architecture contracts |
-| `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs and marked text; never on a production class path |
+| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, validation and its common rules, text positions, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, backoff, admission and single flight, the masked process environment, command line and environment parameters, principals, the `Davils*` annotations and the architecture contracts |
+| `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs, marked text, hostile text and clocks; never on a production class path |
+| `kore-serialization` | `com.davils:kore-serialization` | Serializers of kotlinx-serialization for the values of Kore and `TextSerializer` for identifiers |
 | `build-logic` | - | One convention plugin per Kreate concern, composed by `kore.kotlin-library` for the modules and `kore.root` for the root project; they hold nothing but `plugins { }` and `kreate { }` |
 
 The root package of a module is `com.davils.kore.<module without kore->`, such as `com.davils.kore.core`, and its
@@ -83,6 +84,11 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
 - **Kotlin first**, Java only where Kotlin offers no equivalent. Atomics come from `kotlin.concurrent.atomics`, through
   a local `@OptIn(ExperimentalAtomicApi::class)`.
   Experimental Kotlin API is allowed only through a local `@OptIn` and never appears in a public signature.
+- **Shared building blocks first.** Foreign code, such as a callback, a converter or a value source, runs through
+  `contained` or `attempted`, never through a bare `runCatching`, which swallows cancellations. The grammar of a name
+  is checked by a `NameRule` or a hand-written scanner, never by a `Regex`, whose engine differs between the JVM and
+  Wasm and may backtrack. A result with a typed failure is an `Outcome`, waiting for admitted work goes through an
+  `AdmissionGate`, and a duplicate check uses `duplicates`. A copy of one of them is refactored onto it.
 - **Nothing global.** No mutable singletons, no static configuration, no threads or timers of the library's own. The
   one sanctioned exception is the process-wide monotonic state of `UuidV7Generator`, documented in its KDoc.
   Detekt does not enforce this rule; reviews do.
@@ -159,6 +165,9 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   `kore.kotlin-library` composes them for a module and adds only the class paths the assurance gate reads;
   `kore.root` composes them for the root project. A new concern gets a plugin of its own, never a block in a
   composing plugin.
+- `kore-serialization` depends on `kotlinx-serialization-core` and its tests on `kotlinx-serialization-json` and
+  `kore-testing`, declared through the test configurations that Kreate creates late; its serializers are written by
+  hand, so no module applies the serialization compiler plugin.
 - Dependencies are declared in `gradle/libs.versions.toml`. Libraries of JetBrains may be added when they are
   needed; every other dependency needs the approval of a maintainer.
 - Only `repo.davils.com` serves `com.davils` and its subgroups, through `exclusiveContent`. Everything else comes
