@@ -88,6 +88,20 @@ public value class ViolationCode(public val value: String) {
         public val DUPLICATE: ViolationCode = ViolationCode("kore.validation.duplicate")
 
         /**
+         * A value lies outside the range it must lie in, such as a negative timeout or a port above 65535.
+         *
+         * @since 2.1.0
+         */
+        public val OUT_OF_RANGE: ViolationCode = ViolationCode("kore.validation.out-of-range")
+
+        /**
+         * A text is longer than it may be.
+         *
+         * @since 2.1.0
+         */
+        public val TOO_LONG: ViolationCode = ViolationCode("kore.validation.too-long")
+
+        /**
          * A validation would have descended deeper than [Limits.MAX_PATH_DEPTH] and stopped there.
          *
          * The error is reported at the deepest path that was still validated; nothing below it was checked.

@@ -68,6 +68,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   longer than `Limits.MAX_NUMERIC_TEXT_LENGTH` and, if asked, for leading zeros.
 - **`ValidationScope.reject`.** It reports an error like `fail` and returns `null`, so a validation that reads a value
   can refuse it in the same expression, such as `text.toIntOrNull() ?: reject(Server::port, "must be a number")`.
+- **Rules for validations.** `positive` and `nonNegative` for `Int`, `Long` and `Duration`, `atLeast`, `atMost` and
+  `inRange` for any `Comparable`, `notBlank`, `maxLength`, `notEmpty` and `unique` in
+  `com.davils.kore.core.validation` report the common problems of a validated value in one call each. They use the
+  new codes `ViolationCode.OUT_OF_RANGE` and `ViolationCode.TOO_LONG`, `REQUIRED` and `DUPLICATE`, name the bounds
+  but never the value, so they may check a secret, and refuse an infinite duration where a positive one is required.
+  `unique` reports every later duplicate at its position with the position of the first.
 
 ### Changed
 
