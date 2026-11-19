@@ -134,6 +134,12 @@ style:
     excludes:
       - '**/arguments/Parameters.kt'
       - '**/arguments/ParameterDeclarations.kt'
+  # A public class may not be a data class (ForbiddenPublicDataClass), so a public holder of a value writes equals,
+  # hashCode and toString by hand, which this rule takes for a class without functionality.
+  UseDataClass:
+    active: true
+    excludes:
+      - '**/outcome/Outcome.kt'
   # The compiler rejects an explicit Unit return type as redundant under warnings as errors.
   OptionalUnit:
     active: false

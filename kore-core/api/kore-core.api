@@ -608,6 +608,45 @@ public final class com/davils/kore/core/identity/generator/UuidV7Generator : com
 	public fun next ()Lcom/davils/kore/core/identity/UuidV7;
 }
 
+public abstract interface class com/davils/kore/core/outcome/Outcome {
+	public fun isFailure ()Z
+	public fun isSuccess ()Z
+}
+
+public final class com/davils/kore/core/outcome/Outcome$Failure : com/davils/kore/core/outcome/Outcome {
+	public fun <init> (Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFailure ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/outcome/Outcome$Success : com/davils/kore/core/outcome/Outcome {
+	public fun <init> (Ljava/lang/Object;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/outcome/OutcomeAccessKt {
+	public static final fun failureOrNull (Lcom/davils/kore/core/outcome/Outcome;)Ljava/lang/Object;
+	public static final fun fold (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun getOrElse (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+	public static final fun getOrNull (Lcom/davils/kore/core/outcome/Outcome;)Ljava/lang/Object;
+	public static final fun getOrThrow (Lcom/davils/kore/core/outcome/Outcome;)Ljava/lang/Object;
+	public static final fun onFailure (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+	public static final fun onSuccess (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+}
+
+public final class com/davils/kore/core/outcome/OutcomeTransformsKt {
+	public static final fun flatMap (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+	public static final fun map (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+	public static final fun mapFailure (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+	public static final fun recover (Lcom/davils/kore/core/outcome/Outcome;Lkotlin/jvm/functions/Function1;)Lcom/davils/kore/core/outcome/Outcome;
+	public static final fun toOutcome (Ljava/lang/Object;)Lcom/davils/kore/core/outcome/Outcome;
+}
+
 public final class com/davils/kore/core/platform/NativeLibrary {
 	public fun <init> (Lcom/davils/kore/core/platform/NativeLoader;)V
 	public final fun getApi ()Ljava/lang/Object;

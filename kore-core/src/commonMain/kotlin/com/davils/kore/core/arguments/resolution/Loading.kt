@@ -161,7 +161,12 @@ private fun settle(
         spec.resolve(givenFor(spec, lexed, external), options.sensitiveOnCommandLine) to spec
     }
     val provided = resolutions.filter { (resolution, _) -> resolution.isProvided }.map { (_, spec) -> spec }
-    val reported = lexed.violations + failures + resolutions.flatMap { (resolution, _) -> resolution.violations }
+    val reported = buildList {
+        addAll(lexed.violations)
+        addAll(failures)
+        resolutions.flatMapTo(this) { (resolution, _) -> resolution.violations }
+    }
+
     val violations = (reported + groups.violations(provided.toSet())).immutableList()
     val assignments = resolutions.mapNotNull { (resolution, _) -> resolution.assignment }
     if (violations.any { violation -> violation.severity == Severity.Error }) {

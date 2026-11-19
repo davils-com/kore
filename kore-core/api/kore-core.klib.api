@@ -149,6 +149,35 @@ abstract interface com.davils.kore.core.validation/Validatable { // com.davils.k
     abstract fun (com.davils.kore.core.validation/ValidationScope).validate() // com.davils.kore.core.validation/Validatable.validate|validate@com.davils.kore.core.validation.ValidationScope(){}[0]
 }
 
+sealed interface <#A: out kotlin/Any?, #B: out kotlin/Any?> com.davils.kore.core.outcome/Outcome { // com.davils.kore.core.outcome/Outcome|null[0]
+    open val isFailure // com.davils.kore.core.outcome/Outcome.isFailure|{}isFailure[0]
+        open fun <get-isFailure>(): kotlin/Boolean // com.davils.kore.core.outcome/Outcome.isFailure.<get-isFailure>|<get-isFailure>(){}[0]
+    open val isSuccess // com.davils.kore.core.outcome/Outcome.isSuccess|{}isSuccess[0]
+        open fun <get-isSuccess>(): kotlin/Boolean // com.davils.kore.core.outcome/Outcome.isSuccess.<get-isSuccess>|<get-isSuccess>(){}[0]
+
+    final class <#A1: out kotlin/Any?> Failure : com.davils.kore.core.outcome/Outcome<kotlin/Nothing, #A1> { // com.davils.kore.core.outcome/Outcome.Failure|null[0]
+        constructor <init>(#A1) // com.davils.kore.core.outcome/Outcome.Failure.<init>|<init>(1:0){}[0]
+
+        final val failure // com.davils.kore.core.outcome/Outcome.Failure.failure|{}failure[0]
+            final fun <get-failure>(): #A1 // com.davils.kore.core.outcome/Outcome.Failure.failure.<get-failure>|<get-failure>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.outcome/Outcome.Failure.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.outcome/Outcome.Failure.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.outcome/Outcome.Failure.toString|toString(){}[0]
+    }
+
+    final class <#A1: out kotlin/Any?> Success : com.davils.kore.core.outcome/Outcome<#A1, kotlin/Nothing> { // com.davils.kore.core.outcome/Outcome.Success|null[0]
+        constructor <init>(#A1) // com.davils.kore.core.outcome/Outcome.Success.<init>|<init>(1:0){}[0]
+
+        final val value // com.davils.kore.core.outcome/Outcome.Success.value|{}value[0]
+            final fun <get-value>(): #A1 // com.davils.kore.core.outcome/Outcome.Success.value.<get-value>|<get-value>(){}[0]
+
+        final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.outcome/Outcome.Success.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // com.davils.kore.core.outcome/Outcome.Success.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // com.davils.kore.core.outcome/Outcome.Success.toString|toString(){}[0]
+    }
+}
+
 sealed interface com.davils.kore.core.arguments.report/ValueOrigin { // com.davils.kore.core.arguments.report/ValueOrigin|null[0]
     abstract fun label(com.davils.kore.core.arguments/ParameterInfo): kotlin/String // com.davils.kore.core.arguments.report/ValueOrigin.label|label(com.davils.kore.core.arguments.ParameterInfo){}[0]
 
@@ -1258,10 +1287,22 @@ final fun (kotlin/Throwable).com.davils.kore.core.failure/rethrowIfFatal() // co
 final fun <#A: com.davils.kore.core.architecture.data/DataTransferObject, #B: com.davils.kore.core.architecture.domain/DomainModel> (com.davils.kore.core.architecture.mapper/DomainMapper<#A, #B>).com.davils.kore.core.architecture.mapper/toDomain(kotlin.collections/Iterable<#A>): kotlin.collections/List<#B> // com.davils.kore.core.architecture.mapper/toDomain|toDomain@com.davils.kore.core.architecture.mapper.DomainMapper<0:0,0:1>(kotlin.collections.Iterable<0:0>){0§<com.davils.kore.core.architecture.data.DataTransferObject>;1§<com.davils.kore.core.architecture.domain.DomainModel>}[0]
 final fun <#A: com.davils.kore.core.architecture.domain/DomainModel, #B: com.davils.kore.core.architecture.data/DataTransferObject> (com.davils.kore.core.architecture.mapper/DtoMapper<#A, #B>).com.davils.kore.core.architecture.mapper/toDto(kotlin.collections/Iterable<#A>): kotlin.collections/List<#B> // com.davils.kore.core.architecture.mapper/toDto|toDto@com.davils.kore.core.architecture.mapper.DtoMapper<0:0,0:1>(kotlin.collections.Iterable<0:0>){0§<com.davils.kore.core.architecture.domain.DomainModel>;1§<com.davils.kore.core.architecture.data.DataTransferObject>}[0]
 final fun <#A: com.davils.kore.core.validation/Validatable> (#A).com.davils.kore.core.validation/validateOrThrow(kotlin/String): #A // com.davils.kore.core.validation/validateOrThrow|validateOrThrow@0:0(kotlin.String){0§<com.davils.kore.core.validation.Validatable>}[0]
+final fun <#A: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, *>).com.davils.kore.core.outcome/getOrNull(): #A? // com.davils.kore.core.outcome/getOrNull|getOrNull@com.davils.kore.core.outcome.Outcome<0:0,*>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, kotlin/Throwable>).com.davils.kore.core.outcome/getOrThrow(): #A // com.davils.kore.core.outcome/getOrThrow|getOrThrow@com.davils.kore.core.outcome.Outcome<0:0,kotlin.Throwable>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<*, #A>).com.davils.kore.core.outcome/failureOrNull(): #A? // com.davils.kore.core.outcome/failureOrNull|failureOrNull@com.davils.kore.core.outcome.Outcome<*,0:0>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> (kotlin/Result<#A>).com.davils.kore.core.outcome/toOutcome(): com.davils.kore.core.outcome/Outcome<#A, kotlin/Throwable> // com.davils.kore.core.outcome/toOutcome|toOutcome@kotlin.Result<0:0>(){0§<kotlin.Any?>}[0]
 final fun com.davils.kore.core.failure/containedFailure(kotlin/Throwable, kotlin/Boolean): kotlin/Throwable // com.davils.kore.core.failure/containedFailure|containedFailure(kotlin.Throwable;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core/parseDecimalOrNull(kotlin/String): kotlin/Double? // com.davils.kore.core/parseDecimalOrNull|parseDecimalOrNull(kotlin.String){}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/flatMap(kotlin/Function1<#A, com.davils.kore.core.outcome/Outcome<#C, #B>>): com.davils.kore.core.outcome/Outcome<#C, #B> // com.davils.kore.core.outcome/flatMap|flatMap@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,com.davils.kore.core.outcome.Outcome<0:2,0:1>>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/fold(kotlin/Function1<#A, #C>, kotlin/Function1<#B, #C>): #C // com.davils.kore.core.outcome/fold|fold@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,0:2>;kotlin.Function1<0:1,0:2>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/map(kotlin/Function1<#A, #C>): com.davils.kore.core.outcome/Outcome<#C, #B> // com.davils.kore.core.outcome/map|map@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,0:2>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/mapFailure(kotlin/Function1<#B, #C>): com.davils.kore.core.outcome/Outcome<#A, #C> // com.davils.kore.core.outcome/mapFailure|mapFailure@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:1,0:2>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/getOrElse(kotlin/Function1<#B, #A>): #A // com.davils.kore.core.outcome/getOrElse|getOrElse@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:1,0:0>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/onFailure(kotlin/Function1<#B, kotlin/Unit>): com.davils.kore.core.outcome/Outcome<#A, #B> // com.davils.kore.core.outcome/onFailure|onFailure@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:1,kotlin.Unit>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/onSuccess(kotlin/Function1<#A, kotlin/Unit>): com.davils.kore.core.outcome/Outcome<#A, #B> // com.davils.kore.core.outcome/onSuccess|onSuccess@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,kotlin.Unit>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/recover(kotlin/Function1<#B, #A>): com.davils.kore.core.outcome/Outcome<#A, kotlin/Nothing> // com.davils.kore.core.outcome/recover|recover@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:1,0:0>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
 final inline fun <#A: kotlin/Any?> com.davils.kore.core.failure/contained(kotlin/Function0<#A>): kotlin/Result<#A> // com.davils.kore.core.failure/contained|contained(kotlin.Function0<0:0>){0§<kotlin.Any?>}[0]
 final suspend fun <#A: kotlin/Any?> (com.davils.kore.core.architecture.domain/UseCase<kotlin/Unit, #A>).com.davils.kore.core.architecture.domain/invoke(): #A // com.davils.kore.core.architecture.domain/invoke|invoke@com.davils.kore.core.architecture.domain.UseCase<kotlin.Unit,0:0>(){0§<kotlin.Any?>}[0]
 final suspend fun <#A: kotlin/Any?> com.davils.kore.core.principal/withPrincipal(com.davils.kore.core.principal/Principal, kotlin/Boolean = ..., kotlin.coroutines/SuspendFunction1<kotlinx.coroutines/CoroutineScope, #A>): #A // com.davils.kore.core.principal/withPrincipal|withPrincipal(com.davils.kore.core.principal.Principal;kotlin.Boolean;kotlin.coroutines.SuspendFunction1<kotlinx.coroutines.CoroutineScope,0:0>){0§<kotlin.Any?>}[0]

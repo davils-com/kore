@@ -28,6 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   setting the interrupt flag again. Every other `Error` is contained. `attempted` runs in a coroutine and passes on
   only the cancellation of its own caller; a cancellation from anywhere else becomes an `IllegalStateException` with
   it as the cause, so it cannot end the caller silently. `rethrowIfFatal` applies the same rule to a throwable.
+- **`Outcome` for results with a typed failure.** The sealed interface `Outcome` in `com.davils.kore.core.outcome`
+  is either a `Success` with a value or a `Failure` with a failure of any type, such as a sealed type of reasons, so
+  an operation that can fail in known ways no longer needs a `Throwable` for them. It has exactly two kinds, which a
+  `when` covers without `else`, and covariant type parameters. `map`, `mapFailure`, `flatMap`, `recover`, `fold`,
+  `onSuccess`, `onFailure`, `getOrElse`, `getOrNull`, `failureOrNull` and `getOrThrow` work on it, and
+  `Result.toOutcome` converts a `Result`. Its `toString` escapes the value and the failure.
 
 ### Changed
 
