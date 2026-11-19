@@ -274,4 +274,25 @@ public object Limits {
      * @since 1.0.0
      */
     public const val MAX_LINE_MAP_LENGTH: Int = 64 * 1_024 * 1_024
+
+    /**
+     * The longest text, in UTF-16 code units, between which an edit distance is measured.
+     *
+     * [com.davils.kore.core.text.editDistance] refuses a longer text with an [IllegalArgumentException] before it
+     * measures anything, and [com.davils.kore.core.text.closestMatch] never suggests a longer candidate. Measuring
+     * grows with the product of both lengths, so the limit bounds the work of a single comparison.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_EDIT_DISTANCE_LENGTH: Int = 256
+
+    /**
+     * The longest text, in UTF-16 code units, for which close matches are suggested.
+     *
+     * [com.davils.kore.core.text.closestMatch] and [com.davils.kore.core.text.closeMatches] suggest nothing for a
+     * longer text and measure no candidate for it.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_SUGGESTION_TOKEN_LENGTH: Int = 64
 }

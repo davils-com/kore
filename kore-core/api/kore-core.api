@@ -12,6 +12,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_DECIMAL_TEXT_LENGTH I
 	public static final field MAX_DELEGATION_CHAIN I
 	public static final field MAX_DISPLAY_LENGTH I
+	public static final field MAX_EDIT_DISTANCE_LENGTH I
 	public static final field MAX_LINE_MAP_LENGTH I
 	public static final field MAX_MESSAGE_LENGTH I
 	public static final field MAX_NUMERIC_TEXT_LENGTH I
@@ -24,6 +25,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_ROLES I
 	public static final field MAX_SNIPPET_WIDTH I
 	public static final field MAX_SUGGESTED_ARGUMENTS I
+	public static final field MAX_SUGGESTION_TOKEN_LENGTH I
 	public static final field MAX_UUID_TEXT_LENGTH I
 	public static final field MAX_VALUES_PER_PARAMETER I
 	public static final field MAX_VERSION_LENGTH I
@@ -859,6 +861,14 @@ public final class com/davils/kore/core/text/SafeText {
 	public static synthetic fun quoted$default (Lcom/davils/kore/core/text/SafeText;Ljava/lang/CharSequence;IILjava/lang/Object;)Ljava/lang/String;
 	public final fun text (Ljava/lang/CharSequence;I)Ljava/lang/String;
 	public static synthetic fun text$default (Lcom/davils/kore/core/text/SafeText;Ljava/lang/CharSequence;IILjava/lang/Object;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/text/SimilarityKt {
+	public static final fun closeMatches (Ljava/lang/String;Ljava/lang/Iterable;IIZ)Ljava/util/List;
+	public static synthetic fun closeMatches$default (Ljava/lang/String;Ljava/lang/Iterable;IIZILjava/lang/Object;)Ljava/util/List;
+	public static final fun closestMatch (Ljava/lang/String;Ljava/lang/Iterable;IZ)Ljava/lang/String;
+	public static synthetic fun closestMatch$default (Ljava/lang/String;Ljava/lang/Iterable;IZILjava/lang/Object;)Ljava/lang/String;
+	public static final fun editDistance (Ljava/lang/CharSequence;Ljava/lang/CharSequence;I)I
 }
 
 public final class com/davils/kore/core/text/TextEdit {

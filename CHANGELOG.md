@@ -39,6 +39,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   occurrence and in linear time. The `@DavilsInternal` functions `immutableList`, `immutableSet` and `immutableMap`
   give the Davils libraries the copies Kore stores its own public collections in, which no caller can change through
   a cast, and `kore-testing` uses them instead of a copy of its own.
+- **Close matches for unknown text.** `editDistance`, `closestMatch` and `closeMatches` in
+  `com.davils.kore.core.text` measure the Levenshtein distance between two texts by code points, stopping once a
+  limit is passed, and suggest the candidates closest to a token for a hint such as "did you mean `--port`?". By
+  default a token may be off by one edit for every three characters, at most three; `ignoreCase` folds ASCII letters
+  only, so the result is the same on every platform and in every locale. The new `Limits.MAX_EDIT_DISTANCE_LENGTH`
+  and `Limits.MAX_SUGGESTION_TOKEN_LENGTH` bound the work of a comparison. The suggestions of `Parameters` come from
+  `closestMatch` now.
 
 ### Changed
 

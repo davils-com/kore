@@ -20,8 +20,8 @@ import com.davils.kore.core.arguments.UnknownArgumentPolicy
 import com.davils.kore.core.arguments.declaration.ParameterSpec
 import com.davils.kore.core.arguments.declaration.readOnlyCopy
 import com.davils.kore.core.arguments.report.ParameterViolation
-import com.davils.kore.core.arguments.report.closestName
 import com.davils.kore.core.arguments.resolution.SchemaOptions
+import com.davils.kore.core.text.closestMatch
 
 internal class LexState(private val knownNames: Set<String>, private val options: SchemaOptions) {
     private val occurrences: MutableMap<ParameterSpec<*, *>, Occurrences> = mutableMapOf()
@@ -93,6 +93,6 @@ internal class LexState(private val knownNames: Set<String>, private val options
     private fun suggestionFor(name: String): String? {
         if (suggestionsLeft <= 0) return null
         suggestionsLeft--
-        return closestName(name, knownNames)
+        return closestMatch(name, knownNames)
     }
 }
