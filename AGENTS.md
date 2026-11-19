@@ -74,7 +74,8 @@ a baseline. Build scripts and `build-logic` follow the same rules, although Dete
   (`DavilsInternal`, `DavilsExperimental`, `DavilsDsl`, `DavilsGenerated`, `DavilsPlatformBinding`). The ids of the
   Gradle plugins in `build-logic` keep their `kore.` prefix.
 - **`@DavilsInternal`** marks API shared between Davils libraries that consumers must not use; it fails the build of
-  every caller that does not opt in. **`@DavilsExperimental`** marks API that may still change.
+  every caller that does not opt in. Once another Davils library uses such a declaration, it changes only in a major
+  version, as [Public API](#public-api) describes. **`@DavilsExperimental`** marks API that may still change.
 - **Immutable values.** Public types are immutable; public collections are built with `immutableList()`,
   `buildList` and the like, never stored from `toList()` or `+`, so a cast cannot change them.
 - **No public `data class`.** It freezes `copy` and `componentN` into the binary API. Write a regular class with
@@ -198,6 +199,36 @@ The `api/*.api` dumps are the contract. `kreateApiCheck` fails on every unrecord
 `kreateApiSemverCheck` on a version that does not match it. A deliberate change is recorded with
 `./gradlew kreateApiDump` and gets a `CHANGELOG.md` entry. A breaking change needs a major version and a commit
 marked as breaking. Deprecate before removing: `@Deprecated` with a `ReplaceWith`, for at least one minor release.
+
+`@DavilsInternal` API that another Davils library uses changes only in a major version of Kore. Such a library does
+not choose the Kore it runs with: on the buildscript class path of a consumer, the conflict resolution of Gradle may
+hand Kreate a newer Kore than the one it was built against, and a declaration that was removed or changed there fails
+with `NoSuchMethodError` at runtime, although both builds were green. To all other code the marker still promises
+nothing, as its KDoc says.
+
+- **The dumps record internal API.** `@DavilsInternal` declarations stay in the dumps like every other public
+  declaration; `DavilsInternal` is never added to `nonPublicMarkers`, `ignoredPackages` or `ignoredClasses`. So
+  `kreateApiSemverCheck` asks for a major version and a breaking commit as soon as one of them is removed or its
+  signature changes.
+- **Behaviour counts too.** A change of documented behaviour behind an unchanged signature, such as other code points
+  escaped by `SafeText` or a leading `+` accepted by `parseIntOrNull`, waits for a major version as well. No dump shows
+  it, so the tests in the table pin it: an assertion in them that changes or disappears is such a change, a new one
+  is not.
+- **The table stays current.** When a Davils library starts to use another `@DavilsInternal` declaration, it is added
+  here with the release of that library and the test that pins it, before the next release of Kore.
+
+  | Library | Built against | `@DavilsInternal` API it uses | Pinned by |
+  |---|---|---|---|
+  | Kreate 5.3.0 | `kore-core` 2.1.1 | `SafeText.text`, `SafeText.quoted`, `SafeText.isSafe` | `SafeTextTest` |
+  | Kreate 5.3.0 | `kore-core` 2.1.1 | `parseIntOrNull`, `parseLongOrNull` | `IntegersTest` |
+  | Kreate 5.3.0 | `kore-core` 2.1.1 | `parseDecimalOrNull` | `DecimalsTest` |
+
+  Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
+  assertion:
+
+  ```bash
+  git diff "$(git describe --tags --abbrev=0)" -- '*SafeTextTest.kt' '*IntegersTest.kt' '*DecimalsTest.kt'
+  ```
 
 ## Releases
 

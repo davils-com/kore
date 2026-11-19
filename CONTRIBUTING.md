@@ -38,6 +38,11 @@ fails closed. It ships with tests that feed hostile input through every new sink
 is recorded with `./gradlew kreateApiDump`, gets an entry in [CHANGELOG.md](CHANGELOG.md) and, when it breaks
 compatibility, waits for the next major version.
 
+`@DavilsInternal` declarations are part of that record. One that another Davils library uses, such as `SafeText` in
+Kreate, changes only in a major version as well: Gradle may run that library with a newer Kore, where a changed
+declaration fails with `NoSuchMethodError`. [AGENTS.md](AGENTS.md#public-api) lists them and the check before a
+release.
+
 ### Documentation
 
 Every public declaration has KDoc with `@since`. Internal and private declarations have none, and there are no
@@ -65,7 +70,8 @@ A new dependency other than a library of JetBrains needs the approval of a maint
 on a commit of `main`; the pipeline signs it, publishes it to `https://repo.davils.com/releases` and attests it.
 `kreateReleaseGuard` refuses a tag that does not equal the version, a tag on a commit outside `main` and a build with
 snapshot tooling, such as a Kreate snapshot. Protect the tags `[0-9]*` with a GitHub tag ruleset so that only
-maintainers can push them. Before the tag, the version gets its section in [CHANGELOG.md](CHANGELOG.md).
+maintainers can push them. Before the tag, the version gets its section in [CHANGELOG.md](CHANGELOG.md) and the
+internal API in use is checked as [AGENTS.md](AGENTS.md#public-api) describes.
 
 ## Commit Messages
 
