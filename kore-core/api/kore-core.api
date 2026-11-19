@@ -1012,6 +1012,21 @@ public final class com/davils/kore/core/text/TextSnippetsKt {
 	public static final fun render (Lcom/davils/kore/core/text/TextSnippet;)Ljava/lang/String;
 }
 
+public final class com/davils/kore/core/text/diagnostic/Diagnostic {
+	public synthetic fun <init> (Ljava/lang/String;Lcom/davils/kore/core/validation/violation/Severity;Lcom/davils/kore/core/text/TextRange;Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCode-J_S2PC0 ()Ljava/lang/String;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getRange ()Lcom/davils/kore/core/text/TextRange;
+	public final fun getSeverity ()Lcom/davils/kore/core/validation/violation/Severity;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/text/diagnostic/DiagnosticRenderingKt {
+	public static final fun renderDiagnostics (Ljava/lang/String;Ljava/util/List;Lcom/davils/kore/core/text/LineMap;)Ljava/lang/String;
+}
+
 public abstract interface class com/davils/kore/core/validation/Validatable {
 	public abstract fun validate (Lcom/davils/kore/core/validation/ValidationScope;)V
 }

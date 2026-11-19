@@ -57,6 +57,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   followed by a line feed and the carriage return alone, the three breaks of `LineMap`. `LineBreak.firstIn` finds the
   break a text uses, and `withLineBreaks` writes every break of a text as one of them, idempotently and only for text
   of at most `Limits.MAX_LINE_MAP_LENGTH` characters.
+- **Diagnostics of text.** `Diagnostic` in `com.davils.kore.core.text.diagnostic` is a problem a parser found at a
+  range of its input, with a `ViolationCode`, a `Severity` and a message, and `renderDiagnostics` shows a list of them
+  with the line and column of each, errors before warnings and each group by position, at most
+  `Limits.MAX_RENDERED_VIOLATIONS` per group. The subject and every message are escaped, so a report of hostile input
+  is safe to log.
 
 ### Changed
 

@@ -530,6 +530,23 @@ final class com.davils.kore.core.principal/PrincipalBuilder : com.davils.kore.co
 
 final class com.davils.kore.core.principal/PrincipalMissingException : kotlin/IllegalStateException // com.davils.kore.core.principal/PrincipalMissingException|null[0]
 
+final class com.davils.kore.core.text.diagnostic/Diagnostic { // com.davils.kore.core.text.diagnostic/Diagnostic|null[0]
+    constructor <init>(com.davils.kore.core.validation.violation/ViolationCode, com.davils.kore.core.validation.violation/Severity, com.davils.kore.core.text/TextRange, kotlin/String) // com.davils.kore.core.text.diagnostic/Diagnostic.<init>|<init>(com.davils.kore.core.validation.violation.ViolationCode;com.davils.kore.core.validation.violation.Severity;com.davils.kore.core.text.TextRange;kotlin.String){}[0]
+
+    final val code // com.davils.kore.core.text.diagnostic/Diagnostic.code|{}code[0]
+        final fun <get-code>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.text.diagnostic/Diagnostic.code.<get-code>|<get-code>(){}[0]
+    final val message // com.davils.kore.core.text.diagnostic/Diagnostic.message|{}message[0]
+        final fun <get-message>(): kotlin/String // com.davils.kore.core.text.diagnostic/Diagnostic.message.<get-message>|<get-message>(){}[0]
+    final val range // com.davils.kore.core.text.diagnostic/Diagnostic.range|{}range[0]
+        final fun <get-range>(): com.davils.kore.core.text/TextRange // com.davils.kore.core.text.diagnostic/Diagnostic.range.<get-range>|<get-range>(){}[0]
+    final val severity // com.davils.kore.core.text.diagnostic/Diagnostic.severity|{}severity[0]
+        final fun <get-severity>(): com.davils.kore.core.validation.violation/Severity // com.davils.kore.core.text.diagnostic/Diagnostic.severity.<get-severity>|<get-severity>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text.diagnostic/Diagnostic.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text.diagnostic/Diagnostic.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text.diagnostic/Diagnostic.toString|toString(){}[0]
+}
+
 final class com.davils.kore.core.text/LineMap { // com.davils.kore.core.text/LineMap|null[0]
     final val lineCount // com.davils.kore.core.text/LineMap.lineCount|{}lineCount[0]
         final fun <get-lineCount>(): kotlin/Int // com.davils.kore.core.text/LineMap.lineCount.<get-lineCount>|<get-lineCount>(){}[0]
@@ -1383,6 +1400,7 @@ final fun com.davils.kore.core.failure/containedFailure(kotlin/Throwable, kotlin
 final fun com.davils.kore.core.naming/nameRule(kotlin/Function1<com.davils.kore.core.naming/NameRuleBuilder, kotlin/Unit>): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/nameRule|nameRule(kotlin.Function1<com.davils.kore.core.naming.NameRuleBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
+final fun com.davils.kore.core.text.diagnostic/renderDiagnostics(kotlin/String, kotlin.collections/List<com.davils.kore.core.text.diagnostic/Diagnostic>, com.davils.kore.core.text/LineMap): kotlin/String // com.davils.kore.core.text.diagnostic/renderDiagnostics|renderDiagnostics(kotlin.String;kotlin.collections.List<com.davils.kore.core.text.diagnostic.Diagnostic>;com.davils.kore.core.text.LineMap){}[0]
 final fun com.davils.kore.core.text/closeMatches(kotlin/String, kotlin.collections/Iterable<kotlin/String>, kotlin/Int, kotlin/Int = ..., kotlin/Boolean = ...): kotlin.collections/List<kotlin/String> // com.davils.kore.core.text/closeMatches|closeMatches(kotlin.String;kotlin.collections.Iterable<kotlin.String>;kotlin.Int;kotlin.Int;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.text/closestMatch(kotlin/String, kotlin.collections/Iterable<kotlin/String>, kotlin/Int = ..., kotlin/Boolean = ...): kotlin/String? // com.davils.kore.core.text/closestMatch|closestMatch(kotlin.String;kotlin.collections.Iterable<kotlin.String>;kotlin.Int;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.text/editDistance(kotlin/CharSequence, kotlin/CharSequence, kotlin/Int): kotlin/Int // com.davils.kore.core.text/editDistance|editDistance(kotlin.CharSequence;kotlin.CharSequence;kotlin.Int){}[0]
