@@ -78,6 +78,21 @@ final enum class com.davils.kore.core.identity/UuidVersion : kotlin/Enum<com.dav
     final fun values(): kotlin/Array<com.davils.kore.core.identity/UuidVersion> // com.davils.kore.core.identity/UuidVersion.values|values#static(){}[0]
 }
 
+final enum class com.davils.kore.core.naming/CaseStyle : kotlin/Enum<com.davils.kore.core.naming/CaseStyle> { // com.davils.kore.core.naming/CaseStyle|null[0]
+    enum entry Camel // com.davils.kore.core.naming/CaseStyle.Camel|null[0]
+    enum entry Kebab // com.davils.kore.core.naming/CaseStyle.Kebab|null[0]
+    enum entry Pascal // com.davils.kore.core.naming/CaseStyle.Pascal|null[0]
+    enum entry ScreamingSnake // com.davils.kore.core.naming/CaseStyle.ScreamingSnake|null[0]
+    enum entry Snake // com.davils.kore.core.naming/CaseStyle.Snake|null[0]
+    enum entry Words // com.davils.kore.core.naming/CaseStyle.Words|null[0]
+
+    final val entries // com.davils.kore.core.naming/CaseStyle.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.naming/CaseStyle> // com.davils.kore.core.naming/CaseStyle.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.naming/CaseStyle // com.davils.kore.core.naming/CaseStyle.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.naming/CaseStyle> // com.davils.kore.core.naming/CaseStyle.values|values#static(){}[0]
+}
+
 final enum class com.davils.kore.core.naming/NameStart : kotlin/Enum<com.davils.kore.core.naming/NameStart> { // com.davils.kore.core.naming/NameStart|null[0]
     enum entry Letter // com.davils.kore.core.naming/NameStart.Letter|null[0]
     enum entry LetterOrDigit // com.davils.kore.core.naming/NameStart.LetterOrDigit|null[0]
@@ -1444,6 +1459,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_VERSION_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_VERSION_LENGTH.<get-MAX_VERSION_LENGTH>|<get-MAX_VERSION_LENGTH>(){}[0]
     final const val MAX_VIOLATIONS // com.davils.kore.core/Limits.MAX_VIOLATIONS|{}MAX_VIOLATIONS[0]
         final fun <get-MAX_VIOLATIONS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_VIOLATIONS.<get-MAX_VIOLATIONS>|<get-MAX_VIOLATIONS>(){}[0]
+    final const val MAX_WORDS_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_WORDS_TEXT_LENGTH|{}MAX_WORDS_TEXT_LENGTH[0]
+        final fun <get-MAX_WORDS_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_WORDS_TEXT_LENGTH.<get-MAX_WORDS_TEXT_LENGTH>|<get-MAX_WORDS_TEXT_LENGTH>(){}[0]
 }
 
 final val com.davils.kore.core.size/bytes // com.davils.kore.core.size/bytes|@kotlin.Int{}bytes[0]
@@ -1499,6 +1516,7 @@ final fun (com.davils.kore.core.version/SemanticVersion).com.davils.kore.core.ve
 final fun (kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>).com.davils.kore.core.text/mapOffset(kotlin/Int): kotlin/Int // com.davils.kore.core.text/mapOffset|mapOffset@kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>(kotlin.Int){}[0]
 final fun (kotlin/CharSequence).com.davils.kore.core.text/edited(kotlin.collections/Iterable<com.davils.kore.core.text/TextEdit>): kotlin/String // com.davils.kore.core.text/edited|edited@kotlin.CharSequence(kotlin.collections.Iterable<com.davils.kore.core.text.TextEdit>){}[0]
 final fun (kotlin/CharSequence).com.davils.kore.core.text/withLineBreaks(com.davils.kore.core.text/LineBreak = ...): kotlin/String // com.davils.kore.core.text/withLineBreaks|withLineBreaks@kotlin.CharSequence(com.davils.kore.core.text.LineBreak){}[0]
+final fun (kotlin/String).com.davils.kore.core.naming/toCase(com.davils.kore.core.naming/CaseStyle): kotlin/String // com.davils.kore.core.naming/toCase|toCase@kotlin.String(com.davils.kore.core.naming.CaseStyle){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersion(): com.davils.kore.core.version/SemanticVersion // com.davils.kore.core.version/toSemanticVersion|toSemanticVersion@kotlin.String(){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionOrNull(): com.davils.kore.core.version/SemanticVersion? // com.davils.kore.core.version/toSemanticVersionOrNull|toSemanticVersionOrNull@kotlin.String(){}[0]
 final fun (kotlin/String).com.davils.kore.core.version/toSemanticVersionRange(): com.davils.kore.core.version/SemanticVersionRange // com.davils.kore.core.version/toSemanticVersionRange|toSemanticVersionRange@kotlin.String(){}[0]
@@ -1523,6 +1541,7 @@ final fun <#A: kotlin/Comparable<#A>> (com.davils.kore.core.validation/Validatio
 final fun <#A: kotlin/Comparable<#A>> (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/inRange(kotlin.reflect/KProperty<*>, #A, kotlin.ranges/ClosedRange<#A>): kotlin/Boolean // com.davils.kore.core.validation/inRange|inRange@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;0:0;kotlin.ranges.ClosedRange<0:0>){0§<kotlin.Comparable<0:0>>}[0]
 final fun com.davils.kore.core.failure/containedFailure(kotlin/Throwable, kotlin/Boolean): kotlin/Throwable // com.davils.kore.core.failure/containedFailure|containedFailure(kotlin.Throwable;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.naming/nameRule(kotlin/Function1<com.davils.kore.core.naming/NameRuleBuilder, kotlin/Unit>): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/nameRule|nameRule(kotlin.Function1<com.davils.kore.core.naming.NameRuleBuilder,kotlin.Unit>){}[0]
+final fun com.davils.kore.core.naming/words(kotlin/String): kotlin.collections/List<kotlin/String> // com.davils.kore.core.naming/words|words(kotlin.String){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.text.diagnostic/renderDiagnostics(kotlin/String, kotlin.collections/List<com.davils.kore.core.text.diagnostic/Diagnostic>, com.davils.kore.core.text/LineMap): kotlin/String // com.davils.kore.core.text.diagnostic/renderDiagnostics|renderDiagnostics(kotlin.String;kotlin.collections.List<com.davils.kore.core.text.diagnostic.Diagnostic>;com.davils.kore.core.text.LineMap){}[0]

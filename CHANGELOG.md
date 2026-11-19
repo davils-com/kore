@@ -101,6 +101,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Clocks for tests.** `kore-testing` publishes `TestClock`, a `Clock` that stands still until a test advances it,
   with a monotonic `timeSource` that moves with it, and `TimeSource.asClock`, which turns any time source, such as the
   virtual time of a coroutine test, into a clock.
+- **Case styles.** The `@DavilsExperimental` function `words` in `com.davils.kore.core.naming` splits a name such as
+  `HTTPServerError2` into its lower-case words, and `toCase` writes a name in `CaseStyle.Camel`, `Pascal`, `Kebab`,
+  `Snake`, `ScreamingSnake` or `Words`. Only ASCII letters change case, so the result is the same in every locale,
+  and text longer than the new `Limits.MAX_WORDS_TEXT_LENGTH` is refused.
 
 ### Changed
 

@@ -39,6 +39,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_VALUES_PER_PARAMETER I
 	public static final field MAX_VERSION_LENGTH I
 	public static final field MAX_VIOLATIONS I
+	public static final field MAX_WORDS_TEXT_LENGTH I
 }
 
 public abstract interface annotation class com/davils/kore/core/annotation/DavilsDsl : java/lang/annotation/Annotation {
@@ -668,6 +669,18 @@ public final class com/davils/kore/core/identity/generator/UuidV7Generator : com
 	public fun next ()Lcom/davils/kore/core/identity/UuidV7;
 }
 
+public final class com/davils/kore/core/naming/CaseStyle : java/lang/Enum {
+	public static final field Camel Lcom/davils/kore/core/naming/CaseStyle;
+	public static final field Kebab Lcom/davils/kore/core/naming/CaseStyle;
+	public static final field Pascal Lcom/davils/kore/core/naming/CaseStyle;
+	public static final field ScreamingSnake Lcom/davils/kore/core/naming/CaseStyle;
+	public static final field Snake Lcom/davils/kore/core/naming/CaseStyle;
+	public static final field Words Lcom/davils/kore/core/naming/CaseStyle;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/naming/CaseStyle;
+	public static fun values ()[Lcom/davils/kore/core/naming/CaseStyle;
+}
+
 public final class com/davils/kore/core/naming/NameRule {
 	public static final field Companion Lcom/davils/kore/core/naming/NameRule$Companion;
 	public final fun getExample ()Ljava/lang/String;
@@ -721,6 +734,11 @@ public final class com/davils/kore/core/naming/NameValidationsKt {
 public final class com/davils/kore/core/naming/NameViolationCodes {
 	public static final field INSTANCE Lcom/davils/kore/core/naming/NameViolationCodes;
 	public final fun getINVALID_NAME-J_S2PC0 ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/naming/WordsKt {
+	public static final fun toCase (Ljava/lang/String;Lcom/davils/kore/core/naming/CaseStyle;)Ljava/lang/String;
+	public static final fun words (Ljava/lang/String;)Ljava/util/List;
 }
 
 public abstract interface class com/davils/kore/core/outcome/Outcome {

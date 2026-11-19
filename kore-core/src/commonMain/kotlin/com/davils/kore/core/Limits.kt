@@ -315,4 +315,13 @@ public object Limits {
      * @since 2.1.0
      */
     public const val MAX_DATA_SIZE_TEXT_LENGTH: Int = 32
+
+    /**
+     * The longest text, in UTF-16 code units, that is split into words or written in another case style.
+     *
+     * [com.davils.kore.core.naming.words] refuses a longer text with an [IllegalArgumentException] before it reads it.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_WORDS_TEXT_LENGTH: Int = 1_024
 }
