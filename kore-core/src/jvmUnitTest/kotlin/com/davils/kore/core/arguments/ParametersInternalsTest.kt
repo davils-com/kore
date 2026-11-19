@@ -41,7 +41,6 @@ import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
-import kotlin.coroutines.cancellation.CancellationException
 
 private const val LATE: String = "--late"
 private const val NAME: String = "--name"
@@ -78,10 +77,14 @@ class ParametersInternalsTest : FunSpec({
             shouldThrow<StackOverflowError> { Exhausting().load(listOf("--value=x"), NO_ENVIRONMENT) }
         }
 
-        test("a cancellation thrown by a source escapes the load") {
-            shouldThrow<CancellationException> {
+        test("a cancellation thrown by a source while its caller runs is reported as an unavailable source") {
+            val failure = shouldThrow<ParameterException> {
                 FromSources().load(emptyList(), listOf(CancellingSource()), NO_ENVIRONMENT)
             }
+
+            val unavailable = failure.violations.filterIsInstance<ParameterViolation.SourceUnavailable>()
+            val plain = unavailable.first { violation -> !violation.parameter.isSensitive }
+            plain.cause.shouldBeInstanceOf<IllegalStateException>()
         }
     }
 

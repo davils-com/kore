@@ -28,6 +28,7 @@ import com.davils.kore.core.arguments.resolution.fixture.CarelessSecret
 import com.davils.kore.core.arguments.resolution.fixture.CountingSource
 import com.davils.kore.core.arguments.resolution.fixture.FailingSource
 import com.davils.kore.core.arguments.resolution.fixture.FakeVault
+import com.davils.kore.core.arguments.resolution.fixture.HangingSource
 import com.davils.kore.core.arguments.resolution.fixture.NamelessSource
 import com.davils.kore.core.arguments.resolution.fixture.Unfinished
 import io.kotest.assertions.throwables.shouldThrow
@@ -38,6 +39,10 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldEndWith
 import io.kotest.matchers.string.shouldNotContain
 import io.kotest.matchers.types.shouldBeInstanceOf
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 private const val PLACEHOLDER: String = "placeholder-secret-value"
 private const val REFUSED: String = "connection refused"
@@ -116,6 +121,19 @@ class ParametersContainmentTest : FunSpec({
             val secret = unavailable.first { violation -> violation.parameter.isSensitive }
             secret.cause.shouldBeInstanceOf<RedactedException>().originalType shouldEndWith
                 "IllegalStateException"
+        }
+    }
+
+    context("a value source that is still reading when the load is cancelled") {
+        test("passes the cancellation on instead of reporting the source as unavailable") {
+            coroutineScope {
+                val loading = launch(start = CoroutineStart.UNDISPATCHED) {
+                    FromSources().load(emptyList(), listOf(HangingSource()), NO_ENVIRONMENT)
+                }
+                loading.cancelAndJoin()
+
+                loading.isCancelled shouldBe true
+            }
         }
     }
 

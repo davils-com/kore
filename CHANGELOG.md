@@ -29,6 +29,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   only the cancellation of its own caller; a cancellation from anywhere else becomes an `IllegalStateException` with
   it as the cause, so it cannot end the caller silently. `rethrowIfFatal` applies the same rule to a throwable.
 
+### Changed
+
+- **A value source no longer ends a load with a cancellation that is not the caller's.** A
+  `CancellationException` that `ValueSource.read` throws while the loading coroutine is still active, such as one
+  from an expired `withTimeout` inside the source, is reported as `ParameterViolation.SourceUnavailable` with an
+  `IllegalStateException` as the cause. Before, it ended the load as if the caller had been cancelled, and no
+  handler saw the failure. The cancellation of the caller itself still escapes unchanged.
+
 ## 2.0.0 - 2026-11-18
 
 ### Added

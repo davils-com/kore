@@ -73,7 +73,8 @@ import kotlin.reflect.KProperty
  * reported as a violation, an [Error] such as an [AssertionError] or a [NotImplementedError] included, and for a
  * sensitive parameter it is kept only as a
  * [com.davils.kore.core.arguments.report.RedactedException] or not at all. Only a
- * [kotlin.coroutines.cancellation.CancellationException] and, on the JVM, an `InterruptedException`, which is rethrown
+ * [kotlin.coroutines.cancellation.CancellationException], from a value source only once the loading coroutine is
+ * cancelled, and, on the JVM, an `InterruptedException`, which is rethrown
  * with the interrupt flag of the thread restored, and a `VirtualMachineError`, such as an `OutOfMemoryError` or a
  * `StackOverflowError`, escape the load unchanged.
  *
@@ -231,7 +232,9 @@ public abstract class Parameters(
      * any value. A source that throws, from [ValueSource.read] or from its name, is reported as
      * [ParameterViolation.SourceUnavailable] for each parameter it was to be asked for, which refuses the load; a
      * source whose name throws is not asked at all and is reported as `source` followed by its position in [sources],
-     * counted from 1.
+     * counted from 1. A [kotlin.coroutines.cancellation.CancellationException] that [ValueSource.read] throws while the
+     * calling coroutine is still active does not come from the caller and is reported the same way, with an
+     * [IllegalStateException] as the cause.
      *
      * @param argv the command line arguments, without the name of the program.
      * @param sources the sources asked for the values the command line and the environment do not give.

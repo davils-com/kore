@@ -25,10 +25,12 @@ package com.davils.kore.core.arguments
  * checked against the limits of the schema, converted and validated like a command line argument, and whatever it
  * throws, from [read] or from [name], is reported as a
  * [com.davils.kore.core.arguments.report.ParameterViolation.SourceUnavailable] that refuses the load, unless it is
- * an [InterruptedException], a [kotlin.coroutines.cancellation.CancellationException] or a [VirtualMachineError]. For
- * a sensitive parameter that violation keeps only the class name of the exception, so a source must not rely on its
- * own exception reaching a log. A source that is shared between schemas loaded at the same time must be safe to call
- * from several coroutines at once.
+ * an [InterruptedException], a [kotlin.coroutines.cancellation.CancellationException] or a [VirtualMachineError]. A
+ * cancellation that [read] throws while the loading coroutine is still active does not come from that coroutine and
+ * is reported as unavailable as well, with an [IllegalStateException] as the cause. For a sensitive parameter that
+ * violation keeps only the class name of the exception, so a source must not rely on its own exception reaching a
+ * log. A source that is shared between schemas loaded at the same time must be safe to call from several coroutines
+ * at once.
  *
  * @since 1.0.0
  */
@@ -49,10 +51,13 @@ public interface ValueSource {
      * Returns the value of [parameter] from this source, or `null` when the source has none.
      *
      * An empty string is a value, unlike an empty environment variable. The call runs in the coroutine that loads the
-     * schema, and Kore applies no timeout to it. A source that cannot answer throws; an [InterruptedException], a
-     * [kotlin.coroutines.cancellation.CancellationException] or a [VirtualMachineError] escapes the load instead of
-     * becoming a violation. When [ParameterInfo.isSensitive] is `true` the returned text is a secret, and the
-     * source must keep it out of its own logs and exceptions.
+     * schema, and Kore applies no timeout to it. A source that cannot answer throws; an [InterruptedException] or a
+     * [VirtualMachineError] escapes the load instead of becoming a violation, and so does a
+     * [kotlin.coroutines.cancellation.CancellationException] once the loading coroutine is cancelled. A cancellation
+     * thrown while that coroutine is still active, such as one from an expired `withTimeout` inside the source, is
+     * reported as unavailable with an [IllegalStateException] as the cause, so it cannot end the load silently. When
+     * [ParameterInfo.isSensitive] is `true` the returned text is a secret, and the source must keep it out of its own
+     * logs and exceptions.
      *
      * @param parameter what the schema declares about the parameter whose value is asked for.
      * @return the value as text, or `null` when this source has no value for the parameter.

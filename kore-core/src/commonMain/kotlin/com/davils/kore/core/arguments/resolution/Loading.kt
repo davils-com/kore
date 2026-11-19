@@ -27,6 +27,7 @@ import com.davils.kore.core.arguments.report.ParameterException
 import com.davils.kore.core.arguments.report.ParameterViolation
 import com.davils.kore.core.arguments.report.ValueOrigin
 import com.davils.kore.core.arguments.report.renderUsage
+import com.davils.kore.core.failure.attempted
 import com.davils.kore.core.failure.contained
 import com.davils.kore.core.immutableList
 import com.davils.kore.core.validation.violation.Severity
@@ -138,7 +139,7 @@ private suspend fun readFrom(
     failures: MutableList<ParameterViolation>,
 ) {
     for (spec in pending) {
-        val result = contained { source.read(spec.info) }
+        val result = attempted { source.read(spec.info) }
         result.exceptionOrNull()?.let { cause ->
             failures += ParameterViolation.SourceUnavailable(spec.info, origin.sourceName, cause)
         }
