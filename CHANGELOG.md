@@ -34,6 +34,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `when` covers without `else`, and covariant type parameters. `map`, `mapFailure`, `flatMap`, `recover`, `fold`,
   `onSuccess`, `onFailure`, `getOrElse`, `getOrNull`, `failureOrNull` and `getOrThrow` work on it, and
   `Result.toOutcome` converts a `Result`. Its `toString` escapes the value and the failure.
+- **Duplicates and unchangeable copies of collections.** `duplicates`, `duplicatesBy` and `firstDuplicateOrNull` in
+  `com.davils.kore.core.collection` find the elements or keys that occur more than once, in the order of their second
+  occurrence and in linear time. The `@DavilsInternal` functions `immutableList`, `immutableSet` and `immutableMap`
+  give the Davils libraries the copies Kore stores its own public collections in, which no caller can change through
+  a cast, and `kore-testing` uses them instead of a copy of its own.
 
 ### Changed
 

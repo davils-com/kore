@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
+@file:OptIn(DavilsInternal::class)
+
 package com.davils.kore.testing
+
+import com.davils.kore.core.annotation.DavilsInternal
+import com.davils.kore.core.collection.immutableList
 
 /**
  * Returns whether [text] can be shown to a person as it is: whether it contains no code point that could forge a line
@@ -49,5 +54,5 @@ public fun isSafeToShow(text: String, allowTabs: Boolean = false): Boolean {
 public fun unsafeCodePointsIn(text: String, allowTabs: Boolean = false): List<String> {
     val unsafe = codePointsOf(text).filter { codePoint -> isUnsafeToShow(codePoint, allowTabs) }
     val notations = unsafe.map { codePoint -> notationOf(codePoint) }
-    return notations.immutableCopy()
+    return notations.immutableList()
 }

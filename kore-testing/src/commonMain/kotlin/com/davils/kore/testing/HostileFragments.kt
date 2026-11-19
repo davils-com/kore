@@ -14,7 +14,12 @@
  * limitations under the License.
  */
 
+@file:OptIn(DavilsInternal::class)
+
 package com.davils.kore.testing
+
+import com.davils.kore.core.annotation.DavilsInternal
+import com.davils.kore.core.collection.immutableList
 
 private const val HIGH_SURROGATE: Int = 0xD800
 private const val LOW_SURROGATE: Int = 0xDC00
@@ -200,5 +205,5 @@ public object HostileFragments {
         CLEAR_SCREEN, CLIPBOARD_WRITE, FORGED_LOG_LINE, COMBINING_GRAPHEME_JOINER, HANGUL_FILLER,
         HALFWIDTH_HANGUL_FILLER, HANGUL_CHOSEONG_FILLER, KHMER_VOWEL_INHERENT_AQ, MONGOLIAN_VARIATION_SELECTOR,
         MONGOLIAN_VARIATION_SELECTOR_FOUR, COMBINING_LONG_SOLIDUS, HEBREW_ALEF,
-    ).immutableCopy()
+    ).immutableList()
 }

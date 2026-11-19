@@ -501,6 +501,19 @@ public final class com/davils/kore/core/arguments/report/ValueOrigin$External : 
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/davils/kore/core/collection/DuplicatesKt {
+	public static final fun duplicates (Ljava/lang/Iterable;)Ljava/util/Set;
+	public static final fun duplicatesBy (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/util/Set;
+	public static final fun firstDuplicateOrNull (Ljava/lang/Iterable;)Ljava/lang/Object;
+	public static final fun readOnlySetOf (Ljava/util/Set;)Ljava/util/Set;
+}
+
+public final class com/davils/kore/core/collection/ImmutablesKt {
+	public static final fun immutableList (Ljava/util/Collection;)Ljava/util/List;
+	public static final fun immutableMap (Ljava/util/Map;)Ljava/util/Map;
+	public static final fun immutableSet (Ljava/util/Collection;)Ljava/util/Set;
+}
+
 public final class com/davils/kore/core/concurrency/BlockingKt {
 	public static final fun blocking (Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun blocking$default (Lkotlinx/coroutines/CoroutineDispatcher;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;

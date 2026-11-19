@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
+@file:OptIn(DavilsInternal::class)
+
 package com.davils.kore.testing
 
+import com.davils.kore.core.annotation.DavilsInternal
+import com.davils.kore.core.collection.immutableList
 import com.davils.kore.core.text.TextRange
 
 /**
@@ -52,7 +56,7 @@ public class MarkedText(
      *
      * @since 1.0.0
      */
-    public val carets: List<Int> = carets.immutableCopy()
+    public val carets: List<Int> = carets.immutableList()
 
     /**
      * The marked ranges of [text]; [MarkedText.of] sorts them by start and then by end.
@@ -62,7 +66,7 @@ public class MarkedText(
      *
      * @since 1.0.0
      */
-    public val ranges: List<TextRange> = ranges.immutableCopy()
+    public val ranges: List<TextRange> = ranges.immutableList()
 
     /**
      * The offset of the only caret, for the common test with exactly one.
