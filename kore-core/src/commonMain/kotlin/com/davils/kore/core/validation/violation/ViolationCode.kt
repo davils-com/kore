@@ -17,10 +17,9 @@
 package com.davils.kore.core.validation.violation
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.naming.NameRule
 import com.davils.kore.core.text.internal.SafeDisplay
 import kotlin.jvm.JvmInline
-
-private val codePattern = Regex("[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+")
 
 /**
  * A stable, machine readable name for a kind of violation, such as `kore.validation.required`.
@@ -40,7 +39,7 @@ private val codePattern = Regex("[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)+")
 @JvmInline
 public value class ViolationCode(public val value: String) {
     init {
-        require(value.length <= Limits.MAX_DISPLAY_LENGTH && codePattern.matches(value)) {
+        require(NameRule.QUALIFIED.matches(value)) {
             "A violation code is a dotted name in lower case such as kore.validation.invalid, " +
                 "but was ${SafeDisplay.quoted(value)}"
         }
