@@ -81,6 +81,38 @@ public class ValidationScope internal constructor(
     }
 
     /**
+     * Reports an error at the current path, like [fail], and returns `null`, so a branch that refuses a value can
+     * produce the missing result in the same expression, such as `val port = text.toIntOrNull() ?: reject("must be
+     * a number")`.
+     *
+     * @param message what is wrong; text from the validated input may be part of it and is escaped when shown, but a
+     * secret must never be.
+     * @param code the stable name of the kind of problem; [ViolationCode.INVALID] unless given.
+     * @return `null`, always.
+     * @since 2.1.0
+     */
+    public fun reject(message: String, code: ViolationCode = defaultCode): Nothing? {
+        fail(message = message, code = code)
+        return null
+    }
+
+    /**
+     * Reports an error at [property] below the current path, like [fail], and returns `null`, so a branch that
+     * refuses a value can produce the missing result in the same expression.
+     *
+     * @param property the property that is wrong; only its name is used.
+     * @param message what is wrong; text from the validated input may be part of it and is escaped when shown, but a
+     * secret must never be.
+     * @param code the stable name of the kind of problem; [ViolationCode.INVALID] unless given.
+     * @return `null`, always.
+     * @since 2.1.0
+     */
+    public fun reject(property: KProperty<*>, message: String, code: ViolationCode = defaultCode): Nothing? {
+        fail(property = property, message = message, code = code)
+        return null
+    }
+
+    /**
      * Reports a warning at the current path, which leaves the validated value valid.
      *
      * @param message what is questionable; text from the validated input may be part of it and is escaped when shown,

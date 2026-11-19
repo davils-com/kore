@@ -18,7 +18,6 @@ package com.davils.kore.core.version
 
 import com.davils.kore.core.outcome.Outcome
 import com.davils.kore.core.validation.ValidationScope
-import com.davils.kore.core.validation.violation.ViolationCode
 import com.davils.kore.core.version.grammar.readVersion
 import kotlin.reflect.KProperty
 
@@ -40,7 +39,7 @@ public fun ValidationScope.semanticVersion(property: KProperty<*>, text: String)
     when (val reading = readVersion(text)) {
         is Outcome.Success -> reading.value
 
-        is Outcome.Failure -> refused(
+        is Outcome.Failure -> reject(
             property = property,
             message = "is not a semantic version: it ${reading.failure}",
             code = VersionViolationCodes.INVALID_VERSION,
@@ -67,15 +66,10 @@ public fun ValidationScope.semanticVersionRange(property: KProperty<*>, text: St
         text = text,
         read = { range -> range },
         refused = { reason ->
-            refused(
+            reject(
                 property = property,
                 message = "is not a version range: it $reason",
                 code = VersionViolationCodes.INVALID_RANGE,
             )
         },
     )
-
-private fun ValidationScope.refused(property: KProperty<*>, message: String, code: ViolationCode): Nothing? {
-    fail(property = property, message = message, code = code)
-    return null
-}

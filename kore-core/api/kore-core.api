@@ -1047,6 +1047,10 @@ public final class com/davils/kore/core/validation/ValidationScope {
 	public static synthetic fun fail-TwHb4yM$default (Lcom/davils/kore/core/validation/ValidationScope;Lkotlin/reflect/KProperty;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public final fun include (Ljava/util/List;Lcom/davils/kore/core/validation/violation/ViolationPath;)V
 	public static synthetic fun include$default (Lcom/davils/kore/core/validation/ValidationScope;Ljava/util/List;Lcom/davils/kore/core/validation/violation/ViolationPath;ILjava/lang/Object;)V
+	public final fun reject-9mR0qDc (Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Void;
+	public static synthetic fun reject-9mR0qDc$default (Lcom/davils/kore/core/validation/ValidationScope;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/Void;
+	public final fun reject-TwHb4yM (Lkotlin/reflect/KProperty;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Void;
+	public static synthetic fun reject-TwHb4yM$default (Lcom/davils/kore/core/validation/ValidationScope;Lkotlin/reflect/KProperty;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ljava/lang/Void;
 	public final fun warn-9mR0qDc (Ljava/lang/String;Ljava/lang/String;)V
 	public static synthetic fun warn-9mR0qDc$default (Lcom/davils/kore/core/validation/ValidationScope;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)V
 	public final fun warn-TwHb4yM (Lkotlin/reflect/KProperty;Ljava/lang/String;Ljava/lang/String;)V

@@ -66,6 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `parseLongOrNull` in `com.davils.kore.core` read an optional `-` and ASCII digits only, and return `null` for
   everything `String.toIntOrNull` would also accept, such as a leading `+` or the digits of other scripts, for text
   longer than `Limits.MAX_NUMERIC_TEXT_LENGTH` and, if asked, for leading zeros.
+- **`ValidationScope.reject`.** It reports an error like `fail` and returns `null`, so a validation that reads a value
+  can refuse it in the same expression, such as `text.toIntOrNull() ?: reject(Server::port, "must be a number")`.
 
 ### Changed
 

@@ -61,6 +61,22 @@ class ValidationScopeTest : FunSpec({
         }
     }
 
+    context("rejecting") {
+        test("reports an error at the root or at a property and gives null") {
+            val given = mutableListOf<Int?>()
+
+            val result = report {
+                given += reject(NOT_EMPTY)
+                given += reject(property = Shape::level, message = UNKNOWN_LEVEL, code = ownCode)
+            }
+
+            given shouldContainExactly listOf(null, null)
+            result.paths() shouldContainExactly listOf("", "level")
+            result.violations.map { violation -> violation.code } shouldContainExactly
+                listOf(ViolationCode.INVALID, ownCode)
+        }
+    }
+
     context("codes") {
         test("uses the default code unless one is given") {
             report { fail(NOT_EMPTY) }.violations.single().code shouldBe ViolationCode.INVALID
