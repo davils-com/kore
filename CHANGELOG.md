@@ -113,6 +113,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `com.davils.kore.core.platform`, on the JVM only, reads `os.name` and `os.arch` into an `OperatingSystem` and an
   `Architecture` with their common aliases and a classifier such as `linux-x64`, for choosing a native library. An
   unknown or malformed name gives `null`, so an unknown host is refused instead of guessed.
+- **Text from bytes.** The `@DavilsExperimental` function `decodeText` in `com.davils.kore.core.text.encoding`
+  reads bytes in UTF-8, UTF-16 or UTF-32 of either byte order, detected by `TextEncoding.detect` from a byte order
+  mark or the zero bytes of a first ASCII character, as YAML and XML do. Its own strict decoders give the same result
+  on every platform and refuse overlong sequences, encoded or unpaired surrogates, values beyond U+10FFFF and
+  truncated characters with a `DecodingFailure` that names the offset and never the bytes. More than the new
+  `Limits.MAX_DECODED_TEXT_BYTES` are refused before any is read.
 
 ### Changed
 

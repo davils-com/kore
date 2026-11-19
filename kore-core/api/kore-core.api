@@ -22,6 +22,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_ATTRIBUTE_VALUE_LENGTH I
 	public static final field MAX_DATA_SIZE_TEXT_LENGTH I
 	public static final field MAX_DECIMAL_TEXT_LENGTH I
+	public static final field MAX_DECODED_TEXT_BYTES I
 	public static final field MAX_DELEGATION_CHAIN I
 	public static final field MAX_DISPLAY_LENGTH I
 	public static final field MAX_EDIT_DISTANCE_LENGTH I
@@ -1162,6 +1163,48 @@ public final class com/davils/kore/core/text/diagnostic/Diagnostic {
 
 public final class com/davils/kore/core/text/diagnostic/DiagnosticRenderingKt {
 	public static final fun renderDiagnostics (Ljava/lang/String;Ljava/util/List;Lcom/davils/kore/core/text/LineMap;)Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/text/encoding/DecodedText {
+	public fun <init> (Ljava/lang/String;Lcom/davils/kore/core/text/encoding/TextEncoding;Z)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEncoding ()Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public final fun getHasByteOrderMark ()Z
+	public final fun getText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/text/encoding/DecodingFailure {
+	public fun <init> (JLcom/davils/kore/core/text/encoding/TextEncoding;Ljava/lang/String;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEncoding ()Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public final fun getOffset ()J
+	public final fun getReason ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/text/encoding/TextDecodingKt {
+	public static final fun decodeText ([BLcom/davils/kore/core/text/encoding/TextEncoding;)Lcom/davils/kore/core/outcome/Outcome;
+	public static synthetic fun decodeText$default ([BLcom/davils/kore/core/text/encoding/TextEncoding;ILjava/lang/Object;)Lcom/davils/kore/core/outcome/Outcome;
+}
+
+public final class com/davils/kore/core/text/encoding/TextEncoding : java/lang/Enum {
+	public static final field Companion Lcom/davils/kore/core/text/encoding/TextEncoding$Companion;
+	public static final field Utf16Be Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public static final field Utf16Le Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public static final field Utf32Be Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public static final field Utf32Le Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public static final field Utf8 Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public final fun getByteOrderMarkLength ()I
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/davils/kore/core/text/encoding/TextEncoding;
+	public static fun values ()[Lcom/davils/kore/core/text/encoding/TextEncoding;
+}
+
+public final class com/davils/kore/core/text/encoding/TextEncoding$Companion {
+	public final fun detect ([B)Lcom/davils/kore/core/text/encoding/TextEncoding;
 }
 
 public final class com/davils/kore/core/time/Backoff {

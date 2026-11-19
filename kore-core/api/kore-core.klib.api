@@ -116,6 +116,26 @@ final enum class com.davils.kore.core.principal/PrincipalKind : kotlin/Enum<com.
     final fun values(): kotlin/Array<com.davils.kore.core.principal/PrincipalKind> // com.davils.kore.core.principal/PrincipalKind.values|values#static(){}[0]
 }
 
+final enum class com.davils.kore.core.text.encoding/TextEncoding : kotlin/Enum<com.davils.kore.core.text.encoding/TextEncoding> { // com.davils.kore.core.text.encoding/TextEncoding|null[0]
+    enum entry Utf16Be // com.davils.kore.core.text.encoding/TextEncoding.Utf16Be|null[0]
+    enum entry Utf16Le // com.davils.kore.core.text.encoding/TextEncoding.Utf16Le|null[0]
+    enum entry Utf32Be // com.davils.kore.core.text.encoding/TextEncoding.Utf32Be|null[0]
+    enum entry Utf32Le // com.davils.kore.core.text.encoding/TextEncoding.Utf32Le|null[0]
+    enum entry Utf8 // com.davils.kore.core.text.encoding/TextEncoding.Utf8|null[0]
+
+    final val byteOrderMarkLength // com.davils.kore.core.text.encoding/TextEncoding.byteOrderMarkLength|{}byteOrderMarkLength[0]
+        final fun <get-byteOrderMarkLength>(): kotlin/Int // com.davils.kore.core.text.encoding/TextEncoding.byteOrderMarkLength.<get-byteOrderMarkLength>|<get-byteOrderMarkLength>(){}[0]
+    final val entries // com.davils.kore.core.text.encoding/TextEncoding.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<com.davils.kore.core.text.encoding/TextEncoding> // com.davils.kore.core.text.encoding/TextEncoding.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): com.davils.kore.core.text.encoding/TextEncoding // com.davils.kore.core.text.encoding/TextEncoding.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<com.davils.kore.core.text.encoding/TextEncoding> // com.davils.kore.core.text.encoding/TextEncoding.values|values#static(){}[0]
+
+    final object Companion { // com.davils.kore.core.text.encoding/TextEncoding.Companion|null[0]
+        final fun detect(kotlin/ByteArray): com.davils.kore.core.text.encoding/TextEncoding // com.davils.kore.core.text.encoding/TextEncoding.Companion.detect|detect(kotlin.ByteArray){}[0]
+    }
+}
+
 final enum class com.davils.kore.core.text/LineBreak : kotlin/Enum<com.davils.kore.core.text/LineBreak> { // com.davils.kore.core.text/LineBreak|null[0]
     enum entry Cr // com.davils.kore.core.text/LineBreak.Cr|null[0]
     enum entry CrLf // com.davils.kore.core.text/LineBreak.CrLf|null[0]
@@ -619,6 +639,36 @@ final class com.davils.kore.core.text.diagnostic/Diagnostic { // com.davils.kore
     final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text.diagnostic/Diagnostic.equals|equals(kotlin.Any?){}[0]
     final fun hashCode(): kotlin/Int // com.davils.kore.core.text.diagnostic/Diagnostic.hashCode|hashCode(){}[0]
     final fun toString(): kotlin/String // com.davils.kore.core.text.diagnostic/Diagnostic.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.text.encoding/DecodedText { // com.davils.kore.core.text.encoding/DecodedText|null[0]
+    constructor <init>(kotlin/String, com.davils.kore.core.text.encoding/TextEncoding, kotlin/Boolean) // com.davils.kore.core.text.encoding/DecodedText.<init>|<init>(kotlin.String;com.davils.kore.core.text.encoding.TextEncoding;kotlin.Boolean){}[0]
+
+    final val encoding // com.davils.kore.core.text.encoding/DecodedText.encoding|{}encoding[0]
+        final fun <get-encoding>(): com.davils.kore.core.text.encoding/TextEncoding // com.davils.kore.core.text.encoding/DecodedText.encoding.<get-encoding>|<get-encoding>(){}[0]
+    final val hasByteOrderMark // com.davils.kore.core.text.encoding/DecodedText.hasByteOrderMark|{}hasByteOrderMark[0]
+        final fun <get-hasByteOrderMark>(): kotlin/Boolean // com.davils.kore.core.text.encoding/DecodedText.hasByteOrderMark.<get-hasByteOrderMark>|<get-hasByteOrderMark>(){}[0]
+    final val text // com.davils.kore.core.text.encoding/DecodedText.text|{}text[0]
+        final fun <get-text>(): kotlin/String // com.davils.kore.core.text.encoding/DecodedText.text.<get-text>|<get-text>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text.encoding/DecodedText.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text.encoding/DecodedText.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text.encoding/DecodedText.toString|toString(){}[0]
+}
+
+final class com.davils.kore.core.text.encoding/DecodingFailure { // com.davils.kore.core.text.encoding/DecodingFailure|null[0]
+    constructor <init>(kotlin/Long, com.davils.kore.core.text.encoding/TextEncoding, kotlin/String) // com.davils.kore.core.text.encoding/DecodingFailure.<init>|<init>(kotlin.Long;com.davils.kore.core.text.encoding.TextEncoding;kotlin.String){}[0]
+
+    final val encoding // com.davils.kore.core.text.encoding/DecodingFailure.encoding|{}encoding[0]
+        final fun <get-encoding>(): com.davils.kore.core.text.encoding/TextEncoding // com.davils.kore.core.text.encoding/DecodingFailure.encoding.<get-encoding>|<get-encoding>(){}[0]
+    final val offset // com.davils.kore.core.text.encoding/DecodingFailure.offset|{}offset[0]
+        final fun <get-offset>(): kotlin/Long // com.davils.kore.core.text.encoding/DecodingFailure.offset.<get-offset>|<get-offset>(){}[0]
+    final val reason // com.davils.kore.core.text.encoding/DecodingFailure.reason|{}reason[0]
+        final fun <get-reason>(): kotlin/String // com.davils.kore.core.text.encoding/DecodingFailure.reason.<get-reason>|<get-reason>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.text.encoding/DecodingFailure.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.text.encoding/DecodingFailure.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.text.encoding/DecodingFailure.toString|toString(){}[0]
 }
 
 final class com.davils.kore.core.text/LineMap { // com.davils.kore.core.text/LineMap|null[0]
@@ -1417,6 +1467,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_DATA_SIZE_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DATA_SIZE_TEXT_LENGTH.<get-MAX_DATA_SIZE_TEXT_LENGTH>|<get-MAX_DATA_SIZE_TEXT_LENGTH>(){}[0]
     final const val MAX_DECIMAL_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_DECIMAL_TEXT_LENGTH|{}MAX_DECIMAL_TEXT_LENGTH[0]
         final fun <get-MAX_DECIMAL_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DECIMAL_TEXT_LENGTH.<get-MAX_DECIMAL_TEXT_LENGTH>|<get-MAX_DECIMAL_TEXT_LENGTH>(){}[0]
+    final const val MAX_DECODED_TEXT_BYTES // com.davils.kore.core/Limits.MAX_DECODED_TEXT_BYTES|{}MAX_DECODED_TEXT_BYTES[0]
+        final fun <get-MAX_DECODED_TEXT_BYTES>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DECODED_TEXT_BYTES.<get-MAX_DECODED_TEXT_BYTES>|<get-MAX_DECODED_TEXT_BYTES>(){}[0]
     final const val MAX_DELEGATION_CHAIN // com.davils.kore.core/Limits.MAX_DELEGATION_CHAIN|{}MAX_DELEGATION_CHAIN[0]
         final fun <get-MAX_DELEGATION_CHAIN>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DELEGATION_CHAIN.<get-MAX_DELEGATION_CHAIN>|<get-MAX_DELEGATION_CHAIN>(){}[0]
     final const val MAX_DISPLAY_LENGTH // com.davils.kore.core/Limits.MAX_DISPLAY_LENGTH|{}MAX_DISPLAY_LENGTH[0]
@@ -1545,6 +1597,7 @@ final fun com.davils.kore.core.naming/words(kotlin/String): kotlin.collections/L
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Array<out kotlin/String>...): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Array<out|kotlin.String>...){}[0]
 final fun com.davils.kore.core.principal/principal(kotlin/String, kotlin/Function1<com.davils.kore.core.principal/PrincipalBuilder, kotlin/Unit>): com.davils.kore.core.principal/Principal // com.davils.kore.core.principal/principal|principal(kotlin.String;kotlin.Function1<com.davils.kore.core.principal.PrincipalBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.text.diagnostic/renderDiagnostics(kotlin/String, kotlin.collections/List<com.davils.kore.core.text.diagnostic/Diagnostic>, com.davils.kore.core.text/LineMap): kotlin/String // com.davils.kore.core.text.diagnostic/renderDiagnostics|renderDiagnostics(kotlin.String;kotlin.collections.List<com.davils.kore.core.text.diagnostic.Diagnostic>;com.davils.kore.core.text.LineMap){}[0]
+final fun com.davils.kore.core.text.encoding/decodeText(kotlin/ByteArray, com.davils.kore.core.text.encoding/TextEncoding = ...): com.davils.kore.core.outcome/Outcome<com.davils.kore.core.text.encoding/DecodedText, com.davils.kore.core.text.encoding/DecodingFailure> // com.davils.kore.core.text.encoding/decodeText|decodeText(kotlin.ByteArray;com.davils.kore.core.text.encoding.TextEncoding){}[0]
 final fun com.davils.kore.core.text/closeMatches(kotlin/String, kotlin.collections/Iterable<kotlin/String>, kotlin/Int, kotlin/Int = ..., kotlin/Boolean = ...): kotlin.collections/List<kotlin/String> // com.davils.kore.core.text/closeMatches|closeMatches(kotlin.String;kotlin.collections.Iterable<kotlin.String>;kotlin.Int;kotlin.Int;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.text/closestMatch(kotlin/String, kotlin.collections/Iterable<kotlin/String>, kotlin/Int = ..., kotlin/Boolean = ...): kotlin/String? // com.davils.kore.core.text/closestMatch|closestMatch(kotlin.String;kotlin.collections.Iterable<kotlin.String>;kotlin.Int;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.text/editDistance(kotlin/CharSequence, kotlin/CharSequence, kotlin/Int): kotlin/Int // com.davils.kore.core.text/editDistance|editDistance(kotlin.CharSequence;kotlin.CharSequence;kotlin.Int){}[0]

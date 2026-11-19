@@ -324,4 +324,14 @@ public object Limits {
      * @since 2.1.0
      */
     public const val MAX_WORDS_TEXT_LENGTH: Int = 1_024
+
+    /**
+     * The most bytes that are decoded into text.
+     *
+     * [com.davils.kore.core.text.encoding.decodeText] refuses more bytes with a failure before it reads any. The limit
+     * equals [MAX_LINE_MAP_LENGTH], so decoded text can always be indexed.
+     *
+     * @since 2.1.0
+     */
+    public const val MAX_DECODED_TEXT_BYTES: Int = 64 * 1_024 * 1_024
 }

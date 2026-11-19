@@ -40,6 +40,7 @@ module com.davils.kore.core {
     exports com.davils.kore.core.size;
     exports com.davils.kore.core.text;
     exports com.davils.kore.core.text.diagnostic;
+    exports com.davils.kore.core.text.encoding;
     exports com.davils.kore.core.time;
     exports com.davils.kore.core.validation;
     exports com.davils.kore.core.validation.report;
