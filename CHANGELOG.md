@@ -62,6 +62,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with the line and column of each, errors before warnings and each group by position, at most
   `Limits.MAX_RENDERED_VIOLATIONS` per group. The subject and every message are escaped, so a report of hostile input
   is safe to log.
+- **Strict integers for the libraries of Davils.** The `@DavilsInternal` functions `parseIntOrNull` and
+  `parseLongOrNull` in `com.davils.kore.core` read an optional `-` and ASCII digits only, and return `null` for
+  everything `String.toIntOrNull` would also accept, such as a leading `+` or the digits of other scripts, for text
+  longer than `Limits.MAX_NUMERIC_TEXT_LENGTH` and, if asked, for leading zeros.
 
 ### Changed
 

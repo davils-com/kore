@@ -2,6 +2,13 @@ public final class com/davils/kore/core/DecimalsKt {
 	public static final fun parseDecimalOrNull (Ljava/lang/String;)Ljava/lang/Double;
 }
 
+public final class com/davils/kore/core/IntegersKt {
+	public static final fun parseIntOrNull (Ljava/lang/String;Z)Ljava/lang/Integer;
+	public static synthetic fun parseIntOrNull$default (Ljava/lang/String;ZILjava/lang/Object;)Ljava/lang/Integer;
+	public static final fun parseLongOrNull (Ljava/lang/String;Z)Ljava/lang/Long;
+	public static synthetic fun parseLongOrNull$default (Ljava/lang/String;ZILjava/lang/Object;)Ljava/lang/Long;
+}
+
 public final class com/davils/kore/core/Limits {
 	public static final field INSTANCE Lcom/davils/kore/core/Limits;
 	public static final field MAX_ARGUMENTS I
