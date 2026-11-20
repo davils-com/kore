@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.1 - 2026-11-20
+
+### Fixed
+
+- **`kore-serialization` is published completely.** The upload of 2.3.0 stopped on a conflict of the repository in the
+  middle of the root publication of `kore-serialization`, so its `2.3.0` cannot be resolved. 2.3.1 publishes all three
+  modules again; `kore-core`, `kore-testing` and `kore-serialization` are unchanged from 2.3.0.
+
 ## 2.3.0 - 2026-11-20
 
 ### Added
