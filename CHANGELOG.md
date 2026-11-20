@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   finds keys by comparison in a balanced tree, never by hash code, so keys an attacker chose to collide cannot make
   lookups slow on the JVM or on Wasm. `OrderedMap` and `OrderedSet` build on it: they list their entries in the order
   the keys first came, and a removed key that comes back keeps its first place.
+- **A work budget for the libraries of Davils.** The `@DavilsInternal` class `WorkBudget` in the new package
+  `com.davils.kore.core.budget` counts the steps of one piece of work, such as a query, a diff or a merge, against a
+  maximum. `charge` throws a `WorkLimitException` that names the limit, escaped, and its maximum, but nothing of the
+  input; `tryCharge` reports the excess instead. A budget fails closed: once a charge fails, every later one fails,
+  and the sum of the steps never overflows.
 
 ## 2.1.1 - 2026-11-19
 

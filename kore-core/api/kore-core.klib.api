@@ -472,6 +472,32 @@ final class com.davils.kore.core.arguments/ParameterLimits { // com.davils.kore.
     final fun toString(): kotlin/String // com.davils.kore.core.arguments/ParameterLimits.toString|toString(){}[0]
 }
 
+final class com.davils.kore.core.budget/WorkBudget { // com.davils.kore.core.budget/WorkBudget|null[0]
+    constructor <init>(kotlin/Long, kotlin/String) // com.davils.kore.core.budget/WorkBudget.<init>|<init>(kotlin.Long;kotlin.String){}[0]
+
+    final val limit // com.davils.kore.core.budget/WorkBudget.limit|{}limit[0]
+        final fun <get-limit>(): kotlin/String // com.davils.kore.core.budget/WorkBudget.limit.<get-limit>|<get-limit>(){}[0]
+    final val maximum // com.davils.kore.core.budget/WorkBudget.maximum|{}maximum[0]
+        final fun <get-maximum>(): kotlin/Long // com.davils.kore.core.budget/WorkBudget.maximum.<get-maximum>|<get-maximum>(){}[0]
+    final val remaining // com.davils.kore.core.budget/WorkBudget.remaining|{}remaining[0]
+        final fun <get-remaining>(): kotlin/Long // com.davils.kore.core.budget/WorkBudget.remaining.<get-remaining>|<get-remaining>(){}[0]
+
+    final var isExhausted // com.davils.kore.core.budget/WorkBudget.isExhausted|{}isExhausted[0]
+        final fun <get-isExhausted>(): kotlin/Boolean // com.davils.kore.core.budget/WorkBudget.isExhausted.<get-isExhausted>|<get-isExhausted>(){}[0]
+    final var spent // com.davils.kore.core.budget/WorkBudget.spent|{}spent[0]
+        final fun <get-spent>(): kotlin/Long // com.davils.kore.core.budget/WorkBudget.spent.<get-spent>|<get-spent>(){}[0]
+
+    final fun charge(kotlin/Long = ...) // com.davils.kore.core.budget/WorkBudget.charge|charge(kotlin.Long){}[0]
+    final fun tryCharge(kotlin/Long = ...): kotlin/Boolean // com.davils.kore.core.budget/WorkBudget.tryCharge|tryCharge(kotlin.Long){}[0]
+}
+
+final class com.davils.kore.core.budget/WorkLimitException : kotlin/IllegalStateException { // com.davils.kore.core.budget/WorkLimitException|null[0]
+    final val limit // com.davils.kore.core.budget/WorkLimitException.limit|{}limit[0]
+        final fun <get-limit>(): kotlin/String // com.davils.kore.core.budget/WorkLimitException.limit.<get-limit>|<get-limit>(){}[0]
+    final val maximum // com.davils.kore.core.budget/WorkLimitException.maximum|{}maximum[0]
+        final fun <get-maximum>(): kotlin/Long // com.davils.kore.core.budget/WorkLimitException.maximum.<get-maximum>|<get-maximum>(){}[0]
+}
+
 final class com.davils.kore.core.concurrency/AdmissionGate { // com.davils.kore.core.concurrency/AdmissionGate|null[0]
     constructor <init>() // com.davils.kore.core.concurrency/AdmissionGate.<init>|<init>(){}[0]
 

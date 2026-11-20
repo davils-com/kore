@@ -518,6 +518,24 @@ public final class com/davils/kore/core/arguments/report/ValueOrigin$External : 
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/davils/kore/core/budget/WorkBudget {
+	public fun <init> (JLjava/lang/String;)V
+	public final fun charge (J)V
+	public static synthetic fun charge$default (Lcom/davils/kore/core/budget/WorkBudget;JILjava/lang/Object;)V
+	public final fun getLimit ()Ljava/lang/String;
+	public final fun getMaximum ()J
+	public final fun getRemaining ()J
+	public final fun getSpent ()J
+	public final fun isExhausted ()Z
+	public final fun tryCharge (J)Z
+	public static synthetic fun tryCharge$default (Lcom/davils/kore/core/budget/WorkBudget;JILjava/lang/Object;)Z
+}
+
+public final class com/davils/kore/core/budget/WorkLimitException : java/lang/IllegalStateException {
+	public final fun getLimit ()Ljava/lang/String;
+	public final fun getMaximum ()J
+}
+
 public final class com/davils/kore/core/collection/DuplicatesKt {
 	public static final fun duplicates (Ljava/lang/Iterable;)Ljava/util/Set;
 	public static final fun duplicatesBy (Ljava/lang/Iterable;Lkotlin/jvm/functions/Function1;)Ljava/util/Set;
