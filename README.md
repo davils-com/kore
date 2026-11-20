@@ -40,9 +40,9 @@ dependencyResolutionManagement {
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.davils:kore-core:2.3.1")
-    implementation("com.davils:kore-serialization:2.3.1")   // only if you use kotlinx-serialization
-    testImplementation("com.davils:kore-testing:2.3.1")
+    implementation("com.davils:kore-core:2.3.2")
+    implementation("com.davils:kore-serialization:2.3.2")   // only if you use kotlinx-serialization
+    testImplementation("com.davils:kore-testing:2.3.2")
 }
 ```
 
