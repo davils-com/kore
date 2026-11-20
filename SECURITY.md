@@ -6,8 +6,8 @@ Security fixes are released for the latest minor version of the current major re
 
 | Version | Supported |
 |---------|-----------|
-| 2.1.x   | Yes       |
-| < 2.1   | No        |
+| 2.2.x   | Yes       |
+| < 2.2   | No        |
 
 ## Reporting a Vulnerability
 
@@ -82,7 +82,7 @@ own `gradle/verification-metadata.xml`. A release also carries a signed build pr
 GitHub Actions run that built it:
 
 ```bash
-gh attestation verify kore-core-jvm-2.1.1.jar --repo davils-com/kore --signer-repo davils-com/kotlin-workflow
+gh attestation verify kore-core-jvm-2.2.0.jar --repo davils-com/kore --signer-repo davils-com/kotlin-workflow
 ```
 
 Snapshots in `https://repo.davils.com/snapshots` are neither signed nor attested and are not meant for production.
