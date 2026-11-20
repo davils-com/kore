@@ -19,6 +19,7 @@
 package com.davils.kore.core.concurrency
 
 import com.davils.kore.core.annotation.DavilsExperimental
+import com.davils.kore.core.concurrency.fixture.KeyLookups
 import com.davils.kore.core.concurrency.fixture.withThreads
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.ints.shouldBeGreaterThanOrEqual
@@ -26,12 +27,10 @@ import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.time.Duration.Companion.milliseconds
 
 private const val WORKERS: Int = 10_000
 private const val ANSWER: Int = 42
@@ -70,17 +69,18 @@ class ConcurrencyStressTest : FunSpec({
     }
 
     context("a single flight under contention") {
-        test("runs the block once for callers that wait for the same execution") {
-            val flight = SingleFlight<String, Int>()
+        test("runs the block once for callers that look up the key while it runs") {
+            val flight = SingleFlight<Any, Int>()
+            val lookups = KeyLookups(THREADS_OF_THOUGHT)
             val runs = AtomicInteger(0)
 
             val results = withThreads { threads ->
                 coroutineScope {
                     List(THREADS_OF_THOUGHT) {
                         async(threads) {
-                            flight.run("key") {
+                            flight.run(lookups.newKey()) {
                                 runs.incrementAndGet()
-                                delay(50.milliseconds)
+                                lookups.shouldAllHappen()
                                 ANSWER
                             }
                         }
@@ -90,6 +90,33 @@ class ConcurrencyStressTest : FunSpec({
 
             results.toSet() shouldBe setOf(ANSWER)
             runs.get() shouldBe 1
+        }
+
+        test("never overlaps two executions and hands each caller the result of the one it joined") {
+            val flight = SingleFlight<String, Int>()
+            val runs = AtomicInteger(0)
+            val running = AtomicInteger(0)
+            val mostRunning = AtomicInteger(0)
+
+            val results = withThreads { threads ->
+                coroutineScope {
+                    List(WORKERS) {
+                        async(threads) {
+                            flight.run("key") {
+                                val run = runs.incrementAndGet()
+                                val nowRunning = running.incrementAndGet()
+                                mostRunning.accumulateAndGet(nowRunning, ::maxOf)
+                                yield()
+                                running.decrementAndGet()
+                                run
+                            }
+                        }
+                    }.awaitAll()
+                }
+            }
+
+            mostRunning.get() shouldBe 1
+            results.toSet() shouldBe (1..runs.get()).toSet()
         }
     }
 })
