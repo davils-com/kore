@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- **A hash-free ordered index for the libraries of Davils.** The `@DavilsInternal` class `OrderedIndex` in
+  `com.davils.kore.core.collection` hands out an ordinal for every distinct key in the order the keys first came and
+  finds keys by comparison in a balanced tree, never by hash code, so keys an attacker chose to collide cannot make
+  lookups slow on the JVM or on Wasm. `OrderedMap` and `OrderedSet` build on it: they list their entries in the order
+  the keys first came, and a removed key that comes back keeps its first place.
+
 ## 2.1.1 - 2026-11-19
 
 ### Fixed

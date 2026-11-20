@@ -531,6 +531,39 @@ public final class com/davils/kore/core/collection/ImmutablesKt {
 	public static final fun immutableSet (Ljava/util/Collection;)Ljava/util/Set;
 }
 
+public final class com/davils/kore/core/collection/OrderedIndex {
+	public fun <init> ()V
+	public final fun getSize ()I
+	public final fun ordinalFor (Ljava/lang/Comparable;)I
+	public final fun ordinalOf (Ljava/lang/Comparable;)Ljava/lang/Integer;
+}
+
+public final class com/davils/kore/core/collection/OrderedMap {
+	public fun <init> ()V
+	public final fun clear ()V
+	public final fun contains (Ljava/lang/Comparable;)Z
+	public final fun get (Ljava/lang/Comparable;)Ljava/lang/Object;
+	public final fun getEntries ()Ljava/util/List;
+	public final fun getKeys ()Ljava/util/List;
+	public final fun getOrPut (Ljava/lang/Comparable;Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+	public final fun getSize ()I
+	public final fun remove (Ljava/lang/Comparable;)Ljava/lang/Object;
+	public final fun set (Ljava/lang/Comparable;Ljava/lang/Object;)V
+}
+
+public final class com/davils/kore/core/collection/OrderedSet : kotlin/collections/AbstractSet {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/Iterable;)V
+	public synthetic fun <init> (Ljava/lang/Iterable;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun add (Ljava/lang/Comparable;)Z
+	public final fun clear ()V
+	public fun contains (Ljava/lang/Comparable;)Z
+	public final fun contains (Ljava/lang/Object;)Z
+	public fun getSize ()I
+	public fun iterator ()Ljava/util/Iterator;
+	public final fun remove (Ljava/lang/Comparable;)Z
+}
+
 public final class com/davils/kore/core/concurrency/AdmissionGate {
 	public fun <init> ()V
 	public final fun admitted (Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;

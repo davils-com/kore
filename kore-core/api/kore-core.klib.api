@@ -361,6 +361,48 @@ final class <#A: kotlin/Any?> com.davils.kore.core.arguments/Parameter : kotlin.
     final fun provideDelegate(com.davils.kore.core.arguments/Parameters, kotlin.reflect/KProperty<*>): kotlin.properties/ReadOnlyProperty<com.davils.kore.core.arguments/Parameters, #A> // com.davils.kore.core.arguments/Parameter.provideDelegate|provideDelegate(com.davils.kore.core.arguments.Parameters;kotlin.reflect.KProperty<*>){}[0]
 }
 
+final class <#A: kotlin/Comparable<#A>, #B: kotlin/Any> com.davils.kore.core.collection/OrderedMap { // com.davils.kore.core.collection/OrderedMap|null[0]
+    constructor <init>() // com.davils.kore.core.collection/OrderedMap.<init>|<init>(){}[0]
+
+    final val entries // com.davils.kore.core.collection/OrderedMap.entries|{}entries[0]
+        final fun <get-entries>(): kotlin.collections/List<kotlin/Pair<#A, #B>> // com.davils.kore.core.collection/OrderedMap.entries.<get-entries>|<get-entries>(){}[0]
+    final val keys // com.davils.kore.core.collection/OrderedMap.keys|{}keys[0]
+        final fun <get-keys>(): kotlin.collections/List<#A> // com.davils.kore.core.collection/OrderedMap.keys.<get-keys>|<get-keys>(){}[0]
+
+    final var size // com.davils.kore.core.collection/OrderedMap.size|{}size[0]
+        final fun <get-size>(): kotlin/Int // com.davils.kore.core.collection/OrderedMap.size.<get-size>|<get-size>(){}[0]
+
+    final fun clear() // com.davils.kore.core.collection/OrderedMap.clear|clear(){}[0]
+    final fun contains(#A): kotlin/Boolean // com.davils.kore.core.collection/OrderedMap.contains|contains(1:0){}[0]
+    final fun get(#A): #B? // com.davils.kore.core.collection/OrderedMap.get|get(1:0){}[0]
+    final fun getOrPut(#A, kotlin/Function0<#B>): #B // com.davils.kore.core.collection/OrderedMap.getOrPut|getOrPut(1:0;kotlin.Function0<1:1>){}[0]
+    final fun remove(#A): #B? // com.davils.kore.core.collection/OrderedMap.remove|remove(1:0){}[0]
+    final fun set(#A, #B) // com.davils.kore.core.collection/OrderedMap.set|set(1:0;1:1){}[0]
+}
+
+final class <#A: kotlin/Comparable<#A>> com.davils.kore.core.collection/OrderedIndex { // com.davils.kore.core.collection/OrderedIndex|null[0]
+    constructor <init>() // com.davils.kore.core.collection/OrderedIndex.<init>|<init>(){}[0]
+
+    final var size // com.davils.kore.core.collection/OrderedIndex.size|{}size[0]
+        final fun <get-size>(): kotlin/Int // com.davils.kore.core.collection/OrderedIndex.size.<get-size>|<get-size>(){}[0]
+
+    final fun ordinalFor(#A): kotlin/Int // com.davils.kore.core.collection/OrderedIndex.ordinalFor|ordinalFor(1:0){}[0]
+    final fun ordinalOf(#A): kotlin/Int? // com.davils.kore.core.collection/OrderedIndex.ordinalOf|ordinalOf(1:0){}[0]
+}
+
+final class <#A: kotlin/Comparable<#A>> com.davils.kore.core.collection/OrderedSet : kotlin.collections/AbstractSet<#A> { // com.davils.kore.core.collection/OrderedSet|null[0]
+    constructor <init>(kotlin.collections/Iterable<#A> = ...) // com.davils.kore.core.collection/OrderedSet.<init>|<init>(kotlin.collections.Iterable<1:0>){}[0]
+
+    final val size // com.davils.kore.core.collection/OrderedSet.size|{}size[0]
+        final fun <get-size>(): kotlin/Int // com.davils.kore.core.collection/OrderedSet.size.<get-size>|<get-size>(){}[0]
+
+    final fun add(#A): kotlin/Boolean // com.davils.kore.core.collection/OrderedSet.add|add(1:0){}[0]
+    final fun clear() // com.davils.kore.core.collection/OrderedSet.clear|clear(){}[0]
+    final fun contains(#A): kotlin/Boolean // com.davils.kore.core.collection/OrderedSet.contains|contains(1:0){}[0]
+    final fun iterator(): kotlin.collections/Iterator<#A> // com.davils.kore.core.collection/OrderedSet.iterator|iterator(){}[0]
+    final fun remove(#A): kotlin/Boolean // com.davils.kore.core.collection/OrderedSet.remove|remove(1:0){}[0]
+}
+
 final class com.davils.kore.core.arguments.conversion/ConversionException : kotlin/RuntimeException { // com.davils.kore.core.arguments.conversion/ConversionException|null[0]
     constructor <init>(kotlin/String, kotlin/Throwable? = ...) // com.davils.kore.core.arguments.conversion/ConversionException.<init>|<init>(kotlin.String;kotlin.Throwable?){}[0]
 
