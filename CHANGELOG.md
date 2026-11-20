@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+- **URI references of RFC 3986 for the libraries of Davils.** The `@DavilsInternal` class `UriReference` in the new
+  package `com.davils.kore.core.uri` reads a URI or a relative reference with `parseOrNull`, which splits it as
+  Appendix B of RFC 3986 does, checks every component against the grammar of section 3, IPv6 and IPvFuture literals
+  included, and returns `null` for anything else, so it never throws on input. `resolve` gives the target of a
+  reference against a base by the strict algorithm of section 5.2, dot segments removed as section 5.2.4 describes, and
+  `normalize` applies the syntax-based normalization of section 6.2.2: the case of the scheme and the host, the case and
+  the decoding of percent-encoded octets and the dot segments. `isAbsolute` tells a URI from a relative reference and
+  `toString` recomposes the reference by section 5.3, so it reads back to an equal reference. Every function works in
+  time linear in its input, however many dot segments a path holds, and the new `Limits.MAX_URI_REFERENCE_LENGTH`
+  bounds the text that is read as well as every target of `resolve`.
+
 ## 2.2.0 - 2026-11-20
 
 ### Added

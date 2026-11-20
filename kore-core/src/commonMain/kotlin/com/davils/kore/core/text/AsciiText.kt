@@ -29,19 +29,19 @@ internal fun isAsciiLetterOrDigit(character: Char): Boolean = isAsciiLetter(char
 internal fun isPrintableAscii(character: Char): Boolean = character in FIRST_PRINTABLE..LAST_PRINTABLE
 
 internal fun asciiLowercase(text: String): String = buildString(text.length) {
-    text.forEach { character -> append(lowered(character)) }
+    text.forEach { character -> append(asciiLowercase(character)) }
 }
 
 internal fun asciiUppercase(text: String): String = buildString(text.length) {
-    text.forEach { character -> append(raised(character)) }
+    text.forEach { character -> append(asciiUppercase(character)) }
 }
 
-private fun lowered(character: Char): Char {
+internal fun asciiLowercase(character: Char): Char {
     if (character !in 'A'..'Z') return character
     return character + CASE_DISTANCE
 }
 
-private fun raised(character: Char): Char {
+internal fun asciiUppercase(character: Char): Char {
     if (character !in 'a'..'z') return character
     return character - CASE_DISTANCE
 }

@@ -334,4 +334,16 @@ public object Limits {
      * @since 2.1.0
      */
     public const val MAX_DECODED_TEXT_BYTES: Int = 64 * 1_024 * 1_024
+
+    /**
+     * The longest text, in UTF-16 code units, that is read as a URI reference, and the longest a URI reference may
+     * become.
+     *
+     * [com.davils.kore.core.uri.UriReference.parseOrNull] refuses longer text before it reads it, and
+     * [resolve][com.davils.kore.core.uri.UriReference.resolve] refuses a target whose text would be longer, so the
+     * text of every URI reference of Kore stays within this limit.
+     *
+     * @since 2.3.0
+     */
+    public const val MAX_URI_REFERENCE_LENGTH: Int = 65_536
 }

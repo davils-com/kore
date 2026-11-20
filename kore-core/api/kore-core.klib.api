@@ -818,6 +818,31 @@ final class com.davils.kore.core.text/TextSnippet { // com.davils.kore.core.text
     final fun toString(): kotlin/String // com.davils.kore.core.text/TextSnippet.toString|toString(){}[0]
 }
 
+final class com.davils.kore.core.uri/UriReference { // com.davils.kore.core.uri/UriReference|null[0]
+    final val authority // com.davils.kore.core.uri/UriReference.authority|{}authority[0]
+        final fun <get-authority>(): kotlin/String? // com.davils.kore.core.uri/UriReference.authority.<get-authority>|<get-authority>(){}[0]
+    final val fragment // com.davils.kore.core.uri/UriReference.fragment|{}fragment[0]
+        final fun <get-fragment>(): kotlin/String? // com.davils.kore.core.uri/UriReference.fragment.<get-fragment>|<get-fragment>(){}[0]
+    final val isAbsolute // com.davils.kore.core.uri/UriReference.isAbsolute|{}isAbsolute[0]
+        final fun <get-isAbsolute>(): kotlin/Boolean // com.davils.kore.core.uri/UriReference.isAbsolute.<get-isAbsolute>|<get-isAbsolute>(){}[0]
+    final val path // com.davils.kore.core.uri/UriReference.path|{}path[0]
+        final fun <get-path>(): kotlin/String // com.davils.kore.core.uri/UriReference.path.<get-path>|<get-path>(){}[0]
+    final val query // com.davils.kore.core.uri/UriReference.query|{}query[0]
+        final fun <get-query>(): kotlin/String? // com.davils.kore.core.uri/UriReference.query.<get-query>|<get-query>(){}[0]
+    final val scheme // com.davils.kore.core.uri/UriReference.scheme|{}scheme[0]
+        final fun <get-scheme>(): kotlin/String? // com.davils.kore.core.uri/UriReference.scheme.<get-scheme>|<get-scheme>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core.uri/UriReference.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core.uri/UriReference.hashCode|hashCode(){}[0]
+    final fun normalize(): com.davils.kore.core.uri/UriReference // com.davils.kore.core.uri/UriReference.normalize|normalize(){}[0]
+    final fun resolve(com.davils.kore.core.uri/UriReference): com.davils.kore.core.uri/UriReference? // com.davils.kore.core.uri/UriReference.resolve|resolve(com.davils.kore.core.uri.UriReference){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.uri/UriReference.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core.uri/UriReference.Companion|null[0]
+        final fun parseOrNull(kotlin/String): com.davils.kore.core.uri/UriReference? // com.davils.kore.core.uri/UriReference.Companion.parseOrNull|parseOrNull(kotlin.String){}[0]
+    }
+}
+
 final class com.davils.kore.core.validation.report/ValidationReport { // com.davils.kore.core.validation.report/ValidationReport|null[0]
     final val errors // com.davils.kore.core.validation.report/ValidationReport.errors|{}errors[0]
         final fun <get-errors>(): kotlin.collections/List<com.davils.kore.core.validation.violation/Violation> // com.davils.kore.core.validation.report/ValidationReport.errors.<get-errors>|<get-errors>(){}[0]
@@ -1566,6 +1591,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_SUGGESTED_ARGUMENTS>(): kotlin/Int // com.davils.kore.core/Limits.MAX_SUGGESTED_ARGUMENTS.<get-MAX_SUGGESTED_ARGUMENTS>|<get-MAX_SUGGESTED_ARGUMENTS>(){}[0]
     final const val MAX_SUGGESTION_TOKEN_LENGTH // com.davils.kore.core/Limits.MAX_SUGGESTION_TOKEN_LENGTH|{}MAX_SUGGESTION_TOKEN_LENGTH[0]
         final fun <get-MAX_SUGGESTION_TOKEN_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_SUGGESTION_TOKEN_LENGTH.<get-MAX_SUGGESTION_TOKEN_LENGTH>|<get-MAX_SUGGESTION_TOKEN_LENGTH>(){}[0]
+    final const val MAX_URI_REFERENCE_LENGTH // com.davils.kore.core/Limits.MAX_URI_REFERENCE_LENGTH|{}MAX_URI_REFERENCE_LENGTH[0]
+        final fun <get-MAX_URI_REFERENCE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_URI_REFERENCE_LENGTH.<get-MAX_URI_REFERENCE_LENGTH>|<get-MAX_URI_REFERENCE_LENGTH>(){}[0]
     final const val MAX_UUID_TEXT_LENGTH // com.davils.kore.core/Limits.MAX_UUID_TEXT_LENGTH|{}MAX_UUID_TEXT_LENGTH[0]
         final fun <get-MAX_UUID_TEXT_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_UUID_TEXT_LENGTH.<get-MAX_UUID_TEXT_LENGTH>|<get-MAX_UUID_TEXT_LENGTH>(){}[0]
     final const val MAX_VALUES_PER_PARAMETER // com.davils.kore.core/Limits.MAX_VALUES_PER_PARAMETER|{}MAX_VALUES_PER_PARAMETER[0]

@@ -40,6 +40,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_SNIPPET_WIDTH I
 	public static final field MAX_SUGGESTED_ARGUMENTS I
 	public static final field MAX_SUGGESTION_TOKEN_LENGTH I
+	public static final field MAX_URI_REFERENCE_LENGTH I
 	public static final field MAX_UUID_TEXT_LENGTH I
 	public static final field MAX_VALUES_PER_PARAMETER I
 	public static final field MAX_VERSION_LENGTH I
@@ -1271,6 +1272,25 @@ public final class com/davils/kore/core/text/encoding/TextEncoding : java/lang/E
 
 public final class com/davils/kore/core/text/encoding/TextEncoding$Companion {
 	public final fun detect ([B)Lcom/davils/kore/core/text/encoding/TextEncoding;
+}
+
+public final class com/davils/kore/core/uri/UriReference {
+	public static final field Companion Lcom/davils/kore/core/uri/UriReference$Companion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthority ()Ljava/lang/String;
+	public final fun getFragment ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getQuery ()Ljava/lang/String;
+	public final fun getScheme ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isAbsolute ()Z
+	public final fun normalize ()Lcom/davils/kore/core/uri/UriReference;
+	public final fun resolve (Lcom/davils/kore/core/uri/UriReference;)Lcom/davils/kore/core/uri/UriReference;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/uri/UriReference$Companion {
+	public final fun parseOrNull (Ljava/lang/String;)Lcom/davils/kore/core/uri/UriReference;
 }
 
 public final class com/davils/kore/core/validation/CollectionRulesKt {
