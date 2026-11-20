@@ -222,12 +222,15 @@ nothing, as its KDoc says.
   | Kreate 5.3.0 | `kore-core` 2.1.1 | `SafeText.text`, `SafeText.quoted`, `SafeText.isSafe` | `SafeTextTest` |
   | Kreate 5.3.0 | `kore-core` 2.1.1 | `parseIntOrNull`, `parseLongOrNull` | `IntegersTest` |
   | Kreate 5.3.0 | `kore-core` 2.1.1 | `parseDecimalOrNull` | `DecimalsTest` |
+  | konfetti 1.0.0 | `kore-core` 2.3.1 | `SafeText.text`, `SafeText.REDACTED` | `SafeTextTest` |
+  | konfetti 1.0.0 | `kore-core` 2.3.1 | `OrderedMap` | `OrderedMapTest` |
 
   Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
   assertion:
 
   ```bash
-  git diff "$(git describe --tags --abbrev=0)" -- '*SafeTextTest.kt' '*IntegersTest.kt' '*DecimalsTest.kt'
+  git diff "$(git describe --tags --abbrev=0)" -- '*SafeTextTest.kt' '*IntegersTest.kt' '*DecimalsTest.kt' \
+    '*OrderedMapTest.kt'
   ```
 
 ## Releases
