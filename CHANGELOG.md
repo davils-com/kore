@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   maximum. `charge` throws a `WorkLimitException` that names the limit, escaped, and its maximum, but nothing of the
   input; `tryCharge` reports the excess instead. A budget fails closed: once a charge fails, every later one fails,
   and the sum of the steps never overflows.
+- **The shortest decimal of a double for the libraries of Davils.** The `@DavilsInternal` class `ShortestDecimal` in
+  `com.davils.kore.core` gives the decimal with the fewest significant digits that reads back as a finite double, as a
+  sign, digits and an exponent, with the same result on the JVM and on Wasm. Where Java writes two digits although
+  one reads back, such as `4.9E-324`, it gives the one digit that JavaScript writes. `toString` writes it with an
+  exponent and `toPlainString` without one; both read back through `parseDecimalOrNull`.
 
 ## 2.1.1 - 2026-11-19
 

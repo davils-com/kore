@@ -47,6 +47,21 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_WORDS_TEXT_LENGTH I
 }
 
+public final class com/davils/kore/core/ShortestDecimal {
+	public static final field Companion Lcom/davils/kore/core/ShortestDecimal$Companion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDigits ()Ljava/lang/String;
+	public final fun getExponent ()I
+	public fun hashCode ()I
+	public final fun isNegative ()Z
+	public final fun toPlainString ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/ShortestDecimal$Companion {
+	public final fun of (D)Lcom/davils/kore/core/ShortestDecimal;
+}
+
 public abstract interface annotation class com/davils/kore/core/annotation/DavilsDsl : java/lang/annotation/Annotation {
 }
 

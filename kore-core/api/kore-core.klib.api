@@ -1016,6 +1016,24 @@ final class com.davils.kore.core.version/SemanticVersionRange { // com.davils.ko
     }
 }
 
+final class com.davils.kore.core/ShortestDecimal { // com.davils.kore.core/ShortestDecimal|null[0]
+    final val digits // com.davils.kore.core/ShortestDecimal.digits|{}digits[0]
+        final fun <get-digits>(): kotlin/String // com.davils.kore.core/ShortestDecimal.digits.<get-digits>|<get-digits>(){}[0]
+    final val exponent // com.davils.kore.core/ShortestDecimal.exponent|{}exponent[0]
+        final fun <get-exponent>(): kotlin/Int // com.davils.kore.core/ShortestDecimal.exponent.<get-exponent>|<get-exponent>(){}[0]
+    final val isNegative // com.davils.kore.core/ShortestDecimal.isNegative|{}isNegative[0]
+        final fun <get-isNegative>(): kotlin/Boolean // com.davils.kore.core/ShortestDecimal.isNegative.<get-isNegative>|<get-isNegative>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // com.davils.kore.core/ShortestDecimal.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // com.davils.kore.core/ShortestDecimal.hashCode|hashCode(){}[0]
+    final fun toPlainString(): kotlin/String // com.davils.kore.core/ShortestDecimal.toPlainString|toPlainString(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core/ShortestDecimal.toString|toString(){}[0]
+
+    final object Companion { // com.davils.kore.core/ShortestDecimal.Companion|null[0]
+        final fun of(kotlin/Double): com.davils.kore.core/ShortestDecimal // com.davils.kore.core/ShortestDecimal.Companion.of|of(kotlin.Double){}[0]
+    }
+}
+
 final value class com.davils.kore.core.size/DataSize : kotlin/Comparable<com.davils.kore.core.size/DataSize> { // com.davils.kore.core.size/DataSize|null[0]
     constructor <init>(kotlin/Long) // com.davils.kore.core.size/DataSize.<init>|<init>(kotlin.Long){}[0]
 
