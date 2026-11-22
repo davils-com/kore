@@ -224,13 +224,16 @@ nothing, as its KDoc says.
   | Kreate 5.3.0 | `kore-core` 2.1.1 | `parseDecimalOrNull` | `DecimalsTest` |
   | konfetti 1.0.0 | `kore-core` 2.3.1 | `SafeText.text`, `SafeText.REDACTED` | `SafeTextTest` |
   | konfetti 1.0.0 | `kore-core` 2.3.1 | `OrderedMap` | `OrderedMapTest` |
+  | krypt 1.0.0 | `kore-core` 2.3.2 | `SafeText.text`, `SafeText.REDACTED` | `SafeTextTest` |
+  | krypt 1.0.0 | `kore-core` 2.3.2 | `immutableSet` | `ImmutablesTest` |
+  | krypt 1.0.0 | `kore-core` 2.3.2 | `OrderedMap`, `OrderedSet` | `OrderedMapTest`, `OrderedSetTest` |
 
   Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
   assertion:
 
   ```bash
   git diff "$(git describe --tags --abbrev=0)" -- '*SafeTextTest.kt' '*IntegersTest.kt' '*DecimalsTest.kt' \
-    '*OrderedMapTest.kt'
+    '*OrderedMapTest.kt' '*ImmutablesTest.kt' '*OrderedSetTest.kt'
   ```
 
 ## Releases
