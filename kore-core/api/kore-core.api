@@ -1041,6 +1041,10 @@ public abstract interface class com/davils/kore/core/random/Entropy {
 	public abstract fun nextLong ()J
 }
 
+public final class com/davils/kore/core/random/FractionsKt {
+	public static final fun nextFraction (Lcom/davils/kore/core/random/Entropy;)D
+}
+
 public final class com/davils/kore/core/random/SecureEntropy : com/davils/kore/core/random/Entropy {
 	public static final field INSTANCE Lcom/davils/kore/core/random/SecureEntropy;
 	public fun nextBytes (I)[B

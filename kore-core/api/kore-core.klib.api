@@ -1643,6 +1643,7 @@ final val com.davils.kore.core.size/tebibytes // com.davils.kore.core.size/tebib
 final val com.davils.kore.core.size/tebibytes // com.davils.kore.core.size/tebibytes|@kotlin.Long{}tebibytes[0]
     final fun (kotlin/Long).<get-tebibytes>(): com.davils.kore.core.size/DataSize // com.davils.kore.core.size/tebibytes.<get-tebibytes>|<get-tebibytes>@kotlin.Long(){}[0]
 
+final fun (com.davils.kore.core.random/Entropy).com.davils.kore.core.random/nextFraction(): kotlin/Double // com.davils.kore.core.random/nextFraction|nextFraction@com.davils.kore.core.random.Entropy(){}[0]
 final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(com.davils.kore.core.text/TextRange): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
 final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/contains(kotlin/Int): kotlin/Boolean // com.davils.kore.core.text/contains|contains@com.davils.kore.core.text.TextRange(kotlin.Int){}[0]
 final fun (com.davils.kore.core.text/TextRange).com.davils.kore.core.text/covering(com.davils.kore.core.text/TextRange): com.davils.kore.core.text/TextRange // com.davils.kore.core.text/covering|covering@com.davils.kore.core.text.TextRange(com.davils.kore.core.text.TextRange){}[0]
