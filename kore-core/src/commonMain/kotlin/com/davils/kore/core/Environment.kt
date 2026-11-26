@@ -42,26 +42,27 @@ public fun processEnvironment(): Map<String, String> = MaskedEnvironment(platfor
  * `process.env` under Node.js on every call, so a change made there shows, and in a browser it always returns `null`.
  * It is safe to call from any thread.
  *
- * A name that is empty, longer than [Limits.MAX_NAME_LENGTH] or holds `=` or a NUL character is no name of an
- * environment variable on any platform and is refused before the environment is read. The value is returned as it is;
- * it may be a secret, so whoever shows it keeps it out of logs.
+ * A name that is empty, longer than [Limits.MAX_NAME_LENGTH] or holds a NUL character is refused before the
+ * environment is read. Any other name is looked up as it is, so a name with `=`, which only Windows uses for its hidden
+ * variables such as `=C:`, returns `null` wherever no such variable is set. The value is returned as it is; it may be a
+ * secret, so whoever shows it keeps it out of logs.
  *
  * @param name the name of the variable, case-sensitive on every platform but Windows.
  * @return the value, or `null` if the variable is not set.
- * @throws IllegalArgumentException if [name] is empty, too long or holds `=` or a NUL character. The message never
- * repeats the name.
+ * @throws IllegalArgumentException if [name] is empty, too long or holds a NUL character. The message never repeats
+ * the name.
  * @since 2.4.0
  */
 public fun processVariable(name: String): String? {
     require(isVariableName(name)) {
-        "The name of an environment variable must be 1 to ${Limits.MAX_NAME_LENGTH} characters without = or NUL"
+        "The name of an environment variable must be 1 to ${Limits.MAX_NAME_LENGTH} characters without NUL"
     }
     return platformVariable(name)
 }
 
 private fun isVariableName(name: String): Boolean {
     val isBounded = name.length in 1..Limits.MAX_NAME_LENGTH
-    return isBounded && name.none { character -> character == '=' || character == '\u0000' }
+    return isBounded && name.none { character -> character == '\u0000' }
 }
 
 internal expect fun platformEnvironment(): Map<String, String>

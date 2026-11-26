@@ -83,12 +83,23 @@ class EnvironmentTest : FunSpec({
         }
 
         test("refuses a name that no platform allows, without repeating it") {
-            val refused = listOf("", "A=B", "A\u0000B", "N".repeat(Limits.MAX_NAME_LENGTH + 1))
+            val refused = listOf("", "SECRET\u0000NAME", "N".repeat(Limits.MAX_NAME_LENGTH + 1))
 
             refused.forEach { name ->
                 val failure = shouldThrow<IllegalArgumentException> { processVariable(name) }
 
-                failure.message.orEmpty() shouldNotContain "A=B"
+                failure.message.orEmpty() shouldNotContain "SECRET"
+            }
+        }
+
+        test("looks up a name with an equals sign, as Windows names its hidden variables") {
+            processVariable("=KORE_SURELY_UNSET") shouldBe null
+            processVariable("KORE=SURELY_UNSET") shouldBe null
+        }
+
+        test("never reads what an environment inherits, such as the functions of its prototype") {
+            listOf("toString", "constructor", "__proto__", "hasOwnProperty").forEach { name ->
+                processVariable(name) shouldBe null
             }
         }
 
