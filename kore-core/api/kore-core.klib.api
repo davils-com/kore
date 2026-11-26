@@ -482,6 +482,23 @@ final class com.davils.kore.core.arguments/ParameterLimits { // com.davils.kore.
     final fun toString(): kotlin/String // com.davils.kore.core.arguments/ParameterLimits.toString|toString(){}[0]
 }
 
+final class com.davils.kore.core.budget/Deadline { // com.davils.kore.core.budget/Deadline|null[0]
+    final val budget // com.davils.kore.core.budget/Deadline.budget|{}budget[0]
+        final fun <get-budget>(): kotlin.time/Duration // com.davils.kore.core.budget/Deadline.budget.<get-budget>|<get-budget>(){}[0]
+    final val isExpired // com.davils.kore.core.budget/Deadline.isExpired|{}isExpired[0]
+        final fun <get-isExpired>(): kotlin/Boolean // com.davils.kore.core.budget/Deadline.isExpired.<get-isExpired>|<get-isExpired>(){}[0]
+    final val remaining // com.davils.kore.core.budget/Deadline.remaining|{}remaining[0]
+        final fun <get-remaining>(): kotlin.time/Duration // com.davils.kore.core.budget/Deadline.remaining.<get-remaining>|<get-remaining>(){}[0]
+
+    final fun remainingLess(kotlin.time/Duration): kotlin.time/Duration // com.davils.kore.core.budget/Deadline.remainingLess|remainingLess(kotlin.time.Duration){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.budget/Deadline.toString|toString(){}[0]
+    final fun within(kotlin.time/Duration): kotlin.time/Duration // com.davils.kore.core.budget/Deadline.within|within(kotlin.time.Duration){}[0]
+
+    final object Companion { // com.davils.kore.core.budget/Deadline.Companion|null[0]
+        final fun after(kotlin.time/Duration, kotlin.time/TimeSource = ...): com.davils.kore.core.budget/Deadline // com.davils.kore.core.budget/Deadline.Companion.after|after(kotlin.time.Duration;kotlin.time.TimeSource){}[0]
+    }
+}
+
 final class com.davils.kore.core.budget/WorkBudget { // com.davils.kore.core.budget/WorkBudget|null[0]
     constructor <init>(kotlin/Long, kotlin/String) // com.davils.kore.core.budget/WorkBudget.<init>|<init>(kotlin.Long;kotlin.String){}[0]
 

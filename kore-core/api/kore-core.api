@@ -550,6 +550,21 @@ public final class com/davils/kore/core/backoff/SpreadsKt {
 	public static final fun proportionalJitter-KLykuaI (JDD)J
 }
 
+public final class com/davils/kore/core/budget/Deadline {
+	public static final field Companion Lcom/davils/kore/core/budget/Deadline$Companion;
+	public final fun getBudget-UwyO8pc ()J
+	public final fun getRemaining-UwyO8pc ()J
+	public final fun isExpired ()Z
+	public final fun remainingLess-wmV0flA (J)J
+	public fun toString ()Ljava/lang/String;
+	public final fun within-wmV0flA (J)J
+}
+
+public final class com/davils/kore/core/budget/Deadline$Companion {
+	public final fun after-VtjQ1oo (JLkotlin/time/TimeSource;)Lcom/davils/kore/core/budget/Deadline;
+	public static synthetic fun after-VtjQ1oo$default (Lcom/davils/kore/core/budget/Deadline$Companion;JLkotlin/time/TimeSource;ILjava/lang/Object;)Lcom/davils/kore/core/budget/Deadline;
+}
+
 public final class com/davils/kore/core/budget/WorkBudget {
 	public fun <init> (JLjava/lang/String;)V
 	public final fun charge (J)V
