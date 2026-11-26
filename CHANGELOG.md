@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.4.1 - 2026-11-26
+
+### Fixed
+
+- **`processVariable` reads the hidden drive variables of Windows.** Names such as `=C:` are legal on Windows, so the
+  function refuses only an empty name, one longer than `Limits.MAX_NAME_LENGTH` or one with NUL.
+- **`processVariable` on Wasm reads only variables of the process.** Inherited properties such as `toString` are no
+  longer returned as values.
+- **Deterministic coverage of `kore-testing`.** The tests of `SafeToShow` and `TestClock` cover every branch with fixed
+  cases instead of generated text.
+
 ## 2.4.0 - 2026-11-26
+
+The pipeline of 2.4.0 failed and published nothing; 2.4.1 is the first release with these changes.
 
 ### Added
 
@@ -19,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `Converters.uuid` a `Uuid` of version 4 or 7, both with constant reasons that never repeat the input, so the
   environment reads of Knot and the parameters of every application read them typed.
 - **A single variable of the process.** `processVariable(name)` reads one environment variable without copying the
-  environment and refuses a name that no platform allows; Knot and Konnect read the host through it.
+  environment and refuses an empty or overlong name or one with NUL; Konnect reads the host through it.
 
 ### Changed
 
