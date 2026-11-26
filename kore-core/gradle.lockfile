@@ -2,14 +2,14 @@
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
 # To regenerate this file, run: ./gradlew :kore-core:dependencies --write-locks
-com.davils:kreate-detekt-rules:5.3.0=detektPlugins
-com.fasterxml.jackson.core:jackson-annotations:2.22=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.jackson.core:jackson-core:2.22.3=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.jackson.core:jackson-databind:2.22.3=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.22.3=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.jackson.module:jackson-module-kotlin:2.22.3=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.jackson:jackson-bom:2.22.3=dokkaHtmlGeneratorRuntimeResolver~internal
-com.fasterxml.woodstox:woodstox-core:7.2.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.davils:kreate-detekt-rules:5.5.2=detektPlugins
+com.fasterxml.jackson.core:jackson-annotations:2.23=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.jackson.core:jackson-core:2.23.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.jackson.core:jackson-databind:2.23.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.23.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.jackson.module:jackson-module-kotlin:2.23.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.jackson:jackson-bom:2.23.0=dokkaHtmlGeneratorRuntimeResolver~internal
+com.fasterxml.woodstox:woodstox-core:7.3.0=dokkaHtmlGeneratorRuntimeResolver~internal
 com.github.ajalt.colormath:colormath-wasm-js:3.6.0=wasmJsTestNpmAggregated,wasmJsTestRuntimeClasspath
 com.github.ajalt.colormath:colormath:3.6.0=allTestSourceSetsCompileDependenciesMetadata,allUnitTestSourceSetsCompileDependenciesMetadata,commonUnitTestResolvableDependenciesMetadata,jvmUnitTestResolvableDependenciesMetadata,wasmJsTestNpmAggregated,wasmJsTestResolvableDependenciesMetadata,wasmJsTestRuntimeClasspath
 com.github.ajalt.mordant:mordant-core-wasm-js:3.0.2=wasmJsTestNpmAggregated,wasmJsTestRuntimeClasspath
@@ -94,12 +94,12 @@ net.bytebuddy:byte-buddy:1.17.6=jvmUnitTestRuntimeClasspath,unitTestRuntimeClass
 net.java.dev.jna:jna-platform:5.9.0=allTestSourceSetsCompileDependenciesMetadata,allUnitTestSourceSetsCompileDependenciesMetadata,commonUnitTestResolvableDependenciesMetadata,jvmUnitTestCompileClasspath,jvmUnitTestResolvableDependenciesMetadata,jvmUnitTestRuntimeClasspath,unitTestCompileClasspath,unitTestRuntimeClasspath,wasmJsTestResolvableDependenciesMetadata
 net.java.dev.jna:jna:5.9.0=allTestSourceSetsCompileDependenciesMetadata,allUnitTestSourceSetsCompileDependenciesMetadata,commonUnitTestResolvableDependenciesMetadata,jvmUnitTestCompileClasspath,jvmUnitTestResolvableDependenciesMetadata,jvmUnitTestRuntimeClasspath,unitTestCompileClasspath,unitTestRuntimeClasspath,wasmJsTestResolvableDependenciesMetadata
 org.apiguardian:apiguardian-api:1.1.2=jvmUnitTestCompileClasspath,unitTestCompileClasspath
-org.bouncycastle:bcpg-jdk18on:1.85=kotlinBouncyCastleConfiguration
-org.bouncycastle:bcpkix-jdk18on:1.85=kotlinBouncyCastleConfiguration
-org.bouncycastle:bcprov-jdk18on:1.85=kotlinBouncyCastleConfiguration
-org.bouncycastle:bcutil-jdk18on:1.85=kotlinBouncyCastleConfiguration
+org.bouncycastle:bcpg-jdk18on:1.87=kotlinBouncyCastleConfiguration
+org.bouncycastle:bcpkix-jdk18on:1.87=kotlinBouncyCastleConfiguration
+org.bouncycastle:bcprov-jdk18on:1.87=kotlinBouncyCastleConfiguration
+org.bouncycastle:bcutil-jdk18on:1.87=kotlinBouncyCastleConfiguration
 org.checkerframework:checker-qual:3.19.0=detekt
-org.codehaus.woodstox:stax2-api:4.3.0=dokkaHtmlGeneratorRuntimeResolver~internal
+org.codehaus.woodstox:stax2-api:4.3.1=dokkaHtmlGeneratorRuntimeResolver~internal
 org.freemarker:freemarker:2.3.35=dokkaHtmlGeneratorRuntimeResolver~internal
 org.jcommander:jcommander:1.85=detekt
 org.jdom:jdom2:2.0.6.1=jvmUnitTestRuntimeClasspath,unitTestRuntimeClasspath
