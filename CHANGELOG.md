@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.4.0 - 2026-11-26
+
+### Added
+
+- **Secure entropy for every Davils library.** The new package `com.davils.kore.core.random` holds `Entropy`, a source
+  of random bits of which only `nextLong` has to be written, with `nextInt(bound)` drawn by rejection without bias
+  and `nextBytes(count)` bounded by the new `Limits.MAX_ENTROPY_BYTES`, and `SecureEntropy`, the cryptographically
+  secure generator of the platform: `SecureRandom` on the JVM and `crypto.getRandomValues` on Wasm. `shuffled(entropy)`
+  shuffles by Fisher and Yates. konfetti, kollect, kontinuity and kiro use it instead of the random bits of version 4
+  UUIDs that each of them copied.
+- **Converters for data sizes and UUIDs.** `Converters.dataSize(min, max)` reads a `DataSize` within bounds and
+  `Converters.uuid` a `Uuid` of version 4 or 7, both with constant reasons that never repeat the input, so the
+  environment reads of Knot and the parameters of every application read them typed.
+- **A single variable of the process.** `processVariable(name)` reads one environment variable without copying the
+  environment and refuses a name that no platform allows; Knot and Konnect read the host through it.
+
+### Changed
+
+- **Version 7 identifiers draw from `SecureEntropy`.** The internal randomness of the monotonic generator is replaced
+  by the public one; the identifiers are unchanged.
+
 ## 2.3.2 - 2026-11-20
 
 ### Changed
