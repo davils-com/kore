@@ -21,6 +21,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.nanoseconds
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
 import kotlin.time.TestTimeSource
@@ -29,6 +30,9 @@ private const val START_MILLISECONDS: Long = 1_700_000_000_000L
 private const val CENTURIES: Long = 300L * 365L * 24L * 60L
 
 private val start: Instant = Instant.fromEpochMilliseconds(START_MILLISECONDS)
+
+private const val LARGEST_EXACT_NANOSECONDS: Long = 4_611_686_018_426_999_999L
+private const val LAST_NANOSECONDS: Long = 775_809L
 
 class TestClockTest : FunSpec({
     context("a test clock") {
@@ -63,6 +67,17 @@ class TestClockTest : FunSpec({
                 clock.advanceBy((CENTURIES / 2).minutes)
                 clock.advanceBy((CENTURIES / 2).minutes)
             }
+        }
+
+        test("reaches the last nanosecond of its range and refuses the next one") {
+            val clock = TestClock(start)
+
+            clock.advanceBy(LARGEST_EXACT_NANOSECONDS.nanoseconds)
+            clock.advanceBy(LARGEST_EXACT_NANOSECONDS.nanoseconds)
+            clock.advanceBy(LAST_NANOSECONDS.nanoseconds)
+
+            shouldThrow<ArithmeticException> { clock.advanceBy(1.nanoseconds) }
+            clock.advanceBy(Duration.ZERO)
         }
     }
 

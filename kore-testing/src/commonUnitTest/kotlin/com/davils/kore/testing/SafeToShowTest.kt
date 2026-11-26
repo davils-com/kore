@@ -32,6 +32,7 @@ import io.kotest.matchers.shouldBe
 private const val PRINTABLE: String = """port 8080 äöü 日本 😀 "quoted" C:\path"""
 private const val ZERO_WIDTH_SPACE: String = "\u200B"
 private const val NEXT_LINE: String = "\u0085"
+private const val HIGH_SURROGATE_NOTATION: String = "U+D800"
 
 private val safeFragments: Set<String> = setOf(
     "a", "Z", "7", ".", "[", "]", "\"", "\\", " ", "ä", "日", "\uD83D\uDE00", COMBINING_LONG_SOLIDUS, HEBREW_ALEF,
@@ -62,8 +63,16 @@ class SafeToShowTest : FunSpec({
         }
 
         test("names each lone surrogate as one code point") {
-            unsafeCodePointsIn(LONE_HIGH_SURROGATE) shouldContainExactly listOf("U+D800")
+            unsafeCodePointsIn(LONE_HIGH_SURROGATE) shouldContainExactly listOf(HIGH_SURROGATE_NOTATION)
             unsafeCodePointsIn(LONE_LOW_SURROGATE) shouldContainExactly listOf("U+DC00")
+        }
+
+        test("names a high surrogate as one code point wherever its low half is missing") {
+            val twice = LONE_HIGH_SURROGATE + LONE_HIGH_SURROGATE
+
+            unsafeCodePointsIn("${LONE_HIGH_SURROGATE}a") shouldContainExactly listOf(HIGH_SURROGATE_NOTATION)
+            unsafeCodePointsIn("a$LONE_HIGH_SURROGATE") shouldContainExactly listOf(HIGH_SURROGATE_NOTATION)
+            unsafeCodePointsIn(twice) shouldContainExactly listOf(HIGH_SURROGATE_NOTATION, HIGH_SURROGATE_NOTATION)
         }
 
         test("names a supplementary tag character as one code point") {
