@@ -108,6 +108,21 @@ class EnvironmentTest : FunSpec({
         }
     }
 
+    context("the names of the process variables") {
+        test("are sorted, distinct and the names of the environment") {
+            val names = processVariableNames()
+
+            names shouldBe names.distinct().sorted()
+            names.toSet() shouldBe processEnvironment().keys
+        }
+
+        test("cannot be changed by a caller") {
+            val names = processVariableNames()
+
+            shouldThrowAny { (names as MutableList<String>).clear() }
+        }
+    }
+
     context("the process environment") {
         test("is masked") {
             val environment = processEnvironment()

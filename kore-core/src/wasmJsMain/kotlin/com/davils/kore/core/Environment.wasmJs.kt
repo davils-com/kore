@@ -30,6 +30,16 @@ internal actual fun platformEnvironment(): Map<String, String> {
 
 internal actual fun platformVariable(name: String): String? = environmentValue(name)
 
+internal actual fun platformVariableNames(): Collection<String> {
+    val names = environmentNames()
+    val collected = ArrayList<String>(names.length)
+    for (index in 0 until names.length) {
+        val name = names[index]?.toString() ?: continue
+        collected.add(name)
+    }
+    return collected
+}
+
 private fun environmentNames(): JsArray<JsString> =
     js("(typeof process === \"object\" && process !== null && process.env) ? Object.keys(process.env) : []")
 

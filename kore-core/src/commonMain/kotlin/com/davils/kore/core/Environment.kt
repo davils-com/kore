@@ -60,6 +60,23 @@ public fun processVariable(name: String): String? {
     return platformVariable(name)
 }
 
+/**
+ * Returns the names of the environment variables of the running process, without any of their values.
+ *
+ * It suits code that looks for variables by a prefix, such as `APP_`, and then reads the few it needs with
+ * [processVariable], so no value it does not need is ever copied. On the JVM the names are those of `System.getenv`; on
+ * Wasm they are the own properties of `process.env` under Node.js, and there are none in a browser. The list is a
+ * snapshot taken when the function is called, sorted by code unit, free of duplicates, unchangeable by a caller and
+ * safe to share between threads.
+ *
+ * @return the names, in ascending order.
+ * @since 2.5.0
+ */
+public fun processVariableNames(): List<String> {
+    val names = platformVariableNames().distinct()
+    return names.sorted().immutableList()
+}
+
 private fun isVariableName(name: String): Boolean {
     val isBounded = name.length in 1..Limits.MAX_NAME_LENGTH
     return isBounded && name.none { character -> character == '\u0000' }
@@ -68,3 +85,5 @@ private fun isVariableName(name: String): Boolean {
 internal expect fun platformEnvironment(): Map<String, String>
 
 internal expect fun platformVariable(name: String): String?
+
+internal expect fun platformVariableNames(): Collection<String>

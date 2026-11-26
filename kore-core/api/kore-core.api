@@ -5,6 +5,7 @@ public final class com/davils/kore/core/DecimalsKt {
 public final class com/davils/kore/core/EnvironmentKt {
 	public static final fun processEnvironment ()Ljava/util/Map;
 	public static final fun processVariable (Ljava/lang/String;)Ljava/lang/String;
+	public static final fun processVariableNames ()Ljava/util/List;
 }
 
 public final class com/davils/kore/core/IntegersKt {

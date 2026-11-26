@@ -19,3 +19,5 @@ package com.davils.kore.core
 internal actual fun platformEnvironment(): Map<String, String> = System.getenv()
 
 internal actual fun platformVariable(name: String): String? = System.getenv(name)
+
+internal actual fun platformVariableNames(): Collection<String> = System.getenv().keys
