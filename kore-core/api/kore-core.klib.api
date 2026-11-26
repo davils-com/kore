@@ -204,6 +204,12 @@ abstract fun interface <#A: out kotlin/Any?> com.davils.kore.core.dsl/Builder { 
     abstract fun build(): #A // com.davils.kore.core.dsl/Builder.build|build(){}[0]
 }
 
+abstract fun interface com.davils.kore.core.random/Entropy { // com.davils.kore.core.random/Entropy|null[0]
+    abstract fun nextLong(): kotlin/Long // com.davils.kore.core.random/Entropy.nextLong|nextLong(){}[0]
+    open fun nextBytes(kotlin/Int): kotlin/ByteArray // com.davils.kore.core.random/Entropy.nextBytes|nextBytes(kotlin.Int){}[0]
+    open fun nextInt(kotlin/Int): kotlin/Int // com.davils.kore.core.random/Entropy.nextInt|nextInt(kotlin.Int){}[0]
+}
+
 abstract interface <#A: com.davils.kore.core.architecture.domain/DomainModel, #B: com.davils.kore.core.architecture.data/DataTransferObject> com.davils.kore.core.architecture.mapper/Mapper : com.davils.kore.core.architecture.mapper/DomainMapper<#B, #A>, com.davils.kore.core.architecture.mapper/DtoMapper<#A, #B> // com.davils.kore.core.architecture.mapper/Mapper|null[0]
 
 abstract interface <#A: com.davils.kore.core.architecture.domain/DomainModel> com.davils.kore.core.architecture.data/Repository // com.davils.kore.core.architecture.data/Repository|null[0]
@@ -1432,10 +1438,13 @@ final object com.davils.kore.core.arguments.conversion/Converters { // com.davil
         final fun <get-semanticVersion>(): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.version/SemanticVersion> // com.davils.kore.core.arguments.conversion/Converters.semanticVersion.<get-semanticVersion>|<get-semanticVersion>(){}[0]
     final val semanticVersionRange // com.davils.kore.core.arguments.conversion/Converters.semanticVersionRange|{}semanticVersionRange[0]
         final fun <get-semanticVersionRange>(): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.version/SemanticVersionRange> // com.davils.kore.core.arguments.conversion/Converters.semanticVersionRange.<get-semanticVersionRange>|<get-semanticVersionRange>(){}[0]
+    final val uuid // com.davils.kore.core.arguments.conversion/Converters.uuid|{}uuid[0]
+        final fun <get-uuid>(): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.identity/Uuid> // com.davils.kore.core.arguments.conversion/Converters.uuid.<get-uuid>|<get-uuid>(){}[0]
 
     final fun <#A1: kotlin/Any?> custom(kotlin/String, com.davils.kore.core.arguments.conversion/Converter<#A1>): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.custom|custom(kotlin.String;com.davils.kore.core.arguments.conversion.Converter<0:0>){0§<kotlin.Any?>}[0]
     final fun <#A1: kotlin/Enum<#A1>> enumConverter(kotlin/String, kotlin.collections/List<#A1>): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.enumConverter|enumConverter(kotlin.String;kotlin.collections.List<0:0>){0§<kotlin.Enum<0:0>>}[0]
     final fun choice(kotlin/Array<out kotlin/String>...): com.davils.kore.core.arguments.conversion/Converter<kotlin/String> // com.davils.kore.core.arguments.conversion/Converters.choice|choice(kotlin.Array<out|kotlin.String>...){}[0]
+    final fun dataSize(com.davils.kore.core.size/DataSize = ..., com.davils.kore.core.size/DataSize = ...): com.davils.kore.core.arguments.conversion/Converter<com.davils.kore.core.size/DataSize> // com.davils.kore.core.arguments.conversion/Converters.dataSize|dataSize(com.davils.kore.core.size.DataSize;com.davils.kore.core.size.DataSize){}[0]
     final fun duration(kotlin.time/Duration = ..., kotlin.time/Duration = ...): com.davils.kore.core.arguments.conversion/Converter<kotlin.time/Duration> // com.davils.kore.core.arguments.conversion/Converters.duration|duration(kotlin.time.Duration;kotlin.time.Duration){}[0]
     final inline fun <#A1: reified kotlin/Enum<#A1>> enum(): com.davils.kore.core.arguments.conversion/Converter<#A1> // com.davils.kore.core.arguments.conversion/Converters.enum|enum(){0§<kotlin.Enum<0:0>>}[0]
 }
@@ -1519,6 +1528,12 @@ final object com.davils.kore.core.principal/PrincipalViolationCodes { // com.dav
         final fun <get-TOO_MANY_ROLES>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.principal/PrincipalViolationCodes.TOO_MANY_ROLES.<get-TOO_MANY_ROLES>|<get-TOO_MANY_ROLES>(){}[0]
 }
 
+final object com.davils.kore.core.random/SecureEntropy : com.davils.kore.core.random/Entropy { // com.davils.kore.core.random/SecureEntropy|null[0]
+    final fun nextBytes(kotlin/Int): kotlin/ByteArray // com.davils.kore.core.random/SecureEntropy.nextBytes|nextBytes(kotlin.Int){}[0]
+    final fun nextLong(): kotlin/Long // com.davils.kore.core.random/SecureEntropy.nextLong|nextLong(){}[0]
+    final fun toString(): kotlin/String // com.davils.kore.core.random/SecureEntropy.toString|toString(){}[0]
+}
+
 final object com.davils.kore.core.size/SizeViolationCodes { // com.davils.kore.core.size/SizeViolationCodes|null[0]
     final val INVALID_SIZE // com.davils.kore.core.size/SizeViolationCodes.INVALID_SIZE|{}INVALID_SIZE[0]
         final fun <get-INVALID_SIZE>(): com.davils.kore.core.validation.violation/ViolationCode // com.davils.kore.core.size/SizeViolationCodes.INVALID_SIZE.<get-INVALID_SIZE>|<get-INVALID_SIZE>(){}[0]
@@ -1563,6 +1578,8 @@ final object com.davils.kore.core/Limits { // com.davils.kore.core/Limits|null[0
         final fun <get-MAX_DISPLAY_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_DISPLAY_LENGTH.<get-MAX_DISPLAY_LENGTH>|<get-MAX_DISPLAY_LENGTH>(){}[0]
     final const val MAX_EDIT_DISTANCE_LENGTH // com.davils.kore.core/Limits.MAX_EDIT_DISTANCE_LENGTH|{}MAX_EDIT_DISTANCE_LENGTH[0]
         final fun <get-MAX_EDIT_DISTANCE_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_EDIT_DISTANCE_LENGTH.<get-MAX_EDIT_DISTANCE_LENGTH>|<get-MAX_EDIT_DISTANCE_LENGTH>(){}[0]
+    final const val MAX_ENTROPY_BYTES // com.davils.kore.core/Limits.MAX_ENTROPY_BYTES|{}MAX_ENTROPY_BYTES[0]
+        final fun <get-MAX_ENTROPY_BYTES>(): kotlin/Int // com.davils.kore.core/Limits.MAX_ENTROPY_BYTES.<get-MAX_ENTROPY_BYTES>|<get-MAX_ENTROPY_BYTES>(){}[0]
     final const val MAX_LINE_MAP_LENGTH // com.davils.kore.core/Limits.MAX_LINE_MAP_LENGTH|{}MAX_LINE_MAP_LENGTH[0]
         final fun <get-MAX_LINE_MAP_LENGTH>(): kotlin/Int // com.davils.kore.core/Limits.MAX_LINE_MAP_LENGTH.<get-MAX_LINE_MAP_LENGTH>|<get-MAX_LINE_MAP_LENGTH>(){}[0]
     final const val MAX_MESSAGE_LENGTH // com.davils.kore.core/Limits.MAX_MESSAGE_LENGTH|{}MAX_MESSAGE_LENGTH[0]
@@ -1670,6 +1687,7 @@ final fun <#A: com.davils.kore.core.validation/Validatable> (#A).com.davils.kore
 final fun <#A: kotlin/Any, #B: kotlin/Any> (kotlin.collections/Map<#A, #B>).com.davils.kore.core.collection/immutableMap(): kotlin.collections/Map<#A, #B> // com.davils.kore.core.collection/immutableMap|immutableMap@kotlin.collections.Map<0:0,0:1>(){0§<kotlin.Any>;1§<kotlin.Any>}[0]
 final fun <#A: kotlin/Any> (kotlin.collections/Collection<#A>).com.davils.kore.core.collection/immutableList(): kotlin.collections/List<#A> // com.davils.kore.core.collection/immutableList|immutableList@kotlin.collections.Collection<0:0>(){0§<kotlin.Any>}[0]
 final fun <#A: kotlin/Any> (kotlin.collections/Collection<#A>).com.davils.kore.core.collection/immutableSet(): kotlin.collections/Set<#A> // com.davils.kore.core.collection/immutableSet|immutableSet@kotlin.collections.Collection<0:0>(){0§<kotlin.Any>}[0]
+final fun <#A: kotlin/Any> (kotlin.collections/Iterable<#A>).com.davils.kore.core.random/shuffled(com.davils.kore.core.random/Entropy): kotlin.collections/List<#A> // com.davils.kore.core.random/shuffled|shuffled@kotlin.collections.Iterable<0:0>(com.davils.kore.core.random.Entropy){0§<kotlin.Any>}[0]
 final fun <#A: kotlin/Any?, #B: kotlin/Any?> (com.davils.kore.core.validation/ValidationScope).com.davils.kore.core.validation/unique(kotlin.reflect/KProperty<*>, kotlin.collections/List<#A>, kotlin/Function1<#A, #B>): kotlin/Boolean // com.davils.kore.core.validation/unique|unique@com.davils.kore.core.validation.ValidationScope(kotlin.reflect.KProperty<*>;kotlin.collections.List<0:0>;kotlin.Function1<0:0,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
 final fun <#A: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, *>).com.davils.kore.core.outcome/getOrNull(): #A? // com.davils.kore.core.outcome/getOrNull|getOrNull@com.davils.kore.core.outcome.Outcome<0:0,*>(){0§<kotlin.Any?>}[0]
 final fun <#A: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, kotlin/Throwable>).com.davils.kore.core.outcome/getOrThrow(): #A // com.davils.kore.core.outcome/getOrThrow|getOrThrow@com.davils.kore.core.outcome.Outcome<0:0,kotlin.Throwable>(){0§<kotlin.Any?>}[0]
@@ -1695,6 +1713,7 @@ final fun com.davils.kore.core/parseDecimalOrNull(kotlin/String): kotlin/Double?
 final fun com.davils.kore.core/parseIntOrNull(kotlin/String, kotlin/Boolean = ...): kotlin/Int? // com.davils.kore.core/parseIntOrNull|parseIntOrNull(kotlin.String;kotlin.Boolean){}[0]
 final fun com.davils.kore.core/parseLongOrNull(kotlin/String, kotlin/Boolean = ...): kotlin/Long? // com.davils.kore.core/parseLongOrNull|parseLongOrNull(kotlin.String;kotlin.Boolean){}[0]
 final fun com.davils.kore.core/processEnvironment(): kotlin.collections/Map<kotlin/String, kotlin/String> // com.davils.kore.core/processEnvironment|processEnvironment(){}[0]
+final fun com.davils.kore.core/processVariable(kotlin/String): kotlin/String? // com.davils.kore.core/processVariable|processVariable(kotlin.String){}[0]
 final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/flatMap(kotlin/Function1<#A, com.davils.kore.core.outcome/Outcome<#C, #B>>): com.davils.kore.core.outcome/Outcome<#C, #B> // com.davils.kore.core.outcome/flatMap|flatMap@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,com.davils.kore.core.outcome.Outcome<0:2,0:1>>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
 final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/fold(kotlin/Function1<#A, #C>, kotlin/Function1<#B, #C>): #C // com.davils.kore.core.outcome/fold|fold@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,0:2>;kotlin.Function1<0:1,0:2>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]
 final inline fun <#A: kotlin/Any?, #B: kotlin/Any?, #C: kotlin/Any?> (com.davils.kore.core.outcome/Outcome<#A, #B>).com.davils.kore.core.outcome/map(kotlin/Function1<#A, #C>): com.davils.kore.core.outcome/Outcome<#C, #B> // com.davils.kore.core.outcome/map|map@com.davils.kore.core.outcome.Outcome<0:0,0:1>(kotlin.Function1<0:0,0:2>){0§<kotlin.Any?>;1§<kotlin.Any?>;2§<kotlin.Any?>}[0]

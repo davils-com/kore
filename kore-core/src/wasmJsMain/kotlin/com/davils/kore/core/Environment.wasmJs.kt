@@ -28,6 +28,14 @@ internal actual fun platformEnvironment(): Map<String, String> {
     return environment.immutableMap()
 }
 
+internal actual fun platformVariable(name: String): String? {
+    if (!hasProcessEnvironment()) return null
+    return environmentValue(name)
+}
+
+private fun hasProcessEnvironment(): Boolean =
+    js("(typeof process === \"object\" && process !== null && process.env) ? true : false")
+
 private fun environmentNames(): JsArray<JsString> =
     js("(typeof process === \"object\" && process !== null && process.env) ? Object.keys(process.env) : []")
 

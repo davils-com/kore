@@ -24,5 +24,12 @@ class EnvironmentJvmTest : FunSpec({
         test("holds exactly the variables of System.getenv") {
             processEnvironment() shouldBe System.getenv()
         }
+
+        test("reads every single variable as System.getenv does") {
+            val names = System.getenv().keys
+            val readable = names.filter { name -> name.length <= Limits.MAX_NAME_LENGTH }
+
+            readable.forEach { name -> processVariable(name) shouldBe System.getenv(name) }
+        }
     }
 })

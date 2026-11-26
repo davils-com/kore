@@ -18,6 +18,7 @@ package com.davils.kore.core
 
 import com.davils.kore.core.text.fixture.hostileText
 import com.davils.kore.core.text.fixture.shouldBeSafeToShow
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.assertions.throwables.shouldThrowAny
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
@@ -73,6 +74,26 @@ class EnvironmentTest : FunSpec({
             val environment: Map<String, String> = MaskedEnvironment(variables)
 
             shouldThrowAny { (environment as MutableMap<String, String>).clear() }
+        }
+    }
+
+    context("a single variable of the process") {
+        test("is null when it is not set") {
+            processVariable("KORE_SURELY_UNSET_VARIABLE_4F2A") shouldBe null
+        }
+
+        test("refuses a name that no platform allows, without repeating it") {
+            val refused = listOf("", "A=B", "A\u0000B", "N".repeat(Limits.MAX_NAME_LENGTH + 1))
+
+            refused.forEach { name ->
+                val failure = shouldThrow<IllegalArgumentException> { processVariable(name) }
+
+                failure.message.orEmpty() shouldNotContain "A=B"
+            }
+        }
+
+        test("accepts a name of the longest length") {
+            processVariable("N".repeat(Limits.MAX_NAME_LENGTH)) shouldBe null
         }
     }
 

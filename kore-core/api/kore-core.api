@@ -4,6 +4,7 @@ public final class com/davils/kore/core/DecimalsKt {
 
 public final class com/davils/kore/core/EnvironmentKt {
 	public static final fun processEnvironment ()Ljava/util/Map;
+	public static final fun processVariable (Ljava/lang/String;)Ljava/lang/String;
 }
 
 public final class com/davils/kore/core/IntegersKt {
@@ -26,6 +27,7 @@ public final class com/davils/kore/core/Limits {
 	public static final field MAX_DELEGATION_CHAIN I
 	public static final field MAX_DISPLAY_LENGTH I
 	public static final field MAX_EDIT_DISTANCE_LENGTH I
+	public static final field MAX_ENTROPY_BYTES I
 	public static final field MAX_LINE_MAP_LENGTH I
 	public static final field MAX_MESSAGE_LENGTH I
 	public static final field MAX_NAME_LENGTH I
@@ -229,6 +231,8 @@ public final class com/davils/kore/core/arguments/conversion/Converters {
 	public static final field INSTANCE Lcom/davils/kore/core/arguments/conversion/Converters;
 	public final fun choice ([Ljava/lang/String;)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun custom (Ljava/lang/String;Lcom/davils/kore/core/arguments/conversion/Converter;)Lcom/davils/kore/core/arguments/conversion/Converter;
+	public final fun dataSize-fwnzRMM (JJ)Lcom/davils/kore/core/arguments/conversion/Converter;
+	public static synthetic fun dataSize-fwnzRMM$default (Lcom/davils/kore/core/arguments/conversion/Converters;JJILjava/lang/Object;)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun duration-QTBD994 (JJ)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public static synthetic fun duration-QTBD994$default (Lcom/davils/kore/core/arguments/conversion/Converters;JJILjava/lang/Object;)Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun enumConverter (Ljava/lang/String;Ljava/util/List;)Lcom/davils/kore/core/arguments/conversion/Converter;
@@ -238,6 +242,7 @@ public final class com/davils/kore/core/arguments/conversion/Converters {
 	public final fun getLong ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getSemanticVersion ()Lcom/davils/kore/core/arguments/conversion/Converter;
 	public final fun getSemanticVersionRange ()Lcom/davils/kore/core/arguments/conversion/Converter;
+	public final fun getUuid ()Lcom/davils/kore/core/arguments/conversion/Converter;
 }
 
 public final class com/davils/kore/core/arguments/conversion/JvmConvertersKt {
@@ -1028,6 +1033,23 @@ public final class com/davils/kore/core/principal/PrincipalsKt {
 	public static final fun requirePrincipal (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun withPrincipal (Lcom/davils/kore/core/principal/Principal;ZLkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun withPrincipal$default (Lcom/davils/kore/core/principal/Principal;ZLkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract interface class com/davils/kore/core/random/Entropy {
+	public fun nextBytes (I)[B
+	public fun nextInt (I)I
+	public abstract fun nextLong ()J
+}
+
+public final class com/davils/kore/core/random/SecureEntropy : com/davils/kore/core/random/Entropy {
+	public static final field INSTANCE Lcom/davils/kore/core/random/SecureEntropy;
+	public fun nextBytes (I)[B
+	public fun nextLong ()J
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/davils/kore/core/random/ShufflesKt {
+	public static final fun shuffled (Ljava/lang/Iterable;Lcom/davils/kore/core/random/Entropy;)Ljava/util/List;
 }
 
 public final class com/davils/kore/core/size/DataSize : java/lang/Comparable {
