@@ -17,6 +17,8 @@
 package com.davils.kore.core.arguments.conversion
 
 import com.davils.kore.core.Limits
+import com.davils.kore.core.identity.Uuid
+import com.davils.kore.core.size.DataSize
 import com.davils.kore.core.text.asciiLowercase
 import com.davils.kore.core.text.isPrintableAscii
 import com.davils.kore.core.version.SemanticVersion
@@ -29,6 +31,8 @@ private const val INFINITE_DURATION_REASON: String = "is not a finite duration"
 private const val NEGATIVE_DURATION_REASON: String = "is a negative duration"
 private const val VERSION_REASON: String = "is not a semantic version, expected something like 1.4.0 or 2.0.0-rc.1"
 private const val RANGE_REASON: String = "is not a version range, expected something like ^1.2 or >=1.0.0 <2.0.0"
+private const val DATA_SIZE_REASON: String = "is not a data size, expected something like 512 KiB or 64 MiB"
+private const val UUID_REASON: String = "is not a UUID of version 4 or 7 in canonical form"
 
 private val truthy: Set<String> = setOf("true", "yes", "on", "1")
 private val falsy: Set<String> = setOf("false", "no", "off", "0")
@@ -79,4 +83,21 @@ internal fun readSemanticVersion(raw: String): SemanticVersion {
 internal fun readSemanticVersionRange(raw: String): SemanticVersionRange {
     val range = SemanticVersionRange.parseOrNull(raw)
     return range ?: throw ConversionException(RANGE_REASON)
+}
+
+internal fun readDataSize(raw: String, smallest: DataSize, largest: DataSize): DataSize {
+    val size = DataSize.parseOrNull(raw) ?: throw ConversionException(DATA_SIZE_REASON)
+    val problem = sizeBoundsProblem(size, smallest, largest)
+    if (problem != null) throw ConversionException(problem)
+    return size
+}
+
+private fun sizeBoundsProblem(size: DataSize, smallest: DataSize, largest: DataSize): String? {
+    if (size < smallest) return "is smaller than $smallest"
+    return "is larger than $largest".takeIf { size > largest }
+}
+
+internal fun readUuid(raw: String): Uuid {
+    val uuid = Uuid.parseOrNull(raw)
+    return uuid ?: throw ConversionException(UUID_REASON)
 }

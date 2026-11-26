@@ -16,6 +16,8 @@
 
 package com.davils.kore.core.arguments.conversion
 
+import com.davils.kore.core.identity.Uuid
+import com.davils.kore.core.size.DataSize
 import com.davils.kore.core.version.SemanticVersion
 import com.davils.kore.core.version.SemanticVersionRange
 import kotlin.time.Duration
@@ -105,6 +107,17 @@ public object Converters {
     )
 
     /**
+     * Reads a [Uuid] of version 4 or 7 in its canonical text form, such as `0190a6e2-7c3b-7d4e-8f00-1a2b3c4d5e6f`, with
+     * [Uuid.parseOrNull].
+     *
+     * Hexadecimal digits are read in either case. Text that is not 36 characters long, not canonical or of another
+     * version or variant is refused with a constant reason that never repeats the text.
+     *
+     * @since 2.4.0
+     */
+    public val uuid: Converter<Uuid> = NamedConverter(typeName = "uuid", reading = ::readUuid)
+
+    /**
      * Returns a converter that reads a finite, non-negative [Duration] between [min] and [max].
      *
      * It reads the formats of [Duration.parseOrNull], such as `30s`, `1h 30m` or the ISO 8601 form `PT1H`. Text that is
@@ -126,6 +139,26 @@ public object Converters {
         require(max >= min) { "The longest accepted duration $max is shorter than the shortest $min" }
         return NamedConverter(typeName = "duration", isCheckingDefaults = true) { raw ->
             readDuration(raw = raw, shortest = min, longest = max)
+        }
+    }
+
+    /**
+     * Returns a converter that reads a [DataSize] between [min] and [max], such as `512 KiB` or `64MiB`.
+     *
+     * It reads exactly what [DataSize.parseOrNull] reads: binary units in their exact case, no decimal units and no
+     * text longer than [com.davils.kore.core.Limits.MAX_DATA_SIZE_TEXT_LENGTH]. A size outside the bounds is refused
+     * with a reason that names the bound it misses, never the text.
+     *
+     * @param min the smallest size accepted.
+     * @param max the largest size accepted.
+     * @return the converter, whose type name is `size`.
+     * @throws IllegalArgumentException if [max] is smaller than [min].
+     * @since 2.4.0
+     */
+    public fun dataSize(min: DataSize = DataSize.ZERO, max: DataSize = DataSize(Long.MAX_VALUE)): Converter<DataSize> {
+        require(max >= min) { "The largest accepted data size $max is smaller than the smallest $min" }
+        return NamedConverter(typeName = "size", isCheckingDefaults = true) { raw ->
+            readDataSize(raw = raw, smallest = min, largest = max)
         }
     }
 
