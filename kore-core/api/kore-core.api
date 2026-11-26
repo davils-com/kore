@@ -640,6 +640,14 @@ public final class com/davils/kore/core/concurrency/GateState : java/lang/Enum {
 	public static fun values ()[Lcom/davils/kore/core/concurrency/GateState;
 }
 
+public abstract interface class com/davils/kore/core/concurrency/Guard {
+	public abstract fun locked (Lkotlin/jvm/functions/Function0;)Ljava/lang/Object;
+}
+
+public final class com/davils/kore/core/concurrency/GuardsKt {
+	public static final fun guard ()Lcom/davils/kore/core/concurrency/Guard;
+}
+
 public final class com/davils/kore/core/concurrency/OnceFlag {
 	public fun <init> ()V
 	public final fun isSet ()Z

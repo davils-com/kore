@@ -227,6 +227,10 @@ abstract interface com.davils.kore.core.arguments/ValueSource { // com.davils.ko
     abstract suspend fun read(com.davils.kore.core.arguments/ParameterInfo): kotlin/String? // com.davils.kore.core.arguments/ValueSource.read|read(com.davils.kore.core.arguments.ParameterInfo){}[0]
 }
 
+abstract interface com.davils.kore.core.concurrency/Guard { // com.davils.kore.core.concurrency/Guard|null[0]
+    abstract fun <#A1: kotlin/Any?> locked(kotlin/Function0<#A1>): #A1 // com.davils.kore.core.concurrency/Guard.locked|locked(kotlin.Function0<0:0>){0§<kotlin.Any?>}[0]
+}
+
 abstract interface com.davils.kore.core.validation/Validatable { // com.davils.kore.core.validation/Validatable|null[0]
     abstract fun (com.davils.kore.core.validation/ValidationScope).validate() // com.davils.kore.core.validation/Validatable.validate|validate@com.davils.kore.core.validation.ValidationScope(){}[0]
 }
@@ -1705,6 +1709,7 @@ final fun com.davils.kore.core.backoff/equalJitter(kotlin.time/Duration, kotlin/
 final fun com.davils.kore.core.backoff/fullJitter(kotlin.time/Duration, kotlin/Double): kotlin.time/Duration // com.davils.kore.core.backoff/fullJitter|fullJitter(kotlin.time.Duration;kotlin.Double){}[0]
 final fun com.davils.kore.core.backoff/grownDelay(kotlin.time/Duration, kotlin/Double, kotlin/Int, kotlin.time/Duration): kotlin.time/Duration // com.davils.kore.core.backoff/grownDelay|grownDelay(kotlin.time.Duration;kotlin.Double;kotlin.Int;kotlin.time.Duration){}[0]
 final fun com.davils.kore.core.backoff/proportionalJitter(kotlin.time/Duration, kotlin/Double, kotlin/Double): kotlin.time/Duration // com.davils.kore.core.backoff/proportionalJitter|proportionalJitter(kotlin.time.Duration;kotlin.Double;kotlin.Double){}[0]
+final fun com.davils.kore.core.concurrency/guard(): com.davils.kore.core.concurrency/Guard // com.davils.kore.core.concurrency/guard|guard(){}[0]
 final fun com.davils.kore.core.failure/containedFailure(kotlin/Throwable, kotlin/Boolean): kotlin/Throwable // com.davils.kore.core.failure/containedFailure|containedFailure(kotlin.Throwable;kotlin.Boolean){}[0]
 final fun com.davils.kore.core.naming/nameRule(kotlin/Function1<com.davils.kore.core.naming/NameRuleBuilder, kotlin/Unit>): com.davils.kore.core.naming/NameRule // com.davils.kore.core.naming/nameRule|nameRule(kotlin.Function1<com.davils.kore.core.naming.NameRuleBuilder,kotlin.Unit>){}[0]
 final fun com.davils.kore.core.naming/words(kotlin/String): kotlin.collections/List<kotlin/String> // com.davils.kore.core.naming/words|words(kotlin.String){}[0]
