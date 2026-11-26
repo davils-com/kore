@@ -38,6 +38,7 @@ module com.davils.kore.core {
     exports com.davils.kore.core.outcome;
     exports com.davils.kore.core.platform;
     exports com.davils.kore.core.principal;
+    exports com.davils.kore.core.random;
     exports com.davils.kore.core.size;
     exports com.davils.kore.core.text;
     exports com.davils.kore.core.text.diagnostic;

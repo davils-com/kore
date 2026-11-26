@@ -14,10 +14,19 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.identity.internal
+@file:OptIn(ExperimentalWasmJsInterop::class)
 
-internal interface SecureRandomness {
-    fun nextLong(): Long
+package com.davils.kore.core.random.internal
 
-    fun nextInt(bound: Int): Int
+import com.davils.kore.core.random.Entropy
+
+private const val INT_BITS: Int = 32
+private const val LOWER_INT_MASK: Long = 0xFFFF_FFFFL
+
+internal actual fun platformEntropy(): Entropy = Entropy {
+    val upper = randomInt().toLong() shl INT_BITS
+    val lower = randomInt().toLong() and LOWER_INT_MASK
+    upper or lower
 }
+
+private fun randomInt(): Int = js("globalThis.crypto.getRandomValues(new Int32Array(1))[0]")

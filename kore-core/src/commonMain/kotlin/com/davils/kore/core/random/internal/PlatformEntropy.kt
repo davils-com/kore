@@ -14,15 +14,8 @@
  * limitations under the License.
  */
 
-package com.davils.kore.core.identity.internal
+package com.davils.kore.core.random.internal
 
-import java.security.SecureRandom
+import com.davils.kore.core.random.Entropy
 
-internal actual fun platformRandomness(): SecureRandomness {
-    val random = SecureRandom()
-    return object : SecureRandomness {
-        override fun nextLong(): Long = random.nextLong()
-
-        override fun nextInt(bound: Int): Int = random.nextInt(bound)
-    }
-}
+internal expect fun platformEntropy(): Entropy

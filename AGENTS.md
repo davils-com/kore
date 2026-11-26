@@ -118,7 +118,8 @@ the attributes of principals. Kore is built so that a mistake of a caller fails 
   its package, for example `com.davils.kore.core.text.internal`, and `module-info.java` never exports an `internal`
   package.
 - **Secure randomness only.** No `java.util.Random`, `kotlin.random.Random` or `ThreadLocalRandom`. Random bits come
-  from the internal `SecureRandomness`: `SecureRandom` on the JVM, `crypto.getRandomValues` on Wasm.
+  from `SecureEntropy` of `com.davils.kore.core.random`: `SecureRandom` on the JVM, `crypto.getRandomValues` on Wasm.
+  Every Davils library draws its random bits from it, or from an `Entropy` a test passes, never from a copy of its own.
 - **Every sink has an injection test.** A renderer is tested with the `hostileText` fixture and
   `shouldBeSafeToShow`; a sensitive value has a property test that it appears nowhere.
 

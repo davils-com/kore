@@ -18,6 +18,8 @@ package com.davils.kore.core.identity.internal
 
 import com.davils.kore.core.identity.UuidV7
 import com.davils.kore.core.identity.generator.UuidGenerator
+import com.davils.kore.core.random.Entropy
+import com.davils.kore.core.random.SecureEntropy
 import kotlin.concurrent.atomics.AtomicLong
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.concurrent.atomics.updateAndFetch
@@ -37,7 +39,7 @@ private const val MAX_STAMP: Long = 0x0FFF_FFFF_FFFF_FFFFL
 @OptIn(ExperimentalAtomicApi::class)
 internal class MonotonicUuidV7Generator(
     private val clock: Clock = Clock.System,
-    private val random: SecureRandomness = platformRandomness(),
+    private val random: Entropy = SecureEntropy,
 ) : UuidGenerator<UuidV7> {
     private val last: AtomicLong = AtomicLong(0L)
 

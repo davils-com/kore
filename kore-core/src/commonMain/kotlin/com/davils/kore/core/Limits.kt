@@ -346,4 +346,14 @@ public object Limits {
      * @since 2.3.0
      */
     public const val MAX_URI_REFERENCE_LENGTH: Int = 65_536
+
+    /**
+     * The most random bytes that one call of [com.davils.kore.core.random.Entropy.nextBytes] returns.
+     *
+     * A larger count is refused before a single bit is drawn, so a count that comes from outside cannot make a
+     * process allocate without bound.
+     *
+     * @since 2.4.0
+     */
+    public const val MAX_ENTROPY_BYTES: Int = 65_536
 }
