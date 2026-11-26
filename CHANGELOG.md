@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.5.0 - 2026-11-26
+
+### Added
+
+- **Random fractions.** `Entropy.nextFraction()` returns one of the 2^53 doubles from zero up to one, all equally
+  likely, from one draw. konfetti, kollect and kontinuity each carried a copy of it.
+- **The arithmetic of backoffs, for Davils libraries.** The new package `com.davils.kore.core.backoff` holds
+  `grownDelay`, an exponential delay that never overflows and never exceeds its maximum, and the full, equal,
+  proportional and decorrelated jitter that spread a delay by a random fraction, all `@DavilsInternal`. The public
+  backoffs of konfetti and kontinuity and the export backoff of kollect compute their delays with them.
+- **A guard for short critical sections, for Davils libraries.** `guard()` returns a `@DavilsInternal` `Guard`, a
+  reentrant lock on the JVM and a direct call on Wasm, which replaces the copy in each of six modules.
+- **Deadlines.** `Deadline.after(budget)` starts a budget of time on a monotonic source; `remaining`, `isExpired`,
+  `within(timeout)` and `remainingLess(margin)` let the steps of a piece of work, such as the phases of a shutdown,
+  share one end.
+- **The names of the process variables.** `processVariableNames()` returns the sorted names of the environment
+  without copying a single value, so a caller looks for a prefix and then reads only what it needs with
+  `processVariable`. Knot reads the environment through it instead of a copy of the platform code.
+
 ## 2.4.1 - 2026-11-26
 
 ### Fixed
