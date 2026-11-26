@@ -9,7 +9,7 @@ It is published under the Apache License 2.0 and is built to the standard it is 
 
 | Module | Artifact | Purpose |
 |---|---|---|
-| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, URI references, validation and its common rules, text positions, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, admission and single flight, the masked process environment, command line and environment parameters, principals, the `Davils*` annotations and the architecture contracts |
+| `kore-core` | `com.davils:kore-core` | Versions and ranges, UUIDs, URI references, validation and its common rules, text positions, snippets, diagnostics, line breaks and decoding, rules for names, close matches, the containment of foreign code, `Outcome`, collections, data sizes, admission and single flight, deadlines, guards and the arithmetic of backoffs, secure entropy, the masked process environment, command line and environment parameters, principals, the `Davils*` annotations and the architecture contracts |
 | `kore-testing` | `com.davils:kore-testing` | Test support for code built on Kore: deterministic UUIDs, marked text, hostile text and clocks; never on a production class path |
 | `kore-serialization` | `com.davils:kore-serialization` | Serializers of kotlinx-serialization for the values of Kore and `TextSerializer` for identifiers |
 | `build-logic` | - | One convention plugin per Kreate concern, composed by `kore.kotlin-library` for the modules and `kore.root` for the root project; they hold nothing but `plugins { }` and `kreate { }` |
@@ -228,13 +228,20 @@ nothing, as its KDoc says.
   | krypt 1.0.0 | `kore-core` 2.3.2 | `SafeText.text`, `SafeText.REDACTED` | `SafeTextTest` |
   | krypt 1.0.0 | `kore-core` 2.3.2 | `immutableSet` | `ImmutablesTest` |
   | krypt 1.0.0 | `kore-core` 2.3.2 | `OrderedMap`, `OrderedSet` | `OrderedMapTest`, `OrderedSetTest` |
+  | kaml 1.0.0 | `kore-core` 2.3.1 | `SafeText.text`, `OrderedIndex`, `OrderedMap`, `OrderedSet`, `WorkBudget` | `SafeTextTest`, `OrderedIndexTest`, `OrderedMapTest`, `OrderedSetTest`, `WorkBudgetTest` |
+  | kontinuity 1.0.0 | `kore-core` 2.3.2 | `SafeText.text`, `SafeText.quoted`, `immutableList`, `immutableMap`, `blocking` | `SafeTextTest`, `ImmutablesTest`, `BlockingTest` |
+  | Konnect 1.0.0 | `kore-core` 2.3.2 | `NativeLibrary`, `NativeLoader`, `NativeResult`, `blocking` | `NativeLibraryTest`, `NativeResultTest`, `BlockingTest` |
+  | konfetti 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
+  | kollect 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
+  | kontinuity 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter`, `equalJitter`, `proportionalJitter`, `decorrelatedJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
 
   Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
   assertion:
 
   ```bash
   git diff "$(git describe --tags --abbrev=0)" -- '*SafeTextTest.kt' '*IntegersTest.kt' '*DecimalsTest.kt' \
-    '*OrderedMapTest.kt' '*ImmutablesTest.kt' '*OrderedSetTest.kt'
+    '*OrderedMapTest.kt' '*ImmutablesTest.kt' '*OrderedSetTest.kt' '*OrderedIndexTest.kt' '*WorkBudgetTest.kt' \
+    '*BlockingTest.kt' '*NativeLibraryTest.kt' '*NativeResultTest.kt' '*GuardTest.kt' '*GrowthTest.kt' '*SpreadsTest.kt'
   ```
 
 ## Releases
