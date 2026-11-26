@@ -539,6 +539,17 @@ public final class com/davils/kore/core/arguments/report/ValueOrigin$External : 
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/davils/kore/core/backoff/GrowthKt {
+	public static final fun grownDelay-A4u-v98 (JDIJ)J
+}
+
+public final class com/davils/kore/core/backoff/SpreadsKt {
+	public static final fun decorrelatedJitter-2d-g_3Q (JJJD)J
+	public static final fun equalJitter-VtjQ1oo (JD)J
+	public static final fun fullJitter-VtjQ1oo (JD)J
+	public static final fun proportionalJitter-KLykuaI (JDD)J
+}
+
 public final class com/davils/kore/core/budget/WorkBudget {
 	public fun <init> (JLjava/lang/String;)V
 	public final fun charge (J)V

@@ -27,6 +27,7 @@ module com.davils.kore.core {
     exports com.davils.kore.core.arguments.conversion;
     exports com.davils.kore.core.arguments.declaration;
     exports com.davils.kore.core.arguments.report;
+    exports com.davils.kore.core.backoff;
     exports com.davils.kore.core.budget;
     exports com.davils.kore.core.collection;
     exports com.davils.kore.core.concurrency;
