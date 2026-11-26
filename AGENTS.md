@@ -234,6 +234,8 @@ nothing, as its KDoc says.
   | konfetti 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
   | kollect 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
   | kontinuity 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter`, `equalJitter`, `proportionalJitter`, `decorrelatedJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
+  | Knot 1.2.0 | `kore-core` 2.5.0 | `guard` | `GuardTest` |
+  | kontext 1.1.0 | `kore-core` 2.5.0 | `OrderedMap`, `SafeText.quoted` | `OrderedMapTest`, `SafeTextTest` |
 
   Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
   assertion:
