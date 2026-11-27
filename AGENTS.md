@@ -236,6 +236,7 @@ nothing, as its KDoc says.
   | kontinuity 1.1.0 | `kore-core` 2.5.0 | `guard`, `grownDelay`, `fullJitter`, `equalJitter`, `proportionalJitter`, `decorrelatedJitter` | `GuardTest`, `GrowthTest`, `SpreadsTest` |
   | Knot 1.2.0 | `kore-core` 2.5.0 | `guard` | `GuardTest` |
   | kontext 1.1.0 | `kore-core` 2.5.0 | `OrderedMap`, `SafeText.quoted` | `OrderedMapTest`, `SafeTextTest` |
+  | Kreate 5.6.2 | `kore-core` 2.5.0 | `WorkBudget` | `WorkBudgetTest` |
 
   Before every release, read the diff of these tests against the last release tag; it shows no changed or removed
   assertion:
